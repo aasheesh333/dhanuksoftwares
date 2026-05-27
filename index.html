@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dhanuk Softwares – Smart Android Apps</title>
+  <meta name="description" content="Dhanuk Softwares is an Indian Android app development company building simple, smart, and useful apps for everyday life."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0b0f1a;
+      --surface: #131929;
+      --card: #1a2235;
+      --accent: #4f8ef7;
+      --accent2: #38e0b0;
+      --text: #e8edf7;
+      --muted: #7a8aaa;
+      --border: #1e2d4a;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 5%;
+      background: rgba(11,15,26,0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem;
+      color: var(--accent); letter-spacing: -0.5px; text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent2); }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul a {
+      text-decoration: none; color: var(--muted);
+      font-size: 0.9rem; font-weight: 500; transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      justify-content: center; text-align: center; padding: 8rem 5% 5rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -200px; left: 50%;
+      transform: translateX(-50%); width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(79,142,247,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(79,142,247,0.1); border: 1px solid rgba(79,142,247,0.3);
+      color: var(--accent); font-size: 0.8rem; font-weight: 500;
+      padding: 0.35rem 1rem; border-radius: 999px; margin-bottom: 1.5rem; letter-spacing: 0.5px;
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif; font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 800; line-height: 1.1; letter-spacing: -2px; margin-bottom: 1.2rem;
+    }
+    .hero h1 .highlight { color: var(--accent); }
+    .hero h1 .highlight2 { color: var(--accent2); }
+    .hero p { max-width: 540px; margin: 0 auto 2.5rem; color: var(--muted); font-size: 1.1rem; }
+    .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      padding: 0.75rem 1.8rem; border-radius: 8px;
+      font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.95rem;
+      text-decoration: none; transition: all 0.2s; display: inline-block;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: #3a7de8; transform: translateY(-1px); }
+    .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* SECTIONS */
+    section { padding: 6rem 5%; }
+    .section-label {
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--accent2); margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700; letter-spacing: -1px; margin-bottom: 1rem;
+    }
+    .section-sub { color: var(--muted); max-width: 500px; margin-bottom: 3rem; }
+    .divider {
+      width: 60px; height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 2px; margin-bottom: 2rem;
+    }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 2rem; }
+    .stat-box {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.4rem;
+    }
+    .stat-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--accent); }
+    .stat-label { color: var(--muted); font-size: 0.85rem; margin-top: 0.2rem; }
+    .about-visual {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 20px; padding: 3rem; text-align: center;
+    }
+    .about-icon { font-size: 5rem; margin-bottom: 1rem; }
+    .about-tagline { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--accent2); }
+
+    /* APPS GRID — dynamic */
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .app-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem;
+      transition: border-color 0.25s, transform 0.25s;
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    .app-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0; transition: opacity 0.25s;
+    }
+    .app-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .app-card:hover::before { opacity: 1; }
+    .app-emoji { font-size: 2.5rem; margin-bottom: 1rem; }
+    .app-name { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .app-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.6; flex: 1; }
+    .app-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 1.2rem; }
+    .app-tag {
+      display: inline-block; font-size: 0.75rem; padding: 0.25rem 0.75rem;
+      border-radius: 999px; background: rgba(79,142,247,0.1);
+      color: var(--accent); border: 1px solid rgba(79,142,247,0.2);
+    }
+    .app-play-btn {
+      font-size: 0.8rem; color: var(--accent2); text-decoration: none;
+      display: flex; align-items: center; gap: 0.3rem; font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    .app-play-btn:hover { opacity: 0.75; }
+
+    /* LOADING / EMPTY states */
+    .apps-loading {
+      grid-column: 1 / -1; text-align: center;
+      color: var(--muted); padding: 3rem; font-size: 1rem;
+    }
+    .apps-count {
+      display: inline-block;
+      background: rgba(56,224,176,0.1); border: 1px solid rgba(56,224,176,0.25);
+      color: var(--accent2); font-size: 0.78rem; font-weight: 600;
+      padding: 0.3rem 0.9rem; border-radius: 999px; margin-bottom: 2rem;
+    }
+
+    /* TEAM */
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 700px; }
+    .team-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem; display: flex;
+      gap: 1.2rem; align-items: flex-start; transition: border-color 0.2s;
+    }
+    .team-card:hover { border-color: var(--accent2); }
+    .team-avatar {
+      width: 56px; height: 56px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem;
+      color: #fff; flex-shrink: 0;
+    }
+    .team-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 0.2rem; }
+    .team-role { font-size: 0.8rem; color: var(--accent2); font-weight: 500; margin-bottom: 0.5rem; }
+    .team-email { font-size: 0.82rem; color: var(--muted); text-decoration: none; }
+    .team-email:hover { color: var(--accent); }
+
+    /* CONTACT */
+    .contact-wrap {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 20px; padding: 3rem; max-width: 640px;
+    }
+    .contact-item {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1rem 0; border-bottom: 1px solid var(--border);
+    }
+    .contact-item:last-child { border-bottom: none; }
+    .contact-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: rgba(79,142,247,0.1); display: flex;
+      align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+    }
+    .contact-label { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.1rem; }
+    .contact-value { font-size: 0.95rem; color: var(--text); }
+    .contact-value a { color: var(--accent); text-decoration: none; }
+    .contact-value a:hover { text-decoration: underline; }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 2.5rem 5%;
+      border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .hero > * { animation: fadeUp 0.7s ease both; }
+    .hero-badge { animation-delay: 0s; }
+    .hero h1 { animation-delay: 0.1s; }
+    .hero p { animation-delay: 0.2s; }
+    .btn-group { animation-delay: 0.3s; }
+    .loading-pulse { animation: pulse 1.5s ease infinite; }
+
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      nav ul { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Dhanuk<span>Softwares</span></a>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#apps">Apps</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div>
+    <div class="hero-badge">🇮🇳 Made in India · Android Apps</div>
+    <h1>
+      <span class="highlight">Smart</span> Apps<br/>
+      for <span class="highlight2">Everyday Life</span>
+    </h1>
+    <p>Dhanuk Softwares builds simple, lightweight Android applications designed to make daily tasks easier — for real people, real needs.</p>
+    <div class="btn-group">
+      <a href="#apps" class="btn btn-primary">Explore Our Apps</a>
+      <a href="#contact" class="btn btn-outline">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div>
+      <div class="section-label">About Us</div>
+      <h2 class="section-title">Building Apps That Actually Matter</h2>
+      <div class="divider"></div>
+      <p style="color:var(--muted);margin-bottom:1rem;">
+        Dhanuk Softwares is a registered Indian software development company focused on creating intuitive, lightweight Android applications. We believe great apps should be simple to use, fast, and genuinely useful.
+      </p>
+      <p style="color:var(--muted);">
+        From productivity tools to astrology, document scanning to photo editing — every app we build starts with a simple question: <em>does this make someone's day easier?</em>
+      </p>
+      <div class="about-stats">
+        <div class="stat-box">
+          <div class="stat-num" id="app-count-stat">—</div>
+          <div class="stat-label">Published Apps</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Made in India</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">GST</div>
+          <div class="stat-label">Registered Business</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">MSME</div>
+          <div class="stat-label">Certified Studio</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-visual">
+      <div class="about-icon">📱</div>
+      <div class="about-tagline">Simple Apps.<br/>Smarter Life.</div>
+      <p style="color:var(--muted);margin-top:1rem;font-size:0.9rem;">Every product is crafted with care, designed for clarity, and built to last.</p>
+    </div>
+  </div>
+</section>
+
+<!-- APPS — rendered from apps.json -->
+<section id="apps" style="background:var(--surface);">
+  <div class="section-label">Our Products</div>
+  <h2 class="section-title">Apps We've Built</h2>
+  <p class="section-sub">Each app is designed to be clean, lightweight, and genuinely useful — no bloat, no clutter.</p>
+  <div id="apps-count-badge" style="display:none;">
+    <span class="apps-count" id="apps-count-text"></span>
+  </div>
+  <div class="apps-grid" id="apps-grid">
+    <div class="apps-loading loading-pulse">Loading apps…</div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="section-label">The Team</div>
+  <h2 class="section-title">People Behind Dhanuk</h2>
+  <p class="section-sub" style="margin-bottom:2.5rem;">A small team with a big mission — to build apps Indians actually love using.</p>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-avatar">AS</div>
+      <div>
+        <div class="team-name">Aasheesh Singh</div>
+        <div class="team-role">Founder & Owner</div>
+        <a class="team-email" href="mailto:aasheeshkatheriya@dhanuksoftwares.com">aasheeshkatheriya@dhanuksoftwares.com</a>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">SS</div>
+      <div>
+        <div class="team-name">Shyam Singh</div>
+        <div class="team-role">Creative Partner</div>
+        <a class="team-email" href="mailto:shyamkatheriya@dhanuksoftwares.com">shyamkatheriya@dhanuksoftwares.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background:var(--surface);">
+  <div class="section-label">Get In Touch</div>
+  <h2 class="section-title">Contact Us</h2>
+  <p class="section-sub">Have a question, a bug to report, or want to work with us? We'd love to hear from you.</p>
+  <div class="contact-wrap">
+    <div class="contact-item">
+      <div class="contact-icon">📧</div>
+      <div>
+        <div class="contact-label">Support Email</div>
+        <div class="contact-value"><a href="mailto:support@dhanuksoftwares.com">support@dhanuksoftwares.com</a></div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">👤</div>
+      <div>
+        <div class="contact-label">Founder</div>
+        <div class="contact-value"><a href="mailto:aasheeshkatheriya@dhanuksoftwares.com">aasheeshkatheriya@dhanuksoftwares.com</a></div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">🐙</div>
+      <div>
+        <div class="contact-label">GitHub</div>
+        <div class="contact-value"><a href="https://github.com/aasheesh333" target="_blank">github.com/aasheesh333</a></div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">📍</div>
+      <div>
+        <div class="contact-label">Location</div>
+        <div class="contact-value">Noida, Uttar Pradesh, India</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© <span id="footer-year"></span> <strong>Dhanuk Softwares</strong>. All rights reserved. · GST & MSME Registered · Made with ❤️ in India</p>
+  <p style="margin-top:0.5rem;"><a href="mailto:support@dhanuksoftwares.com">support@dhanuksoftwares.com</a></p>
+</footer>
+
+<script>
+  // ─── Auto year ───────────────────────────────────────
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+  // ─── Load apps from apps.json ─────────────────────────
+  async function loadApps() {
+    const grid = document.getElementById('apps-grid');
+    try {
+      const res = await fetch('apps.json');
+      if (!res.ok) throw new Error('Failed to fetch');
+      const apps = await res.json();
+
+      // Update count badge + stat
+      const count = apps.length;
+      document.getElementById('app-count-stat').textContent = count + '+';
+      const badge = document.getElementById('apps-count-badge');
+      document.getElementById('apps-count-text').textContent = `${count} Apps Available on Google Play`;
+      badge.style.display = 'block';
+
+      // Render cards
+      grid.innerHTML = '';
+      apps.forEach((app, i) => {
+        const card = document.createElement('div');
+        card.className = 'app-card';
+        card.style.animationDelay = (i * 0.08) + 's';
+        card.style.animation = 'fadeUp 0.5s ease both';
+
+        const playBtn = app.playUrl
+          ? `<a class="app-play-btn" href="${app.playUrl}" target="_blank">▶ Play Store</a>`
+          : '';
+
+        card.innerHTML = `
+          <div class="app-emoji">${app.emoji || '📱'}</div>
+          <div class="app-name">${app.name}</div>
+          <div class="app-desc">${app.desc}</div>
+          <div class="app-footer">
+            <span class="app-tag">${app.tag || 'Android'}</span>
+            ${playBtn}
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+    } catch (err) {
+      grid.innerHTML = `<div class="apps-loading" style="color:var(--muted);">
+        ⚠️ Could not load apps. Make sure <code>apps.json</code> is in the same folder.<br/>
+        <small style="font-size:0.8rem;margin-top:0.5rem;display:block;">${err.message}</small>
+      </div>`;
+    }
+  }
+
+  loadApps();
+</script>
+</body>
+</html>

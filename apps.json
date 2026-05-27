@@ -1,0 +1,30 @@
+[
+  {
+    "name": "AstroPrerna",
+    "emoji": "🔭",
+    "desc": "Your personal astrology companion. Get daily insights, horoscopes, and cosmic guidance tailored to your birth chart.",
+    "tag": "Astrology",
+    "playUrl": ""
+  },
+  {
+    "name": "Focus App",
+    "emoji": "🎯",
+    "desc": "Stay productive with smart focus sessions. Block distractions, set goals, and track your deep work time effortlessly.",
+    "tag": "Productivity",
+    "playUrl": ""
+  },
+  {
+    "name": "Quick Scan",
+    "emoji": "📄",
+    "desc": "Instantly scan documents, IDs, and receipts with your camera. Export clean PDFs with a single tap.",
+    "tag": "Utility",
+    "playUrl": ""
+  },
+  {
+    "name": "Photo Editor",
+    "emoji": "🖼️",
+    "desc": "A powerful yet simple photo editing tool. Adjust, enhance, and beautify your images right on your Android phone.",
+    "tag": "Creative",
+    "playUrl": ""
+  }
+]
