@@ -54,7 +54,19 @@
     section { padding:3rem 5%; }
     section h2 { font-family:'Syne',sans-serif; font-size:clamp(1.5rem,3.5vw,2rem); font-weight:700; margin-bottom:1rem; letter-spacing:-0.5px; }
     .about-section { background:var(--surface); }
-    .about-text { color:var(--muted); font-size:1rem; max-width:720px; white-space:pre-line; }
+    .about-text { color:var(--muted); font-size:1rem; max-width:720px; }
+    .about-text h2 { font-family:'Syne',sans-serif; font-size:1.4rem; font-weight:700; color:var(--text); margin:1.5rem 0 0.7rem; letter-spacing:-0.3px; }
+    .about-text h3 { font-family:'Syne',sans-serif; font-size:1.15rem; font-weight:700; color:var(--accent2); margin:1.3rem 0 0.6rem; }
+    .about-text h4 { font-family:'Syne',sans-serif; font-size:1.02rem; font-weight:700; color:var(--text); margin:1.1rem 0 0.5rem; }
+    .about-text p { margin:0.7rem 0; line-height:1.75; }
+    .about-text ul, .about-text ol { margin:0.7rem 0 0.7rem 1.5rem; }
+    .about-text li { margin-bottom:0.35rem; }
+    .about-text strong { color:var(--text); font-weight:600; }
+    .about-text em { color:var(--accent2); font-style:italic; }
+    .about-text a { color:var(--accent); text-decoration:underline; }
+    .about-text code { background:var(--surface); padding:0.1rem 0.35rem; border-radius:4px; font-size:0.9em; }
+    .about-text blockquote { border-left:3px solid var(--accent); padding-left:1rem; color:var(--muted); font-style:italic; margin:1rem 0; }
+    .about-text hr { border:none; border-top:1px solid var(--border); margin:1.5rem 0; }
     .features-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1rem; max-width:880px; }
     .feature-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.25rem; }
     .feature-icon { font-size:1.5rem; margin-bottom:0.5rem; color:var(--accent2); }
@@ -133,7 +145,7 @@
 <section class="about-section">
   <div class="container">
     <h2>About {{name}}</h2>
-    <p class="about-text">{{longDescription}}</p>
+    <div class="about-text">{{longDescription}}</div>
   </div>
 </section>
 
