@@ -1,70 +1,84 @@
 [
   {
-    "name": "AstroPrerna",
-    "emoji": "🔭",
-    "tag": "Astrology",
-    "shortDesc": "Your personal astrology companion. Get daily insights, horoscopes, and cosmic guidance tailored to your birth chart.",
-    "slug": "astroprerna",
-    "longDescription": "Your personal astrology companion. Get daily insights, horoscopes, and cosmic guidance tailored to your birth chart.",
-    "keywords": [],
-    "features": [],
-    "faq": [],
-    "screenshots": [],
-    "rating": {
-      "value": 0,
-      "count": 0
-    },
-    "marketplaces": []
-  },
-  {
-    "name": "Focus App",
-    "emoji": "🎯",
+    "name": "FocusStreak: Stay Focus Daily",
+    "slug": "focusstreak",
+    "category": "Productivity",
     "tag": "Productivity",
-    "shortDesc": "Stay productive with smart focus sessions. Block distractions, set goals, and track your deep work time effortlessly.",
-    "slug": "focus-app",
-    "longDescription": "Stay productive with smart focus sessions. Block distractions, set goals, and track your deep work time effortlessly.",
-    "keywords": [],
-    "features": [],
-    "faq": [],
-    "screenshots": [],
+    "tagline": "Stay Focus Daily",
+    "shortDesc": "Stay focused with a simple focus timer and study streak tracker",
+    "longDescription": "<h2>Introduction to FocusStreak</h2>\n   FocusStreak helps students stay focused, build study habits, and manage time effectively — one session at a time. In today's world, where distractions are just a click away, it can be challenging to stay on track. As a student, you need a tool that helps you prioritize your tasks, minimize distractions, and maintain a consistent study routine. This is where FocusStreak comes in - a powerful focus timer and study streak tracker designed specifically for students like you.\n\n   <h2>Key Features of FocusStreak</h2>\n   So, what makes FocusStreak so effective? Here are some of its key features:\n   • Start a focus timer and study without distractions: With FocusStreak, you can set a timer and eliminate all distractions, helping you stay focused on your studies.\n   • Track your daily study streaks and stay consistent: The app allows you to track your daily study sessions, providing you with a visual representation of your progress and motivating you to maintain a consistent study routine.\n   • Build better concentration habits over time: By using FocusStreak regularly, you can develop better concentration habits, which will help you stay focused and achieve your academic goals.\n   • Simple, clean UI designed for students: The app has a simple and intuitive interface, making it easy for you to navigate and use, even if you're not tech-savvy.\n\n   <h3>Why Students Love FocusStreak</h3>\n   So, why do students love using FocusStreak? Here are a few reasons:\n   • No complicated setup — open and start focusing: You don't need to spend hours setting up the app or configuring its features. Simply download and install it, and you're ready to start focusing.\n   • Visual streak system keeps you motivated: The app's visual streak system provides you with a clear picture of your progress, motivating you to maintain a consistent study routine and achieve your academic goals.\n   • Works offline — no internet needed to study: FocusStreak works offline, which means you can use it anywhere, anytime, without needing an internet connection.\n   • Lightweight (under 15 MB): The app is lightweight and won't consume too much storage space on your device, making it perfect for students who need to manage their device's storage carefully.\n\n   <h2>Who Can Benefit from FocusStreak</h2>\n   FocusStreak is perfect for:\n   • School & college students: Whether you're in school or college, FocusStreak can help you stay focused, build study habits, and achieve your academic goals.\n   • Self-learners and exam preppers: If you're preparing for exams or learning new skills, FocusStreak can help you stay on track and maintain a consistent study routine.\n   • Anyone who wants better time management: FocusStreak is not just for students; anyone who wants to improve their time management skills and stay focused can benefit from using the app.\n\n   <h3>Using FocusStreak for Better Time Management</h3>\n   Time management is an essential skill for students, and FocusStreak can help you develop this skill. By using the app regularly, you can:\n   • Prioritize your tasks: FocusStreak helps you prioritize your tasks, ensuring that you're focusing on the most important ones first.\n   • Minimize distractions: The app eliminates distractions, helping you stay focused on your studies and maintain a consistent study routine.\n   • Maintain a consistent study routine: FocusStreak provides you with a visual representation of your progress, motivating you to maintain a consistent study routine and achieve your academic goals.\n\n   <h2>Conclusion</h2>\n   FocusStreak is a powerful tool that can help you stay focused, build study habits, and achieve your academic goals. With its simple and intuitive interface, visual streak system, and offline functionality, FocusStreak is the perfect app for students who want to improve their time management skills and stay focused. So why wait? Download FocusStreak today and start achieving your academic goals!",
+    "keywords": [
+      "focus timer app",
+      "study streak tracker",
+      "productivity tools for students",
+      "time management apps",
+      "study habits",
+      "concentration habits",
+      "self-learning",
+      "exam preparation"
+    ],
+    "features": [
+      "Start a focus timer and study without distractions",
+      "Track your daily study streaks and stay consistent",
+      "Build better concentration habits over time",
+      "Simple, clean UI designed for students",
+      "Works offline — no internet needed to study",
+      "Lightweight (under 15 MB)",
+      "Visual streak system keeps you motivated"
+    ],
+    "faq": [
+      {
+        "q": "Is FocusStreak free to use?",
+        "a": "Yes, FocusStreak is free to download and use, with no hidden charges or subscription fees."
+      },
+      {
+        "q": "Can I use FocusStreak offline?",
+        "a": "Yes, FocusStreak works offline, which means you can use it anywhere, anytime, without needing an internet connection."
+      },
+      {
+        "q": "Is my data safe with FocusStreak?",
+        "a": "Yes, FocusStreak takes your privacy seriously and ensures that your data is safe and secure."
+      },
+      {
+        "q": "Is FocusStreak compatible with my device?",
+        "a": "FocusStreak is compatible with most Android devices, but please check the system requirements before downloading the app."
+      },
+      {
+        "q": "How do I get started with FocusStreak?",
+        "a": "Getting started with FocusStreak is easy. Simply download and install the app, and follow the on-screen instructions to start using it."
+      },
+      {
+        "q": "Can I use FocusStreak for tasks other than studying?",
+        "a": "Yes, FocusStreak can be used for any task that requires focus and concentration, such as work, reading, or writing."
+      },
+      {
+        "q": "How does FocusStreak compare to other productivity apps?",
+        "a": "FocusStreak is a unique app that combines a focus timer with a study streak tracker, making it an effective tool for students who want to stay focused and achieve their academic goals."
+      },
+      {
+        "q": "What if I have a problem or issue with FocusStreak?",
+        "a": "If you have a problem or issue with FocusStreak, please contact our support team, and we will do our best to resolve it as soon as possible."
+      }
+    ],
+    "emoji": "",
+    "icon": "https://play-lh.googleusercontent.com/mqDfFOqSydo4vvOVHjHiQGphd5u76FNIE8_3N-DnqHihR70Gl8PPgg-5mW5jJ_tXgNXiAIymVopuqwCY1omJQg",
+    "screenshots": [
+      "https://play-lh.googleusercontent.com/T9fVrygTH7RtVzdp_lRofd3Tf_zpcndrwq89NMFRNa1lmQKuhtMDt8a9OvkJLT0ij6OgKzKQNyWYzh1VswCI=w1052-h592",
+      "https://play-lh.googleusercontent.com/uWGWq8M7WNTI7_C5KuimsmJPPMtaxuc46ENNVFq1M5RMn2AuZYL2Bv3oqkJXEu0_P65dTDVMSNoS7gemII6A=w1052-h592",
+      "https://play-lh.googleusercontent.com/5cCAobK9mqEbnL3eJbiaQOPTlKgnpcDTsPSDWFdsrI2EECZVXjUSjLjZg9gnyl05TFTVhZsPTKEZ2MUw3oKylA=w1052-h592",
+      "https://play-lh.googleusercontent.com/vhjbayxPFkIy_U3felbCAjmmsNTr0rDFL5s0gbF6k0EKStiN45kCkl_bTUdLfI8fIdVwrMNmuVHq4HmyM0vd=w1052-h592"
+    ],
+    "marketplaces": [
+      {
+        "name": "Google Play",
+        "url": "https://play.google.com/store/apps/details?id=com.dhanuk.focusstreak&pcampaignid=web_share",
+        "type": "play"
+      }
+    ],
     "rating": {
       "value": 0,
       "count": 0
     },
-    "marketplaces": []
-  },
-  {
-    "name": "Quick Scan",
-    "emoji": "📄",
-    "tag": "Utility",
-    "shortDesc": "Instantly scan documents, IDs, and receipts with your camera. Export clean PDFs with a single tap.",
-    "slug": "quick-scan",
-    "longDescription": "Instantly scan documents, IDs, and receipts with your camera. Export clean PDFs with a single tap.",
-    "keywords": [],
-    "features": [],
-    "faq": [],
-    "screenshots": [],
-    "rating": {
-      "value": 0,
-      "count": 0
-    },
-    "marketplaces": []
-  },
-  {
-    "name": "Photo Editor",
-    "emoji": "🖼️",
-    "tag": "Creative",
-    "shortDesc": "A powerful yet simple photo editing tool. Adjust, enhance, and beautify your images right on your Android phone.",
-    "slug": "photo-editor",
-    "longDescription": "A powerful yet simple photo editing tool. Adjust, enhance, and beautify your images right on your Android phone.",
-    "keywords": [],
-    "features": [],
-    "faq": [],
-    "screenshots": [],
-    "rating": {
-      "value": 0,
-      "count": 0
-    },
-    "marketplaces": []
+    "lastUpdated": "2026-06-04"
   }
 ]
