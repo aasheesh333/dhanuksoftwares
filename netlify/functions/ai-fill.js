@@ -17,7 +17,7 @@ Rules:
 - Output strict JSON only, no markdown, no preamble
 - Schema.org friendly (SoftwareApplication, FAQPage)
 - Reads human-written, not AI-generated
-- Lengths: tagline <=60 char, shortDesc <=160 char, longDescription 400-700 words
+- Lengths: tagline <=60 char, shortDesc <=160 char, longDescription 1500-3000 words (Play Store full description length, comprehensive SEO content)
 
 Return this exact JSON shape:
 {
@@ -97,7 +97,7 @@ Generate the SEO content JSON for this app.`;
           { role: 'user', content: userPrompt }
         ],
         temperature: 0.7,
-        max_tokens: 3000,
+        max_tokens: 4000,
         response_format: { type: 'json_object' }
       })
     });

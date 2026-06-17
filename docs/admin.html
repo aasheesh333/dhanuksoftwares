@@ -310,8 +310,8 @@
         </div>
 
         <div class="form-row">
-          <label for="f-longDesc">Long Description (400-2000 chars) <span id="long-count" style="color:var(--muted);">(0/2000)</span></label>
-          <textarea id="f-longDesc" maxlength="2000" style="min-height:140px;"></textarea>
+          <label for="f-longDesc">Long Description (4000 chars max &mdash; Play Store parity) <span id="long-count" style="color:var(--muted);">(0/4000)</span></label>
+          <textarea id="f-longDesc" maxlength="4000" style="min-height:280px;"></textarea>
         </div>
 
         <div class="form-row">
@@ -575,7 +575,7 @@
     const s = document.getElementById('f-shortDesc').value.length;
     const l = document.getElementById('f-longDesc').value.length;
     document.getElementById('short-count').textContent = `(${s}/160)`;
-    document.getElementById('long-count').textContent = `(${l}/2000)`;
+    document.getElementById('long-count').textContent = `(${l}/4000)`;
   }
   document.getElementById('f-shortDesc').addEventListener('input', updateCharCounts);
   document.getElementById('f-longDesc').addEventListener('input', updateCharCounts);
