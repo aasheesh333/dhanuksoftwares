@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{{name}} - {{tagline}} | Dhanuk Softwares</title>
+  <meta name="description" content="{{shortDesc}}"/>
+  <meta name="keywords" content="{{keywordsString}}"/>
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1"/>
+  <link rel="canonical" href="https://dhanuksoftwares.netlify.app/apps/{{slug}}/"/>
+
+  <meta property="og:title" content="{{name}} - {{tagline}}"/>
+  <meta property="og:description" content="{{shortDesc}}"/>
+  <meta property="og:url" content="https://dhanuksoftwares.netlify.app/apps/{{slug}}/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="{{primaryScreenshot}}"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="{{name}} - {{tagline}}"/>
+  <meta name="twitter:description" content="{{shortDesc}}"/>
+  <meta name="twitter:image" content="{{primaryScreenshot}}"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root { --bg:#0b0f1a; --surface:#131929; --card:#1a2235; --accent:#4f8ef7; --accent2:#38e0b0; --text:#e8edf7; --muted:#7a8aaa; --border:#1e2d4a; --danger:#ff5a5f; }
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; line-height:1.7; }
+    nav { position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:1rem 5%; background:rgba(11,15,26,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
+    .nav-logo { font-family:'Syne',sans-serif; font-weight:800; font-size:1.2rem; color:var(--accent); text-decoration:none; }
+    .nav-logo span { color:var(--accent2); }
+    .nav-cta { background:var(--accent); color:#fff; padding:0.5rem 1.2rem; border-radius:8px; text-decoration:none; font-size:0.9rem; font-weight:500; }
+    .nav-cta:hover { background:#3a7de8; }
+    .container { max-width:960px; margin:0 auto; padding:0 5%; }
+    .breadcrumb { padding:1rem 5%; font-size:0.85rem; color:var(--muted); }
+    .breadcrumb a { color:var(--muted); text-decoration:none; }
+    .breadcrumb a:hover { color:var(--accent); }
+    .hero { padding:3rem 5% 2rem; text-align:center; }
+    .hero-icon { font-size:4.5rem; margin-bottom:1rem; }
+    .hero-icon-img { width:96px; height:96px; border-radius:20px; margin:0 auto 1rem; display:block; border:1px solid var(--border); }
+    .hero h1 { font-family:'Syne',sans-serif; font-size:clamp(2rem,5vw,3.2rem); font-weight:800; letter-spacing:-1px; margin-bottom:0.5rem; }
+    .hero .tagline { color:var(--accent2); font-size:1.15rem; margin-bottom:1rem; }
+    .hero .rating { color:var(--muted); font-size:0.95rem; margin-bottom:1.5rem; }
+    .hero .rating strong { color:#ffc857; }
+    .cta-row { display:flex; flex-wrap:wrap; gap:0.6rem; justify-content:center; margin-bottom:1rem; }
+    .btn-primary { background:var(--accent); color:#fff; padding:0.85rem 1.6rem; border-radius:10px; text-decoration:none; font-weight:600; font-size:1rem; display:inline-flex; align-items:center; gap:0.5rem; }
+    .btn-primary:hover { background:#3a7de8; transform:translateY(-1px); }
+    .btn-secondary { background:transparent; border:1px solid var(--border); color:var(--text); padding:0.7rem 1.2rem; border-radius:999px; text-decoration:none; font-size:0.85rem; display:inline-flex; align-items:center; gap:0.4rem; }
+    .btn-secondary:hover { border-color:var(--accent); color:var(--accent); }
+    .more-stores { text-align:center; margin-top:0.5rem; }
+    .more-stores details { display:inline-block; }
+    .more-stores summary { cursor:pointer; color:var(--muted); font-size:0.85rem; padding:0.4rem 0.8rem; }
+    .more-stores summary:hover { color:var(--accent); }
+    .more-stores .store-list { display:flex; flex-wrap:wrap; gap:0.4rem; justify-content:center; margin-top:0.5rem; }
+    section { padding:3rem 5%; }
+    section h2 { font-family:'Syne',sans-serif; font-size:clamp(1.5rem,3.5vw,2rem); font-weight:700; margin-bottom:1rem; letter-spacing:-0.5px; }
+    .about-section { background:var(--surface); }
+    .about-text { color:var(--muted); font-size:1rem; max-width:720px; white-space:pre-line; }
+    .features-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1rem; max-width:880px; }
+    .feature-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.25rem; }
+    .feature-icon { font-size:1.5rem; margin-bottom:0.5rem; color:var(--accent2); }
+    .feature-title { font-family:'Syne',sans-serif; font-weight:700; margin-bottom:0.4rem; font-size:0.98rem; }
+    .steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; max-width:800px; }
+    .step { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.25rem; position:relative; }
+    .step-num { position:absolute; top:-10px; left:1rem; background:var(--accent); color:#fff; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.85rem; }
+    .step h3 { font-family:'Syne',sans-serif; font-size:1rem; margin:0.4rem 0 0.5rem; }
+    .step p { color:var(--muted); font-size:0.9rem; }
+    .screenshots { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem; }
+    .screenshots img { width:100%; border-radius:12px; border:1px solid var(--border); }
+    .faq-item { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:1rem 1.25rem; margin-bottom:0.75rem; max-width:760px; }
+    .faq-q { font-family:'Syne',sans-serif; font-weight:700; margin-bottom:0.5rem; color:var(--accent2); }
+    .faq-a { color:var(--muted); }
+    .tech-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:0.75rem; max-width:600px; }
+    .tech-item { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:0.75rem 1rem; }
+    .tech-label { color:var(--muted); font-size:0.75rem; }
+    .tech-value { font-weight:600; font-size:0.95rem; }
+    .related-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; }
+    .related-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1rem; text-decoration:none; color:var(--text); transition:border-color 0.2s; }
+    .related-card:hover { border-color:var(--accent); }
+    .related-emoji { font-size:1.5rem; margin-bottom:0.3rem; }
+    .related-name { font-family:'Syne',sans-serif; font-weight:700; margin-bottom:0.2rem; }
+    .related-desc { color:var(--muted); font-size:0.85rem; }
+    .final-cta { background:var(--card); border:1px solid var(--border); border-radius:20px; padding:2.5rem; text-align:center; max-width:700px; margin:0 auto; }
+    .final-cta h2 { margin-bottom:0.5rem; }
+    .final-cta p { color:var(--muted); margin-bottom:1.5rem; }
+    footer { text-align:center; padding:2rem 5%; border-top:1px solid var(--border); color:var(--muted); font-size:0.85rem; margin-top:2rem; }
+    footer a { color:var(--accent); text-decoration:none; }
+    .sticky-bar { position:fixed; bottom:0; left:0; right:0; z-index:60; background:rgba(11,15,26,0.96); backdrop-filter:blur(12px); border-top:1px solid var(--border); padding:0.75rem 5%; display:flex; gap:0.5rem; align-items:center; justify-content:center; }
+    .sticky-bar .btn-primary { padding:0.7rem 1.2rem; font-size:0.9rem; }
+    .sticky-bar .btn-secondary { padding:0.6rem 1rem; font-size:0.8rem; }
+    @media (min-width:769px) { .sticky-bar { display:none; } }
+    @media (max-width:768px) { body { padding-bottom:80px; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">Dhanuk<span>Softwares</span></a>
+  {{#if hasPrimaryDownload}}
+  <a class="nav-cta" href="{{primaryDownloadUrl}}" onclick="trackDl('{{slug}}','{{primaryMarketplaceType}}','nav')" rel="noopener">⬇ Download</a>
+  {{/if}}
+</nav>
+
+<div class="breadcrumb container">
+  <a href="/">Home</a> &rsaquo; <a href="/apps/">Apps</a> &rsaquo; <span>{{name}}</span>
+</div>
+
+<section class="hero">
+  {{#if icon}}<img class="hero-icon-img" src="{{icon}}" alt="{{name}} icon"/>{{else}}<div class="hero-icon">{{emoji}}</div>{{/if}}
+  <h1>{{name}}</h1>
+  <div class="tagline">{{tagline}}</div>
+  {{#if hasRating}}
+  <div class="rating">&#9733; <strong>{{ratingValue}}</strong> ({{ratingCount}} reviews)</div>
+  {{/if}}
+  <div class="cta-row">
+    {{#if primaryDownloadUrl}}
+    <a class="btn-primary" href="{{primaryDownloadUrl}}" onclick="trackDl('{{slug}}','{{primaryMarketplaceType}}','hero')" rel="noopener">&#11015; Download on {{primaryMarketplaceName}}</a>
+    {{/if}}
+  </div>
+  {{#if hasSecondaryDownloads}}
+  <div class="more-stores">
+    <details>
+      <summary>More download options ({{secondaryCount}})</summary>
+      <div class="store-list">
+        {{#each secondaryDownloads}}
+        <a class="btn-secondary" href="{{url}}" onclick="trackDl('{{../slug}}','{{type}}','hero_more')" rel="noopener">{{name}}</a>
+        {{/each}}
+      </div>
+    </details>
+  </div>
+  {{/if}}
+</section>
+
+<section class="about-section">
+  <div class="container">
+    <h2>About {{name}}</h2>
+    <p class="about-text">{{longDescription}}</p>
+  </div>
+</section>
+
+{{#if features.length}}
+<section>
+  <div class="container">
+    <h2>Key Features</h2>
+    <div class="features-grid">
+      {{#each features}}
+      <div class="feature-card">
+        <div class="feature-icon">&#10003;</div>
+        <div class="feature-title">{{this}}</div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</section>
+{{/if}}
+
+{{#if screenshots.length}}
+<section style="background:var(--surface);">
+  <div class="container">
+    <h2>Screenshots</h2>
+    <div class="screenshots">
+      {{#each screenshots}}
+      <img src="{{this}}" alt="{{../name}} screenshot {{@index}}" loading="lazy"/>
+      {{/each}}
+    </div>
+  </div>
+</section>
+{{/if}}
+
+<section>
+  <div class="container">
+    <h2>How to Download</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Choose a Store</h3>
+        <p>Tap any download button above &mdash; Google Play, Uptodown, OPPO, Vivo, or direct APK.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Install the App</h3>
+        <p>Follow the store's standard install flow. Allow permissions when prompted.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Start Using {{name}}</h3>
+        <p>Open the app and explore &mdash; no signup required for most features.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{#if faq.length}}
+<section style="background:var(--surface);">
+  <div class="container">
+    <h2>Frequently Asked Questions</h2>
+    {{#each faq}}
+    <div class="faq-item">
+      <div class="faq-q">{{q}}</div>
+      <div class="faq-a">{{a}}</div>
+    </div>
+    {{/each}}
+  </div>
+</section>
+{{/if}}
+
+<section>
+  <div class="container">
+    <h2>Technical Details</h2>
+    <div class="tech-grid">
+      <div class="tech-item"><div class="tech-label">Category</div><div class="tech-value">{{category}}</div></div>
+      <div class="tech-item"><div class="tech-label">Platform</div><div class="tech-value">Android</div></div>
+      <div class="tech-item"><div class="tech-label">Price</div><div class="tech-value">Free</div></div>
+      {{#if lastUpdated}}<div class="tech-item"><div class="tech-label">Updated</div><div class="tech-value">{{lastUpdated}}</div></div>{{/if}}
+    </div>
+  </div>
+</section>
+
+{{#if relatedApps.length}}
+<section style="background:var(--surface);">
+  <div class="container">
+    <h2>Other Apps from Dhanuk Softwares</h2>
+    <div class="related-grid">
+      {{#each relatedApps}}
+      <a class="related-card" href="/apps/{{slug}}/">
+        <div class="related-emoji">{{emoji}}</div>
+        <div class="related-name">{{name}}</div>
+        <div class="related-desc">{{shortDesc}}</div>
+      </a>
+      {{/each}}
+    </div>
+  </div>
+</section>
+{{/if}}
+
+<section>
+  <div class="final-cta">
+    <h2>Get {{name}} Now</h2>
+    <p>Free download. No signup. Works on any Android device.</p>
+    <div class="cta-row">
+      {{#if primaryDownloadUrl}}
+      <a class="btn-primary" href="{{primaryDownloadUrl}}" onclick="trackDl('{{slug}}','{{primaryMarketplaceType}}','final')" rel="noopener">&#11015; Download on {{primaryMarketplaceName}}</a>
+      {{/if}}
+      {{#each secondaryDownloads}}
+      <a class="btn-secondary" href="{{url}}" onclick="trackDl('{{../slug}}','{{type}}','final_more')" rel="noopener">{{name}}</a>
+      {{/each}}
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 <strong>Dhanuk Softwares</strong>. All rights reserved. &middot; <a href="/">Home</a> &middot; <a href="/apps/">All Apps</a> &middot; <a href="mailto:support@dhanuksoftwares.com">Support</a></p>
+  <p style="margin-top:0.4rem;">Made with &#9829; in India &middot; GST &amp; MSME Registered</p>
+</footer>
+
+{{#if hasPrimaryDownload}}
+<div class="sticky-bar">
+  <a class="btn-primary" href="{{primaryDownloadUrl}}" onclick="trackDl('{{slug}}','{{primaryMarketplaceType}}','sticky')" rel="noopener">&#11015; Download</a>
+  {{#if hasSecondaryDownloads}}
+  <details>
+    <summary class="btn-secondary">More</summary>
+    <div class="store-list" style="position:absolute; bottom:60px; right:5%; background:var(--card); border:1px solid var(--border); border-radius:10px; padding:0.75rem; flex-direction:column;">
+      {{#each secondaryDownloads}}
+      <a class="btn-secondary" href="{{url}}" onclick="trackDl('{{../slug}}','{{type}}','sticky_more')" rel="noopener" style="margin-bottom:0.3rem;">{{name}}</a>
+      {{/each}}
+    </div>
+  </details>
+  {{/if}}
+</div>
+{{/if}}
+
+<!-- JSON-LD: SoftwareApplication -->
+<script type="application/ld+json">
+{{schemaSoftwareApp}}
+</script>
+
+<!-- JSON-LD: FAQPage -->
+{{#if faq.length}}
+<script type="application/ld+json">
+{{schemaFAQ}}
+</script>
+{{/if}}
+
+<!-- JSON-LD: BreadcrumbList -->
+<script type="application/ld+json">
+{{schemaBreadcrumb}}
+</script>
+
+<script>
+  function trackDl(app, marketplace, source) {
+    try {
+      fetch('/api/track-download', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ app, marketplace, source })
+      });
+    } catch (e) {}
+  }
+</script>
+
+</body>
+</html>
