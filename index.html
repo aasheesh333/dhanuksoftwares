@@ -350,6 +350,9 @@
   <div class="apps-grid" id="apps-grid">
     <div class="apps-loading loading-pulse">Loading apps…</div>
   </div>
+  <div style="text-align:center; margin-top:2rem;">
+    <a href="/apps/" class="btn btn-outline">View All Apps &rarr;</a>
+  </div>
 </section>
 
 <!-- TEAM -->
@@ -488,14 +491,12 @@
       if (!res.ok) throw new Error('Failed to fetch');
       const apps = await res.json();
 
-      // Update count badge + stat
       const count = apps.length;
       document.getElementById('app-count-stat').textContent = count + '+';
       const badge = document.getElementById('apps-count-badge');
       document.getElementById('apps-count-text').textContent = `${count} Apps Available · Free Download`;
       badge.style.display = 'block';
 
-      // Render cards
       grid.innerHTML = '';
       apps.forEach((app, i) => {
         const card = document.createElement('div');
@@ -503,19 +504,29 @@
         card.style.animationDelay = (i * 0.08) + 's';
         card.style.animation = 'fadeUp 0.5s ease both';
 
+        const marketplaces = app.marketplaces || [];
+        const primary = marketplaces[0];
+        const marketplacePills = marketplaces.length
+          ? `<div style="margin-top:0.6rem;display:flex;flex-wrap:wrap;gap:0.3rem;">${marketplaces.slice(0, 3).map(m => `<span style="font-size:0.7rem;padding:0.2rem 0.55rem;border-radius:999px;background:rgba(79,142,247,0.1);color:var(--accent);border:1px solid rgba(79,142,247,0.2);">${escapeHtml(m.name)}</span>`).join('')}${marketplaces.length > 3 ? `<span style="font-size:0.7rem;color:var(--muted);">+${marketplaces.length - 3}</span>` : ''}</div>`
+          : '';
+
+        const viewPageBtn = app.slug
+          ? `<a style="background:var(--accent);color:#fff;border:1px solid var(--accent);padding:0.4rem 0.9rem;border-radius:8px;text-decoration:none;font-size:0.82rem;font-weight:600;display:inline-block;margin-top:0.5rem;" href="/apps/${escapeHtml(app.slug)}/">View Page &rarr;</a>`
+          : '';
+
         card.innerHTML = `
           ${appIcon(app)}
           <div class="app-name">${escapeHtml(app.name || '')}</div>
-          <div class="app-desc">${escapeHtml(app.desc || '')}</div>
+          <div class="app-desc">${escapeHtml(app.shortDesc || app.desc || '')}</div>
           <div class="app-footer">
-            <span class="app-tag">${escapeHtml(app.tag || 'Android')}</span>
+            <span class="app-tag">${escapeHtml(app.tag || app.category || 'Android')}</span>
           </div>
-          <div class="store-buttons">${storeButtons(app)}</div>
+          ${marketplacePills}
+          ${viewPageBtn}
         `;
         grid.appendChild(card);
       });
 
-      // Inject ItemList JSON-LD for apps
       try {
         const itemList = {
           "@context": "https://schema.org",
@@ -526,25 +537,24 @@
             "item": {
               "@type": "SoftwareApplication",
               "name": app.name || '',
-              "description": app.desc || '',
-              "applicationCategory": app.tag || "UtilitiesApplication",
+              "description": app.shortDesc || app.desc || '',
+              "applicationCategory": app.category || app.tag || "UtilitiesApplication",
               "operatingSystem": "Android",
               "offers": {
                 "@type": "Offer",
                 "price": "0",
                 "priceCurrency": "INR"
               },
-              "url": app.playUrl || app.uptodownUrl || app.oppoUrl || app.vivoUrl || "https://www.dhanuksoftwares.com/"
+              "url": app.slug ? `https://dhanuksoftwares.netlify.app/apps/${app.slug}/` : "https://dhanuksoftwares.netlify.app/"
             }
           }))
         };
         document.getElementById('apps-jsonld').textContent = JSON.stringify(itemList, null, 2);
-      } catch (e) { /* ignore JSON-LD failures */ }
+      } catch (e) { /* ignore */ }
 
     } catch (err) {
       grid.innerHTML = `<div class="apps-loading" style="color:var(--muted);">
-        ⚠️ Could not load apps. Make sure <code>apps.json</code> is in the same folder.<br/>
-        <small style="font-size:0.8rem;margin-top:0.5rem;display:block;">${escapeHtml(err.message)}</small>
+        &#9888;&#65039; Could not load apps. <small>${escapeHtml(err.message)}</small>
       </div>`;
     }
   }
