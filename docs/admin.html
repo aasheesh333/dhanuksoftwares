@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dhanuk Softwares – Admin</title>
+  <meta name="robots" content="noindex, nofollow"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0b0f1a;
+      --surface: #131929;
+      --card: #1a2235;
+      --accent: #4f8ef7;
+      --accent2: #38e0b0;
+      --text: #e8edf7;
+      --muted: #7a8aaa;
+      --border: #1e2d4a;
+      --danger: #ff5a5f;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 5%;
+      background: rgba(11,15,26,0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem;
+      color: var(--accent); letter-spacing: -0.5px; text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent2); }
+    .nav-right { display: flex; gap: 0.75rem; align-items: center; }
+    .nav-btn {
+      background: transparent; border: 1px solid var(--border); color: var(--text);
+      padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; font-size: 0.85rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .nav-btn.danger:hover { border-color: var(--danger); color: var(--danger); }
+    .nav-user { color: var(--muted); font-size: 0.85rem; }
+
+    /* LOGIN SCREEN */
+    .login-screen {
+      min-height: calc(100vh - 70px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 2rem;
+    }
+    .login-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 20px; padding: 3rem; max-width: 420px; width: 100%;
+      text-align: center;
+    }
+    .login-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .login-title {
+      font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .login-sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; }
+    .login-card input {
+      width: 100%; padding: 0.85rem 1rem; border-radius: 10px;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 1rem;
+      text-align: center; letter-spacing: 2px;
+      transition: border-color 0.2s;
+    }
+    .login-card input:focus { outline: none; border-color: var(--accent); }
+    .login-error {
+      color: var(--danger); font-size: 0.85rem; margin-top: 0.75rem;
+      min-height: 1.2em;
+    }
+    .login-btn {
+      width: 100%; margin-top: 1.25rem; padding: 0.85rem 1rem;
+      background: var(--accent); color: #fff; border: none;
+      border-radius: 10px; font-family: 'DM Sans', sans-serif;
+      font-weight: 500; font-size: 1rem; cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .login-btn:hover { background: #3a7de8; transform: translateY(-1px); }
+
+    /* ADMIN PANEL */
+    .panel-wrap { padding: 2rem 5% 4rem; }
+    .panel-header { margin-bottom: 2rem; }
+    .panel-header h1 {
+      font-family: 'Syne', sans-serif; font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 700; letter-spacing: -1px; margin-bottom: 0.3rem;
+    }
+    .panel-header p { color: var(--muted); font-size: 0.95rem; }
+    .panel-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    /* CARDS */
+    .box {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.75rem;
+    }
+    .box-title {
+      font-family: 'Syne', sans-serif; font-size: 1.1rem;
+      font-weight: 700; margin-bottom: 0.25rem;
+    }
+    .box-sub { color: var(--muted); font-size: 0.85rem; margin-bottom: 1.5rem; }
+
+    /* FORM */
+    .form-row { margin-bottom: 1rem; }
+    .form-row label {
+      display: block; font-size: 0.8rem; color: var(--muted);
+      margin-bottom: 0.35rem; font-weight: 500;
+    }
+    .form-row input, .form-row select, .form-row textarea {
+      width: 100%; padding: 0.7rem 0.9rem; border-radius: 8px;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+      transition: border-color 0.2s;
+    }
+    .form-row textarea { resize: vertical; min-height: 70px; }
+    .form-row input:focus, .form-row select:focus, .form-row textarea:focus {
+      outline: none; border-color: var(--accent);
+    }
+    .form-grid-2 {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    .form-grid-3 {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    .form-actions {
+      display: flex; gap: 0.75rem; margin-top: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 0.7rem 1.4rem; border-radius: 8px; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.9rem;
+      border: 1px solid transparent; transition: all 0.2s;
+    }
+    .btn-primary {
+      background: var(--accent); color: #fff; border-color: var(--accent);
+    }
+    .btn-primary:hover { background: #3a7de8; border-color: #3a7de8; }
+    .btn-secondary {
+      background: transparent; color: var(--text); border-color: var(--border);
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-sm {
+      padding: 0.4rem 0.75rem; font-size: 0.78rem;
+    }
+    .btn-danger {
+      background: transparent; color: var(--danger); border-color: rgba(255,90,95,0.35);
+    }
+    .btn-danger:hover { background: rgba(255,90,95,0.1); }
+    .btn-edit {
+      background: transparent; color: var(--accent); border-color: rgba(79,142,247,0.35);
+    }
+    .btn-edit:hover { background: rgba(79,142,247,0.1); }
+
+    /* APPS LIST */
+    .apps-list {
+      display: flex; flex-direction: column; gap: 0.75rem;
+      max-height: 380px; overflow-y: auto; margin-bottom: 1.5rem;
+      padding-right: 0.4rem;
+    }
+    .apps-list::-webkit-scrollbar { width: 8px; }
+    .apps-list::-webkit-scrollbar-track { background: var(--surface); border-radius: 4px; }
+    .apps-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+    .admin-app-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 0.9rem 1rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .admin-app-emoji { font-size: 1.5rem; flex-shrink: 0; }
+    .admin-app-info { flex: 1; min-width: 0; }
+    .admin-app-name {
+      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem;
+      margin-bottom: 0.15rem;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .admin-app-cat {
+      font-size: 0.72rem; color: var(--accent); display: inline-block;
+      padding: 0.15rem 0.55rem; border-radius: 999px;
+      background: rgba(79,142,247,0.1); border: 1px solid rgba(79,142,247,0.25);
+    }
+    .admin-app-actions { display: flex; gap: 0.4rem; flex-shrink: 0; }
+    .empty-msg {
+      text-align: center; color: var(--muted); padding: 2rem 1rem;
+      font-size: 0.9rem;
+    }
+
+    /* JSON OUTPUT */
+    .json-output-wrap { position: relative; margin-top: 1rem; }
+    .json-output {
+      width: 100%; min-height: 240px; max-height: 420px;
+      padding: 1rem; border-radius: 10px;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text); font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 0.82rem; line-height: 1.55;
+      resize: vertical;
+    }
+    .json-actions { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
+
+    /* INSTRUCTIONS */
+    .instructions {
+      margin-top: 1.5rem; padding: 1rem 1.25rem;
+      background: rgba(56,224,176,0.08); border: 1px solid rgba(56,224,176,0.25);
+      border-radius: 10px; color: var(--muted); font-size: 0.85rem;
+    }
+    .instructions strong { color: var(--accent2); font-weight: 600; }
+    .instructions ol { margin: 0.5rem 0 0 1.25rem; padding: 0; }
+    .instructions li { margin-bottom: 0.25rem; }
+
+    /* TOAST */
+    .toast {
+      position: fixed; bottom: 24px; right: 24px; z-index: 1000;
+      background: var(--card); border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      padding: 0.85rem 1.25rem; border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      color: var(--text); font-size: 0.88rem;
+      opacity: 0; transform: translateX(20px);
+      transition: opacity 0.25s, transform 0.25s;
+      pointer-events: none; max-width: 320px;
+    }
+    .toast.show { opacity: 1; transform: translateX(0); }
+    .toast.success { border-left-color: var(--accent2); }
+    .toast.error { border-left-color: var(--danger); }
+
+    @media (max-width: 900px) {
+      .panel-grid { grid-template-columns: 1fr; }
+      .form-grid-2, .form-grid-3 { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      nav ul { display: none; }
+      .login-card { padding: 2rem 1.5rem; }
+      .box { padding: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">Dhanuk<span>Softwares</span></a>
+  <div class="nav-right">
+    <span class="nav-user" id="nav-user"></span>
+    <button class="nav-btn danger" id="logout-btn" style="display:none;">Logout</button>
+  </div>
+</nav>
+
+<!-- LOGIN SCREEN -->
+<div class="login-screen" id="login-screen">
+  <div class="login-card">
+    <div class="login-icon">🔐</div>
+    <div class="login-title">Admin Access</div>
+    <div class="login-sub">Enter the admin password to manage apps.</div>
+    <form id="login-form" autocomplete="off">
+      <input type="password" id="password-input" placeholder="••••••••" autofocus required/>
+      <div class="login-error" id="login-error"></div>
+      <button type="submit" class="login-btn">Login</button>
+    </form>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="panel-wrap" id="panel-wrap" style="display:none;">
+  <div class="panel-header">
+    <h1>Manage Apps</h1>
+    <p>Add, edit, or remove apps. Copy the JSON and paste it into <code>apps.json</code> on GitHub to publish changes.</p>
+  </div>
+
+  <div class="panel-grid">
+
+    <!-- LEFT: FORM -->
+    <div class="box">
+      <div class="box-title" id="form-title">Add New App</div>
+      <div class="box-sub" id="form-sub">Fill the fields and click Save.</div>
+
+      <form id="app-form" autocomplete="off">
+        <input type="hidden" id="edit-index" value="-1"/>
+
+        <div class="form-row">
+          <label for="f-name">App Name *</label>
+          <input type="text" id="f-name" required maxlength="80"/>
+        </div>
+
+        <div class="form-row">
+          <label for="f-cat">Category</label>
+          <select id="f-cat">
+            <option>Education</option>
+            <option>Productivity</option>
+            <option>Tools</option>
+            <option>Entertainment</option>
+            <option>Finance</option>
+            <option>Health &amp; Fitness</option>
+            <option>Lifestyle</option>
+            <option>Business</option>
+            <option>Communication</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="f-desc">Short Description * <span id="desc-count" style="color:var(--muted);">(0/300)</span></label>
+          <textarea id="f-desc" required maxlength="300" placeholder="One line description of the app…"></textarea>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-row">
+            <label for="f-emoji">Emoji</label>
+            <input type="text" id="f-emoji" maxlength="4" placeholder="📱"/>
+          </div>
+          <div class="form-row">
+            <label for="f-icon">Icon URL (optional)</label>
+            <input type="text" id="f-icon" placeholder="https://…/icon.png"/>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="f-play">Google Play Store URL</label>
+          <input type="url" id="f-play" placeholder="https://play.google.com/store/apps/details?id=…"/>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-row">
+            <label for="f-utd">Uptodown URL</label>
+            <input type="url" id="f-utd" placeholder="https://…en.uptodown.com/…"/>
+          </div>
+          <div class="form-row">
+            <label for="f-oppo">OPPO App Market URL</label>
+            <input type="url" id="f-oppo" placeholder="https://…"/>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="f-vivo">Vivo App Store URL</label>
+          <input type="url" id="f-vivo" placeholder="https://…"/>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" id="save-btn">Save App</button>
+          <button type="button" class="btn btn-secondary" id="clear-btn">Clear Form</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- RIGHT: APPS LIST + JSON -->
+    <div>
+      <div class="box">
+        <div class="box-title">Current Apps <span id="apps-count" style="color:var(--muted);font-size:0.9rem;font-family:'DM Sans',sans-serif;"></span></div>
+        <div class="box-sub">Click edit ✎ to modify, or delete ✕ to remove.</div>
+        <div class="apps-list" id="apps-list">
+          <div class="empty-msg">Loading apps…</div>
+        </div>
+      </div>
+
+      <div class="box" style="margin-top:1.5rem;">
+        <div class="box-title">apps.json Output</div>
+        <div class="box-sub">Paste this into <code>apps.json</code> on GitHub to publish.</div>
+        <div class="json-output-wrap">
+          <textarea class="json-output" id="json-output" readonly></textarea>
+        </div>
+        <div class="json-actions">
+          <button class="btn btn-primary btn-sm" id="copy-json-btn">Copy JSON</button>
+        </div>
+        <div class="instructions">
+          <strong>How to publish:</strong>
+          <ol>
+            <li>Copy the JSON above</li>
+            <li>Go to GitHub → open <code>apps.json</code></li>
+            <li>Paste and commit</li>
+            <li>Netlify will auto-deploy in ~1 min</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+  /* ═══════════════════════════════════════════════════════════
+     CONFIG
+     ═══════════════════════════════════════════════════════════ */
+  const ADMIN_PASSWORD = "Dhanuk@2025";
+  const SESSION_KEY    = "dhanuk_admin_auth";
+  const JSON_URL       = "../apps.json";
+
+  /* ═══════════════════════════════════════════════════════════
+     STATE
+     ═══════════════════════════════════════════════════════════ */
+  let apps = [];
+
+  /* ═══════════════════════════════════════════════════════════
+     AUTH
+     ═══════════════════════════════════════════════════════════ */
+  function isAuthed() {
+    try { return sessionStorage.getItem(SESSION_KEY) === "1"; }
+    catch (e) { return false; }
+  }
+  function login() {
+    try { sessionStorage.setItem(SESSION_KEY, "1"); } catch (e) {}
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('panel-wrap').style.display  = 'block';
+    document.getElementById('logout-btn').style.display  = 'inline-block';
+    document.getElementById('nav-user').textContent       = 'Admin';
+    initPanel();
+  }
+  function logout() {
+    try { sessionStorage.removeItem(SESSION_KEY); } catch (e) {}
+    window.location.reload();
+  }
+  document.getElementById('logout-btn').addEventListener('click', logout);
+
+  document.getElementById('login-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const pw = document.getElementById('password-input').value;
+    const err = document.getElementById('login-error');
+    if (pw === ADMIN_PASSWORD) {
+      err.textContent = '';
+      login();
+    } else {
+      err.textContent = '❌ Incorrect password. Please try again.';
+      document.getElementById('password-input').value = '';
+      document.getElementById('password-input').focus();
+    }
+  });
+
+  /* ═══════════════════════════════════════════════════════════
+     TOAST
+     ═══════════════════════════════════════════════════════════ */
+  let toastTimer = null;
+  function toast(msg, type) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.className = 'toast show ' + (type || '');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { el.className = 'toast'; }, 3000);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     PANEL INIT
+     ═══════════════════════════════════════════════════════════ */
+  async function initPanel() {
+    await loadAppsFromJSON();
+    renderAppsList();
+    renderJSON();
+    wireForm();
+  }
+
+  async function loadAppsFromJSON() {
+    try {
+      const res = await fetch(JSON_URL, { cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      apps = Array.isArray(data) ? data.map(normalizeApp) : [];
+    } catch (e) {
+      apps = [];
+      document.getElementById('apps-list').innerHTML =
+        '<div class="empty-msg">⚠️ Could not load <code>apps.json</code>.<br/>Start adding apps below — your changes are tracked here.</div>';
+    }
+  }
+
+  function normalizeApp(a) {
+    return {
+      name:        a.name || '',
+      emoji:       a.emoji || '',
+      desc:        a.desc || '',
+      tag:         a.tag || 'Other',
+      icon:        a.icon || '',
+      playUrl:     a.playUrl || '',
+      uptodownUrl: a.uptodownUrl || '',
+      oppoUrl:     a.oppoUrl || '',
+      vivoUrl:     a.vivoUrl || ''
+    };
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     RENDER
+     ═══════════════════════════════════════════════════════════ */
+  function renderAppsList() {
+    const list = document.getElementById('apps-list');
+    const counter = document.getElementById('apps-count');
+    counter.textContent = apps.length ? `(${apps.length})` : '';
+
+    if (!apps.length) {
+      list.innerHTML = '<div class="empty-msg">No apps yet. Add one using the form on the left.</div>';
+      return;
+    }
+    list.innerHTML = '';
+    apps.forEach((app, idx) => {
+      const card = document.createElement('div');
+      card.className = 'admin-app-card';
+      const icon = app.icon
+        ? `<img src="${escapeAttr(app.icon)}" alt="" style="width:36px;height:36px;border-radius:8px;object-fit:cover;flex-shrink:0;" onerror="this.outerHTML='<div class=&quot;admin-app-emoji&quot;>${escapeAttr(app.emoji || "📱")}</div>'"/>`
+        : `<div class="admin-app-emoji">${escapeAttr(app.emoji || '📱')}</div>`;
+      card.innerHTML = `
+        ${icon}
+        <div class="admin-app-info">
+          <div class="admin-app-name">${escapeHtml(app.name || '(unnamed)')}</div>
+          <span class="admin-app-cat">${escapeHtml(app.tag || 'Other')}</span>
+        </div>
+        <div class="admin-app-actions">
+          <button class="btn btn-edit btn-sm" data-action="edit" data-index="${idx}">✎ Edit</button>
+          <button class="btn btn-danger btn-sm" data-action="delete" data-index="${idx}">✕ Delete</button>
+        </div>
+      `;
+      list.appendChild(card);
+    });
+
+    list.querySelectorAll('button[data-action="edit"]').forEach(btn => {
+      btn.addEventListener('click', () => editApp(parseInt(btn.dataset.index, 10)));
+    });
+    list.querySelectorAll('button[data-action="delete"]').forEach(btn => {
+      btn.addEventListener('click', () => deleteApp(parseInt(btn.dataset.index, 10)));
+    });
+  }
+
+  function renderJSON() {
+    const cleaned = apps.map(a => ({
+      name:        a.name,
+      emoji:       a.emoji,
+      desc:        a.desc,
+      tag:         a.tag,
+      icon:        a.icon || '',
+      playUrl:     a.playUrl || '',
+      uptodownUrl: a.uptodownUrl || '',
+      oppoUrl:     a.oppoUrl || '',
+      vivoUrl:     a.vivoUrl || ''
+    }));
+    document.getElementById('json-output').value = JSON.stringify(cleaned, null, 2);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     FORM
+     ═══════════════════════════════════════════════════════════ */
+  function wireForm() {
+    const form   = document.getElementById('app-form');
+    const clear  = document.getElementById('clear-btn');
+    const copy   = document.getElementById('copy-json-btn');
+    const desc   = document.getElementById('f-desc');
+    const count  = document.getElementById('desc-count');
+
+    desc.addEventListener('input', () => {
+      count.textContent = `(${desc.value.length}/300)`;
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      saveApp();
+    });
+    clear.addEventListener('click', () => {
+      resetForm();
+      toast('Form cleared', 'success');
+    });
+    copy.addEventListener('click', async () => {
+      const txt = document.getElementById('json-output').value;
+      try {
+        await navigator.clipboard.writeText(txt);
+        toast('JSON copied to clipboard ✓', 'success');
+      } catch (e) {
+        const ta = document.getElementById('json-output');
+        ta.select(); document.execCommand('copy');
+        toast('JSON copied ✓', 'success');
+      }
+    });
+  }
+
+  function getFormData() {
+    return {
+      name:        document.getElementById('f-name').value.trim(),
+      emoji:       document.getElementById('f-emoji').value.trim(),
+      desc:        document.getElementById('f-desc').value.trim(),
+      tag:         document.getElementById('f-cat').value,
+      icon:        document.getElementById('f-icon').value.trim(),
+      playUrl:     document.getElementById('f-play').value.trim(),
+      uptodownUrl: document.getElementById('f-utd').value.trim(),
+      oppoUrl:     document.getElementById('f-oppo').value.trim(),
+      vivoUrl:     document.getElementById('f-vivo').value.trim()
+    };
+  }
+
+  function setFormData(app) {
+    document.getElementById('f-name').value  = app.name || '';
+    document.getElementById('f-emoji').value = app.emoji || '';
+    document.getElementById('f-desc').value  = app.desc || '';
+    document.getElementById('f-cat').value   = app.tag || 'Other';
+    document.getElementById('f-icon').value  = app.icon || '';
+    document.getElementById('f-play').value  = app.playUrl || '';
+    document.getElementById('f-utd').value   = app.uptodownUrl || '';
+    document.getElementById('f-oppo').value  = app.oppoUrl || '';
+    document.getElementById('f-vivo').value  = app.vivoUrl || '';
+    document.getElementById('desc-count').textContent =
+      `(${(app.desc || '').length}/300)`;
+  }
+
+  function resetForm() {
+    document.getElementById('app-form').reset();
+    document.getElementById('edit-index').value = '-1';
+    document.getElementById('f-cat').value = 'Other';
+    document.getElementById('desc-count').textContent = '(0/300)';
+    document.getElementById('form-title').textContent = 'Add New App';
+    document.getElementById('form-sub').textContent   = 'Fill the fields and click Save.';
+    document.getElementById('save-btn').textContent   = 'Save App';
+    document.getElementById('f-name').focus();
+  }
+
+  function saveApp() {
+    const data = getFormData();
+    if (!data.name) { toast('App name is required', 'error'); return; }
+    if (!data.desc) { toast('Description is required', 'error'); return; }
+
+    const idx = parseInt(document.getElementById('edit-index').value, 10);
+    if (idx >= 0 && idx < apps.length) {
+      apps[idx] = data;
+      toast('App updated ✓', 'success');
+    } else {
+      apps.push(data);
+      toast('App saved ✓', 'success');
+    }
+    renderAppsList();
+    renderJSON();
+    resetForm();
+  }
+
+  function editApp(idx) {
+    const app = apps[idx];
+    if (!app) return;
+    setFormData(app);
+    document.getElementById('edit-index').value = String(idx);
+    document.getElementById('form-title').textContent = 'Edit App';
+    document.getElementById('form-sub').textContent   = `Editing "${app.name}" — Save to apply changes.`;
+    document.getElementById('save-btn').textContent   = 'Update App';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function deleteApp(idx) {
+    const app = apps[idx];
+    if (!app) return;
+    const ok = confirm(`Delete "${app.name}"? This action cannot be undone in this session.`);
+    if (!ok) return;
+    apps.splice(idx, 1);
+    renderAppsList();
+    renderJSON();
+    toast('App deleted', 'success');
+    if (parseInt(document.getElementById('edit-index').value, 10) === idx) {
+      resetForm();
+    }
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     HELPERS
+     ═══════════════════════════════════════════════════════════ */
+  function escapeHtml(str) {
+    return String(str == null ? '' : str)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+  }
+  function escapeAttr(str) { return escapeHtml(str); }
+
+  /* ═══════════════════════════════════════════════════════════
+     BOOT
+     ═══════════════════════════════════════════════════════════ */
+  if (isAuthed()) {
+    login();
+  }
+</script>
+</body>
+</html>

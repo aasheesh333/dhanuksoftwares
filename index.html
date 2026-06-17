@@ -5,8 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dhanuk Softwares – Smart Android Apps</title>
   <meta name="description" content="Dhanuk Softwares is an Indian Android app development company building simple, smart, and useful apps for everyday life."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <meta name="keywords" content="Dhanuk Softwares, Android apps India, free Android apps download, Noida app developer, Indian app company, Google Play India apps"/>
+  <meta name="robots" content="index, follow"/>
   <meta name="google-site-verification" content="wUxP6_5lBO1-6cbC6518XVjQ76YmsMDaiOOTrzQKUjE" />
+  <link rel="canonical" href="https://www.dhanuksoftwares.com/"/>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Dhanuk Softwares – Smart Android Apps"/>
+  <meta property="og:description" content="Indian Android app development company building simple, smart, and useful apps for everyday life. Download free apps from Google Play, Uptodown, OPPO Store and Vivo Store."/>
+  <meta property="og:url" content="https://www.dhanuksoftwares.com/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="Dhanuk Softwares"/>
+  <meta property="og:image" content="https://www.dhanuksoftwares.com/og-banner.png"/>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Dhanuk Softwares – Smart Android Apps"/>
+  <meta name="twitter:description" content="Indian Android app development company building simple, smart, and useful apps for everyday life."/>
+  <meta name="twitter:image" content="https://www.dhanuksoftwares.com/og-banner.png"/>
+  <meta name="twitter:site" content="@dhanuksoftwares"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     :root {
@@ -141,6 +160,11 @@
     .app-card:hover { border-color: var(--accent); transform: translateY(-4px); }
     .app-card:hover::before { opacity: 1; }
     .app-emoji { font-size: 2.5rem; margin-bottom: 1rem; }
+    .app-icon-img {
+      width: 56px; height: 56px; border-radius: 12px;
+      object-fit: cover; display: block; margin-bottom: 1rem;
+      border: 1px solid var(--border);
+    }
     .app-name { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
     .app-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.6; flex: 1; }
     .app-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 1.2rem; }
@@ -149,12 +173,24 @@
       border-radius: 999px; background: rgba(79,142,247,0.1);
       color: var(--accent); border: 1px solid rgba(79,142,247,0.2);
     }
-    .app-play-btn {
-      font-size: 0.8rem; color: var(--accent2); text-decoration: none;
-      display: flex; align-items: center; gap: 0.3rem; font-weight: 500;
-      transition: opacity 0.2s;
+
+    /* STORE BUTTONS */
+    .store-buttons {
+      display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem;
     }
-    .app-play-btn:hover { opacity: 0.75; }
+    .store-btn {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-size: 0.72rem; font-weight: 500; font-family: 'DM Sans', sans-serif;
+      padding: 0.35rem 0.75rem; border-radius: 999px;
+      text-decoration: none; line-height: 1;
+      transition: transform 0.15s, opacity 0.15s;
+    }
+    .store-btn:hover { transform: translateY(-1px); opacity: 0.9; }
+    .store-play   { background: rgba(56,224,176,0.12); border: 1px solid rgba(56,224,176,0.35); color: #38e0b0; }
+    .store-utd    { background: rgba(79,142,247,0.12); border: 1px solid rgba(79,142,247,0.35); color: #4f8ef7; }
+    .store-oppo   { background: rgba(255,90,95,0.12);  border: 1px solid rgba(255,90,95,0.35);  color: #ff5a5f; }
+    .store-vivo   { background: rgba(170,110,255,0.12); border: 1px solid rgba(170,110,255,0.35); color: #aa6eff; }
+    .store-btn .ico { font-size: 0.85rem; line-height: 1; }
 
     /* LOADING / EMPTY states */
     .apps-loading {
@@ -384,9 +420,65 @@
   <p style="margin-top:0.5rem;"><a href="mailto:support@dhanuksoftwares.com">support@dhanuksoftwares.com</a></p>
 </footer>
 
+<!-- JSON-LD: Organization -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Dhanuk Softwares",
+  "url": "https://www.dhanuksoftwares.com/",
+  "logo": "https://www.dhanuksoftwares.com/og-banner.png",
+  "description": "Dhanuk Softwares is an Indian Android app development company building simple, smart, and useful apps for everyday life.",
+  "email": "support@dhanuksoftwares.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Noida",
+    "addressRegion": "Uttar Pradesh",
+    "addressCountry": "IN"
+  },
+  "founder": {
+    "@type": "Person",
+    "name": "Aasheesh Singh",
+    "email": "aasheeshkatheriya@dhanuksoftwares.com"
+  },
+  "sameAs": ["https://github.com/aasheesh333"]
+}
+</script>
+
+<!-- JSON-LD: ItemList of apps (filled dynamically after fetch) -->
+<script type="application/ld+json" id="apps-jsonld"></script>
+
 <script>
   // ─── Auto year ───────────────────────────────────────
   document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+  // ─── Helpers ──────────────────────────────────────────
+  function escapeHtml(str) {
+    if (str == null) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  function storeButtons(app) {
+    const parts = [];
+    if (app.playUrl)     parts.push(`<a class="store-btn store-play" href="${escapeHtml(app.playUrl)}" target="_blank" rel="noopener"><span class="ico">▶</span> Play</a>`);
+    if (app.uptodownUrl) parts.push(`<a class="store-btn store-utd"  href="${escapeHtml(app.uptodownUrl)}" target="_blank" rel="noopener"><span class="ico">⬇</span> Uptodown</a>`);
+    if (app.oppoUrl)     parts.push(`<a class="store-btn store-oppo" href="${escapeHtml(app.oppoUrl)}" target="_blank" rel="noopener"><span class="ico">●</span> OPPO</a>`);
+    if (app.vivoUrl)     parts.push(`<a class="store-btn store-vivo" href="${escapeHtml(app.vivoUrl)}" target="_blank" rel="noopener"><span class="ico">●</span> Vivo</a>`);
+    return parts.join('');
+  }
+
+  function appIcon(app) {
+    if (app.icon && String(app.icon).trim() !== '') {
+      const safe = escapeHtml(app.icon);
+      return `<img class="app-icon-img" src="${safe}" alt="${escapeHtml(app.name || 'App icon')}" loading="lazy" onerror="this.outerHTML='<div class=&quot;app-emoji&quot;>📱</div>'"/>`;
+    }
+    return `<div class="app-emoji">${escapeHtml(app.emoji || '📱')}</div>`;
+  }
 
   // ─── Load apps from apps.json ─────────────────────────
   async function loadApps() {
@@ -400,7 +492,7 @@
       const count = apps.length;
       document.getElementById('app-count-stat').textContent = count + '+';
       const badge = document.getElementById('apps-count-badge');
-      document.getElementById('apps-count-text').textContent = `${count} Apps Available on Google Play`;
+      document.getElementById('apps-count-text').textContent = `${count} Apps Available · Free Download`;
       badge.style.display = 'block';
 
       // Render cards
@@ -411,26 +503,48 @@
         card.style.animationDelay = (i * 0.08) + 's';
         card.style.animation = 'fadeUp 0.5s ease both';
 
-        const playBtn = app.playUrl
-          ? `<a class="app-play-btn" href="${app.playUrl}" target="_blank">▶ Play Store</a>`
-          : '';
-
         card.innerHTML = `
-          <div class="app-emoji">${app.emoji || '📱'}</div>
-          <div class="app-name">${app.name}</div>
-          <div class="app-desc">${app.desc}</div>
+          ${appIcon(app)}
+          <div class="app-name">${escapeHtml(app.name || '')}</div>
+          <div class="app-desc">${escapeHtml(app.desc || '')}</div>
           <div class="app-footer">
-            <span class="app-tag">${app.tag || 'Android'}</span>
-            ${playBtn}
+            <span class="app-tag">${escapeHtml(app.tag || 'Android')}</span>
           </div>
+          <div class="store-buttons">${storeButtons(app)}</div>
         `;
         grid.appendChild(card);
       });
 
+      // Inject ItemList JSON-LD for apps
+      try {
+        const itemList = {
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "itemListElement": apps.map((app, idx) => ({
+            "@type": "ListItem",
+            "position": idx + 1,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": app.name || '',
+              "description": app.desc || '',
+              "applicationCategory": app.tag || "UtilitiesApplication",
+              "operatingSystem": "Android",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "INR"
+              },
+              "url": app.playUrl || app.uptodownUrl || app.oppoUrl || app.vivoUrl || "https://www.dhanuksoftwares.com/"
+            }
+          }))
+        };
+        document.getElementById('apps-jsonld').textContent = JSON.stringify(itemList, null, 2);
+      } catch (e) { /* ignore JSON-LD failures */ }
+
     } catch (err) {
       grid.innerHTML = `<div class="apps-loading" style="color:var(--muted);">
         ⚠️ Could not load apps. Make sure <code>apps.json</code> is in the same folder.<br/>
-        <small style="font-size:0.8rem;margin-top:0.5rem;display:block;">${err.message}</small>
+        <small style="font-size:0.8rem;margin-top:0.5rem;display:block;">${escapeHtml(err.message)}</small>
       </div>`;
     }
   }
