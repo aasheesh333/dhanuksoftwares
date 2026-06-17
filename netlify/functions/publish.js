@@ -2,6 +2,9 @@ const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'Dhanuk@2025';
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GITHUB_REPO = process.env.GITHUB_REPO || 'aasheesh333/dhanuksoftwares';
 const GITHUB_BRANCH = process.env.GITHUB_BRANCH || 'main';
+const NETLIFY_SITE_ID = process.env.NETLIFY_SITE_ID || '340e532b-30a2-4038-8cb9-3e36eb82b1a9';
+const NETLIFY_API_TOKEN = process.env.NETLIFY_API_TOKEN;
+const NETLIFY_BUILD_HOOK = process.env.NETLIFY_BUILD_HOOK || 'https://api.netlify.com/build_hooks/6a32c8a697ea6925f013e638';
 
 export default async (req) => {
   const headers = {
@@ -78,11 +81,45 @@ export default async (req) => {
 
     const result = await putRes.json();
 
+    let buildTriggered = false;
+    let buildMethod = 'none';
+    if (NETLIFY_API_TOKEN) {
+      try {
+        const deployRes = await fetch(`https://api.netlify.com/api/v1/sites/${NETLIFY_SITE_ID}/deploys`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${NETLIFY_API_TOKEN}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ title: `apps.json auto-deploy (${apps.length} apps)` })
+        });
+        if (deployRes.ok) {
+          buildTriggered = true;
+          buildMethod = 'api';
+        }
+      } catch (e) {
+        console.log('Netlify API deploy failed:', e.message);
+      }
+    }
+    if (!buildTriggered && NETLIFY_BUILD_HOOK) {
+      try {
+        const hookRes = await fetch(NETLIFY_BUILD_HOOK, { method: 'POST' });
+        if (hookRes.ok) {
+          buildTriggered = true;
+          buildMethod = 'build_hook';
+        }
+      } catch (e) {
+        console.log('Build hook trigger failed:', e.message);
+      }
+    }
+
     return new Response(JSON.stringify({
       ok: true,
       commitSha: result.commit.sha,
       commitUrl: result.commit.html_url,
-      appsCount: apps.length
+      appsCount: apps.length,
+      buildTriggered,
+      buildMethod
     }), { status: 200, headers });
   } catch (e) {
     return new Response(JSON.stringify({ error: `Server error: ${e.message}` }), { status: 500, headers });
