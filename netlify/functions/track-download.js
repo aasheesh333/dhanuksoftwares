@@ -5,8 +5,8 @@ export default async (req) => {
     'Access-Control-Allow-Methods': 'POST, OPTIONS'
   };
 
-  if (req.method === 'OPTIONS') return new Response('', { status: 204, headers });
-  if (req.method !== 'POST') return new Response('', { status: 204, headers });
+  if (req.method === 'OPTIONS') return new Response('', { status: 200, headers });
+  if (req.method !== 'POST') return new Response('', { status: 200, headers });
 
   try {
     const body = await req.json().catch(() => ({}));
@@ -19,7 +19,7 @@ export default async (req) => {
     // ignore
   }
 
-  return new Response('', { status: 204, headers });
+  return new Response(null, { status: 200, headers });
 };
 
 export const config = { path: '/api/track-download' };
