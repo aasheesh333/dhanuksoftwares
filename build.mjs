@@ -170,7 +170,7 @@ async function main() {
     console.log('  /admin/');
   }
 
-  for (const f of ['app-ads.txt', 'CNAME']) {
+  for (const f of ['app-ads.txt', 'CNAME', 'apps.json']) {
     const src = path.join(ROOT, f);
     if (fs.existsSync(src)) {
       fs.copyFileSync(src, path.join(DIST, f));
