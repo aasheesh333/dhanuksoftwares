@@ -5,6 +5,7 @@ const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'Dhanuk@2025';
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
 const GROQ_MODEL = 'llama-3.3-70b-versatile';
 const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
+const PS_UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36';
 
 const SYSTEM_PROMPT = `You are an expert SEO copywriter for an Indian Android app studio called Dhanuk Softwares. You write content that ranks on Google India search results.
 
@@ -42,6 +43,64 @@ function checkRate(ip) {
   return true;
 }
 
+async function scrapePlayStore(url) {
+  const htmlUrl = url.includes('?') ? url + '&hl=en' : url + '?hl=en';
+  const res = await fetch(htmlUrl, {
+    headers: { 'User-Agent': PS_UA, 'Accept-Language': 'en-US,en;q=0.9' }
+  });
+  if (!res.ok) throw new Error(`Play Store returned ${res.status}`);
+  const html = await res.text();
+
+  const appId = (url.match(/[?&]id=([^&]+)/) || [])[1] || '';
+
+  const ogTitle = (html.match(/<meta property="og:title" content="([^"]+)"/) || [])[1] || '';
+  const name = ogTitle.replace(/\s*-\s*Apps on Google Play$/i, '').trim()
+    || (html.match(/<meta itemprop="name" content="([^"]+)"/) || [])[1] || '';
+
+  const tagline = (html.match(/<meta itemprop="description" content="([^"]+)"/) || [])[1] || '';
+
+  const descMatch = html.match(/data-g-id="description">([\s\S]{50,15000}?)<\/div>/);
+  let longDescription = '';
+  if (descMatch) {
+    longDescription = descMatch[1]
+      .replace(/<br\s*\/?>/gi, '\n')
+      .replace(/<\/p>/gi, '\n\n')
+      .replace(/<[^>]+>/g, '')
+      .replace(/&nbsp;/g, ' ')
+      .replace(/&amp;/g, '&')
+      .replace(/&#39;/g, "'")
+      .replace(/&quot;/g, '"')
+      .replace(/[ \t]+/g, ' ')
+      .replace(/\n{3,}/g, '\n\n')
+      .trim();
+  }
+
+  const iconMatch = html.match(/https:\/\/play-lh\.googleusercontent\.com\/[A-Za-z0-9_-]{40,200}(?!=)/);
+  const icon = iconMatch ? iconMatch[0] : '';
+
+  const screenshotsAll = [...new Set(html.match(/https:\/\/play-lh\.googleusercontent\.com\/[A-Za-z0-9_-]{40,200}=w1052-h592/g) || [])];
+  const screenshots = screenshotsAll.slice(0, 6);
+
+  const rating = (html.match(/aria-label="Rated ([0-9.]+) stars/) || [])[1] || '';
+  const reviews = (html.match(/<span[^>]*aria-label="([0-9,.]+)\s*reviews?/i) || [])[1] || '';
+  const downloads = (html.match(/class="ClM7O">([0-9]+[BMK]\+?)<\/div>/) || [])[1] || '';
+  const updated = (html.match(/class="xg1aie">([^<]+)/) || [])[1] || '';
+  const developer = (html.match(/class="wMUdtb">([^<]+)/) || [])[1] || '';
+
+  let category = '';
+  const genreMatch = html.match(/<meta itemprop="applicationCategory" content="([^"]+)"/);
+  if (genreMatch) category = genreMatch[1];
+  if (!category) {
+    const catMatch = html.match(/aria-label="(Communication|Productivity|Tools|Entertainment|Education|Lifestyle|Health|Finance|Photography|Social|Music|Shopping|Games)"/);
+    if (catMatch) category = catMatch[1];
+  }
+
+  return {
+    appId, name, tagline, longDescription, icon, screenshots,
+    rating, reviews, downloads, updated, developer, category
+  };
+}
+
 export default async (req) => {
   const headers = {
     'Content-Type': 'application/json',
@@ -50,7 +109,7 @@ export default async (req) => {
     'Access-Control-Allow-Methods': 'POST, OPTIONS'
   };
 
-  if (req.method === 'OPTIONS') return new Response('', { status: 204, headers });
+  if (req.method === 'OPTIONS') return new Response('', { status: 200, headers });
   if (req.method !== 'POST') return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405, headers });
 
   const token = req.headers.get('x-admin-token');
@@ -72,14 +131,48 @@ export default async (req) => {
     return new Response(JSON.stringify({ error: 'Invalid JSON body' }), { status: 400, headers });
   }
 
-  const { name, category, seed } = body;
-  if (!name || !seed) {
-    return new Response(JSON.stringify({ error: 'Missing name or seed' }), { status: 400, headers });
+  const { name, category, seed, playStoreUrl } = body;
+  if (!name || (!seed && !playStoreUrl)) {
+    return new Response(JSON.stringify({ error: 'Missing name and (seed or playStoreUrl)' }), { status: 400, headers });
   }
 
+  let scraped = null;
+  if (playStoreUrl) {
+    try {
+      scraped = await scrapePlayStore(playStoreUrl);
+    } catch (e) {
+      return new Response(JSON.stringify({ error: `Play Store fetch failed: ${e.message}` }), { status: 502, headers });
+    }
+  }
+
+  const contextParts = [];
+  if (scraped) {
+    contextParts.push(`[PLAY STORE DATA — use this as primary source]`);
+    if (scraped.name) contextParts.push(`App name: ${scraped.name}`);
+    if (scraped.tagline) contextParts.push(`Tagline: ${scraped.tagline}`);
+    if (scraped.category) contextParts.push(`Category: ${scraped.category}`);
+    if (scraped.developer) contextParts.push(`Developer: ${scraped.developer}`);
+    if (scraped.rating) contextParts.push(`Rating: ${scraped.rating}/5 (${scraped.reviews || '?'} reviews)`);
+    if (scraped.downloads) contextParts.push(`Downloads: ${scraped.downloads}`);
+    if (scraped.updated) contextParts.push(`Last updated: ${scraped.updated}`);
+    if (scraped.longDescription) contextParts.push(`\nOfficial description (use as ground truth, expand and optimize for SEO):\n${scraped.longDescription.slice(0, 3000)}`);
+  }
+  if (seed) contextParts.push(`\n[ADDITIONAL CONTEXT FROM USER]\n${seed}`);
+
   const userPrompt = `App name: ${name}
-Category: ${category || 'General'}
-Short description (seed): ${seed}
+Category: ${category || (scraped?.category) || 'General'}
+
+${contextParts.join('\n')}
+
+INSTRUCTIONS:
+- Use the Play Store data as ground truth for facts (features, what app does, etc.)
+- If Play Store data is sparse, expand using your knowledge of similar apps in this category
+- Generate longDescription: 1500-3000 words, structured with H2/H3 headings, bullets, paragraphs
+- Add 6-8 FAQ pairs covering: pricing, offline use, privacy, compatibility, common concerns, comparison
+- Add 8 keywords combining official + LSI long-tail Indian queries
+- Features: 6-8 bullets based on what the app actually does (don't invent)
+- shortDesc: 1-sentence compelling hook for meta description
+- tagline: punchy 4-7 word value prop
 
 Generate the SEO content JSON for this app.`;
 
@@ -119,7 +212,12 @@ Generate the SEO content JSON for this app.`;
       return new Response(JSON.stringify({ error: 'Invalid JSON from AI', raw: content.slice(0, 500) }), { status: 502, headers });
     }
 
-    return new Response(JSON.stringify({ ok: true, data: parsed, model: GROQ_MODEL }), { status: 200, headers });
+    return new Response(JSON.stringify({
+      ok: true,
+      data: parsed,
+      scraped,
+      model: GROQ_MODEL
+    }), { status: 200, headers });
   } catch (e) {
     return new Response(JSON.stringify({ error: `Server error: ${e.message}` }), { status: 500, headers });
   }

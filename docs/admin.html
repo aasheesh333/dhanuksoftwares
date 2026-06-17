@@ -298,6 +298,11 @@
         </div>
 
         <div class="form-row">
+          <label for="f-ps-url">Play Store URL (optional, fetches real data)</label>
+          <input type="url" id="f-ps-url" placeholder="https://play.google.com/store/apps/details?id=com.example.app"/>
+        </div>
+
+        <div class="form-row">
           <label for="f-seed">AI Seed Description (3+ words)</label>
           <textarea id="f-seed" maxlength="300" placeholder="Short description of what the app does. AI uses this to generate everything below." style="min-height:50px;"></textarea>
         </div>
@@ -601,33 +606,69 @@
     const name = document.getElementById('f-name').value.trim();
     const category = document.getElementById('f-cat').value;
     const seed = document.getElementById('f-seed').value.trim();
-    if (!name || !seed || seed.split(/\s+/).length < 3) {
-      toast('Please enter App Name and a 3+ word AI seed description first.', 'error');
+    const playStoreUrl = document.getElementById('f-ps-url').value.trim();
+    if (!name) { toast('App Name is required.', 'error'); return; }
+    if (!playStoreUrl && (!seed || seed.split(/\s+/).length < 3)) {
+      toast('Provide Play Store URL OR a 3+ word seed description.', 'error');
       return;
     }
     aiBusy = true;
     const btn = document.getElementById('ai-fill-btn');
     btn.disabled = true;
-    btn.textContent = 'Generating...';
+    btn.textContent = playStoreUrl ? 'Fetching Play Store + AI...' : 'Generating...';
     try {
       const res = await fetch(AI_FILL_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-admin-token': ADMIN_PASSWORD },
-        body: JSON.stringify({ name, category, seed })
+        body: JSON.stringify({ name, category, seed, playStoreUrl: playStoreUrl || undefined })
       });
       const data = await res.json();
       if (!res.ok || !data.ok) {
         throw new Error(data.error || 'AI fill failed');
       }
       const d = data.data;
+      const scraped = data.scraped || null;
       if (d.tagline) document.getElementById('f-tagline').value = d.tagline;
       if (d.shortDesc) document.getElementById('f-shortDesc').value = d.shortDesc;
       if (d.longDescription) document.getElementById('f-longDesc').value = d.longDescription;
       if (Array.isArray(d.keywords)) document.getElementById('f-keywords').value = d.keywords.join(', ');
       if (Array.isArray(d.features)) document.getElementById('f-features').value = d.features.join('\n');
       if (Array.isArray(d.faq)) document.getElementById('f-faq').value = stringifyFaq(d.faq);
+      if (scraped) {
+        if (scraped.icon) document.getElementById('f-icon').value = scraped.icon;
+        if (Array.isArray(scraped.screenshots) && scraped.screenshots.length) {
+          document.getElementById('f-screenshots').value = scraped.screenshots.join('\n');
+        }
+        if (scraped.rating) document.getElementById('f-rating-value').value = scraped.rating;
+        if (scraped.reviews) {
+          const n = parseInt(String(scraped.reviews).replace(/[^0-9]/g, ''), 10);
+          if (!isNaN(n)) document.getElementById('f-rating-count').value = n;
+        }
+        if (scraped.updated) {
+          try {
+            const d2 = new Date(scraped.updated);
+            if (!isNaN(d2.getTime())) {
+              document.getElementById('f-updated').value = d2.toISOString().slice(0, 10);
+            }
+          } catch (e) {}
+        }
+        if (scraped.category && !category) {
+          document.getElementById('f-cat').value = scraped.category;
+        }
+        if (playStoreUrl) {
+          const mpName = 'Google Play';
+          const exists = Array.from(document.querySelectorAll('#marketplaces-list .mp-row'))
+            .some(r => r.querySelector('.mp-name').value.trim() === mpName);
+          if (!exists) {
+            addMarketplaceRow(mpName, playStoreUrl);
+          }
+        }
+      }
       updateCharCounts();
-      toast('AI content generated. Review and edit before saving.', 'success');
+      const parts = [];
+      if (scraped) parts.push(`scraped ${scraped.screenshots?.length || 0} screenshots + icon`);
+      parts.push('AI content generated');
+      toast(parts.join(' \u2022 ') + '. Review before saving.', 'success');
     } catch (e) {
       toast(`AI error: ${e.message}`, 'error');
     } finally {
