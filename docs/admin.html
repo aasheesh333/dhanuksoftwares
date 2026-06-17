@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dhanuk Softwares – Admin</title>
+  <title>Dhanuk Softwares &ndash; Admin</title>
   <meta name="robots" content="noindex, nofollow"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
@@ -30,7 +30,6 @@
       min-height: 100vh;
     }
 
-    /* NAV */
     nav {
       position: sticky; top: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
@@ -55,7 +54,6 @@
     .nav-btn.danger:hover { border-color: var(--danger); color: var(--danger); }
     .nav-user { color: var(--muted); font-size: 0.85rem; }
 
-    /* LOGIN SCREEN */
     .login-screen {
       min-height: calc(100vh - 70px);
       display: flex; align-items: center; justify-content: center;
@@ -93,7 +91,6 @@
     }
     .login-btn:hover { background: #3a7de8; transform: translateY(-1px); }
 
-    /* ADMIN PANEL */
     .panel-wrap { padding: 2rem 5% 4rem; }
     .panel-header { margin-bottom: 2rem; }
     .panel-header h1 {
@@ -108,7 +105,6 @@
       align-items: start;
     }
 
-    /* CARDS */
     .box {
       background: var(--card); border: 1px solid var(--border);
       border-radius: 16px; padding: 1.75rem;
@@ -119,7 +115,6 @@
     }
     .box-sub { color: var(--muted); font-size: 0.85rem; margin-bottom: 1.5rem; }
 
-    /* FORM */
     .form-row { margin-bottom: 1rem; }
     .form-row label {
       display: block; font-size: 0.8rem; color: var(--muted);
@@ -139,7 +134,7 @@
       display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
     }
     .form-grid-3 {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;
     }
     .form-actions {
       display: flex; gap: 0.75rem; margin-top: 1.25rem;
@@ -154,6 +149,7 @@
       background: var(--accent); color: #fff; border-color: var(--accent);
     }
     .btn-primary:hover { background: #3a7de8; border-color: #3a7de8; }
+    .btn-primary:disabled { background: var(--muted); border-color: var(--muted); cursor: not-allowed; }
     .btn-secondary {
       background: transparent; color: var(--text); border-color: var(--border);
     }
@@ -170,7 +166,6 @@
     }
     .btn-edit:hover { background: rgba(79,142,247,0.1); }
 
-    /* APPS LIST */
     .apps-list {
       display: flex; flex-direction: column; gap: 0.75rem;
       max-height: 380px; overflow-y: auto; margin-bottom: 1.5rem;
@@ -202,29 +197,6 @@
       font-size: 0.9rem;
     }
 
-    /* JSON OUTPUT */
-    .json-output-wrap { position: relative; margin-top: 1rem; }
-    .json-output {
-      width: 100%; min-height: 240px; max-height: 420px;
-      padding: 1rem; border-radius: 10px;
-      background: var(--surface); border: 1px solid var(--border);
-      color: var(--text); font-family: 'JetBrains Mono', 'Courier New', monospace;
-      font-size: 0.82rem; line-height: 1.55;
-      resize: vertical;
-    }
-    .json-actions { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
-
-    /* INSTRUCTIONS */
-    .instructions {
-      margin-top: 1.5rem; padding: 1rem 1.25rem;
-      background: rgba(56,224,176,0.08); border: 1px solid rgba(56,224,176,0.25);
-      border-radius: 10px; color: var(--muted); font-size: 0.85rem;
-    }
-    .instructions strong { color: var(--accent2); font-weight: 600; }
-    .instructions ol { margin: 0.5rem 0 0 1.25rem; padding: 0; }
-    .instructions li { margin-bottom: 0.25rem; }
-
-    /* TOAST */
     .toast {
       position: fixed; bottom: 24px; right: 24px; z-index: 1000;
       background: var(--card); border: 1px solid var(--border);
@@ -254,7 +226,7 @@
 <body>
 
 <nav>
-  <a class="nav-logo" href="#">Dhanuk<span>Softwares</span></a>
+  <a class="nav-logo" href="/">Dhanuk<span>Softwares</span></a>
   <div class="nav-right">
     <span class="nav-user" id="nav-user"></span>
     <button class="nav-btn danger" id="logout-btn" style="display:none;">Logout</button>
@@ -264,11 +236,11 @@
 <!-- LOGIN SCREEN -->
 <div class="login-screen" id="login-screen">
   <div class="login-card">
-    <div class="login-icon">🔐</div>
+    <div class="login-icon">&#128274;</div>
     <div class="login-title">Admin Access</div>
     <div class="login-sub">Enter the admin password to manage apps.</div>
     <form id="login-form" autocomplete="off">
-      <input type="password" id="password-input" placeholder="••••••••" autofocus required/>
+      <input type="password" id="password-input" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" autofocus required/>
       <div class="login-error" id="login-error"></div>
       <button type="submit" class="login-btn">Login</button>
     </form>
@@ -279,7 +251,7 @@
 <div class="panel-wrap" id="panel-wrap" style="display:none;">
   <div class="panel-header">
     <h1>Manage Apps</h1>
-    <p>Add, edit, or remove apps. Copy the JSON and paste it into <code>apps.json</code> on GitHub to publish changes.</p>
+    <p>Add, edit, or remove apps. Use AI Auto-fill to generate SEO content. Save &amp; Deploy auto-commits to GitHub.</p>
   </div>
 
   <div class="panel-grid">
@@ -287,20 +259,25 @@
     <!-- LEFT: FORM -->
     <div class="box">
       <div class="box-title" id="form-title">Add New App</div>
-      <div class="box-sub" id="form-sub">Fill the fields and click Save.</div>
+      <div class="box-sub" id="form-sub">Fill fields and click Save &amp; Deploy. Use AI Auto-fill to generate SEO content.</div>
 
       <form id="app-form" autocomplete="off">
         <input type="hidden" id="edit-index" value="-1"/>
 
         <div class="form-row">
           <label for="f-name">App Name *</label>
-          <input type="text" id="f-name" required maxlength="80"/>
+          <input type="text" id="f-name" required maxlength="80" placeholder="e.g., AstroPrerna"/>
+        </div>
+
+        <div class="form-row">
+          <label for="f-slug">URL Slug (auto)</label>
+          <input type="text" id="f-slug" maxlength="60" placeholder="auto: astroprerna"/>
         </div>
 
         <div class="form-row">
           <label for="f-cat">Category</label>
           <select id="f-cat">
-            <option>Education</option>
+            <option>Astrology</option>
             <option>Productivity</option>
             <option>Tools</option>
             <option>Entertainment</option>
@@ -309,81 +286,112 @@
             <option>Lifestyle</option>
             <option>Business</option>
             <option>Communication</option>
+            <option>Education</option>
+            <option>Photo &amp; Video</option>
             <option>Other</option>
           </select>
         </div>
 
         <div class="form-row">
-          <label for="f-desc">Short Description * <span id="desc-count" style="color:var(--muted);">(0/300)</span></label>
-          <textarea id="f-desc" required maxlength="300" placeholder="One line description of the app…"></textarea>
+          <label for="f-tagline">Tagline (&le;60)</label>
+          <input type="text" id="f-tagline" maxlength="60" placeholder="One-line value prop"/>
+        </div>
+
+        <div class="form-row">
+          <label for="f-seed">AI Seed Description (3+ words)</label>
+          <textarea id="f-seed" maxlength="300" placeholder="Short description of what the app does. AI uses this to generate everything below." style="min-height:50px;"></textarea>
+        </div>
+
+        <button type="button" class="btn btn-secondary" id="ai-fill-btn" style="width:100%;margin-bottom:1rem;">&#10024; AI Auto-fill All (Groq)</button>
+
+        <div class="form-row">
+          <label for="f-shortDesc">Short Description (meta, &le;160) <span id="short-count" style="color:var(--muted);">(0/160)</span></label>
+          <textarea id="f-shortDesc" maxlength="160" style="min-height:60px;"></textarea>
+        </div>
+
+        <div class="form-row">
+          <label for="f-longDesc">Long Description (400-2000 chars) <span id="long-count" style="color:var(--muted);">(0/2000)</span></label>
+          <textarea id="f-longDesc" maxlength="2000" style="min-height:140px;"></textarea>
+        </div>
+
+        <div class="form-row">
+          <label for="f-keywords">Keywords (comma separated, &le;10)</label>
+          <input type="text" id="f-keywords" placeholder="astrology app, daily horoscope, kundli free"/>
+        </div>
+
+        <div class="form-row">
+          <label>Features (1 per line, &le;12)</label>
+          <textarea id="f-features" maxlength="800" style="min-height:90px;font-family:monospace;" placeholder="Daily horoscope&#10;Free Kundli&#10;Marriage compatibility"></textarea>
+        </div>
+
+        <div class="form-row">
+          <label>FAQ (Q: ... | A: ... per line, &le;12)</label>
+          <textarea id="f-faq" maxlength="2000" style="min-height:90px;font-family:monospace;" placeholder="Q: Is it free? | A: Yes, 100% free.&#10;Q: Works offline? | A: Yes."></textarea>
         </div>
 
         <div class="form-grid-2">
           <div class="form-row">
             <label for="f-emoji">Emoji</label>
-            <input type="text" id="f-emoji" maxlength="4" placeholder="📱"/>
+            <input type="text" id="f-emoji" maxlength="4" placeholder="&#128301;"/>
           </div>
           <div class="form-row">
-            <label for="f-icon">Icon URL (optional)</label>
-            <input type="text" id="f-icon" placeholder="https://…/icon.png"/>
+            <label for="f-icon">Icon URL</label>
+            <input type="url" id="f-icon" placeholder="https://&hellip;/icon.png"/>
           </div>
         </div>
 
         <div class="form-row">
-          <label for="f-play">Google Play Store URL</label>
-          <input type="url" id="f-play" placeholder="https://play.google.com/store/apps/details?id=…"/>
-        </div>
-
-        <div class="form-grid-2">
-          <div class="form-row">
-            <label for="f-utd">Uptodown URL</label>
-            <input type="url" id="f-utd" placeholder="https://…en.uptodown.com/…"/>
-          </div>
-          <div class="form-row">
-            <label for="f-oppo">OPPO App Market URL</label>
-            <input type="url" id="f-oppo" placeholder="https://…"/>
-          </div>
+          <label for="f-screenshots">Screenshots (1 URL per line, &le;10)</label>
+          <textarea id="f-screenshots" maxlength="2000" style="min-height:70px;font-family:monospace;font-size:0.82rem;" placeholder="https://&hellip;/1.png&#10;https://&hellip;/2.png"></textarea>
         </div>
 
         <div class="form-row">
-          <label for="f-vivo">Vivo App Store URL</label>
-          <input type="url" id="f-vivo" placeholder="https://…"/>
+          <label>Marketplaces (add as many as needed)</label>
+          <div id="marketplaces-list"></div>
+          <div style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-top:0.5rem;">
+            <button type="button" class="btn btn-secondary btn-sm" data-add-mp="Google Play">+ Google Play</button>
+            <button type="button" class="btn btn-secondary btn-sm" data-add-mp="Uptodown">+ Uptodown</button>
+            <button type="button" class="btn btn-secondary btn-sm" data-add-mp="OPPO Store">+ OPPO</button>
+            <button type="button" class="btn btn-secondary btn-sm" data-add-mp="Vivo Store">+ Vivo</button>
+            <button type="button" class="btn btn-secondary btn-sm" data-add-mp="Huawei AppGallery">+ Huawei</button>
+            <button type="button" class="btn btn-secondary btn-sm" data-add-mp="Samsung Galaxy Store">+ Samsung</button>
+            <button type="button" class="btn btn-secondary btn-sm" data-add-mp="Amazon Appstore">+ Amazon</button>
+            <button type="button" class="btn btn-secondary btn-sm" data-add-mp="Xiaomi GetApps">+ Xiaomi</button>
+            <button type="button" class="btn btn-secondary btn-sm" data-add-mp="Apple App Store">+ Apple</button>
+            <button type="button" class="btn btn-secondary btn-sm" data-add-mp="Direct APK">+ Direct APK</button>
+            <button type="button" class="btn btn-secondary btn-sm" id="add-custom-mp">+ Custom</button>
+          </div>
+        </div>
+
+        <div class="form-grid-3">
+          <div class="form-row">
+            <label for="f-rating-value">Rating (0-5)</label>
+            <input type="number" id="f-rating-value" min="0" max="5" step="0.1" value="0"/>
+          </div>
+          <div class="form-row">
+            <label for="f-rating-count">Reviews</label>
+            <input type="number" id="f-rating-count" min="0" value="0"/>
+          </div>
+          <div class="form-row">
+            <label for="f-updated">Last Updated</label>
+            <input type="date" id="f-updated"/>
+          </div>
         </div>
 
         <div class="form-actions">
-          <button type="submit" class="btn btn-primary" id="save-btn">Save App</button>
+          <button type="submit" class="btn btn-primary" id="save-btn">Save &amp; Deploy</button>
           <button type="button" class="btn btn-secondary" id="clear-btn">Clear Form</button>
         </div>
       </form>
     </div>
 
-    <!-- RIGHT: APPS LIST + JSON -->
+    <!-- RIGHT: APPS LIST -->
     <div>
       <div class="box">
         <div class="box-title">Current Apps <span id="apps-count" style="color:var(--muted);font-size:0.9rem;font-family:'DM Sans',sans-serif;"></span></div>
-        <div class="box-sub">Click edit ✎ to modify, or delete ✕ to remove.</div>
+        <div class="box-sub">Click View to preview, Edit to modify, or Delete to remove. Then click Save &amp; Deploy.</div>
         <div class="apps-list" id="apps-list">
-          <div class="empty-msg">Loading apps…</div>
-        </div>
-      </div>
-
-      <div class="box" style="margin-top:1.5rem;">
-        <div class="box-title">apps.json Output</div>
-        <div class="box-sub">Paste this into <code>apps.json</code> on GitHub to publish.</div>
-        <div class="json-output-wrap">
-          <textarea class="json-output" id="json-output" readonly></textarea>
-        </div>
-        <div class="json-actions">
-          <button class="btn btn-primary btn-sm" id="copy-json-btn">Copy JSON</button>
-        </div>
-        <div class="instructions">
-          <strong>How to publish:</strong>
-          <ol>
-            <li>Copy the JSON above</li>
-            <li>Go to GitHub → open <code>apps.json</code></li>
-            <li>Paste and commit</li>
-            <li>Netlify will auto-deploy in ~1 min</li>
-          </ol>
+          <div class="empty-msg">Loading apps&hellip;</div>
         </div>
       </div>
     </div>
@@ -395,31 +403,24 @@
 <div class="toast" id="toast"></div>
 
 <script>
-  /* ═══════════════════════════════════════════════════════════
-     CONFIG
-     ═══════════════════════════════════════════════════════════ */
   const ADMIN_PASSWORD = "Dhanuk@2025";
-  const SESSION_KEY    = "dhanuk_admin_auth";
-  const JSON_URL       = "../apps.json";
+  const SESSION_KEY = "dhanuk_admin_auth";
+  const JSON_URL = "../apps.json";
+  const AI_FILL_URL = "/api/ai-fill";
+  const PUBLISH_URL = "/api/publish";
 
-  /* ═══════════════════════════════════════════════════════════
-     STATE
-     ═══════════════════════════════════════════════════════════ */
   let apps = [];
+  let aiBusy = false;
 
-  /* ═══════════════════════════════════════════════════════════
-     AUTH
-     ═══════════════════════════════════════════════════════════ */
   function isAuthed() {
-    try { return sessionStorage.getItem(SESSION_KEY) === "1"; }
-    catch (e) { return false; }
+    try { return sessionStorage.getItem(SESSION_KEY) === "1"; } catch (e) { return false; }
   }
   function login() {
     try { sessionStorage.setItem(SESSION_KEY, "1"); } catch (e) {}
     document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('panel-wrap').style.display  = 'block';
-    document.getElementById('logout-btn').style.display  = 'inline-block';
-    document.getElementById('nav-user').textContent       = 'Admin';
+    document.getElementById('panel-wrap').style.display = 'block';
+    document.getElementById('logout-btn').style.display = 'inline-block';
+    document.getElementById('nav-user').textContent = 'Admin';
     initPanel();
   }
   function logout() {
@@ -427,7 +428,6 @@
     window.location.reload();
   }
   document.getElementById('logout-btn').addEventListener('click', logout);
-
   document.getElementById('login-form').addEventListener('submit', (e) => {
     e.preventDefault();
     const pw = document.getElementById('password-input').value;
@@ -436,71 +436,260 @@
       err.textContent = '';
       login();
     } else {
-      err.textContent = '❌ Incorrect password. Please try again.';
+      err.textContent = '&#10060; Incorrect password.';
       document.getElementById('password-input').value = '';
       document.getElementById('password-input').focus();
     }
   });
 
-  /* ═══════════════════════════════════════════════════════════
-     TOAST
-     ═══════════════════════════════════════════════════════════ */
   let toastTimer = null;
   function toast(msg, type) {
     const el = document.getElementById('toast');
     el.textContent = msg;
     el.className = 'toast show ' + (type || '');
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => { el.className = 'toast'; }, 3000);
+    toastTimer = setTimeout(() => { el.className = 'toast'; }, 3500);
   }
 
-  /* ═══════════════════════════════════════════════════════════
-     PANEL INIT
-     ═══════════════════════════════════════════════════════════ */
-  async function initPanel() {
-    await loadAppsFromJSON();
-    renderAppsList();
-    renderJSON();
-    wireForm();
+  function escapeHtml(str) {
+    if (str == null) return '';
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
   }
 
-  async function loadAppsFromJSON() {
-    try {
-      const res = await fetch(JSON_URL, { cache: 'no-store' });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      const data = await res.json();
-      apps = Array.isArray(data) ? data.map(normalizeApp) : [];
-    } catch (e) {
-      apps = [];
-      document.getElementById('apps-list').innerHTML =
-        '<div class="empty-msg">⚠️ Could not load <code>apps.json</code>.<br/>Start adding apps below — your changes are tracked here.</div>';
-    }
+  function autoSlug(name) {
+    if (!name) return '';
+    return String(name).toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
   }
 
-  function normalizeApp(a) {
+  const MARKETPLACE_TYPES = {
+    'Google Play': 'play', 'Uptodown': 'uptodown', 'OPPO Store': 'oppo', 'Vivo Store': 'vivo',
+    'Huawei AppGallery': 'huawei', 'Samsung Galaxy Store': 'samsung', 'Amazon Appstore': 'amazon',
+    'Xiaomi GetApps': 'xiaomi', 'Apple App Store': 'apple', 'Direct APK': 'direct'
+  };
+
+  function addMarketplaceRow(name, url) {
+    const list = document.getElementById('marketplaces-list');
+    const row = document.createElement('div');
+    row.className = 'mp-row';
+    row.style.cssText = 'display:grid;grid-template-columns:1fr 2fr auto;gap:0.4rem;margin-bottom:0.4rem;align-items:center;';
+    row.innerHTML = `
+      <input type="text" class="mp-name" value="${escapeHtml(name || '')}" placeholder="Marketplace name"/>
+      <input type="url" class="mp-url" value="${escapeHtml(url || '')}" placeholder="https://&hellip;"/>
+      <button type="button" class="btn btn-danger btn-sm mp-del">&#10005;</button>
+    `;
+    row.querySelector('.mp-del').addEventListener('click', () => row.remove());
+    list.appendChild(row);
+  }
+
+  function collectMarketplaces() {
+    const rows = document.querySelectorAll('#marketplaces-list .mp-row');
+    return Array.from(rows).map(r => {
+      const name = r.querySelector('.mp-name').value.trim();
+      const url = r.querySelector('.mp-url').value.trim();
+      if (!name || !url) return null;
+      return { name, url, type: MARKETPLACE_TYPES[name] || 'custom' };
+    }).filter(Boolean);
+  }
+
+  function loadMarketplaces(marketplaces) {
+    const list = document.getElementById('marketplaces-list');
+    list.innerHTML = '';
+    (marketplaces || []).forEach(mp => addMarketplaceRow(mp.name, mp.url));
+    if (!marketplaces || !marketplaces.length) addMarketplaceRow();
+  }
+
+  function parseFaq(text) {
+    if (!text) return [];
+    return text.split('\n').map(l => l.trim()).filter(Boolean).map(line => {
+      const m = line.match(/^Q:\s*(.+?)\s*\|\s*A:\s*(.+)$/i);
+      if (!m) return null;
+      return { q: m[1], a: m[2] };
+    }).filter(Boolean);
+  }
+
+  function stringifyFaq(faq) {
+    if (!Array.isArray(faq)) return '';
+    return faq.map(f => `Q: ${f.q} | A: ${f.a}`).join('\n');
+  }
+
+  function parseList(text) {
+    if (!text) return [];
+    return text.split('\n').map(l => l.trim()).filter(Boolean);
+  }
+
+  function getFormData() {
     return {
-      name:        a.name || '',
-      emoji:       a.emoji || '',
-      desc:        a.desc || '',
-      tag:         a.tag || 'Other',
-      icon:        a.icon || '',
-      playUrl:     a.playUrl || '',
-      uptodownUrl: a.uptodownUrl || '',
-      oppoUrl:     a.oppoUrl || '',
-      vivoUrl:     a.vivoUrl || ''
+      name: document.getElementById('f-name').value.trim(),
+      slug: document.getElementById('f-slug').value.trim() || autoSlug(document.getElementById('f-name').value),
+      category: document.getElementById('f-cat').value,
+      tag: document.getElementById('f-cat').value,
+      tagline: document.getElementById('f-tagline').value.trim(),
+      shortDesc: document.getElementById('f-shortDesc').value.trim(),
+      longDescription: document.getElementById('f-longDesc').value.trim(),
+      keywords: document.getElementById('f-keywords').value.split(',').map(k => k.trim()).filter(Boolean),
+      features: parseList(document.getElementById('f-features').value),
+      faq: parseFaq(document.getElementById('f-faq').value),
+      emoji: document.getElementById('f-emoji').value.trim(),
+      icon: document.getElementById('f-icon').value.trim(),
+      screenshots: parseList(document.getElementById('f-screenshots').value),
+      marketplaces: collectMarketplaces(),
+      rating: {
+        value: parseFloat(document.getElementById('f-rating-value').value) || 0,
+        count: parseInt(document.getElementById('f-rating-count').value) || 0
+      },
+      lastUpdated: document.getElementById('f-updated').value
     };
   }
 
-  /* ═══════════════════════════════════════════════════════════
-     RENDER
-     ═══════════════════════════════════════════════════════════ */
+  function setFormData(app) {
+    document.getElementById('f-name').value = app.name || '';
+    document.getElementById('f-slug').value = app.slug || autoSlug(app.name || '');
+    document.getElementById('f-cat').value = app.category || app.tag || 'Other';
+    document.getElementById('f-tagline').value = app.tagline || '';
+    document.getElementById('f-seed').value = '';
+    document.getElementById('f-shortDesc').value = app.shortDesc || '';
+    document.getElementById('f-longDesc').value = app.longDescription || '';
+    document.getElementById('f-keywords').value = (app.keywords || []).join(', ');
+    document.getElementById('f-features').value = (app.features || []).join('\n');
+    document.getElementById('f-faq').value = stringifyFaq(app.faq);
+    document.getElementById('f-emoji').value = app.emoji || '';
+    document.getElementById('f-icon').value = app.icon || '';
+    document.getElementById('f-screenshots').value = (app.screenshots || []).join('\n');
+    loadMarketplaces(app.marketplaces);
+    document.getElementById('f-rating-value').value = app.rating?.value || 0;
+    document.getElementById('f-rating-count').value = app.rating?.count || 0;
+    document.getElementById('f-updated').value = app.lastUpdated || new Date().toISOString().slice(0, 10);
+    updateCharCounts();
+  }
+
+  function clearForm() {
+    document.getElementById('app-form').reset();
+    document.getElementById('edit-index').value = '-1';
+    loadMarketplaces([]);
+    document.getElementById('form-title').textContent = 'Add New App';
+    document.getElementById('save-btn').textContent = 'Save & Deploy';
+    updateCharCounts();
+  }
+
+  function updateCharCounts() {
+    const s = document.getElementById('f-shortDesc').value.length;
+    const l = document.getElementById('f-longDesc').value.length;
+    document.getElementById('short-count').textContent = `(${s}/160)`;
+    document.getElementById('long-count').textContent = `(${l}/2000)`;
+  }
+  document.getElementById('f-shortDesc').addEventListener('input', updateCharCounts);
+  document.getElementById('f-longDesc').addEventListener('input', updateCharCounts);
+
+  document.getElementById('f-name').addEventListener('input', (e) => {
+    if (!document.getElementById('f-slug').dataset.touched) {
+      document.getElementById('f-slug').value = autoSlug(e.target.value);
+    }
+  });
+  document.getElementById('f-slug').addEventListener('input', () => {
+    document.getElementById('f-slug').dataset.touched = '1';
+  });
+
+  document.querySelectorAll('[data-add-mp]').forEach(btn => {
+    btn.addEventListener('click', () => addMarketplaceRow(btn.dataset.addMp, ''));
+  });
+  document.getElementById('add-custom-mp').addEventListener('click', () => addMarketplaceRow('', ''));
+
+  document.getElementById('clear-btn').addEventListener('click', clearForm);
+
+  document.getElementById('ai-fill-btn').addEventListener('click', async () => {
+    if (aiBusy) return;
+    const name = document.getElementById('f-name').value.trim();
+    const category = document.getElementById('f-cat').value;
+    const seed = document.getElementById('f-seed').value.trim();
+    if (!name || !seed || seed.split(/\s+/).length < 3) {
+      toast('Please enter App Name and a 3+ word AI seed description first.', 'error');
+      return;
+    }
+    aiBusy = true;
+    const btn = document.getElementById('ai-fill-btn');
+    btn.disabled = true;
+    btn.textContent = 'Generating...';
+    try {
+      const res = await fetch(AI_FILL_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-admin-token': ADMIN_PASSWORD },
+        body: JSON.stringify({ name, category, seed })
+      });
+      const data = await res.json();
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error || 'AI fill failed');
+      }
+      const d = data.data;
+      if (d.tagline) document.getElementById('f-tagline').value = d.tagline;
+      if (d.shortDesc) document.getElementById('f-shortDesc').value = d.shortDesc;
+      if (d.longDescription) document.getElementById('f-longDesc').value = d.longDescription;
+      if (Array.isArray(d.keywords)) document.getElementById('f-keywords').value = d.keywords.join(', ');
+      if (Array.isArray(d.features)) document.getElementById('f-features').value = d.features.join('\n');
+      if (Array.isArray(d.faq)) document.getElementById('f-faq').value = stringifyFaq(d.faq);
+      updateCharCounts();
+      toast('AI content generated. Review and edit before saving.', 'success');
+    } catch (e) {
+      toast(`AI error: ${e.message}`, 'error');
+    } finally {
+      aiBusy = false;
+      btn.disabled = false;
+      btn.textContent = 'AI Auto-fill All (Groq)';
+    }
+  });
+
+  document.getElementById('app-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = getFormData();
+    if (!data.name) { toast('App name is required', 'error'); return; }
+    if (!data.shortDesc) { toast('Short description is required', 'error'); return; }
+    if (!data.longDescription) { toast('Long description is required (or use AI fill)', 'error'); return; }
+
+    const editIdx = parseInt(document.getElementById('edit-index').value, 10);
+    if (editIdx >= 0) {
+      apps[editIdx] = { ...apps[editIdx], ...data };
+    } else {
+      if (apps.some(a => a.slug === data.slug)) {
+        toast(`Slug "${data.slug}" already exists. Use a different name.`, 'error');
+        return;
+      }
+      apps.push(data);
+    }
+    renderAppsList();
+
+    const btn = document.getElementById('save-btn');
+    btn.disabled = true;
+    btn.textContent = 'Publishing...';
+    try {
+      const res = await fetch(PUBLISH_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-admin-token': ADMIN_PASSWORD },
+        body: JSON.stringify({ apps })
+      });
+      const result = await res.json();
+      if (!res.ok || !result.ok) {
+        throw new Error(result.error || 'Publish failed');
+      }
+      toast(`Deployed! ${apps.length} apps live. Build will start in ~30s.`, 'success');
+      document.getElementById('edit-index').value = '-1';
+      document.getElementById('form-title').textContent = 'Add New App';
+      btn.textContent = 'Save & Deploy';
+    } catch (e) {
+      toast(`Publish error: ${e.message}`, 'error');
+      if (editIdx < 0) {
+        apps.pop();
+        renderAppsList();
+      }
+    } finally {
+      btn.disabled = false;
+    }
+  });
+
   function renderAppsList() {
     const list = document.getElementById('apps-list');
     const counter = document.getElementById('apps-count');
     counter.textContent = apps.length ? `(${apps.length})` : '';
-
     if (!apps.length) {
-      list.innerHTML = '<div class="empty-msg">No apps yet. Add one using the form on the left.</div>';
+      list.innerHTML = '<div class="empty-msg">No apps yet. Add one using the form.</div>';
       return;
     }
     list.innerHTML = '';
@@ -508,178 +697,62 @@
       const card = document.createElement('div');
       card.className = 'admin-app-card';
       const icon = app.icon
-        ? `<img src="${escapeAttr(app.icon)}" alt="" style="width:36px;height:36px;border-radius:8px;object-fit:cover;flex-shrink:0;" onerror="this.outerHTML='<div class=&quot;admin-app-emoji&quot;>${escapeAttr(app.emoji || "📱")}</div>'"/>`
-        : `<div class="admin-app-emoji">${escapeAttr(app.emoji || '📱')}</div>`;
+        ? `<img src="${escapeHtml(app.icon)}" alt="" style="width:36px;height:36px;border-radius:8px;object-fit:cover;flex-shrink:0;" onerror="this.outerHTML='<div class=&quot;admin-app-emoji&quot;>${escapeHtml(app.emoji || "📱")}</div>'"/>`
+        : `<div class="admin-app-emoji">${escapeHtml(app.emoji || '📱')}</div>`;
       card.innerHTML = `
         ${icon}
         <div class="admin-app-info">
           <div class="admin-app-name">${escapeHtml(app.name || '(unnamed)')}</div>
-          <span class="admin-app-cat">${escapeHtml(app.tag || 'Other')}</span>
+          <span class="admin-app-cat">${escapeHtml(app.category || app.tag || 'Other')}</span>
         </div>
         <div class="admin-app-actions">
-          <button class="btn btn-edit btn-sm" data-action="edit" data-index="${idx}">✎ Edit</button>
-          <button class="btn btn-danger btn-sm" data-action="delete" data-index="${idx}">✕ Delete</button>
+          <a class="btn btn-edit btn-sm" href="/apps/${escapeHtml(app.slug || '')}/" target="_blank" rel="noopener">View</a>
+          <button class="btn btn-edit btn-sm" data-action="edit" data-index="${idx}">&#9998; Edit</button>
+          <button class="btn btn-danger btn-sm" data-action="delete" data-index="${idx}">&#10005;</button>
         </div>
       `;
       list.appendChild(card);
     });
-
     list.querySelectorAll('button[data-action="edit"]').forEach(btn => {
-      btn.addEventListener('click', () => editApp(parseInt(btn.dataset.index, 10)));
+      btn.addEventListener('click', () => {
+        const idx = parseInt(btn.dataset.index, 10);
+        setFormData(apps[idx]);
+        document.getElementById('edit-index').value = String(idx);
+        document.getElementById('form-title').textContent = `Edit: ${apps[idx].name}`;
+        document.getElementById('save-btn').textContent = 'Update & Deploy';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     });
     list.querySelectorAll('button[data-action="delete"]').forEach(btn => {
-      btn.addEventListener('click', () => deleteApp(parseInt(btn.dataset.index, 10)));
+      btn.addEventListener('click', () => {
+        const idx = parseInt(btn.dataset.index, 10);
+        if (confirm(`Delete "${apps[idx].name}"? You still need to click Save & Deploy to publish.`)) {
+          apps.splice(idx, 1);
+          renderAppsList();
+          toast('App removed locally. Click "Save & Deploy" to publish.', 'success');
+        }
+      });
     });
   }
 
-  function renderJSON() {
-    const cleaned = apps.map(a => ({
-      name:        a.name,
-      emoji:       a.emoji,
-      desc:        a.desc,
-      tag:         a.tag,
-      icon:        a.icon || '',
-      playUrl:     a.playUrl || '',
-      uptodownUrl: a.uptodownUrl || '',
-      oppoUrl:     a.oppoUrl || '',
-      vivoUrl:     a.vivoUrl || ''
-    }));
-    document.getElementById('json-output').value = JSON.stringify(cleaned, null, 2);
-  }
-
-  /* ═══════════════════════════════════════════════════════════
-     FORM
-     ═══════════════════════════════════════════════════════════ */
-  function wireForm() {
-    const form   = document.getElementById('app-form');
-    const clear  = document.getElementById('clear-btn');
-    const copy   = document.getElementById('copy-json-btn');
-    const desc   = document.getElementById('f-desc');
-    const count  = document.getElementById('desc-count');
-
-    desc.addEventListener('input', () => {
-      count.textContent = `(${desc.value.length}/300)`;
-    });
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      saveApp();
-    });
-    clear.addEventListener('click', () => {
-      resetForm();
-      toast('Form cleared', 'success');
-    });
-    copy.addEventListener('click', async () => {
-      const txt = document.getElementById('json-output').value;
-      try {
-        await navigator.clipboard.writeText(txt);
-        toast('JSON copied to clipboard ✓', 'success');
-      } catch (e) {
-        const ta = document.getElementById('json-output');
-        ta.select(); document.execCommand('copy');
-        toast('JSON copied ✓', 'success');
-      }
-    });
-  }
-
-  function getFormData() {
-    return {
-      name:        document.getElementById('f-name').value.trim(),
-      emoji:       document.getElementById('f-emoji').value.trim(),
-      desc:        document.getElementById('f-desc').value.trim(),
-      tag:         document.getElementById('f-cat').value,
-      icon:        document.getElementById('f-icon').value.trim(),
-      playUrl:     document.getElementById('f-play').value.trim(),
-      uptodownUrl: document.getElementById('f-utd').value.trim(),
-      oppoUrl:     document.getElementById('f-oppo').value.trim(),
-      vivoUrl:     document.getElementById('f-vivo').value.trim()
-    };
-  }
-
-  function setFormData(app) {
-    document.getElementById('f-name').value  = app.name || '';
-    document.getElementById('f-emoji').value = app.emoji || '';
-    document.getElementById('f-desc').value  = app.desc || '';
-    document.getElementById('f-cat').value   = app.tag || 'Other';
-    document.getElementById('f-icon').value  = app.icon || '';
-    document.getElementById('f-play').value  = app.playUrl || '';
-    document.getElementById('f-utd').value   = app.uptodownUrl || '';
-    document.getElementById('f-oppo').value  = app.oppoUrl || '';
-    document.getElementById('f-vivo').value  = app.vivoUrl || '';
-    document.getElementById('desc-count').textContent =
-      `(${(app.desc || '').length}/300)`;
-  }
-
-  function resetForm() {
-    document.getElementById('app-form').reset();
-    document.getElementById('edit-index').value = '-1';
-    document.getElementById('f-cat').value = 'Other';
-    document.getElementById('desc-count').textContent = '(0/300)';
-    document.getElementById('form-title').textContent = 'Add New App';
-    document.getElementById('form-sub').textContent   = 'Fill the fields and click Save.';
-    document.getElementById('save-btn').textContent   = 'Save App';
-    document.getElementById('f-name').focus();
-  }
-
-  function saveApp() {
-    const data = getFormData();
-    if (!data.name) { toast('App name is required', 'error'); return; }
-    if (!data.desc) { toast('Description is required', 'error'); return; }
-
-    const idx = parseInt(document.getElementById('edit-index').value, 10);
-    if (idx >= 0 && idx < apps.length) {
-      apps[idx] = data;
-      toast('App updated ✓', 'success');
-    } else {
-      apps.push(data);
-      toast('App saved ✓', 'success');
+  async function initPanel() {
+    try {
+      const res = await fetch(JSON_URL, { cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      apps = Array.isArray(data) ? data : [];
+    } catch (e) {
+      apps = [];
+      toast('Could not load apps.json. Starting fresh.', 'error');
     }
+    loadMarketplaces([]);
     renderAppsList();
-    renderJSON();
-    resetForm();
+    clearForm();
+    document.getElementById('f-updated').value = new Date().toISOString().slice(0, 10);
   }
 
-  function editApp(idx) {
-    const app = apps[idx];
-    if (!app) return;
-    setFormData(app);
-    document.getElementById('edit-index').value = String(idx);
-    document.getElementById('form-title').textContent = 'Edit App';
-    document.getElementById('form-sub').textContent   = `Editing "${app.name}" — Save to apply changes.`;
-    document.getElementById('save-btn').textContent   = 'Update App';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function deleteApp(idx) {
-    const app = apps[idx];
-    if (!app) return;
-    const ok = confirm(`Delete "${app.name}"? This action cannot be undone in this session.`);
-    if (!ok) return;
-    apps.splice(idx, 1);
-    renderAppsList();
-    renderJSON();
-    toast('App deleted', 'success');
-    if (parseInt(document.getElementById('edit-index').value, 10) === idx) {
-      resetForm();
-    }
-  }
-
-  /* ═══════════════════════════════════════════════════════════
-     HELPERS
-     ═══════════════════════════════════════════════════════════ */
-  function escapeHtml(str) {
-    return String(str == null ? '' : str)
-      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;').replace(/'/g, '&#039;');
-  }
-  function escapeAttr(str) { return escapeHtml(str); }
-
-  /* ═══════════════════════════════════════════════════════════
-     BOOT
-     ═══════════════════════════════════════════════════════════ */
-  if (isAuthed()) {
-    login();
-  }
+  if (isAuthed()) login();
 </script>
+
 </body>
 </html>
