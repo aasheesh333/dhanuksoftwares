@@ -1,62 +1,10 @@
 [
   {
-    "name": "AstroPrerna",
-    "emoji": "🔭",
-    "tag": "Astrology",
-    "shortDesc": "Your personal astrology companion. Get daily insights, horoscopes, and cosmic guidance tailored to your birth chart.",
-    "slug": "astroprerna",
-    "longDescription": "<h3>About AstroPrerna</h3><p>This is a <strong>powerful</strong> astrology app.</p><h3>Features</h3><ul><li>Daily horoscope</li><li>Free Kundli</li></ul>",
-    "keywords": [],
-    "features": [],
-    "faq": [],
-    "screenshots": [],
-    "rating": {
-      "value": 0,
-      "count": 0
-    },
-    "marketplaces": []
-  },
-  {
-    "name": "Focus App",
-    "emoji": "🎯",
-    "tag": "Productivity",
-    "shortDesc": "Stay productive with smart focus sessions. Block distractions, set goals, and track your deep work time effortlessly.",
-    "slug": "focus-app",
-    "longDescription": "Stay productive with smart focus sessions. Block distractions, set goals, and track your deep work time effortlessly.",
-    "keywords": [],
-    "features": [],
-    "faq": [],
-    "screenshots": [],
-    "rating": {
-      "value": 0,
-      "count": 0
-    },
-    "marketplaces": []
-  },
-  {
-    "name": "Quick Scan",
-    "emoji": "📄",
-    "tag": "Utility",
-    "shortDesc": "Instantly scan documents, IDs, and receipts with your camera. Export clean PDFs with a single tap.",
-    "slug": "quick-scan",
-    "longDescription": "Instantly scan documents, IDs, and receipts with your camera. Export clean PDFs with a single tap.",
-    "keywords": [],
-    "features": [],
-    "faq": [],
-    "screenshots": [],
-    "rating": {
-      "value": 0,
-      "count": 0
-    },
-    "marketplaces": []
-  },
-  {
-    "name": "Photo Editor",
-    "emoji": "🖼️",
-    "tag": "Creative",
-    "shortDesc": "A powerful yet simple photo editing tool. Adjust, enhance, and beautify your images right on your Android phone.",
-    "slug": "photo-editor",
-    "longDescription": "A powerful yet simple photo editing tool. Adjust, enhance, and beautify your images right on your Android phone.",
+    "name": "SecurityTest",
+    "slug": "sectest",
+    "emoji": "🔒",
+    "shortDesc": "Security test",
+    "longDescription": "x",
     "keywords": [],
     "features": [],
     "faq": [],
