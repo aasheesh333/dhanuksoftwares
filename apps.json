@@ -1,22 +1,5 @@
 [
   {
-    "name": "AstroPrerna",
-    "emoji": "🔭",
-    "tag": "Astrology",
-    "shortDesc": "Your personal astrology companion. Get daily insights, horoscopes, and cosmic guidance tailored to your birth chart.",
-    "slug": "astroprerna",
-    "longDescription": "<h3>About AstroPrerna</h3><p>This is a <strong>powerful</strong> astrology app.</p><h3>Features</h3><ul><li>Daily horoscope</li><li>Free Kundli</li></ul>",
-    "keywords": [],
-    "features": [],
-    "faq": [],
-    "screenshots": [],
-    "rating": {
-      "value": 0,
-      "count": 0
-    },
-    "marketplaces": []
-  },
-  {
     "name": "Photo Editor",
     "emoji": "🖼️",
     "tag": "Creative",
