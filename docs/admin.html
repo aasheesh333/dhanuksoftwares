@@ -20,7 +20,7 @@
       --danger: #ff5a5f;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-wrap: break-word; }
     body {
       background: var(--bg);
       color: var(--text);
@@ -28,7 +28,10 @@
       font-size: 16px;
       line-height: 1.6;
       min-height: 100vh;
+      overflow-x: hidden;
+      overflow-wrap: break-word;
     }
+    body, p, li, h1, h2, h3, h4, a, span, dd, dt, blockquote, code, pre { overflow-wrap: break-word; word-wrap: break-word; }
 
     nav {
       position: sticky; top: 0; z-index: 100;
@@ -140,6 +143,11 @@
       display: flex; gap: 0.75rem; margin-top: 1.25rem;
       flex-wrap: wrap;
     }
+    .mp-row {
+      display: grid; grid-template-columns: 1fr 2fr auto; gap: 0.4rem;
+      margin-bottom: 0.4rem; align-items: center;
+    }
+    .mp-row input { min-width: 0; }
     .btn {
       padding: 0.7rem 1.4rem; border-radius: 8px; cursor: pointer;
       font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.9rem;
@@ -216,10 +224,25 @@
       .panel-grid { grid-template-columns: 1fr; }
       .form-grid-2, .form-grid-3 { grid-template-columns: 1fr; }
     }
-    @media (max-width: 480px) {
-      nav ul { display: none; }
-      .login-card { padding: 2rem 1.5rem; }
-      .box { padding: 1.25rem; }
+    @media (max-width: 600px) {
+      .admin-app-card { flex-wrap: wrap; gap: 0.5rem; padding: 0.75rem; }
+      .admin-app-info { flex: 1 1 100%; order: 2; }
+      .admin-app-actions { order: 3; width: 100%; justify-content: flex-end; }
+      .box { padding: 1.25rem; border-radius: 12px; }
+      .panel-wrap { padding: 1.25rem 4% 2.5rem; }
+      .panel-header h1 { font-size: 1.4rem; letter-spacing: -0.5px; }
+      .login-card { padding: 2rem 1.5rem; border-radius: 16px; }
+      .toast { left: 16px; right: 16px; bottom: 16px; max-width: none; }
+      .mp-row { grid-template-columns: 1fr !important; gap: 0.3rem !important; }
+      .mp-row .mp-url { font-size: 0.85rem; }
+      .form-row input, .form-row select, .form-row textarea { font-size: 0.95rem; }
+      .nav { padding: 0.75rem 4%; }
+      .nav-logo { font-size: 1.05rem; }
+    }
+    @media (max-width: 380px) {
+      .form-actions { flex-direction: column; }
+      .form-actions .btn { width: 100%; }
+      .admin-app-actions .btn { padding: 0.35rem 0.6rem; font-size: 0.72rem; }
     }
   </style>
 </head>
@@ -229,7 +252,7 @@
   <a class="nav-logo" href="/">Dhanuk<span>Softwares</span></a>
   <div class="nav-right">
     <span class="nav-user" id="nav-user"></span>
-    <button class="nav-btn danger" id="logout-btn" style="display:none;">Logout</button>
+    <button class="nav-btn danger" id="logout-btn" style="display:none;" aria-label="Logout">Logout</button>
   </div>
 </nav>
 
@@ -476,7 +499,6 @@
     const list = document.getElementById('marketplaces-list');
     const row = document.createElement('div');
     row.className = 'mp-row';
-    row.style.cssText = 'display:grid;grid-template-columns:1fr 2fr auto;gap:0.4rem;margin-bottom:0.4rem;align-items:center;';
     row.innerHTML = `
       <input type="text" class="mp-name" value="${escapeHtml(name || '')}" placeholder="Marketplace name"/>
       <input type="url" class="mp-url" value="${escapeHtml(url || '')}" placeholder="https://&hellip;"/>

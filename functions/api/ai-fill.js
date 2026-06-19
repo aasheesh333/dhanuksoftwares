@@ -18,11 +18,26 @@ Rules:
 - Reads human-written, not AI-generated
 - Lengths: tagline <=60 char, shortDesc <=160 char, longDescription 1500-3000 words (Play Store full description length, comprehensive SEO content)
 
+CRITICAL FORMATTING RULES for longDescription:
+- Use ONLY these HTML tags: <p>, <h2>, <h3>, <h4>, <ul>, <li>, <strong>, <em>, <a>, <br>
+- Every list MUST be <ul><li>item</li></ul>. NEVER use markdown asterisks (* item) or dashes (- item). Bare asterisk text is a hard fail.
+- NEVER wrap the longDescription in a single paragraph or string of plain text. Use proper <h2>/<h3>/<p>/<ul><li> structure throughout.
+- DO NOT include any of these section headings in longDescription (they have dedicated fields/sections elsewhere):
+  * "Key Features" / "Features" / "What's New" / "Highlights" (use the features[] array instead)
+  * "FAQ" / "Frequently Asked Questions" / "FAQs" (use the faq[] array instead)
+  * "About [App Name]" at the start (the template already wraps this in an "About" heading)
+  * "How to Download" / "Installation" / "How to Install" (template renders fixed steps)
+  * "Technical Details" / "Specifications" / "Requirements" (template renders these from fields)
+  * "Screenshots" / "Gallery" (template renders screenshots[] separately)
+  * "Conclusion" / "Final Thoughts" / "Summary" (no trailing meta-section needed)
+- Keep FAQ count modest: 6-8 pairs covering: pricing, offline use, privacy, compatibility, common concerns, vs alternatives.
+- The longDescription should describe WHAT the app does, WHO it's for, WHY it matters, HOW it works at a high level — and weave the app's differentiators into flowing prose with semantic HTML.
+
 Return this exact JSON shape:
 {
   "tagline": "...",
   "shortDesc": "...",
-  "longDescription": "...",
+  "longDescription": "<p>...</p><h2>...</h2><p>...</p><ul><li>...</li></ul>...",
   "keywords": ["...", "..."],
   "features": ["...", "..."],
   "faq": [{"q":"...","a":"..."}, ...]
