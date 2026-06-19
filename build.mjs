@@ -161,12 +161,14 @@ async function main() {
 
   const adminSrc = path.join(ROOT, 'docs', 'admin.html');
   if (fs.existsSync(adminSrc)) {
+    const adminHtml = fs.readFileSync(adminSrc, 'utf8');
+    const injected = injectSecrets(adminHtml);
     const adminDir = path.join(DIST, 'admin');
     mkdirp(adminDir);
-    fs.copyFileSync(adminSrc, path.join(adminDir, 'index.html'));
+    fs.writeFileSync(path.join(adminDir, 'index.html'), injected);
     const docsDir = path.join(DIST, 'docs');
     mkdirp(docsDir);
-    fs.copyFileSync(adminSrc, path.join(docsDir, 'admin.html'));
+    fs.writeFileSync(path.join(docsDir, 'admin.html'), injected);
     console.log('  /admin/');
   }
 
@@ -192,7 +194,51 @@ async function main() {
   writeFile(path.join(DIST, 'robots.txt'), robots);
   console.log('  /robots.txt');
 
+  const headers = generateHeaders();
+  writeFile(path.join(DIST, '_headers'), headers);
+  console.log('  /_headers');
+
+  const redirects = generateRedirects();
+  writeFile(path.join(DIST, '_redirects'), redirects);
+  console.log('  /_redirects');
+
   console.log('Build complete -> dist/');
+}
+
+function generateHeaders() {
+  return `/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/admin/*
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Robots-Tag: noindex, nofollow
+
+/docs/*
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Robots-Tag: noindex, nofollow
+
+/apps.json
+  Cache-Control: public, max-age=300, must-revalidate
+`;
+}
+
+function generateRedirects() {
+  return `/admin /admin/ 301
+`;
+}
+
+function injectSecrets(html) {
+  const adminPassword = process.env.ADMIN_PASSWORD;
+  if (!adminPassword) {
+    console.warn('  ⚠ ADMIN_PASSWORD not set — admin login will not work');
+  }
+  return html.replace(/__ADMIN_PASSWORD__/g, adminPassword || '');
 }
 
 main().catch(e => { console.error(e); process.exit(1); });

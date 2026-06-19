@@ -408,7 +408,7 @@
 <div class="toast" id="toast"></div>
 
 <script>
-  const ADMIN_PASSWORD = "Dhanuk@2025";
+  const ADMIN_PASSWORD = "__ADMIN_PASSWORD__";
   const SESSION_KEY = "dhanuk_admin_auth";
   const JSON_URL = "../apps.json";
   const AI_FILL_URL = "/api/ai-fill";
@@ -701,19 +701,10 @@
     btn.disabled = true;
     btn.textContent = 'Publishing...';
     try {
-      const res = await fetch(PUBLISH_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-admin-token': ADMIN_PASSWORD },
-        body: JSON.stringify({ apps })
-      });
-      const result = await res.json();
-      if (!res.ok || !result.ok) {
-        throw new Error(result.error || 'Publish failed');
-      }
+      await publishApps();
       toast(`Deployed! ${apps.length} apps live. Build will start in ~30s.`, 'success');
       document.getElementById('edit-index').value = '-1';
       document.getElementById('form-title').textContent = 'Add New App';
-      btn.textContent = 'Save & Deploy';
     } catch (e) {
       toast(`Publish error: ${e.message}`, 'error');
       if (editIdx < 0) {
@@ -722,8 +713,22 @@
       }
     } finally {
       btn.disabled = false;
+      btn.textContent = 'Save & Deploy';
     }
   });
+
+  async function publishApps() {
+    const res = await fetch(PUBLISH_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-admin-token': ADMIN_PASSWORD },
+      body: JSON.stringify({ apps })
+    });
+    const result = await res.json();
+    if (!res.ok || !result.ok) {
+      throw new Error(result.error || 'Publish failed');
+    }
+    return result;
+  }
 
   function renderAppsList() {
     const list = document.getElementById('apps-list');
@@ -765,12 +770,24 @@
       });
     });
     list.querySelectorAll('button[data-action="delete"]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', async () => {
         const idx = parseInt(btn.dataset.index, 10);
-        if (confirm(`Delete "${apps[idx].name}"? You still need to click Save & Deploy to publish.`)) {
-          apps.splice(idx, 1);
+        const deletedApp = apps[idx];
+        if (!confirm(`Delete "${deletedApp.name}"? This will immediately publish the change to the live site.`)) return;
+        const allDelBtns = list.querySelectorAll('button[data-action="delete"]');
+        allDelBtns.forEach(b => b.disabled = true);
+        apps.splice(idx, 1);
+        renderAppsList();
+        toast(`Deleting "${deletedApp.name}" and publishing...`, 'info');
+        try {
+          await publishApps();
+          toast(`"${deletedApp.name}" deleted. Site will update in ~30s.`, 'success');
+        } catch (e) {
+          apps.splice(idx, 0, deletedApp);
           renderAppsList();
-          toast('App removed locally. Click "Save & Deploy" to publish.', 'success');
+          toast(`Delete failed: ${e.message}. App restored.`, 'error');
+        } finally {
+          allDelBtns.forEach(b => b.disabled = false);
         }
       });
     });

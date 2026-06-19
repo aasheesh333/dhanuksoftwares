@@ -1,12 +1,12 @@
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'Dhanuk@2025';
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-const GITHUB_REPO = process.env.GITHUB_REPO || 'aasheesh333/dhanuksoftwares';
-const GITHUB_BRANCH = process.env.GITHUB_BRANCH || 'main';
-const NETLIFY_SITE_ID = process.env.NETLIFY_SITE_ID || '340e532b-30a2-4038-8cb9-3e36eb82b1a9';
-const NETLIFY_API_TOKEN = process.env.NETLIFY_API_TOKEN;
-const NETLIFY_BUILD_HOOK = process.env.NETLIFY_BUILD_HOOK || 'https://api.netlify.com/build_hooks/6a32c8a697ea6925f013e638';
+export async function onRequest({ request, env }) {
+  const ADMIN_PASSWORD = env.ADMIN_PASSWORD;
+  const GITHUB_TOKEN = env.GITHUB_TOKEN;
+  const GITHUB_REPO = env.GITHUB_REPO || 'aasheesh333/dhanuksoftwares';
+  const GITHUB_BRANCH = env.GITHUB_BRANCH || 'main';
+  const CLOUDFLARE_ACCOUNT_ID = env.CLOUDFLARE_ACCOUNT_ID;
+  const CLOUDFLARE_API_TOKEN = env.CLOUDFLARE_API_TOKEN;
+  const PAGES_PROJECT = env.PAGES_PROJECT || 'dhanuksoftwares';
 
-export default async (req) => {
   const headers = {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
@@ -14,20 +14,20 @@ export default async (req) => {
     'Access-Control-Allow-Methods': 'POST, OPTIONS'
   };
 
-  if (req.method === 'OPTIONS') return new Response('', { status: 204, headers });
-  if (req.method !== 'POST') return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405, headers });
+  if (request.method === 'OPTIONS') return new Response('', { status: 200, headers });
+  if (request.method !== 'POST') return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405, headers });
 
-  const token = req.headers.get('x-admin-token');
+  const token = request.headers.get('x-admin-token');
   if (token !== ADMIN_PASSWORD) {
     return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers });
   }
 
   if (!GITHUB_TOKEN) {
-    return new Response(JSON.stringify({ error: 'GITHUB_TOKEN not configured. Add it in Netlify env vars.' }), { status: 500, headers });
+    return new Response(JSON.stringify({ error: 'GITHUB_TOKEN not configured. Add it in Cloudflare Pages env vars.' }), { status: 500, headers });
   }
 
   let body;
-  try { body = await req.json(); } catch (e) {
+  try { body = await request.json(); } catch (e) {
     return new Response(JSON.stringify({ error: 'Invalid JSON body' }), { status: 400, headers });
   }
 
@@ -37,7 +37,7 @@ export default async (req) => {
   }
 
   const content = JSON.stringify(apps, null, 2);
-  const contentBase64 = Buffer.from(content).toString('base64');
+  const contentBase64 = btoa(unescape(encodeURIComponent(content)));
   const message = `chore: update apps.json (${apps.length} apps) via admin [${new Date().toISOString()}]`;
 
   try {
@@ -83,34 +83,29 @@ export default async (req) => {
 
     let buildTriggered = false;
     let buildMethod = 'none';
-    if (NETLIFY_API_TOKEN) {
+    if (CLOUDFLARE_ACCOUNT_ID && CLOUDFLARE_API_TOKEN) {
       try {
-        const deployRes = await fetch(`https://api.netlify.com/api/v1/sites/${NETLIFY_SITE_ID}/deploys`, {
+        const triggerRes = await fetch(`https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/pages/projects/${PAGES_PROJECT}/deployments`, {
           method: 'POST',
           headers: {
-            'Authorization': `Bearer ${NETLIFY_API_TOKEN}`,
+            'Authorization': `Bearer ${CLOUDFLARE_API_TOKEN}`,
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ title: `apps.json auto-deploy (${apps.length} apps)` })
+          body: JSON.stringify({})
         });
-        if (deployRes.ok) {
+        if (triggerRes.ok) {
           buildTriggered = true;
-          buildMethod = 'api';
+          buildMethod = 'pages_api';
+        } else {
+          const tErr = await triggerRes.text();
+          console.log('Pages deploy trigger failed:', triggerRes.status, tErr.slice(0, 200));
         }
       } catch (e) {
-        console.log('Netlify API deploy failed:', e.message);
+        console.log('Pages deploy trigger error:', e.message);
       }
     }
-    if (!buildTriggered && NETLIFY_BUILD_HOOK) {
-      try {
-        const hookRes = await fetch(NETLIFY_BUILD_HOOK, { method: 'POST' });
-        if (hookRes.ok) {
-          buildTriggered = true;
-          buildMethod = 'build_hook';
-        }
-      } catch (e) {
-        console.log('Build hook trigger failed:', e.message);
-      }
+    if (!buildTriggered) {
+      buildMethod = 'git_integration_or_manual';
     }
 
     return new Response(JSON.stringify({
@@ -124,6 +119,4 @@ export default async (req) => {
   } catch (e) {
     return new Response(JSON.stringify({ error: `Server error: ${e.message}` }), { status: 500, headers });
   }
-};
-
-export const config = { path: '/api/publish' };
+}

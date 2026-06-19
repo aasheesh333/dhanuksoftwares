@@ -1,8 +1,6 @@
 const rateLimitMap = new Map();
 const RATE_LIMIT = 5;
 const RATE_WINDOW = 60_000;
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'Dhanuk@2025';
-const GROQ_API_KEY = process.env.GROQ_API_KEY;
 const GROQ_MODEL = 'llama-3.3-70b-versatile';
 const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
 const PS_UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36';
@@ -101,7 +99,10 @@ async function scrapePlayStore(url) {
   };
 }
 
-export default async (req) => {
+export async function onRequest({ request, env }) {
+  const ADMIN_PASSWORD = env.ADMIN_PASSWORD;
+  const GROQ_API_KEY = env.GROQ_API_KEY;
+
   const headers = {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
@@ -109,15 +110,15 @@ export default async (req) => {
     'Access-Control-Allow-Methods': 'POST, OPTIONS'
   };
 
-  if (req.method === 'OPTIONS') return new Response('', { status: 200, headers });
-  if (req.method !== 'POST') return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405, headers });
+  if (request.method === 'OPTIONS') return new Response('', { status: 200, headers });
+  if (request.method !== 'POST') return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405, headers });
 
-  const token = req.headers.get('x-admin-token');
+  const token = request.headers.get('x-admin-token');
   if (token !== ADMIN_PASSWORD) {
     return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers });
   }
 
-  const ip = req.headers.get('x-forwarded-for')?.split(',')[0] || 'unknown';
+  const ip = request.headers.get('x-forwarded-for')?.split(',')[0] || 'unknown';
   if (!checkRate(ip)) {
     return new Response(JSON.stringify({ error: 'Rate limit exceeded. Try again in a minute.' }), { status: 429, headers });
   }
@@ -127,7 +128,7 @@ export default async (req) => {
   }
 
   let body;
-  try { body = await req.json(); } catch (e) {
+  try { body = await request.json(); } catch (e) {
     return new Response(JSON.stringify({ error: 'Invalid JSON body' }), { status: 400, headers });
   }
 
@@ -221,6 +222,4 @@ Generate the SEO content JSON for this app.`;
   } catch (e) {
     return new Response(JSON.stringify({ error: `Server error: ${e.message}` }), { status: 500, headers });
   }
-};
-
-export const config = { path: '/api/ai-fill' };
+}

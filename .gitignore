@@ -1,6 +1,10 @@
-# Local Netlify folder
-.netlify
+# Local wrangler cache
+.wrangler/
 # Build output
 dist/
 # Dependencies
 node_modules/
+# Local secrets / env
+.env
+.env.*
+!.env.example
