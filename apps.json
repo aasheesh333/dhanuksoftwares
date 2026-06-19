@@ -17,23 +17,6 @@
     "marketplaces": []
   },
   {
-    "name": "Focus App",
-    "emoji": "🎯",
-    "tag": "Productivity",
-    "shortDesc": "Stay productive with smart focus sessions. Block distractions, set goals, and track your deep work time effortlessly.",
-    "slug": "focus-app",
-    "longDescription": "Stay productive with smart focus sessions. Block distractions, set goals, and track your deep work time effortlessly.",
-    "keywords": [],
-    "features": [],
-    "faq": [],
-    "screenshots": [],
-    "rating": {
-      "value": 0,
-      "count": 0
-    },
-    "marketplaces": []
-  },
-  {
     "name": "Photo Editor",
     "emoji": "🖼️",
     "tag": "Creative",
