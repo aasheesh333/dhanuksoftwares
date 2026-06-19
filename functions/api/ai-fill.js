@@ -42,6 +42,13 @@ function checkRate(ip) {
 }
 
 async function scrapePlayStore(url) {
+  let parsedUrl;
+  try { parsedUrl = new URL(url); } catch (e) { throw new Error('Invalid URL'); }
+  if (parsedUrl.protocol !== 'https:') throw new Error('URL must be HTTPS');
+  const host = parsedUrl.hostname.toLowerCase();
+  const allowedHosts = new Set(['play.google.com', 'play.google.co.in']);
+  if (!allowedHosts.has(host)) throw new Error('Only play.google.com URLs are allowed');
+
   const htmlUrl = url.includes('?') ? url + '&hl=en' : url + '?hl=en';
   const res = await fetch(htmlUrl, {
     headers: { 'User-Agent': PS_UA, 'Accept-Language': 'en-US,en;q=0.9' }
@@ -103,11 +110,15 @@ export async function onRequest({ request, env }) {
   const ADMIN_PASSWORD = env.ADMIN_PASSWORD;
   const GROQ_API_KEY = env.GROQ_API_KEY;
 
+  const ALLOWED_ORIGINS = ['https://dhanuksoftwares.com', 'https://www.dhanuksoftwares.com'];
+  const requestOrigin = request.headers.get('origin') || '';
+  const allowOrigin = ALLOWED_ORIGINS.includes(requestOrigin) ? requestOrigin : ALLOWED_ORIGINS[0];
   const headers = {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Origin': allowOrigin,
     'Access-Control-Allow-Headers': 'Content-Type, x-admin-token',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS'
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Vary': 'Origin'
   };
 
   if (request.method === 'OPTIONS') return new Response('', { status: 200, headers });
@@ -197,8 +208,7 @@ Generate the SEO content JSON for this app.`;
     });
 
     if (!res.ok) {
-      const errText = await res.text();
-      return new Response(JSON.stringify({ error: `Groq API error: ${res.status}`, details: errText.slice(0, 200) }), { status: 502, headers });
+      return new Response(JSON.stringify({ error: `Groq API error: ${res.status}` }), { status: 502, headers });
     }
 
     const data = await res.json();

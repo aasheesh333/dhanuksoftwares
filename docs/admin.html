@@ -240,7 +240,7 @@
     <div class="login-title">Admin Access</div>
     <div class="login-sub">Enter the admin password to manage apps.</div>
     <form id="login-form" autocomplete="off">
-      <input type="password" id="password-input" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" autofocus required/>
+      <input type="password" id="password-input" placeholder="••••••••" autofocus required aria-label="Admin password"/>
       <div class="login-error" id="login-error"></div>
       <button type="submit" class="login-btn">Login</button>
     </form>
@@ -752,9 +752,9 @@
           <span class="admin-app-cat">${escapeHtml(app.category || app.tag || 'Other')}</span>
         </div>
         <div class="admin-app-actions">
-          <a class="btn btn-edit btn-sm" href="/apps/${escapeHtml(app.slug || '')}/" target="_blank" rel="noopener">View</a>
-          <button class="btn btn-edit btn-sm" data-action="edit" data-index="${idx}">&#9998; Edit</button>
-          <button class="btn btn-danger btn-sm" data-action="delete" data-index="${idx}">&#10005;</button>
+          <a class="btn btn-edit btn-sm" href="/apps/${escapeHtml(app.slug || '')}/" target="_blank" rel="noopener" aria-label="View ${escapeHtml(app.name)} live page">View</a>
+          <button class="btn btn-edit btn-sm" data-action="edit" data-index="${idx}" aria-label="Edit ${escapeHtml(app.name)}">&#9998; Edit</button>
+          <button class="btn btn-danger btn-sm" data-action="delete" data-index="${idx}" aria-label="Delete ${escapeHtml(app.name)}">&#10005;</button>
         </div>
       `;
       list.appendChild(card);

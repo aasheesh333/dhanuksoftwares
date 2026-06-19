@@ -6,7 +6,7 @@ import { slugify, ensureUnique } from './lib/slug.mjs';
 
 const ROOT = process.cwd();
 const DIST = path.join(ROOT, 'dist');
-const BASE_URL = process.env.URL || 'https://dhanuksoftwares.netlify.app';
+const BASE_URL = process.env.URL || 'https://dhanuksoftwares.com';
 const TODAY = new Date().toISOString().slice(0, 10);
 
 function rmrf(p) {
@@ -172,7 +172,7 @@ async function main() {
     console.log('  /admin/');
   }
 
-  for (const f of ['app-ads.txt', 'CNAME', 'apps.json']) {
+  for (const f of ['app-ads.txt', 'CNAME', 'apps.json', 'og-banner.png']) {
     const src = path.join(ROOT, f);
     if (fs.existsSync(src)) {
       fs.copyFileSync(src, path.join(DIST, f));
@@ -211,6 +211,8 @@ function generateHeaders() {
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Content-Security-Policy: default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline' https://*.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https:; frame-ancestors 'none'
 
 /index.html
   Cache-Control: public, max-age=0, must-revalidate
@@ -225,6 +227,9 @@ function generateHeaders() {
 
 /apps.json
   Cache-Control: public, max-age=300, must-revalidate
+
+/api/*
+  Cache-Control: no-store
 `;
 }
 

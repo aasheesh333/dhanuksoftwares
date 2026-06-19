@@ -8,21 +8,21 @@
   <meta name="keywords" content="Dhanuk Softwares, Android apps India, free Android apps download, Noida app developer, Indian app company, Google Play India apps"/>
   <meta name="robots" content="index, follow"/>
   <meta name="google-site-verification" content="wUxP6_5lBO1-6cbC6518XVjQ76YmsMDaiOOTrzQKUjE" />
-  <link rel="canonical" href="https://www.dhanuksoftwares.com/"/>
+  <link rel="canonical" href="https://dhanuksoftwares.com/"/>
 
   <!-- Open Graph -->
   <meta property="og:title" content="Dhanuk Softwares – Smart Android Apps"/>
   <meta property="og:description" content="Indian Android app development company building simple, smart, and useful apps for everyday life. Download free apps from Google Play, Uptodown, OPPO Store and Vivo Store."/>
-  <meta property="og:url" content="https://www.dhanuksoftwares.com/"/>
+  <meta property="og:url" content="https://dhanuksoftwares.com/"/>
   <meta property="og:type" content="website"/>
   <meta property="og:site_name" content="Dhanuk Softwares"/>
-  <meta property="og:image" content="https://www.dhanuksoftwares.com/og-banner.png"/>
+  <meta property="og:image" content="https://dhanuksoftwares.com/og-banner.png"/>
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="Dhanuk Softwares – Smart Android Apps"/>
   <meta name="twitter:description" content="Indian Android app development company building simple, smart, and useful apps for everyday life."/>
-  <meta name="twitter:image" content="https://www.dhanuksoftwares.com/og-banner.png"/>
+  <meta name="twitter:image" content="https://dhanuksoftwares.com/og-banner.png"/>
   <meta name="twitter:site" content="@dhanuksoftwares"/>
 
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -429,8 +429,8 @@
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Dhanuk Softwares",
-  "url": "https://www.dhanuksoftwares.com/",
-  "logo": "https://www.dhanuksoftwares.com/og-banner.png",
+  "url": "https://dhanuksoftwares.com/",
+  "logo": "https://dhanuksoftwares.com/og-banner.png",
   "description": "Dhanuk Softwares is an Indian Android app development company building simple, smart, and useful apps for everyday life.",
   "email": "support@dhanuksoftwares.com",
   "address": {
@@ -534,6 +534,8 @@
           "itemListElement": apps.map((app, idx) => ({
             "@type": "ListItem",
             "position": idx + 1,
+            "url": app.slug ? `${window.location.origin}/apps/${app.slug}/` : `${window.location.origin}/`,
+            "name": app.name || '',
             "item": {
               "@type": "SoftwareApplication",
               "name": app.name || '',
@@ -542,10 +544,11 @@
               "operatingSystem": "Android",
               "offers": {
                 "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "INR"
+                "price": 0,
+                "priceCurrency": "INR",
+                "availability": "https://schema.org/InStock"
               },
-              "url": app.slug ? `https://dhanuksoftwares.netlify.app/apps/${app.slug}/` : "https://dhanuksoftwares.netlify.app/"
+              "url": app.slug ? `${window.location.origin}/apps/${app.slug}/` : `${window.location.origin}/`
             }
           }))
         };

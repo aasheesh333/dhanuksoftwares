@@ -6,25 +6,35 @@
   <title>{{name}} - {{tagline}} | Dhanuk Softwares</title>
   <meta name="description" content="{{shortDesc}}"/>
   <meta name="keywords" content="{{keywordsString}}"/>
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1"/>
-  <link rel="canonical" href="https://dhanuksoftwares.netlify.app/apps/{{slug}}/"/>
+  <meta name="robots" content="index, follow, max-image-preview:large"/>
+  <meta name="google-site-verification" content="wUxP6_5lBO1-6cbC6518XVjQ76YmsMDaiOOTrzQKUjE"/>
+  <link rel="canonical" href="{{baseUrl}}/apps/{{slug}}/"/>
 
   <meta property="og:title" content="{{name}} - {{tagline}}"/>
   <meta property="og:description" content="{{shortDesc}}"/>
-  <meta property="og:url" content="https://dhanuksoftwares.netlify.app/apps/{{slug}}/"/>
-  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="{{baseUrl}}/apps/{{slug}}/"/>
+  <meta property="og:type" content="product"/>
+  <meta property="og:site_name" content="Dhanuk Softwares"/>
   <meta property="og:image" content="{{primaryScreenshot}}"/>
+  <meta property="og:locale" content="en_IN"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="{{name}} - {{tagline}}"/>
   <meta name="twitter:description" content="{{shortDesc}}"/>
   <meta name="twitter:image" content="{{primaryScreenshot}}"/>
+  <meta name="twitter:site" content="@dhanuksoftwares"/>
+  <meta name="theme-color" content="#0b0f1a"/>
 
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     :root { --bg:#0b0f1a; --surface:#131929; --card:#1a2235; --accent:#4f8ef7; --accent2:#38e0b0; --text:#e8edf7; --muted:#7a8aaa; --border:#1e2d4a; --danger:#ff5a5f; }
     *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
-    body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; line-height:1.7; }
+    html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+    body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; line-height:1.7; overflow-x:hidden; }
+    a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline:2px solid var(--accent); outline-offset:2px; border-radius:4px; }
+    .skip-link { position:absolute; left:-9999px; top:0; background:var(--accent); color:#fff; padding:0.7rem 1.2rem; z-index:200; border-radius:0 0 8px 0; text-decoration:none; font-weight:600; }
+    .skip-link:focus { left:0; }
     nav { position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:1rem 5%; background:rgba(11,15,26,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
     .nav-logo { font-family:'Syne',sans-serif; font-weight:800; font-size:1.2rem; color:var(--accent); text-decoration:none; }
     .nav-logo span { color:var(--accent2); }
@@ -79,7 +89,12 @@
     .screenshots { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem; }
     .screenshots img { width:100%; border-radius:12px; border:1px solid var(--border); }
     .faq-item { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:1rem 1.25rem; margin-bottom:0.75rem; max-width:760px; }
-    .faq-q { font-family:'Syne',sans-serif; font-weight:700; margin-bottom:0.5rem; color:var(--accent2); }
+    .faq-item summary { cursor:pointer; font-family:'Syne',sans-serif; font-weight:700; color:var(--accent2); list-style:none; display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+    .faq-item summary::-webkit-details-marker { display:none; }
+    .faq-item summary::after { content:'+'; font-size:1.4rem; color:var(--muted); transition:transform 0.2s; }
+    .faq-item[open] summary::after { content:'−'; }
+    .faq-item[open] .faq-a { margin-top:0.7rem; }
+    .faq-q { font-family:'Syne',sans-serif; font-weight:700; color:var(--accent2); }
     .faq-a { color:var(--muted); }
     .tech-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:0.75rem; max-width:600px; }
     .tech-item { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:0.75rem 1rem; }
@@ -99,11 +114,17 @@
     .sticky-bar { position:fixed; bottom:0; left:0; right:0; z-index:60; background:rgba(11,15,26,0.96); backdrop-filter:blur(12px); border-top:1px solid var(--border); padding:0.75rem 5%; display:flex; gap:0.5rem; align-items:center; justify-content:center; }
     .sticky-bar .btn-primary { padding:0.7rem 1.2rem; font-size:0.9rem; }
     .sticky-bar .btn-secondary { padding:0.6rem 1rem; font-size:0.8rem; }
+    .sticky-bar-more { position:relative; }
+    .sticky-bar-more summary { cursor:pointer; list-style:none; }
+    .sticky-bar-more summary::-webkit-details-marker { display:none; }
+    .sticky-bar-dropdown { position:absolute; bottom:60px; right:0; background:var(--card); border:1px solid var(--border); border-radius:10px; padding:0.5rem; display:flex; flex-direction:column; gap:0.3rem; min-width:140px; box-shadow:0 8px 24px rgba(0,0,0,0.4); }
     @media (min-width:769px) { .sticky-bar { display:none; } }
     @media (max-width:768px) { body { padding-bottom:80px; } }
   </style>
 </head>
 <body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
 
 <nav>
   <a class="nav-logo" href="/">Dhanuk<span>Softwares</span></a>
@@ -116,8 +137,8 @@
   <a href="/">Home</a> &rsaquo; <a href="/apps/">Apps</a> &rsaquo; <span>{{name}}</span>
 </div>
 
-<section class="hero">
-  {{#if icon}}<img class="hero-icon-img" src="{{icon}}" alt="{{name}} icon"/>{{else}}<div class="hero-icon">{{emoji}}</div>{{/if}}
+<section class="hero" id="main">
+  {{#if icon}}<img class="hero-icon-img" src="{{icon}}" alt="{{name}} icon" width="96" height="96"/>{{else}}<div class="hero-icon">{{emoji}}</div>{{/if}}
   <h1>{{name}}</h1>
   <div class="tagline">{{tagline}}</div>
   {{#if hasRating}}
@@ -206,10 +227,10 @@
   <div class="container">
     <h2>Frequently Asked Questions</h2>
     {{#each faq}}
-    <div class="faq-item">
-      <div class="faq-q">{{q}}</div>
+    <details class="faq-item">
+      <summary class="faq-q">{{q}}</summary>
       <div class="faq-a">{{a}}</div>
-    </div>
+    </details>
     {{/each}}
   </div>
 </section>
@@ -259,8 +280,20 @@
   </div>
 </section>
 
+{{#unless hasPrimaryDownload}}
+<section>
+  <div class="final-cta">
+    <h2>{{name}} &mdash; Coming Soon</h2>
+    <p>This app isn't live yet. Get notified when it's ready, or contact us for early access.</p>
+    <div class="cta-row">
+      <a class="btn-primary" href="mailto:support@dhanuksoftwares.com?subject={{nameUrlEncoded}} early access">&#9993; Get Early Access</a>
+    </div>
+  </div>
+</section>
+{{/unless}}
+
 <footer>
-  <p>&copy; 2026 <strong>Dhanuk Softwares</strong>. All rights reserved. &middot; <a href="/">Home</a> &middot; <a href="/apps/">All Apps</a> &middot; <a href="mailto:support@dhanuksoftwares.com">Support</a></p>
+  <p>&copy; <span id="footer-year">2026</span> <strong>Dhanuk Softwares</strong>. All rights reserved. &middot; <a href="/">Home</a> &middot; <a href="/apps/">All Apps</a> &middot; <a href="mailto:support@dhanuksoftwares.com">Support</a></p>
   <p style="margin-top:0.4rem;">Made with &#9829; in India &middot; GST &amp; MSME Registered</p>
 </footer>
 
@@ -268,11 +301,11 @@
 <div class="sticky-bar">
   <a class="btn-primary" href="{{primaryDownloadUrl}}" onclick="trackDl('{{slug}}','{{primaryMarketplaceType}}','sticky')" rel="noopener">&#11015; Download</a>
   {{#if hasSecondaryDownloads}}
-  <details>
+  <details class="sticky-bar-more">
     <summary class="btn-secondary">More</summary>
-    <div class="store-list" style="position:absolute; bottom:60px; right:5%; background:var(--card); border:1px solid var(--border); border-radius:10px; padding:0.75rem; flex-direction:column;">
+    <div class="store-list sticky-bar-dropdown">
       {{#each secondaryDownloads}}
-      <a class="btn-secondary" href="{{url}}" onclick="trackDl('{{../slug}}','{{type}}','sticky_more')" rel="noopener" style="margin-bottom:0.3rem;">{{name}}</a>
+      <a class="btn-secondary" href="{{url}}" onclick="trackDl('{{../slug}}','{{type}}','sticky_more')" rel="noopener">{{name}}</a>
       {{/each}}
     </div>
   </details>
@@ -298,6 +331,7 @@
 </script>
 
 <script>
+  try { document.getElementById('footer-year').textContent = new Date().getFullYear(); } catch (e) {}
   function trackDl(app, marketplace, source) {
     try {
       fetch('/api/track-download', {

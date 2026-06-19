@@ -7,11 +7,15 @@ export async function onRequest({ request, env }) {
   const CLOUDFLARE_API_TOKEN = env.CLOUDFLARE_API_TOKEN;
   const PAGES_PROJECT = env.PAGES_PROJECT || 'dhanuksoftwares';
 
+  const ALLOWED_ORIGINS = ['https://dhanuksoftwares.com', 'https://www.dhanuksoftwares.com'];
+  const requestOrigin = request.headers.get('origin') || '';
+  const allowOrigin = ALLOWED_ORIGINS.includes(requestOrigin) ? requestOrigin : ALLOWED_ORIGINS[0];
   const headers = {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Origin': allowOrigin,
     'Access-Control-Allow-Headers': 'Content-Type, x-admin-token',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS'
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Vary': 'Origin'
   };
 
   if (request.method === 'OPTIONS') return new Response('', { status: 200, headers });
@@ -35,9 +39,36 @@ export async function onRequest({ request, env }) {
   if (!Array.isArray(apps)) {
     return new Response(JSON.stringify({ error: 'apps[] required' }), { status: 400, headers });
   }
+  if (apps.length > 100) {
+    return new Response(JSON.stringify({ error: 'Too many apps (max 100)' }), { status: 400, headers });
+  }
+  for (const app of apps) {
+    if (!app || typeof app !== 'object') {
+      return new Response(JSON.stringify({ error: 'Each app must be an object' }), { status: 400, headers });
+    }
+    if (typeof app.name !== 'string' || app.name.length > 200) {
+      return new Response(JSON.stringify({ error: 'App name must be string ≤200 chars' }), { status: 400, headers });
+    }
+    if (app.slug !== undefined && (typeof app.slug !== 'string' || !/^[a-z0-9-]{1,80}$/.test(app.slug))) {
+      return new Response(JSON.stringify({ error: 'App slug must match /^[a-z0-9-]{1,80}$/' }), { status: 400, headers });
+    }
+    if (Array.isArray(app.marketplaces)) {
+      for (const m of app.marketplaces) {
+        if (!m || typeof m !== 'object') {
+          return new Response(JSON.stringify({ error: 'Each marketplace must be an object' }), { status: 400, headers });
+        }
+        if (typeof m.url === 'string' && !/^https?:\/\//i.test(m.url)) {
+          return new Response(JSON.stringify({ error: 'Marketplace URL must be http(s)' }), { status: 400, headers });
+        }
+      }
+    }
+  }
 
   const content = JSON.stringify(apps, null, 2);
-  const contentBase64 = btoa(unescape(encodeURIComponent(content)));
+  const bytes = new TextEncoder().encode(content);
+  let binary = '';
+  for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
+  const contentBase64 = btoa(binary);
   const message = `chore: update apps.json (${apps.length} apps) via admin [${new Date().toISOString()}]`;
 
   try {
@@ -54,8 +85,7 @@ export async function onRequest({ request, env }) {
       const file = await getRes.json();
       sha = file.sha;
     } else if (getRes.status !== 404) {
-      const err = await getRes.text();
-      return new Response(JSON.stringify({ error: `GitHub GET failed: ${getRes.status}`, details: err.slice(0, 200) }), { status: 502, headers });
+      return new Response(JSON.stringify({ error: `GitHub GET failed: ${getRes.status}` }), { status: 502, headers });
     }
 
     const putRes = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/apps.json`, {
@@ -75,8 +105,7 @@ export async function onRequest({ request, env }) {
     });
 
     if (!putRes.ok) {
-      const err = await putRes.text();
-      return new Response(JSON.stringify({ error: `GitHub PUT failed: ${putRes.status}`, details: err.slice(0, 200) }), { status: 502, headers });
+      return new Response(JSON.stringify({ error: `GitHub PUT failed: ${putRes.status}` }), { status: 502, headers });
     }
 
     const result = await putRes.json();
