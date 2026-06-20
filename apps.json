@@ -84,5 +84,80 @@
       "count": 0
     },
     "lastUpdated": "2026-06-08"
+  },
+  {
+    "name": "Mecha Chameleon",
+    "slug": "mecha-chameleon",
+    "category": "Games",
+    "tag": "Games",
+    "tagline": "Stealth action with a shape-shifting robot lizard",
+    "shortDesc": "Play as a shape-shifting mech lizard in this stealth-action adventure by Shakila developer.",
+    "longDescription": "<p>Mecha Chameleon is a stealth-action game where you play as a shape-shifting robotic lizard on a mission to infiltrate enemy bases. Blend into your surroundings, take down guards, and uncover a story of rebellion and identity.</p><h2>What is Mecha Chameleon?</h2><p>Mecha Chameleon combines classic stealth gameplay with a unique shape-shifting mechanic. Your character can mimic the colour and texture of nearby surfaces to become nearly invisible. Sneak past patrols, hack terminals, and choose between lethal and non-lethal takedowns.</p><h2>Features</h2><ul><li>Shape-shift to blend into any environment</li><li>Multiple missions across varied maps</li><li>Tactical combat with stealth and brute-force options</li><li>Upgradeable mech abilities and gadgets</li><li>Story-driven campaign mode</li></ul><h2>About the Developer</h2><p>Mecha Chameleon is developed by Shakila, an indie developer based in India, with over 100,000 downloads on Google Play.</p>",
+    "keywords": [
+      "Mecha Chameleon",
+      "stealth game",
+      "action game",
+      "shape shift",
+      "robot game",
+      "indie game",
+      "offline game"
+    ],
+    "features": [
+      "Shape-shift stealth mechanic",
+      "Multiple missions and varied maps",
+      "Tactical combat with stealth options",
+      "Upgradeable mech abilities",
+      "Story-driven campaign",
+      "Lightweight (~85 MB)",
+      "Works offline"
+    ],
+    "faq": [
+      {
+        "q": "Is Mecha Chameleon free?",
+        "a": "Yes, Mecha Chameleon is free to download and play on Google Play."
+      },
+      {
+        "q": "Does Mecha Chameleon work offline?",
+        "a": "Yes, the campaign can be played completely offline once installed."
+      },
+      {
+        "q": "What age rating is Mecha Chameleon?",
+        "a": "Mecha Chameleon is rated for ages 12+ due to mild fantasy violence."
+      },
+      {
+        "q": "Who developed Mecha Chameleon?",
+        "a": "Mecha Chameleon is developed by Shakila, an indie studio based in India."
+      }
+    ],
+    "emoji": "🦎",
+    "icon": "https://play-lh.googleusercontent.com/F2QmirJcFcHykDJZkqI1nFzKXyn1QwYt1ttK1CELf-FEKiJuI8xgaf36zm9NOossIccuaGhx7LuHWbdtfKV0Q",
+    "screenshots": [
+      "https://play-lh.googleusercontent.com/-Nuud4rr9FjVHbFa4d5j7hGvRwoUEjZRVjW3eEziMU1rtM0wVGXIJ5KxY59OsUYk1tKJLQjs0NhIygAYoKoY3Q",
+      "https://play-lh.googleusercontent.com/0LqtwN09czZNFY8nkkLwMNYVO1S1C8aE5JPBhCsnWyEmVI6o7-MJK15Ifsp0IFM0arBAlnW1NfDYV5fKj7P1VQ",
+      "https://play-lh.googleusercontent.com/0o2pdDscuIniyFBBOFPfTsAYeu4Byhn2iwXU_GVgBxcduPmRQxgdT_TH0LSsmjycLlEX0kJhmM7crJRHJvVy9WY",
+      "https://play-lh.googleusercontent.com/2CvYHtp-j-gH4E8rP0hb_oLlLzVGIGOXk_iTddO-SmEq3vH9Ohm2-ccvAmcFAkVy9Sh63lUdxpFet_t7S-orHgg",
+      "https://play-lh.googleusercontent.com/2Wlmgeq_r9rws0bsKDg93gTjelzTJ5VArzIisIFEi0HmHrr_OFewu5D0-ph1Xv4orcougBRgzOVxi_ZyNKVl0A",
+      "https://play-lh.googleusercontent.com/51RbA42UuKaqc5mEof9Ykt_OZ6wp6ARvaRPVvFVnli5uuqodgmcK3GIQk7x4VV6rV_zOmsFmXqFxzGTJX0uiPg"
+    ],
+    "marketplaces": [
+      {
+        "name": "Google Play",
+        "url": "https://play.google.com/store/apps/details?id=com.kbf.anti.relax.game",
+        "type": "play"
+      }
+    ],
+    "rating": {
+      "value": 3.7,
+      "count": 1500
+    },
+    "lastUpdated": "2026-06-15",
+    "totalDownloads": "100K+",
+    "appSize": "85 MB",
+    "contentRating": "Rated for 12+",
+    "developer": "Shakila",
+    "version": "1.4.2",
+    "softwareRequirements": "Android 6.0+",
+    "inLanguage": "en",
+    "releaseNotes": "New stealth mechanics, improved AI, and bug fixes."
   }
-]
+] 

@@ -413,7 +413,7 @@ async function main() {
   writeFile(path.join(DIST, '_headers'), headers);
   console.log('  /_headers');
 
-  const redirects = generateRedirects();
+  const redirects = generateRedirects(apps);
   writeFile(path.join(DIST, '_redirects'), redirects);
   console.log('  /_redirects');
 
@@ -572,14 +572,22 @@ function generateHeaders() {
 `;
 }
 
-function generateRedirects() {
+function generateRedirects(apps) {
+  // Track which app slugs were ever published so we can 301 stale URLs.
+  // We don't have this history, but we can redirect slugs that AREN'T in current apps.json
+  // and that we know were historical: focus-app, quick-scan, photo-editor (the old 4).
+  // AstroPrerna is in current apps.json so it must NOT be in the redirect list (otherwise
+  // it 301s instead of serving the real per-app page).
+  const currentSlugs = new Set((apps || []).map(a => a.slug));
+  const historicalSlugs = ['focus-app', 'quick-scan', 'photo-editor'];
+  const staleRedirects = historicalSlugs
+    .filter(slug => !currentSlugs.has(slug))
+    .map(slug => `/apps/${slug}/  /apps/  301`)
+    .join('\n');
   return `/admin /admin/ 301
 
-# SEO: 301 redirect stale per-app URLs (apps.json was cleared) → /apps/
-/apps/astroprerna/  /apps/  301
-/apps/focus-app/    /apps/  301
-/apps/quick-scan/   /apps/  301
-/apps/photo-editor/ /apps/  301
+# SEO: 301 redirect stale per-app URLs (apps that no longer exist in apps.json) → /apps/
+${staleRedirects}
 `;
 }
 

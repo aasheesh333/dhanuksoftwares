@@ -74,6 +74,14 @@
     .snippet { color:var(--muted); font-size:1.1rem; line-height:1.7; max-width:720px; margin:0 auto; text-align:center; font-weight:400; }
     .snippet::before { content:'“'; color:var(--accent); font-size:1.6rem; font-weight:700; margin-right:0.2rem; }
     .snippet::after { content:'”'; color:var(--accent); font-size:1.6rem; font-weight:700; margin-left:0.2rem; }
+    .stats-bar { background:var(--surface); padding:1.5rem 5%; border-bottom:1px solid var(--border); }
+    .stats-bar-inner { max-width:960px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:1rem; text-align:center; }
+    .stat { padding:0.5rem; }
+    .stat-value { font-family:'Syne',sans-serif; font-size:1.4rem; font-weight:800; color:var(--text); line-height:1.1; }
+    .stat-value .star { color:#ffc857; }
+    .stat-label { font-size:0.78rem; color:var(--muted); margin-top:0.3rem; text-transform:uppercase; letter-spacing:0.5px; }
+    .stat-rating-row { display:flex; align-items:center; justify-content:center; gap:0.4rem; }
+    .stat-icon { font-size:1.2rem; }
     .screenshots-section { padding:2rem 5% 1rem; }
     .screenshots-title { text-align:center; margin-bottom:1rem; }
     .about-section { background:var(--surface); }
@@ -148,6 +156,9 @@
       .snippet-section { padding:1.25rem 5%; }
       .snippet { font-size:0.98rem; line-height:1.6; }
       .snippet::before, .snippet::after { font-size:1.3rem; }
+      .stats-bar { padding:1.25rem 5%; }
+      .stats-bar-inner { grid-template-columns:repeat(2, 1fr); gap:0.75rem; }
+      .stat-value { font-size:1.15rem; }
       .screenshots-section { padding:1.5rem 5% 0.75rem; }
       .features-grid, .steps, .related-grid { grid-template-columns:1fr; }
       .tech-grid { grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); }
@@ -220,6 +231,47 @@
 <section class="snippet-section">
   <div class="container">
     <p class="snippet">{{shortSnippet}}</p>
+  </div>
+</section>
+{{/if}}
+
+{{#if hasStats}}
+<section class="stats-bar" aria-label="App stats">
+  <div class="stats-bar-inner">
+    {{#if totalDownloads}}
+    <div class="stat">
+      <div class="stat-value">
+        <span class="stat-icon" aria-hidden="true">&#128229;</span> {{totalDownloads}}
+      </div>
+      <div class="stat-label">Total Downloads</div>
+    </div>
+    {{/if}}
+    {{#if rating.value}}
+    <div class="stat">
+      <div class="stat-value">
+        <span class="star">&#9733;</span> {{ratingValue}}/5
+      </div>
+      <div class="stat-label">{{ratingCount}} Reviews</div>
+    </div>
+    {{/if}}
+    {{#if appSize}}
+    <div class="stat">
+      <div class="stat-value">{{appSize}}</div>
+      <div class="stat-label">App Size</div>
+    </div>
+    {{/if}}
+    {{#if contentRating}}
+    <div class="stat">
+      <div class="stat-value">{{contentRating}}</div>
+      <div class="stat-label">Content Rating</div>
+    </div>
+    {{/if}}
+    {{#if lastUpdated}}
+    <div class="stat">
+      <div class="stat-value">{{lastUpdated}}</div>
+      <div class="stat-label">Last Updated</div>
+    </div>
+    {{/if}}
   </div>
 </section>
 {{/if}}
@@ -301,18 +353,19 @@
   <div class="container">
     <h2>Technical Details</h2>
     <div class="tech-grid">
-      <div class="tech-item"><div class="tech-label">Category</div><div class="tech-value">{{category}}</div></div>
       <div class="tech-item"><div class="tech-label">Platform</div><div class="tech-value">Android</div></div>
       <div class="tech-item"><div class="tech-label">Price</div><div class="tech-value">Free</div></div>
-      {{#if lastUpdated}}<div class="tech-item"><div class="tech-label">Updated</div><div class="tech-value">{{lastUpdated}}</div></div>{{/if}}
+      {{#if softwareRequirements}}<div class="tech-item"><div class="tech-label">Requires</div><div class="tech-value">{{softwareRequirements}}</div></div>{{/if}}
+      {{#if inLanguage}}<div class="tech-item"><div class="tech-label">Language</div><div class="tech-value">{{inLanguage}}</div></div>{{/if}}
     </div>
   </div>
 </section>
 
 {{#if relatedApps.length}}
-<section style="background:var(--surface);">
+<section class="recommended-section" style="background:var(--surface);">
   <div class="container">
-    <h2>Other Apps from Dhanuk Softwares</h2>
+    <h2>Recommended Apps</h2>
+    <p style="color:var(--muted);margin-bottom:1.5rem;font-size:0.95rem;">More apps from Dhanuk Softwares you might like</p>
     <div class="related-grid">
       {{#each relatedApps}}
       <a class="related-card" href="/apps/{{slug}}/">

@@ -107,6 +107,20 @@ async function scrapePlayStore(url) {
   const rating = (html.match(/aria-label="Rated ([0-9.]+) stars/) || [])[1] || '';
   const reviews = (html.match(/<span[^>]*aria-label="([0-9,.]+)\s*reviews?/i) || [])[1] || '';
   const downloads = (html.match(/class="ClM7O">([0-9]+[BMK]\+?)<\/div>/) || [])[1] || '';
+  // Total downloads: also try aria-label form (newer Play Store layout)
+  let totalDownloads = '';
+  const dlAria = html.match(/aria-label="([0-9.,]+\+?)\s*(?:installs?|downloads?)/i);
+  if (dlAria) {
+    totalDownloads = dlAria[1];
+  } else if (downloads) {
+    totalDownloads = downloads;
+  }
+  // App size: e.g. "85 MB" or "12 MB"
+  const sizeMatch = html.match(/(?:^|[\s>"])([\d.]+\s*(?:KB|MB|GB))\b(?=[\s<])/);
+  const appSize = sizeMatch ? sizeMatch[1] : '';
+  // Content rating: e.g. "Rated for 3+", "Everyone", "Teen"
+  const crMatch = html.match(/aria-label="Rated for ([^"]+)"/) || html.match(/>Rated for ([^<]+)</);
+  const contentRating = crMatch ? 'Rated for ' + crMatch[1].trim() : '';
   const updated = (html.match(/class="xg1aie">([^<]+)/) || [])[1] || '';
   const developer = (html.match(/class="wMUdtb">([^<]+)/) || [])[1] || '';
 
@@ -120,7 +134,7 @@ async function scrapePlayStore(url) {
 
   return {
     appId, name, tagline, longDescription, icon, screenshots,
-    rating, reviews, downloads, updated, developer, category
+    rating, reviews, downloads, totalDownloads, appSize, contentRating, updated, developer, category
   };
 }
 

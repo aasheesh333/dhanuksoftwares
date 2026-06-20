@@ -69,6 +69,6 @@ test('renderApp with no marketplaces shows Coming Soon CTA', () => {
 test('renderApp includes related apps', () => {
   const related = [{ name: 'Focus App', slug: 'focus-app', emoji: '🎯', shortDesc: 'Stay focused' }];
   const html = renderApp(sampleApp, 'https://x.com', related);
-  assert.match(html, /Other Apps from Dhanuk Softwares/);
+  assert.match(html, /Recommended Apps/);
   assert.match(html, /href="\/apps\/focus-app\/"/);
 });

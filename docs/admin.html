@@ -405,6 +405,20 @@
             <input type="date" id="f-updated"/>
           </div>
         </div>
+        <h3 style="margin-top:1.25rem;">Play Store Stats (auto-filled from URL)</h3>
+        <div class="form-grid">
+          <div class="form-row">
+            <label for="f-totalDownloads">Total Downloads (e.g. 100K+, 1M+)</label>
+            <input type="text" id="f-totalDownloads" placeholder="e.g. 100K+"/>
+          </div>
+          <div class="form-row">
+            <label for="f-appSize">App Size (e.g. 85 MB)</label>
+            <input type="text" id="f-appSize" placeholder="e.g. 85 MB"/>
+          </div>
+          <div class="form-row">
+            <label for="f-contentRating">Content Rating (e.g. Rated for 3+)</label>
+            <input type="text" id="f-contentRating" placeholder="e.g. Rated for 3+"/>
+          </div>
 
         <div class="form-actions">
           <button type="submit" class="btn btn-primary" id="save-btn">Save &amp; Deploy</button>
@@ -591,7 +605,10 @@
         value: parseFloat(document.getElementById('f-rating-value').value) || 0,
         count: parseInt(document.getElementById('f-rating-count').value) || 0
       },
-      lastUpdated: document.getElementById('f-updated').value
+      lastUpdated: document.getElementById('f-updated').value,
+      totalDownloads: document.getElementById('f-totalDownloads').value.trim(),
+      appSize: document.getElementById('f-appSize').value.trim(),
+      contentRating: document.getElementById('f-contentRating').value.trim()
     };
   }
 
@@ -613,6 +630,9 @@
     document.getElementById('f-rating-value').value = app.rating?.value || 0;
     document.getElementById('f-rating-count').value = app.rating?.count || 0;
     document.getElementById('f-updated').value = app.lastUpdated || new Date().toISOString().slice(0, 10);
+    document.getElementById('f-totalDownloads').value = app.totalDownloads || '';
+    document.getElementById('f-appSize').value = app.appSize || '';
+    document.getElementById('f-contentRating').value = app.contentRating || '';
     updateCharCounts();
   }
 
@@ -705,6 +725,9 @@
         if (scraped.category && !category) {
           document.getElementById('f-cat').value = scraped.category;
         }
+        if (scraped.totalDownloads) document.getElementById('f-totalDownloads').value = scraped.totalDownloads;
+        if (scraped.appSize) document.getElementById('f-appSize').value = scraped.appSize;
+        if (scraped.contentRating) document.getElementById('f-contentRating').value = scraped.contentRating;
         if (playStoreUrl) {
           const mpName = 'Google Play';
           const exists = Array.from(document.querySelectorAll('#marketplaces-list .mp-row'))
