@@ -144,8 +144,8 @@
     .app-info-safe { display:inline-flex; align-items:center; gap:0.3rem; background:rgba(56,224,176,0.12); color:var(--accent2); border-radius:999px; padding:0.25rem 0.7rem; font-size:0.78rem; font-weight:600; line-height:1.2; }
     .app-info-safe svg { width:13px; height:13px; fill:var(--accent2); }
 
-    /* 4-column info row: File Size | Security | Android | Date Updated */
-    .app-info-list { display:grid; grid-template-columns:repeat(4, 1fr); gap:0; padding:0; margin:0; list-style:none; border-top:1px solid var(--border); padding-top:1rem; }
+    /* 3-column info row: File Size | Security | Android */
+    .app-info-list { display:grid; grid-template-columns:repeat(3, 1fr); gap:0; padding:0; margin:0; list-style:none; border-top:1px solid var(--border); padding-top:1rem; }
     .app-info-list li { display:flex; flex-direction:column; align-items:center; justify-content:flex-start; gap:0.4rem; text-align:center; padding:0 0.5rem; min-width:0; }
     .app-info-list li + li { border-left:1px solid var(--border); }
     .app-info-list .info-icon { width:24px; height:24px; display:flex; align-items:center; justify-content:center; color:var(--muted); margin-bottom:0.15rem; flex-shrink:0; }
@@ -232,13 +232,10 @@
       .app-info-icon, .app-info-emoji { width:64px; height:64px; border-radius:14px; }
       .app-info-name { font-size:1.15rem; }
       .app-info-meta { font-size:0.82rem; }
-      .app-info-list { padding-top:0.75rem; }
-      .app-info-list li { padding:0 0.25rem; gap:0.3rem; }
-      .app-info-list li + li { border-left:1px solid var(--border); }
-      .app-info-list .info-icon { width:20px; height:20px; }
-      .app-info-list .info-icon svg { width:18px; height:18px; }
-      .app-info-list .info-head { font-size:0.6rem; letter-spacing:0; }
-      .app-info-list .info-desc { font-size:0.78rem; }
+      .app-info-list { padding-top:0.85rem; }
+      .app-info-list li { padding:0 0.4rem; }
+      .app-info-list .info-head { font-size:0.68rem; }
+      .app-info-list .info-desc { font-size:0.82rem; }
       .download-app-btn { font-size:0.98rem; padding:0.85rem 1.2rem; }
       .download-options { padding:1.5rem 5%; }
       .recommended-grid { grid-template-columns:1fr; }
@@ -307,13 +304,6 @@
           <div class="info-icon"><svg viewBox="0 0 24 24"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24c-2.86-1.21-6.08-1.21-8.94 0L5.65 5.67c-.19-.29-.58-.38-.87-.2-.28.18-.37.54-.22.83L6.4 9.48C3.3 11.25 1.28 14.44 1 18h22c-.28-3.56-2.3-6.75-5.4-8.52zM7 15.25c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25S8.25 13.31 8.25 14 7.69 15.25 7 15.25zm10 0c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25z"/></svg></div>
           <div class="info-head">Android</div>
           <div class="info-desc">{{softwareRequirements}}</div>
-        </li>
-        {{/if}}
-        {{#if lastUpdated}}
-        <li>
-          <div class="info-icon"><svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg></div>
-          <div class="info-head">Date Updated</div>
-          <div class="info-desc">{{lastUpdated}}</div>
         </li>
         {{/if}}
       </ul>
