@@ -85,5 +85,92 @@
     "totalDownloads": "",
     "appSize": "11.7 MB",
     "contentRating": "Rated for 3+"
+  },
+  {
+    "name": "FocusStreak: Stay Focus Daily",
+    "slug": "focusstreakss",
+    "category": "Productivity",
+    "tag": "Productivity",
+    "tagline": "Focus daily, succeed always",
+    "shortDesc": "Boost your study sessions with a simple focus timer and streak tracker",
+    "longDescription": "<p>Are you tired of getting distracted while studying? Do you struggle to stay focused and motivated? FocusStreak is here to help. This powerful productivity app is designed to help students like you stay on track, build better study habits, and achieve your goals.</p><h2>What is FocusStreak?</h2><p>FocusStreak is a simple yet effective focus timer and study streak tracker that helps you stay consistent and motivated. With its clean and intuitive interface, you can easily start a focus session, track your progress, and build a streak of productive days.</p><h3>How it Works</h3><p>Using FocusStreak is easy. Simply open the app, set a timer for the amount of time you want to focus, and start studying. The app will help you stay on track by blocking distractions and keeping you motivated with a visual streak system. You can also track your progress over time and see how your focus and productivity improve.</p><h2>Benefits of Using FocusStreak</h2><p>So why should you use FocusStreak? Here are just a few benefits of using this powerful productivity app:</p><ul><li>Improved focus and concentration: By using a focus timer and streak tracker, you can stay on track and avoid distractions.</li><li>Increased motivation: The visual streak system will keep you motivated to study and stay focused.</li><li>Better time management: FocusStreak helps you prioritize your study sessions and make the most of your time.</li><li>Offline access: You can use FocusStreak even without an internet connection, making it perfect for studying on the go.</li><li>Lightweight and efficient: The app is under 15 MB, making it easy to download and use on your device.</li></ul><h3>Who is FocusStreak For?</h3><p>FocusStreak is perfect for anyone who wants to improve their focus and productivity, including:</p><ul><li>School and college students</li><li>Self-learners and exam preppers</li><li>Anyone who wants to improve their time management skills</li></ul><h2>Why Choose FocusStreak?</h2><p>So why should you choose FocusStreak over other productivity apps? Here are just a few reasons:</p><ul><li>Simple and easy to use: FocusStreak has a clean and intuitive interface that makes it easy to get started.</li><li>Effective: The app's focus timer and streak tracker are designed to help you stay on track and motivated.</li><li>Customizable: You can adjust the timer and settings to fit your needs and study style.</li></ul>",
+    "keywords": [
+      "productivity app",
+      "focus timer",
+      "study streak tracker",
+      "time management",
+      "study habits",
+      "concentration",
+      "motivation",
+      "Indian students",
+      "exam prep"
+    ],
+    "features": [
+      "Simple focus timer",
+      "Study streak tracker",
+      "Visual motivation system",
+      "Offline access",
+      "Lightweight and efficient",
+      "Clean and intuitive interface",
+      "Customizable timer and settings"
+    ],
+    "faq": [
+      {
+        "q": "Is FocusStreak free to use?",
+        "a": "Yes, FocusStreak is free to download and use, with no ads or in-app purchases."
+      },
+      {
+        "q": "Can I use FocusStreak offline?",
+        "a": "Yes, FocusStreak works offline, so you can use it even without an internet connection."
+      },
+      {
+        "q": "Is my data safe with FocusStreak?",
+        "a": "Yes, FocusStreak takes your privacy seriously and does not collect or share any personal data."
+      },
+      {
+        "q": "Is FocusStreak compatible with my device?",
+        "a": "FocusStreak is compatible with most Android devices, but if you have any issues, please contact our support team."
+      },
+      {
+        "q": "How does FocusStreak compare to other productivity apps?",
+        "a": "FocusStreak is designed to be simple and easy to use, with a focus on helping you build better study habits and stay motivated."
+      },
+      {
+        "q": "Can I use FocusStreak for work or other activities?",
+        "a": "Yes, FocusStreak can be used for any activity that requires focus and concentration, not just studying."
+      },
+      {
+        "q": "How do I get started with FocusStreak?",
+        "a": "Simply download and install the app, then open it and start a focus session. You can adjust the timer and settings to fit your needs."
+      },
+      {
+        "q": "What if I have questions or need support?",
+        "a": "You can contact our support team through the app or by visiting our website."
+      }
+    ],
+    "emoji": "",
+    "icon": "https://play-lh.googleusercontent.com/mqDfFOqSydo4vvOVHjHiQGphd5u76FNIE8_3N-DnqHihR70Gl8PPgg-5mW5jJ_tXgNXiAIymVopuqwCY1omJQg",
+    "screenshots": [
+      "https://play-lh.googleusercontent.com/T9fVrygTH7RtVzdp_lRofd3Tf_zpcndrwq89NMFRNa1lmQKuhtMDt8a9OvkJLT0ij6OgKzKQNyWYzh1VswCI=w1052-h592",
+      "https://play-lh.googleusercontent.com/uWGWq8M7WNTI7_C5KuimsmJPPMtaxuc46ENNVFq1M5RMn2AuZYL2Bv3oqkJXEu0_P65dTDVMSNoS7gemII6A=w1052-h592",
+      "https://play-lh.googleusercontent.com/5cCAobK9mqEbnL3eJbiaQOPTlKgnpcDTsPSDWFdsrI2EECZVXjUSjLjZg9gnyl05TFTVhZsPTKEZ2MUw3oKylA=w1052-h592",
+      "https://play-lh.googleusercontent.com/vhjbayxPFkIy_U3felbCAjmmsNTr0rDFL5s0gbF6k0EKStiN45kCkl_bTUdLfI8fIdVwrMNmuVHq4HmyM0vd=w1052-h592"
+    ],
+    "marketplaces": [
+      {
+        "name": "Google Play",
+        "url": "https://play.google.com/store/apps/details?id=com.dhanuk.focusstreak",
+        "type": "play"
+      },
+      {
+        "name": "Uptodown",
+        "url": "https://focusstreak.en.uptodown.com/android",
+        "type": "uptodown"
+      }
+    ],
+    "lastUpdated": "2026-06-04",
+    "totalDownloads": "",
+    "appSize": "11.7 MB",
+    "contentRating": "Rated for 3+"
   }
 ]
