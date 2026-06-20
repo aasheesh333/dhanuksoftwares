@@ -66,6 +66,12 @@
     .more-stores .store-list { display:flex; flex-wrap:wrap; gap:0.4rem; justify-content:center; margin-top:0.5rem; }
     section { padding:3rem 5%; }
     section h2 { font-family:'Syne',sans-serif; font-size:clamp(1.5rem,3.5vw,2rem); font-weight:700; margin-bottom:1rem; letter-spacing:-0.5px; }
+    .snippet-section { background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:1.75rem 5%; }
+    .snippet { color:var(--muted); font-size:1.1rem; line-height:1.7; max-width:720px; margin:0 auto; text-align:center; font-weight:400; }
+    .snippet::before { content:'“'; color:var(--accent); font-size:1.6rem; font-weight:700; margin-right:0.2rem; }
+    .snippet::after { content:'”'; color:var(--accent); font-size:1.6rem; font-weight:700; margin-left:0.2rem; }
+    .screenshots-section { padding:2rem 5% 1rem; }
+    .screenshots-title { text-align:center; margin-bottom:1rem; }
     .about-section { background:var(--surface); }
     .about-text { color:var(--muted); font-size:1rem; max-width:720px; }
     .about-text h2 { font-family:'Syne',sans-serif; font-size:1.4rem; font-weight:700; color:var(--text); margin:1.5rem 0 0.7rem; letter-spacing:-0.3px; }
@@ -132,6 +138,10 @@
       .hero { padding:2rem 5% 1.5rem; }
       .hero h1 { font-size:clamp(1.6rem,6vw,2.4rem); }
       .hero .tagline { font-size:1rem; }
+      .snippet-section { padding:1.25rem 5%; }
+      .snippet { font-size:0.98rem; line-height:1.6; }
+      .snippet::before, .snippet::after { font-size:1.3rem; }
+      .screenshots-section { padding:1.5rem 5% 0.75rem; }
       .features-grid, .steps, .related-grid { grid-template-columns:1fr; }
       .tech-grid { grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); }
       .final-cta { padding:1.5rem; border-radius:16px; }
@@ -194,6 +204,27 @@
   {{/if}}
 </section>
 
+{{#if shortSnippet}}
+<section class="snippet-section">
+  <div class="container">
+    <p class="snippet">{{shortSnippet}}</p>
+  </div>
+</section>
+{{/if}}
+
+{{#if screenshots.length}}
+<section class="screenshots-section">
+  <div class="container">
+    <h2 class="screenshots-title">Screenshots</h2>
+    <div class="screenshots">
+      {{#each screenshots}}
+      <img src="{{this}}" alt="{{../name}} screenshot {{@index}}" loading="lazy" width="540" height="1170"/>
+      {{/each}}
+    </div>
+  </div>
+</section>
+{{/if}}
+
 <section class="about-section">
   <div class="container">
     <h2>About {{name}}</h2>
@@ -211,19 +242,6 @@
         <div class="feature-icon">&#10003;</div>
         <div class="feature-title">{{this}}</div>
       </div>
-      {{/each}}
-    </div>
-  </div>
-</section>
-{{/if}}
-
-{{#if screenshots.length}}
-<section style="background:var(--surface);">
-  <div class="container">
-    <h2>Screenshots</h2>
-    <div class="screenshots">
-      {{#each screenshots}}
-      <img src="{{this}}" alt="{{../name}} screenshot {{@index}}" loading="lazy"/>
       {{/each}}
     </div>
   </div>
