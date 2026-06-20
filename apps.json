@@ -81,96 +81,81 @@
         "type": "uptodown"
       }
     ],
-    "lastUpdated": "2026-06-04",
+    "lastUpdated": "2026-06-05",
     "totalDownloads": "",
     "appSize": "11.7 MB",
-    "contentRating": "Rated for 3+"
+    "contentRating": "Rated for 3+",
+    "developer": "Dhanuk Softwares"
   },
   {
-    "name": "FocusStreak: Stay Focus Daily",
-    "slug": "focusstreakss",
-    "category": "Productivity",
-    "tag": "Productivity",
-    "tagline": "Focus daily, succeed always",
-    "shortDesc": "Boost your study sessions with a simple focus timer and streak tracker",
-    "longDescription": "<p>Are you tired of getting distracted while studying? Do you struggle to stay focused and motivated? FocusStreak is here to help. This powerful productivity app is designed to help students like you stay on track, build better study habits, and achieve your goals.</p><h2>What is FocusStreak?</h2><p>FocusStreak is a simple yet effective focus timer and study streak tracker that helps you stay consistent and motivated. With its clean and intuitive interface, you can easily start a focus session, track your progress, and build a streak of productive days.</p><h3>How it Works</h3><p>Using FocusStreak is easy. Simply open the app, set a timer for the amount of time you want to focus, and start studying. The app will help you stay on track by blocking distractions and keeping you motivated with a visual streak system. You can also track your progress over time and see how your focus and productivity improve.</p><h2>Benefits of Using FocusStreak</h2><p>So why should you use FocusStreak? Here are just a few benefits of using this powerful productivity app:</p><ul><li>Improved focus and concentration: By using a focus timer and streak tracker, you can stay on track and avoid distractions.</li><li>Increased motivation: The visual streak system will keep you motivated to study and stay focused.</li><li>Better time management: FocusStreak helps you prioritize your study sessions and make the most of your time.</li><li>Offline access: You can use FocusStreak even without an internet connection, making it perfect for studying on the go.</li><li>Lightweight and efficient: The app is under 15 MB, making it easy to download and use on your device.</li></ul><h3>Who is FocusStreak For?</h3><p>FocusStreak is perfect for anyone who wants to improve their focus and productivity, including:</p><ul><li>School and college students</li><li>Self-learners and exam preppers</li><li>Anyone who wants to improve their time management skills</li></ul><h2>Why Choose FocusStreak?</h2><p>So why should you choose FocusStreak over other productivity apps? Here are just a few reasons:</p><ul><li>Simple and easy to use: FocusStreak has a clean and intuitive interface that makes it easy to get started.</li><li>Effective: The app's focus timer and streak tracker are designed to help you stay on track and motivated.</li><li>Customizable: You can adjust the timer and settings to fit your needs and study style.</li></ul>",
+    "name": "AstroPrerna AI Chat & Rashifal",
+    "slug": "astroprerna",
+    "category": "Astrology",
+    "tag": "Astrology",
+    "tagline": "Kundli, Rashifal, AI Astrology",
+    "shortDesc": "Discover your astrological destiny with AstroPrerna, your personal AI astrologer",
+    "longDescription": "<p>Welcome to AstroPrerna, your complete astrology companion that blends ancient Vedic wisdom with modern AI. Unlock the secrets of the stars and gain insights into your life path, personality, and planetary influences.</p><h2>What is AstroPrerna?</h2><p>AstroPrerna is a cutting-edge astrology app offering instant Kundli generation, AI-powered astrology chat, love match, daily Rashifal, and personalized predictions.</p>",
     "keywords": [
-      "productivity app",
-      "focus timer",
-      "study streak tracker",
-      "time management",
-      "study habits",
-      "concentration",
-      "motivation",
-      "Indian students",
-      "exam prep"
+      "AstroPrerna",
+      "Kundli",
+      "Rashifal",
+      "AI Astrology",
+      "Vedic Astrology",
+      "Love Match",
+      "Daily Horoscope",
+      "Indian Astrology",
+      "Jyotishi"
     ],
     "features": [
-      "Simple focus timer",
-      "Study streak tracker",
-      "Visual motivation system",
-      "Offline access",
-      "Lightweight and efficient",
-      "Clean and intuitive interface",
-      "Customizable timer and settings"
+      "Instant Kundli (Birth Chart) generation",
+      "AI-powered astrology chat",
+      "Love match and compatibility score",
+      "Daily Rashifal (horoscope) for all 12 zodiac signs",
+      "Future predictions and insights",
+      "Clean, fast, and easy-to-use interface",
+      "Free to use"
     ],
     "faq": [
       {
-        "q": "Is FocusStreak free to use?",
-        "a": "Yes, FocusStreak is free to download and use, with no ads or in-app purchases."
+        "q": "Is AstroPrerna free to use?",
+        "a": "Yes, AstroPrerna is completely free to download and use."
       },
       {
-        "q": "Can I use FocusStreak offline?",
-        "a": "Yes, FocusStreak works offline, so you can use it even without an internet connection."
+        "q": "Can I use AstroPrerna offline?",
+        "a": "No, AstroPrerna requires an internet connection."
       },
       {
-        "q": "Is my data safe with FocusStreak?",
-        "a": "Yes, FocusStreak takes your privacy seriously and does not collect or share any personal data."
+        "q": "How accurate is AstroPrerna?",
+        "a": "AstroPrerna uses ancient Vedic wisdom + modern AI for accurate insights."
       },
       {
-        "q": "Is FocusStreak compatible with my device?",
-        "a": "FocusStreak is compatible with most Android devices, but if you have any issues, please contact our support team."
-      },
-      {
-        "q": "How does FocusStreak compare to other productivity apps?",
-        "a": "FocusStreak is designed to be simple and easy to use, with a focus on helping you build better study habits and stay motivated."
-      },
-      {
-        "q": "Can I use FocusStreak for work or other activities?",
-        "a": "Yes, FocusStreak can be used for any activity that requires focus and concentration, not just studying."
-      },
-      {
-        "q": "How do I get started with FocusStreak?",
-        "a": "Simply download and install the app, then open it and start a focus session. You can adjust the timer and settings to fit your needs."
-      },
-      {
-        "q": "What if I have questions or need support?",
-        "a": "You can contact our support team through the app or by visiting our website."
+        "q": "Is my data secure?",
+        "a": "Yes, we use industry-standard encryption to protect your data."
       }
     ],
     "emoji": "",
-    "icon": "https://play-lh.googleusercontent.com/mqDfFOqSydo4vvOVHjHiQGphd5u76FNIE8_3N-DnqHihR70Gl8PPgg-5mW5jJ_tXgNXiAIymVopuqwCY1omJQg",
+    "icon": "https://play-lh.googleusercontent.com/LUL8BF3B_ZylO3ynTXlaXRGKBWTKmMSixTRyZYzU5DDU69l3w_K9NcjXvPVMPcM5VgwduhAc3ENcr40YwMM5fI4=w96",
     "screenshots": [
-      "https://play-lh.googleusercontent.com/T9fVrygTH7RtVzdp_lRofd3Tf_zpcndrwq89NMFRNa1lmQKuhtMDt8a9OvkJLT0ij6OgKzKQNyWYzh1VswCI=w1052-h592",
-      "https://play-lh.googleusercontent.com/uWGWq8M7WNTI7_C5KuimsmJPPMtaxuc46ENNVFq1M5RMn2AuZYL2Bv3oqkJXEu0_P65dTDVMSNoS7gemII6A=w1052-h592",
-      "https://play-lh.googleusercontent.com/5cCAobK9mqEbnL3eJbiaQOPTlKgnpcDTsPSDWFdsrI2EECZVXjUSjLjZg9gnyl05TFTVhZsPTKEZ2MUw3oKylA=w1052-h592",
-      "https://play-lh.googleusercontent.com/vhjbayxPFkIy_U3felbCAjmmsNTr0rDFL5s0gbF6k0EKStiN45kCkl_bTUdLfI8fIdVwrMNmuVHq4HmyM0vd=w1052-h592"
+      "https://play-lh.googleusercontent.com/wB6k-qMiK1AwsIhqdjafYI_n_uxVU2KRJZjdtTUMawKbVkriQizRN7Zkrm7bGN0PPbJTdqI4LHRtK_IMfgq8iNc=w526-h296",
+      "https://play-lh.googleusercontent.com/GUpTmiiL_aZ__gflzpRYFDrCaHtX3sF2byVzq7UjWmHwEb7Fv_kSJ09Sx3WTy9JQQHmLuFoleOeoRaAN-HwPnOk=w526-h296",
+      "https://play-lh.googleusercontent.com/wz7GvKKaiHmR0y80w4uW_FTTcvIZk5T9ahI68hhZebPJ0l_zdKjZ_LXyT7cNyJuQZaqucZfUJo4zmmEXkZ_XpCo=w526-h296",
+      "https://play-lh.googleusercontent.com/CrTFapfmV5JrJn1tEb5kkpCP2kDmSyn8WY3yQqzDvLAc0sRRk26pTD2kaAbXxlt3z_wJa2Wp3cCxxbuXdYa_-w=w526-h296",
+      "https://play-lh.googleusercontent.com/PRh6vSHxS2wBNFEjuAi4J9rL0VR83q2hbewmuypBK0K8Lw7CYTQMl_OrTT8okAUaKiGhVzUzTpLJUxC_1u91GQ=w526-h296",
+      "https://play-lh.googleusercontent.com/iEu0pHRdZlD-XffGig6Wx5Sgx5ppqdU0ZoYro7Sdf6K8DMnF1RKIFlgJ19VyUsGWTszM8mIk3YovEk0g2790xA=w526-h296"
     ],
     "marketplaces": [
       {
         "name": "Google Play",
-        "url": "https://play.google.com/store/apps/details?id=com.dhanuk.focusstreak",
+        "url": "https://play.google.com/store/apps/details?id=com.dhanuk.astroprerna",
         "type": "play"
-      },
-      {
-        "name": "Uptodown",
-        "url": "https://focusstreak.en.uptodown.com/android",
-        "type": "uptodown"
       }
     ],
-    "lastUpdated": "2026-06-04",
+    "lastUpdated": "2026-06-09",
     "totalDownloads": "",
-    "appSize": "11.7 MB",
-    "contentRating": "Rated for 3+"
+    "appSize": "",
+    "contentRating": "Rated for 3+",
+    "developer": "Dhanuk Softwares",
+    "softwareRequirements": "Android 6.0+",
+    "inLanguage": "en"
   }
 ]

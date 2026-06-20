@@ -287,25 +287,21 @@
         </div>
       </div>
       <ul class="app-info-list">
-        {{#if appSize}}
         <li>
           <div class="info-icon"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v3.01c0 .72.43 1.34 1 1.69V20c0 1.1 1.1 2 2 2h14c.9 0 2-.9 2-2V8.7c.57-.35 1-.97 1-1.69V4c0-1.1-.9-2-2-2zm-5 12H9v-2h6v2zm5-7H4V4l16-.02V7z"/></svg></div>
           <div class="info-head">File Size</div>
           <div class="info-desc">{{appSize}}</div>
         </li>
-        {{/if}}
         <li>
           <div class="info-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg></div>
           <div class="info-head">Security</div>
           <div class="info-desc safe">Verified</div>
         </li>
-        {{#if softwareRequirements}}
         <li>
           <div class="info-icon"><svg viewBox="0 0 24 24"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24c-2.86-1.21-6.08-1.21-8.94 0L5.65 5.67c-.19-.29-.58-.38-.87-.2-.28.18-.37.54-.22.83L6.4 9.48C3.3 11.25 1.28 14.44 1 18h22c-.28-3.56-2.3-6.75-5.4-8.52zM7 15.25c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25S8.25 13.31 8.25 14 7.69 15.25 7 15.25zm10 0c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25z"/></svg></div>
           <div class="info-head">Android</div>
           <div class="info-desc">{{softwareRequirements}}</div>
         </li>
-        {{/if}}
       </ul>
     </div>
     {{#unless hasSecondaryDownloads}}
