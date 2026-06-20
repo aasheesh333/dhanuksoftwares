@@ -79,7 +79,8 @@
         "type": "play"
       }
     ],
-    "lastUpdated": "2026-06-08"
+    "lastUpdated": "2026-06-09",
+    "developer": "Dhanuk Softwares"
   },
   {
     "name": "Mecha Chameleon",
@@ -126,7 +127,7 @@
       }
     ],
     "emoji": "🦎",
-    "icon": "https://play-lh.googleusercontent.com/F2QmirJcFcHykDJZkqI1nFzKXyn1QwYt1ttK1CELf-FEKiJuI8xgaf36zm9NOossIccuaGhx7LuHWbdtfKV0Q",
+    "icon": "https://play-lh.googleusercontent.com/F2QmirJcFcHykDJZkqIu1nFzKXyn1QwYt1ttK1CELf-FEKiJuI8xgaf36zm9NOossIccuaGhx7LuHWbdtfKV0Q=w96",
     "screenshots": [
       "https://play-lh.googleusercontent.com/-Nuud4rr9FjVHbFa4d5j7hGvRwoUEjZRVjW3eEziMU1rtM0wVGXIJ5KxY59OsUYk1tKJLQjs0NhIygAYoKoY3Q",
       "https://play-lh.googleusercontent.com/0LqtwN09czZNFY8nkkLwMNYVO1S1C8aE5JPBhCsnWyEmVI6o7-MJK15Ifsp0IFM0arBAlnW1NfDYV5fKj7P1VQ",
@@ -151,10 +152,10 @@
     "totalDownloads": "100K+",
     "appSize": "85 MB",
     "contentRating": "Rated for 12+",
-    "developer": "Shakila",
+    "developer": "Shakila developer",
     "version": "1.4.2",
     "softwareRequirements": "Android 6.0+",
     "inLanguage": "en",
     "releaseNotes": "New stealth mechanics, improved AI, and bug fixes."
   }
-] 
+]

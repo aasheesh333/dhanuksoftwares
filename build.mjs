@@ -9,6 +9,66 @@ const DIST = path.join(ROOT, 'dist');
 const BASE_URL = process.env.URL || 'https://dhanuksoftwares.com';
 const TODAY = new Date().toISOString().slice(0, 10);
 
+// Best-effort Play Store scrape: pulls lastUpdated + developer + totalDownloads
+// Updates apps.json in-place if values change so build output reflects Play Store.
+async function autoFetchFromPlayStore(apps) {
+  const PLAY_URL_RE = /^https?:\/\/play\.google\.com\/store\/apps\/details\?id=([a-zA-Z0-9._]+)/;
+  let dirty = false;
+  for (const app of apps) {
+    const play = (app.marketplaces || []).find(m => m.type === 'play' && PLAY_URL_RE.test(m.url || ''));
+    if (!play) continue;
+    const appId = PLAY_URL_RE.exec(play.url)[1];
+    try {
+      const url = `https://play.google.com/store/apps/details?id=${appId}&hl=en`;
+      const res = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Mobile Safari/537.36' } });
+      if (!res.ok) { console.warn(`  ! play store fetch ${appId} -> ${res.status}`); continue; }
+      const html = await res.text();
+      // Updated on Jun 15, 2026
+      const dateMatch = html.match(/([A-Z][a-z]+)\s+(\d{1,2}),\s+(\d{4})/);
+      let lastUpdated = app.lastUpdated;
+      if (dateMatch) {
+        const months = { Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11 };
+        const m = months[dateMatch[1]];
+        const d = parseInt(dateMatch[2], 10);
+        const y = parseInt(dateMatch[3], 10);
+        if (m != null) {
+          const iso = `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+          if (iso !== app.lastUpdated) {
+            console.log(`  ~ ${app.slug}: lastUpdated ${app.lastUpdated || '(none)'} -> ${iso}`);
+            app.lastUpdated = iso;
+            lastUpdated = iso;
+            dirty = true;
+          }
+        }
+      }
+      // Developer (from developer link in head_app_info or "wMUdtb" class)
+      let devMatch = html.match(/href="\/store\/apps\/dev[eloper]*\?id=[^"]+"[^>]*>\s*([^<]+)/);
+      if (!devMatch) devMatch = html.match(/class="wMUdtb">([^<]+)/);
+      if (devMatch) {
+        const dev = devMatch[1].trim();
+        if (dev && dev !== app.developer) {
+          console.log(`  ~ ${app.slug}: developer ${app.developer || '(none)'} -> ${dev}`);
+          app.developer = dev;
+          dirty = true;
+        }
+      }
+      // Total downloads: try "100K+" or "100K" patterns
+      let dlMatch = html.match(/(\d+(?:\.\d+)?[KMB]\+?)\s*(?:Downloads|Installs)/i);
+      if (dlMatch) {
+        const dl = dlMatch[1].replace(/\.0(?=[KMB])/, '') + (dlMatch[1].includes('+') ? '' : '+');
+        if (dl !== app.totalDownloads) {
+          console.log(`  ~ ${app.slug}: totalDownloads ${app.totalDownloads || '(none)'} -> ${dl}`);
+          app.totalDownloads = dl;
+          dirty = true;
+        }
+      }
+    } catch (e) {
+      console.warn(`  ! play store fetch ${appId} error:`, e.message);
+    }
+  }
+  return dirty;
+}
+
 function escapeHtml(str) {
   if (str == null) return '';
   return String(str)
@@ -332,6 +392,14 @@ async function main() {
   const rawApps = readJson(path.join(ROOT, 'apps.json'));
   const apps = migrateAll(rawApps);
   console.log(`${apps.length} apps loaded`);
+
+  // Auto-fetch lastUpdated + developer from Play Store for any app with a Play Store URL
+  console.log('  Auto-fetching from Play Store...');
+  const playStoreDirty = await autoFetchFromPlayStore(apps);
+  if (playStoreDirty) {
+    fs.writeFileSync(path.join(ROOT, 'apps.json'), JSON.stringify(apps, null, 2) + '\n');
+    console.log('  apps.json updated');
+  }
 
   const usedSlugs = new Set();
   for (const app of apps) {
