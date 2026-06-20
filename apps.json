@@ -79,10 +79,6 @@
         "type": "play"
       }
     ],
-    "rating": {
-      "value": 0,
-      "count": 0
-    },
     "lastUpdated": "2026-06-08"
   },
   {
@@ -151,10 +147,6 @@
         "type": "uptodown"
       }
     ],
-    "rating": {
-      "value": 3.7,
-      "count": 1500
-    },
     "lastUpdated": "2026-06-15",
     "totalDownloads": "100K+",
     "appSize": "85 MB",

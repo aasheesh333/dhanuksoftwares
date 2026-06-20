@@ -393,15 +393,7 @@
 
         <div class="form-grid-3">
           <div class="form-row">
-            <label for="f-rating-value">Rating (0-5)</label>
-            <input type="number" id="f-rating-value" min="0" max="5" step="0.1" value="0"/>
-          </div>
-          <div class="form-row">
-            <label for="f-rating-count">Reviews</label>
-            <input type="number" id="f-rating-count" min="0" value="0"/>
-          </div>
-          <div class="form-row">
-            <label for="f-updated">Last Updated</label>
+            <label for="f-updated">Date Updated <span style="color:var(--muted);font-weight:400;font-size:0.8rem;">(auto-fetched from Play Store if URL provided)</span></label>
             <input type="date" id="f-updated"/>
           </div>
         </div>
@@ -601,10 +593,6 @@
       icon: document.getElementById('f-icon').value.trim(),
       screenshots: parseList(document.getElementById('f-screenshots').value),
       marketplaces: collectMarketplaces(),
-      rating: {
-        value: parseFloat(document.getElementById('f-rating-value').value) || 0,
-        count: parseInt(document.getElementById('f-rating-count').value) || 0
-      },
       lastUpdated: document.getElementById('f-updated').value,
       totalDownloads: document.getElementById('f-totalDownloads').value.trim(),
       appSize: document.getElementById('f-appSize').value.trim(),
@@ -627,8 +615,6 @@
     document.getElementById('f-icon').value = app.icon || '';
     document.getElementById('f-screenshots').value = (app.screenshots || []).join('\n');
     loadMarketplaces(app.marketplaces);
-    document.getElementById('f-rating-value').value = app.rating?.value || 0;
-    document.getElementById('f-rating-count').value = app.rating?.count || 0;
     document.getElementById('f-updated').value = app.lastUpdated || new Date().toISOString().slice(0, 10);
     document.getElementById('f-totalDownloads').value = app.totalDownloads || '';
     document.getElementById('f-appSize').value = app.appSize || '';
@@ -708,11 +694,6 @@
         if (scraped.icon) document.getElementById('f-icon').value = scraped.icon;
         if (Array.isArray(scraped.screenshots) && scraped.screenshots.length) {
           document.getElementById('f-screenshots').value = scraped.screenshots.join('\n');
-        }
-        if (scraped.rating) document.getElementById('f-rating-value').value = scraped.rating;
-        if (scraped.reviews) {
-          const n = parseInt(String(scraped.reviews).replace(/[^0-9]/g, ''), 10);
-          if (!isNaN(n)) document.getElementById('f-rating-count').value = n;
         }
         if (scraped.updated) {
           try {

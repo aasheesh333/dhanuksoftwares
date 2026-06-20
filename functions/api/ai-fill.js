@@ -104,8 +104,6 @@ async function scrapePlayStore(url) {
   const screenshotsAll = [...new Set(html.match(/https:\/\/play-lh\.googleusercontent\.com\/[A-Za-z0-9_-]{40,200}=w1052-h592/g) || [])];
   const screenshots = screenshotsAll.slice(0, 6);
 
-  const rating = (html.match(/aria-label="Rated ([0-9.]+) stars/) || [])[1] || '';
-  const reviews = (html.match(/<span[^>]*aria-label="([0-9,.]+)\s*reviews?/i) || [])[1] || '';
   const downloads = (html.match(/class="ClM7O">([0-9]+[BMK]\+?)<\/div>/) || [])[1] || '';
   // Total downloads: also try aria-label form (newer Play Store layout)
   let totalDownloads = '';
@@ -134,7 +132,7 @@ async function scrapePlayStore(url) {
 
   return {
     appId, name, tagline, longDescription, icon, screenshots,
-    rating, reviews, downloads, totalDownloads, appSize, contentRating, updated, developer, category
+    downloads, totalDownloads, appSize, contentRating, updated, developer, category
   };
 }
 
@@ -186,7 +184,6 @@ export async function onRequest({ request, env }) {
     if (scraped.tagline) contextParts.push(`Tagline: ${scraped.tagline}`);
     if (scraped.category) contextParts.push(`Category: ${scraped.category}`);
     if (scraped.developer) contextParts.push(`Developer: ${scraped.developer}`);
-    if (scraped.rating) contextParts.push(`Rating: ${scraped.rating}/5 (${scraped.reviews || '?'} reviews)`);
     if (scraped.downloads) contextParts.push(`Downloads: ${scraped.downloads}`);
     if (scraped.updated) contextParts.push(`Last updated: ${scraped.updated}`);
     if (scraped.longDescription) contextParts.push(`\nOfficial description (use as ground truth, expand and optimize for SEO):\n${scraped.longDescription.slice(0, 3000)}`);

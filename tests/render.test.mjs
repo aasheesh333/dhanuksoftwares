@@ -36,7 +36,6 @@ test('buildSchemaSoftwareApp has required fields', () => {
   assert.equal(schema['@type'], 'SoftwareApplication');
   assert.equal(schema.name, 'AstroPrerna');
   assert.equal(schema.operatingSystem, 'Android');
-  assert.equal(schema.aggregateRating.ratingValue, 4.6);
   assert.equal(schema.offers.length, 2);
 });
 
