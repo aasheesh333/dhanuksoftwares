@@ -1,87 +1,70 @@
 [
   {
-    "name": "AstroPrerna – AI Astrology & Horoscope",
-    "slug": "astroprerna",
-    "category": "Astrology",
+    "name": "AstroPrerna",
+    "emoji": "🔭",
     "tag": "Astrology",
-    "tagline": "Unlock Your Cosmic Destiny",
-    "shortDesc": "Discover your personalized astrology, daily horoscope, and love match with AstroPrerna's AI-powered insights",
-    "longDescription": "<p>Welcome to AstroPrerna, your personal AI astrologer that combines ancient Vedic wisdom with modern AI technology to guide you through life's journey. With AstroPrerna, you can discover your personalized birth chart, daily horoscope, and love compatibility score, all in one convenient app.</p>\n   <h2>Understanding Your Birth Chart</h2>\n   <p>Your Janam Kundali, or birth chart, is a unique map of the celestial bodies at the exact time and place of your birth. AstroPrerna generates your Kundli instantly, providing you with valuable insights into your life path, personality traits, and planetary influences. You can explore your chart and learn more about yourself, your strengths, and your weaknesses.</p>\n   <h3>AI Astrology Chat: Your Personal Jyotishi</h3>\n   <p>AstroPrerna's AI astrology chat feature allows you to ask questions and receive personalized answers, just like having a personal Jyotishi in your pocket. Whether you're seeking guidance on career, love, health, or relationships, our AI astrologer is always available to provide you with detailed and accurate answers.</p>\n   <h2>Daily Horoscope and Rashifal</h2>\n   <p>Stay up-to-date with your daily horoscope and Rashifal, covering all 12 zodiac signs. Our daily horoscope provides you with a glimpse into what the day holds for you, including love, career, health, and finances. With AstroPrerna, you can plan your day with cosmic guidance and make informed decisions.</p>\n   <h3>Love and Relationship Guidance</h3>\n   <p>AstroPrerna also offers love and relationship guidance, providing you with astrological insights into your love life, compatible partner traits, and the most favorable periods for romance. You can enter both partners' details and receive an instant Love Compatibility Score, helping you discover your emotional connection, romantic potential, and bond strength.</p>\n   <h2>Why Choose AstroPrerna?</h2>\n   <p>AstroPrerna is the ultimate astrology companion, offering a range of features that make it stand out from other apps. With AstroPrerna, you can:</p>\n   <ul>\n      <li>Generate your instant Kundli with just your date of birth</li>\n      <li>Ask questions and receive personalized answers with our AI astrology chat feature</li>\n      <li>Get your Love Compatibility Score and discover your emotional connection with your partner</li>\n      <li>Stay up-to-date with your daily horoscope and Rashifal for all 12 zodiac signs</li>\n      <li>Enjoy a clean, fast, and easy-to-use interface</li>\n      <li>Use the app for free, with no hidden costs or subscriptions</li>\n   </ul>\n   <h3>Future Predictions and Cosmic Guidance</h3>\n   <p>AstroPrerna reveals upcoming opportunities, challenges, and planetary influences on your life based on your unique birth chart and Vedic astrology. With our app, you can gain a deeper understanding of the cosmos and its impact on your life, helping you make informed decisions and navigate life's challenges.</p>\n   <p>Whether you're a seasoned astrology enthusiast or just curious about your future, AstroPrerna brings the wisdom of the cosmos to your fingertips. Download AstroPrerna today and let the stars guide your journey!</p>\n   <h2>Getting Started with AstroPrerna</h2>\n   <p>Getting started with AstroPrerna is easy. Simply download the app, enter your date of birth, and start exploring your personalized astrology and horoscope. Our app is designed to be user-friendly, with a clean and intuitive interface that makes it easy to navigate and find the features you need.</p>\n   <h3>Tips for Using AstroPrerna</h3>\n   <p>To get the most out of AstroPrerna, we recommend:</p>\n   <ul>\n      <li>Entering your correct date of birth to ensure accurate calculations</li>\n      <li>Asking specific questions in the AI astrology chat feature to receive detailed answers</li>\n      <li>Checking your daily horoscope and Rashifal regularly to stay up-to-date with cosmic guidance</li>\n      <li>Sharing your Love Compatibility Score with your partner to discover your emotional connection</li>\n   </ul>\n   <p>By following these tips, you can unlock the full potential of AstroPrerna and gain a deeper understanding of the cosmos and its impact on your life.</p>\n   <h2>AstroPrerna: The Ultimate Astrology Companion</h2>\n   <p>AstroPrerna is more than just an astrology app – it's a personalized guide to the cosmos and its secrets. With our app, you can:</p>\n   <ul>\n      <li>Discover your personalized birth chart and daily horoscope</li>\n      <li>Get answers to your questions with our AI astrology chat feature</li>\n      <li>Find your perfect match with our Love Compatibility Score</li>\n      <li>Stay up-to-date with cosmic guidance and make informed decisions</li>\n   </ul>\n   <p>Download AstroPrerna today and start your journey to unlocking your cosmic destiny!</p>",
-    "keywords": [
-      "AstroPrerna",
-      "AI Astrology",
-      "Horoscope",
-      "Kundli",
-      "Rashifal",
-      "Love Match",
-      "Vedic Astrology",
-      "Indian Astrology"
-    ],
-    "features": [
-      "Instant Kundli generation",
-      "AI Astrology Chat",
-      "Love Compatibility Score",
-      "Daily Rashifal for all 12 zodiac signs",
-      "Clean and easy-to-use interface",
-      "Free to use with no hidden costs or subscriptions",
-      "Personalized astrology and horoscope",
-      "Future predictions and cosmic guidance"
-    ],
-    "faq": [
-      {
-        "q": "Is AstroPrerna free to use?",
-        "a": "Yes, AstroPrerna is completely free to use, with no hidden costs or subscriptions."
-      },
-      {
-        "q": "Can I use AstroPrerna offline?",
-        "a": "Yes, you can use AstroPrerna offline, but some features may require an internet connection to function properly."
-      },
-      {
-        "q": "How does AstroPrerna protect my privacy?",
-        "a": "AstroPrerna takes your privacy seriously and uses secure servers to store your data. We do not share your information with any third-party companies."
-      },
-      {
-        "q": "Is AstroPrerna compatible with my device?",
-        "a": "AstroPrerna is compatible with most Android devices. If you experience any issues, please contact our support team for assistance."
-      },
-      {
-        "q": "Can I trust the astrology predictions in AstroPrerna?",
-        "a": "Yes, AstroPrerna uses ancient Vedic wisdom and modern AI technology to provide accurate and reliable astrology predictions."
-      },
-      {
-        "q": "How does AstroPrerna compare to other astrology apps?",
-        "a": "AstroPrerna stands out from other astrology apps with its unique blend of ancient Vedic wisdom and modern AI technology, providing personalized and accurate predictions."
-      },
-      {
-        "q": "Can I use AstroPrerna for business or professional purposes?",
-        "a": "Yes, AstroPrerna can be used for business or professional purposes, such as providing astrology services to clients or using the app for personal development."
-      },
-      {
-        "q": "How do I contact AstroPrerna's support team?",
-        "a": "You can contact our support team through the app or by visiting our website. We are always happy to help with any questions or concerns you may have."
-      }
-    ],
-    "emoji": "",
-    "icon": "https://play-lh.googleusercontent.com/LUL8BF3B_ZylO3ynTXlaXRGKBWTKmMSixTRyZYzU5DDU69l3w_K9NcjXvPVMPcM5VgwduhAc3ENcr40YwMM5fI4",
-    "screenshots": [
-      "https://play-lh.googleusercontent.com/wB6k-qMiK1AwsIhqdjafYI_n_uxVU2KRJZjdtTUMawKbVkriQizRN7Zkrm7bGN0PPbJTdqI4LHRtK_IMfgq8iNc=w1052-h592",
-      "https://play-lh.googleusercontent.com/GUpTmiiL_aZ__gflzpRYFDrCaHtX3sF2byVzq7UjWmHwEb7Fv_kSJ09Sx3WTy9JQQHmLuFoleOeoRaAN-HwPnOk=w1052-h592",
-      "https://play-lh.googleusercontent.com/wz7GvKKaiHmR0y80w4uW_FTTcvIZk5T9ahI68hhZebPJ0l_zdKjZ_LXyT7cNyJuQZaqucZfUJo4zmmEXkZ_XpCo=w1052-h592",
-      "https://play-lh.googleusercontent.com/CrTFapfmV5JrJn1tEb5kkpCP2kDmSyn8WY3yQqzDvLAc0sRRk26pTD2kaAbXxlt3z_wJa2Wp3cCxxbuXdYa_-w=w1052-h592",
-      "https://play-lh.googleusercontent.com/PRh6vSHxS2wBNFEjuAi4J9rL0VR83q2hbewmuypBK0K8Lw7CYTQMl_OrTT8okAUaKiGhVzUzTpLJUxC_1u91GQ=w1052-h592",
-      "https://play-lh.googleusercontent.com/iEu0pHRdZlD-XffGig6Wx5Sgx5ppqdU0ZoYro7Sdf6K8DMnF1RKIFlgJ19VyUsGWTszM8mIk3YovEk0g2790xA=w1052-h592"
-    ],
-    "marketplaces": [
-      {
-        "name": "Google Play",
-        "url": "https://play.google.com/store/apps/details?id=com.dhanuk.astroprerna",
-        "type": "play"
-      }
-    ],
+    "shortDesc": "Your personal astrology companion. Get daily insights, horoscopes, and cosmic guidance tailored to your birth chart.",
+    "slug": "astroprerna",
+    "longDescription": "<h3>About AstroPrerna</h3><p>This is a <strong>powerful</strong> astrology app.</p><h3>Features</h3><ul><li>Daily horoscope</li><li>Free Kundli</li></ul>",
+    "keywords": [],
+    "features": [],
+    "faq": [],
+    "screenshots": [],
     "rating": {
       "value": 0,
       "count": 0
     },
-    "lastUpdated": "2026-06-08"
+    "marketplaces": []
+  },
+  {
+    "name": "Focus App",
+    "emoji": "🎯",
+    "tag": "Productivity",
+    "shortDesc": "Stay productive with smart focus sessions. Block distractions, set goals, and track your deep work time effortlessly.",
+    "slug": "focus-app",
+    "longDescription": "Stay productive with smart focus sessions. Block distractions, set goals, and track your deep work time effortlessly.",
+    "keywords": [],
+    "features": [],
+    "faq": [],
+    "screenshots": [],
+    "rating": {
+      "value": 0,
+      "count": 0
+    },
+    "marketplaces": []
+  },
+  {
+    "name": "Quick Scan",
+    "emoji": "📄",
+    "tag": "Utility",
+    "shortDesc": "Instantly scan documents, IDs, and receipts with your camera. Export clean PDFs with a single tap.",
+    "slug": "quick-scan",
+    "longDescription": "Instantly scan documents, IDs, and receipts with your camera. Export clean PDFs with a single tap.",
+    "keywords": [],
+    "features": [],
+    "faq": [],
+    "screenshots": [],
+    "rating": {
+      "value": 0,
+      "count": 0
+    },
+    "marketplaces": []
+  },
+  {
+    "name": "Photo Editor",
+    "emoji": "🖼️",
+    "tag": "Creative",
+    "shortDesc": "A powerful yet simple photo editing tool. Adjust, enhance, and beautify your images right on your Android phone.",
+    "slug": "photo-editor",
+    "longDescription": "A powerful yet simple photo editing tool. Adjust, enhance, and beautify your images right on your Android phone.",
+    "keywords": [],
+    "features": [],
+    "faq": [],
+    "screenshots": [],
+    "rating": {
+      "value": 0,
+      "count": 0
+    },
+    "marketplaces": []
   }
 ]
