@@ -9,6 +9,16 @@ const DIST = path.join(ROOT, 'dist');
 const BASE_URL = process.env.URL || 'https://dhanuksoftwares.com';
 const TODAY = new Date().toISOString().slice(0, 10);
 
+function escapeHtml(str) {
+  if (str == null) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 function rmrf(p) {
   if (fs.existsSync(p)) fs.rmSync(p, { recursive: true, force: true });
 }
@@ -45,10 +55,10 @@ function writeFile(p, content) {
 function renderAppsIndex(apps, baseUrl) {
   const cards = apps.map(a => `
     <a class="app-card" href="/apps/${a.slug}/">
-      ${a.icon ? `<img class="app-icon-img" src="${a.icon}" alt="${a.name}"/>` : `<div class="app-emoji">${a.emoji || '📱'}</div>`}
-      <div class="app-name">${a.name}</div>
-      <div class="app-desc">${a.shortDesc || ''}</div>
-      <div class="app-footer"><span class="app-tag">${a.category || a.tag || 'Android'}</span></div>
+      ${a.icon ? `<img class="app-icon-img" src="${escapeHtml(a.icon)}" alt="${escapeHtml(a.name)}" loading="lazy" width="56" height="56"/>` : `<div class="app-emoji">${escapeHtml(a.emoji || '📱')}</div>`}
+      <div class="app-name">${escapeHtml(a.name)}</div>
+      <div class="app-desc">${escapeHtml(a.shortDesc || '')}</div>
+      <div class="app-footer"><span class="app-tag">${escapeHtml(a.category || a.tag || 'Android')}</span></div>
     </a>`).join('\n');
 
   return `<!DOCTYPE html>
@@ -56,33 +66,123 @@ function renderAppsIndex(apps, baseUrl) {
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>All Apps - Dhanuk Softwares</title>
-  <meta name="description" content="Browse all Android apps from Dhanuk Softwares."/>
+  <title>All Apps by Dhanuk Softwares</title>
+  <meta name="description" content="Browse all ${apps.length} free Android apps from Dhanuk Softwares — Astrology, Productivity, Document Scanning, and Photo Editing. Download on Google Play, Uptodown, OPPO, Vivo, and more."/>
+  <meta name="keywords" content="Dhanuk Softwares apps, free Android apps India, Indian app studio, Google Play apps India"/>
+  <meta name="robots" content="index, follow, max-image-preview:large"/>
   <link rel="canonical" href="${baseUrl}/apps/"/>
+  <link rel="icon" type="image/svg+xml" href="${baseUrl}/favicon.svg"/>
+  <link rel="apple-touch-icon" href="${baseUrl}/apple-touch-icon.png"/>
+  <link rel="manifest" href="${baseUrl}/manifest.json"/>
+  <meta name="theme-color" content="#0b0f1a"/>
+
+  <meta property="og:title" content="All Apps by Dhanuk Softwares"/>
+  <meta property="og:description" content="Browse all ${apps.length} free Android apps from Dhanuk Softwares. Download on Google Play, Uptodown, OPPO, Vivo, and more."/>
+  <meta property="og:url" content="${baseUrl}/apps/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="Dhanuk Softwares"/>
+  <meta property="og:locale" content="en_IN"/>
+  <meta property="og:image" content="${baseUrl}/og-banner.png"/>
+
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="All Apps by Dhanuk Softwares"/>
+  <meta name="twitter:description" content="Browse all ${apps.length} free Android apps from Dhanuk Softwares."/>
+  <meta name="twitter:image" content="${baseUrl}/og-banner.png"/>
+
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
-    body { background:#0b0f1a; color:#e8edf7; font-family:'DM Sans',sans-serif; margin:0; padding:0; }
-    .container { max-width:1100px; margin:0 auto; padding:2rem 5%; }
-    h1 { font-family:'Syne',sans-serif; font-size:2.2rem; margin-bottom:0.5rem; }
-    .lead { color:#7a8aaa; margin-bottom:2rem; }
+    :root { --bg:#0b0f1a; --surface:#131929; --card:#1a2235; --accent:#4f8ef7; --accent2:#38e0b0; --text:#e8edf7; --muted:#a0b0cc; --border:#1e2d4a; }
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; overflow-wrap:break-word; }
+    body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; line-height:1.7; overflow-x:hidden; min-height:100vh; display:flex; flex-direction:column; overflow-wrap:break-word; }
+    body, p, li, h1, h2, h3, h4, a, span, dd, dt, blockquote, code, pre { overflow-wrap:break-word; word-wrap:break-word; }
+    a:focus-visible, button:focus-visible { outline:2px solid var(--accent); outline-offset:2px; border-radius:4px; }
+    .skip-link { position:absolute; left:-9999px; top:0; background:var(--accent); color:#fff; padding:0.7rem 1.2rem; z-index:200; border-radius:0 0 8px 0; text-decoration:none; font-weight:600; }
+    .skip-link:focus { left:0; }
+    nav { position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:1rem 5%; background:rgba(11,15,26,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
+    .nav-logo { font-family:'Syne',sans-serif; font-weight:800; font-size:1.2rem; color:var(--accent); text-decoration:none; }
+    .nav-logo span { color:var(--accent2); }
+    .nav-toggle { display:none; background:transparent; border:1px solid var(--border); border-radius:8px; padding:0.5rem; cursor:pointer; flex-direction:column; gap:4px; width:38px; height:38px; align-items:center; justify-content:center; }
+    .nav-toggle-bar { display:block; width:18px; height:2px; background:var(--text); border-radius:1px; transition:transform 0.2s, opacity 0.2s; }
+    .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) { transform:translateY(6px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) { opacity:0; }
+    .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) { transform:translateY(-6px) rotate(-45deg); }
+    nav ul { list-style:none; display:flex; gap:1.5rem; }
+    nav ul a { text-decoration:none; color:var(--muted); font-size:0.9rem; font-weight:500; }
+    nav ul a:hover { color:var(--text); }
+    main { flex:1; padding:3rem 5%; }
+    .container { max-width:1100px; margin:0 auto; }
+    .page-title { font-family:'Syne',sans-serif; font-size:clamp(1.8rem, 4vw, 2.6rem); font-weight:800; letter-spacing:-0.02em; margin-bottom:0.5rem; }
+    .lead { color:var(--muted); margin-bottom:2rem; font-size:1.05rem; }
     .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:1.5rem; }
-    .app-card { background:#1a2235; border:1px solid #1e2d4a; border-radius:16px; padding:2rem; text-decoration:none; color:#e8edf7; transition:border-color 0.2s, transform 0.2s; }
-    .app-card:hover { border-color:#4f8ef7; transform:translateY(-3px); }
-    .app-icon-img { width:56px; height:56px; border-radius:12px; margin-bottom:1rem; }
-    .app-emoji { font-size:2.5rem; margin-bottom:1rem; }
+    .app-card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:2rem; text-decoration:none; color:var(--text); transition:border-color 0.2s, transform 0.2s; display:block; min-width:0; }
+    .app-card:hover { border-color:var(--accent); transform:translateY(-3px); }
+    .app-icon-img { width:56px; height:56px; border-radius:12px; margin-bottom:1rem; object-fit:cover; }
+    .app-emoji { font-size:2.5rem; margin-bottom:1rem; line-height:1; }
     .app-name { font-family:'Syne',sans-serif; font-size:1.15rem; font-weight:700; margin-bottom:0.5rem; }
-    .app-desc { color:#7a8aaa; font-size:0.9rem; }
+    .app-desc { color:var(--muted); font-size:0.9rem; line-height:1.5; }
     .app-footer { margin-top:1rem; }
-    .app-tag { display:inline-block; font-size:0.75rem; padding:0.25rem 0.75rem; border-radius:999px; background:rgba(79,142,247,0.1); color:#4f8ef7; border:1px solid rgba(79,142,247,0.2); }
+    .app-tag { display:inline-block; font-size:0.75rem; padding:0.25rem 0.75rem; border-radius:999px; background:rgba(79,142,247,0.1); color:var(--accent); border:1px solid rgba(79,142,247,0.2); }
+    footer { text-align:center; padding:2rem 5%; border-top:1px solid var(--border); color:var(--muted); font-size:0.85rem; margin-top:2rem; }
+    footer a { color:var(--accent); text-decoration:none; }
+    @media (max-width: 768px) {
+      .nav-toggle { display:flex; }
+      nav ul { display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; gap:0; background:rgba(11,15,26,0.98); border-bottom:1px solid var(--border); padding:0.5rem 0; }
+      nav ul.open { display:flex; }
+      nav ul li { width:100%; }
+      nav ul a { display:block; padding:0.75rem 5%; }
+      main { padding:2rem 5%; }
+      .grid { grid-template-columns:1fr; gap:1rem; }
+      .app-card { padding:1.5rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *,*::before,*::after { animation-duration:0.01ms !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>All Apps by Dhanuk Softwares</h1>
-    <p class="lead">${apps.length} free Android apps. Tap any to download.</p>
-    <div class="grid">${cards}</div>
-  </div>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <nav>
+    <a class="nav-logo" href="${baseUrl}/">Dhanuk<span>Softwares</span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-controls="nav-menu" aria-expanded="false" aria-label="Open navigation menu">
+      <span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span>
+    </button>
+    <ul id="nav-menu">
+      <li><a href="${baseUrl}/">Home</a></li>
+      <li><a href="${baseUrl}/apps/">All Apps</a></li>
+    </ul>
+  </nav>
+  <main id="main">
+    <div class="container">
+      <h1 class="page-title">All Apps by Dhanuk Softwares</h1>
+      <p class="lead">${apps.length} free Android apps. Tap any to learn more.</p>
+      <div class="grid">${cards}</div>
+    </div>
+  </main>
+  <footer>
+    <p>&copy; <span id="footer-year">2026</span> <strong>Dhanuk Softwares</strong>. All rights reserved. &middot; <a href="${baseUrl}/">Home</a> &middot; <a href="mailto:support@dhanuksoftwares.com">Support</a></p>
+    <p style="margin-top:0.4rem;">Made with &#9829; in India &middot; GST &amp; MSME Registered</p>
+  </footer>
+  <script>
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+    (function() {
+      var btn = document.getElementById('nav-toggle');
+      var menu = document.getElementById('nav-menu');
+      if (!btn || !menu) return;
+      btn.addEventListener('click', function() {
+        var open = menu.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      menu.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() {
+          menu.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+  </script>
 </body>
 </html>`;
 }
@@ -155,7 +255,11 @@ async function main() {
 
   const homeSrc = path.join(ROOT, 'index.html');
   if (fs.existsSync(homeSrc)) {
-    fs.copyFileSync(homeSrc, path.join(DIST, 'index.html'));
+    let homeHtml = fs.readFileSync(homeSrc, 'utf8');
+    homeHtml = injectHomeOrganization(homeHtml);
+    homeHtml = injectHomeItemList(homeHtml, apps);
+    homeHtml = injectHomeWebSiteSchema(homeHtml);
+    fs.writeFileSync(path.join(DIST, 'index.html'), homeHtml);
     console.log('  /');
   }
 
@@ -172,7 +276,7 @@ async function main() {
     console.log('  /admin/');
   }
 
-  for (const f of ['app-ads.txt', 'CNAME', 'apps.json', 'og-banner.png']) {
+  for (const f of ['app-ads.txt', 'CNAME', 'apps.json', 'og-banner.png', 'favicon.svg', 'apple-touch-icon.png', 'manifest.json']) {
     const src = path.join(ROOT, f);
     if (fs.existsSync(src)) {
       fs.copyFileSync(src, path.join(DIST, f));
@@ -202,7 +306,100 @@ async function main() {
   writeFile(path.join(DIST, '_redirects'), redirects);
   console.log('  /_redirects');
 
+  const fourOhFour = generate404Html();
+  writeFile(path.join(DIST, '404.html'), fourOhFour);
+  console.log('  /404.html');
+
   console.log('Build complete -> dist/');
+}
+
+function generate404Html() {
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Page Not Found · Dhanuk Softwares</title>
+  <meta name="description" content="The page you're looking for doesn't exist. Browse all apps from Dhanuk Softwares."/>
+  <meta name="robots" content="noindex, nofollow"/>
+  <link rel="canonical" href="${BASE_URL}/"/>
+  <meta property="og:title" content="Page Not Found · Dhanuk Softwares"/>
+  <meta property="og:description" content="The page you're looking for doesn't exist. Browse all apps from Dhanuk Softwares."/>
+  <meta property="og:url" content="${BASE_URL}/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="Dhanuk Softwares"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root { --bg:#0b0f1a; --surface:#131929; --card:#1a2235; --accent:#4f8ef7; --accent2:#38e0b0; --text:#e8edf7; --muted:#a0b0cc; --border:#1e2d4a; }
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; overflow-wrap:break-word; }
+    body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; line-height:1.7; overflow-x:hidden; display:flex; flex-direction:column; min-height:100vh; }
+    nav { position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:1rem 5%; background:rgba(11,15,26,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
+    .nav-logo { font-family:'Syne',sans-serif; font-weight:800; font-size:1.2rem; color:var(--accent); text-decoration:none; }
+    .nav-logo span { color:var(--accent2); }
+    nav ul { list-style:none; display:flex; gap:2rem; }
+    nav ul a { text-decoration:none; color:var(--muted); font-size:0.9rem; font-weight:500; }
+    nav ul a:hover { color:var(--text); }
+    main { flex:1; display:flex; align-items:center; justify-content:center; padding:4rem 5%; text-align:center; }
+    .error-code { font-family:'Syne',sans-serif; font-size:clamp(5rem, 18vw, 9rem); font-weight:800; line-height:1; background:linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent; letter-spacing:-0.04em; margin-bottom:1rem; }
+    h1 { font-family:'Syne',sans-serif; font-size:clamp(1.6rem, 4vw, 2.4rem); font-weight:700; letter-spacing:-1px; margin-bottom:0.75rem; }
+    p { color:var(--muted); max-width:520px; margin:0 auto 2rem; font-size:1.05rem; }
+    .actions { display:flex; gap:0.75rem; justify-content:center; flex-wrap:wrap; margin-bottom:3rem; }
+    .btn { padding:0.85rem 1.6rem; border-radius:10px; text-decoration:none; font-weight:600; font-size:1rem; display:inline-flex; align-items:center; gap:0.5rem; transition:transform 0.15s, background 0.2s; }
+    .btn-primary { background:var(--accent); color:#fff; }
+    .btn-primary:hover { background:#3a7de8; transform:translateY(-1px); }
+    .btn-outline { background:transparent; border:1px solid var(--border); color:var(--text); }
+    .btn-outline:hover { border-color:var(--accent); color:var(--accent); }
+    .suggestions { max-width:680px; margin:0 auto; }
+    .suggestions h2 { font-family:'Syne',sans-serif; font-size:1.1rem; font-weight:700; color:var(--muted); margin-bottom:1rem; text-align:left; }
+    .suggestions-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:0.75rem; }
+    .suggestions a { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:1rem; text-decoration:none; color:var(--text); text-align:center; transition:border-color 0.2s, transform 0.15s; display:block; }
+    .suggestions a:hover { border-color:var(--accent); transform:translateY(-2px); }
+    .suggestions a .emoji { font-size:1.6rem; display:block; margin-bottom:0.4rem; }
+    .suggestions a .name { font-family:'Syne',sans-serif; font-weight:700; font-size:0.95rem; }
+    footer { text-align:center; padding:2rem 5%; border-top:1px solid var(--border); color:var(--muted); font-size:0.85rem; }
+    footer a { color:var(--accent); text-decoration:none; }
+    @media (max-width: 768px) { nav ul { display:none; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <a class="nav-logo" href="${BASE_URL}/">Dhanuk<span>Softwares</span></a>
+    <ul>
+      <li><a href="${BASE_URL}/#apps">Apps</a></li>
+      <li><a href="${BASE_URL}/apps/">All Apps</a></li>
+      <li><a href="${BASE_URL}/#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <main>
+    <div>
+      <div class="error-code">404</div>
+      <h1>This page doesn't exist</h1>
+      <p>The link may be broken, or the app may have been removed. Try one of our apps below or head back home.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="${BASE_URL}/">&larr; Back to Home</a>
+        <a class="btn btn-outline" href="${BASE_URL}/apps/">View All Apps</a>
+      </div>
+      <div class="suggestions">
+        <h2>Browse our apps</h2>
+        <div class="suggestions-grid">
+          <a href="${BASE_URL}/apps/astroprerna/"><span class="emoji">🔭</span><span class="name">AstroPrerna</span></a>
+          <a href="${BASE_URL}/apps/focus-app/"><span class="emoji">🎯</span><span class="name">Focus App</span></a>
+          <a href="${BASE_URL}/apps/quick-scan/"><span class="emoji">📄</span><span class="name">Quick Scan</span></a>
+          <a href="${BASE_URL}/apps/photo-editor/"><span class="emoji">🖼️</span><span class="name">Photo Editor</span></a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <p>&copy; <span id="footer-year">2026</span> <strong>Dhanuk Softwares</strong> · GST &amp; MSME Registered · Made with love in India</p>
+  </footer>
+  <script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
+`;
 }
 
 function generateHeaders() {
@@ -244,6 +441,101 @@ function injectSecrets(html) {
     console.warn('  ⚠ ADMIN_PASSWORD not set — admin login will not work');
   }
   return html.replace(/__ADMIN_PASSWORD__/g, adminPassword || '');
+}
+
+function injectHomeItemList(html, apps) {
+  const itemList = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Dhanuk Softwares — Apps Catalog',
+    itemListElement: apps.map((app, idx) => ({
+      '@type': 'ListItem',
+      position: idx + 1,
+      url: `${BASE_URL}/apps/${app.slug}/`,
+      name: app.name || ''
+    }))
+  };
+  const json = JSON.stringify(itemList, null, 2).replace(/</g, '\\u003c');
+  return html.replace(
+    /<script type="application\/ld\+json" id="apps-jsonld"><\/script>/,
+    `<script type="application/ld+json">${json}</script>`
+  );
+}
+
+function injectHomeOrganization(html) {
+  const org = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': `${BASE_URL}/#organization`,
+    name: 'Dhanuk Softwares',
+    alternateName: 'Dhanuk Software Studio',
+    url: BASE_URL + '/',
+    logo: {
+      '@type': 'ImageObject',
+      url: `${BASE_URL}/og-banner.png`,
+      width: 1200,
+      height: 630
+    },
+    image: `${BASE_URL}/og-banner.png`,
+    description: 'Dhanuk Softwares is an Indian Android app development company building simple, smart, and useful apps for everyday life.',
+    email: 'support@dhanuksoftwares.com',
+    foundingDate: '2024',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Noida',
+      addressRegion: 'Uttar Pradesh',
+      addressCountry: 'IN'
+    },
+    contactPoint: [{
+      '@type': 'ContactPoint',
+      contactType: 'customer support',
+      email: 'support@dhanuksoftwares.com',
+      availableLanguage: ['English', 'Hindi']
+    }],
+    founder: {
+      '@type': 'Person',
+      name: 'Aasheesh Singh',
+      email: 'aasheeshkatheriya@dhanuksoftwares.com',
+      jobTitle: 'Founder & Owner'
+    },
+    knowsAbout: ['Android Development', 'Kotlin', 'Java', 'Mobile Apps', 'Astrology Apps', 'Productivity Apps', 'Document Scanning', 'Photo Editing'],
+    sameAs: [
+      'https://github.com/aasheesh333'
+    ]
+  };
+  const json = JSON.stringify(org, null, 2).replace(/</g, '\\u003c');
+  return html.replace(
+    /<script type="application\/ld\+json" id="org-jsonld"><\/script>/,
+    `<script type="application/ld+json">${json}</script>`
+  );
+}
+
+function injectHomeWebSiteSchema(html) {
+  const website = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${BASE_URL}/#website`,
+    name: 'Dhanuk Softwares',
+    url: BASE_URL + '/',
+    description: 'Dhanuk Softwares is an Indian Android app development company building simple, smart, and useful apps for everyday life.',
+    inLanguage: 'en-IN',
+    publisher: {
+      '@id': `${BASE_URL}/#organization`
+    },
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${BASE_URL}/apps/?q={search_term_string}`
+      },
+      'query-input': 'required name=search_term_string'
+    }
+  };
+  const json = JSON.stringify(website, null, 2).replace(/</g, '\\u003c');
+  return html.replace(
+    /<script type="application\/ld\+json" id="site-jsonld"><\/script>/,
+    `<script type="application/ld+json">${json}</script>`
+  );
 }
 
 main().catch(e => { console.error(e); process.exit(1); });
