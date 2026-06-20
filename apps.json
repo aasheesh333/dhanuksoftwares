@@ -86,5 +86,88 @@
     "appSize": "11.7 MB",
     "contentRating": "Rated for 3+",
     "developer": "Dhanuk Softwares"
+  },
+  {
+    "name": "AstroPrerna AI Chat & Rashifal",
+    "slug": "astroprerna",
+    "category": "Astrology",
+    "tag": "Astrology",
+    "tagline": "Kundli, Rashifal & AI Guidance",
+    "shortDesc": "Get your personalized astrology companion with instant Kundli, daily Rashifal, and AI-powered guidance",
+    "longDescription": "<p>AstroPrerna is your complete astrology companion that blends ancient Vedic wisdom with modern AI. With just your date of birth, you can unlock a world of astrological insights and guidance. Our app is designed to provide you with a personalized experience, helping you navigate life's challenges and opportunities with confidence.</p><h2>Discover Your Birth Chart</h2><p>Enter your date of birth and get your personalized Janam Kundali instantly. No complex inputs are required - AstroPrerna does all the work for you. Explore your life path, personality traits, and planetary influences to gain a deeper understanding of yourself and your place in the world.</p><h3>AI Astrology Chat</h3><p>Talk to our smart AI astrologer anytime and ask anything - career, love, health, money, relationships. Get detailed, personalized answers powered by AI, just like having a personal Jyotishi in your pocket. Our AI astrologer is trained on ancient Vedic principles and modern astrological practices, providing you with accurate and reliable guidance.</p><h2>Love and Relationships</h2><p>Curious about your relationship? Enter both partners' details and get an instant Love Compatibility Score. Discover your emotional connection, romantic potential, and bond strength. Our love match feature is based on Vedic astrology principles, providing you with insights into your compatibility and helping you build a stronger, more fulfilling relationship.</p><h3>Daily Rashifal</h3><p>Get fresh daily horoscope for all 12 zodiac signs every day. Know what the day holds for you in love, career, health, and finances. Plan your day with cosmic guidance and make informed decisions to achieve your goals. Our daily Rashifal is updated regularly, ensuring you stay connected to the celestial rhythms and patterns that influence your life.</p><h2>Future Predictions</h2><p>AstroPrerna reveals upcoming opportunities, challenges, and planetary influences on your life based on your unique birth chart and Vedic astrology. Our future predictions feature helps you prepare for what's to come, providing you with valuable insights and guidance to navigate life's twists and turns.</p><h3>Why AstroPrerna?</h3><p>We believe that astrology should be accessible to everyone, which is why we've designed AstroPrerna to be clean, fast, and easy to use. Our app is free to use, and we're committed to providing you with the most accurate and reliable astrological guidance possible. Whether you follow Vedic astrology deeply or are just curious about your future, AstroPrerna brings the wisdom of the cosmos to your fingertips.</p><h2>What Sets Us Apart</h2><p>At AstroPrerna, we're dedicated to providing you with a unique and personalized experience. Our app is designed to help you connect with the celestial rhythms and patterns that influence your life, providing you with valuable insights and guidance to achieve your goals. With AstroPrerna, you can:</p><ul><li>Get instant access to your birth chart and personalized astrological insights</li><li>Ask our AI astrologer anything and receive detailed, personalized answers</li><li>Discover your love compatibility score and build a stronger, more fulfilling relationship</li><li>Stay connected to the daily Rashifal and plan your day with cosmic guidance</li><li>Prepare for upcoming opportunities and challenges with our future predictions feature</li><li>Enjoy a clean, fast, and easy-to-use interface that's free to use</li></ul><p>Download AstroPrerna today and let the stars guide your journey!</p><h2>Astrology for Everyone</h2><p>Whether you're a seasoned astrology enthusiast or just starting to explore the world of Vedic astrology, AstroPrerna is the perfect companion for you. Our app is designed to be accessible and easy to use, providing you with a wealth of information and guidance to help you navigate life's challenges and opportunities. With AstroPrerna, you can:</p><ul><li>Learn about the 12 zodiac signs and their characteristics</li><li>Discover the principles of Vedic astrology and how they apply to your life</li><li>Get personalized insights and guidance from our AI astrologer</li><li>Stay connected to the celestial rhythms and patterns that influence your life</li><li>Build a stronger, more fulfilling relationship with our love match feature</li></ul><p>AstroPrerna is more than just an astrology app - it's a personalized guide to help you achieve your goals and live a more fulfilling life. Download AstroPrerna today and start your journey to a brighter, more cosmic future!</p>",
+    "keywords": [
+      "Kundli",
+      "Rashifal",
+      "AI Astrology",
+      "Vedic Astrology",
+      "Love Match",
+      "Daily Horoscope",
+      "Indian Astrology",
+      "Jyotishi"
+    ],
+    "features": [
+      "Instant Kundli",
+      "AI Astrology Chat",
+      "Love Match & Compatibility Score",
+      "Daily Rashifal",
+      "Future Predictions",
+      "Clean and Easy-to-Use Interface"
+    ],
+    "faq": [
+      {
+        "q": "Is AstroPrerna free to use?",
+        "a": "Yes, AstroPrerna is completely free to use, with no hidden charges or subscriptions."
+      },
+      {
+        "q": "Can I use AstroPrerna offline?",
+        "a": "No, AstroPrerna requires an internet connection to provide you with accurate and up-to-date astrological insights and guidance."
+      },
+      {
+        "q": "How does AstroPrerna protect my privacy?",
+        "a": "At AstroPrerna, we take your privacy seriously and ensure that all your personal data is protected and secure."
+      },
+      {
+        "q": "Is AstroPrerna compatible with all devices?",
+        "a": "Yes, AstroPrerna is compatible with all Android devices, ensuring you can access your personalized astrology companion whenever and wherever you need it."
+      },
+      {
+        "q": "What if I have questions or concerns about AstroPrerna?",
+        "a": "Our dedicated support team is always available to help you with any questions or concerns you may have about AstroPrerna."
+      },
+      {
+        "q": "How does AstroPrerna compare to other astrology apps?",
+        "a": "AstroPrerna is unique in its blend of ancient Vedic wisdom with modern AI, providing you with a personalized and accurate astrological experience that's unmatched by other apps."
+      },
+      {
+        "q": "Can I use AstroPrerna for business or professional purposes?",
+        "a": "Yes, AstroPrerna can be used for business or professional purposes, providing you with valuable insights and guidance to inform your decisions and achieve your goals."
+      }
+    ],
+    "emoji": "",
+    "icon": "https://play-lh.googleusercontent.com/LUL8BF3B_ZylO3ynTXlaXRGKBWTKmMSixTRyZYzU5DDU69l3w_K9NcjXvPVMPcM5VgwduhAc3ENcr40YwMM5fI4",
+    "screenshots": [
+      "https://play-lh.googleusercontent.com/wB6k-qMiK1AwsIhqdjafYI_n_uxVU2KRJZjdtTUMawKbVkriQizRN7Zkrm7bGN0PPbJTdqI4LHRtK_IMfgq8iNc=w1052-h592",
+      "https://play-lh.googleusercontent.com/GUpTmiiL_aZ__gflzpRYFDrCaHtX3sF2byVzq7UjWmHwEb7Fv_kSJ09Sx3WTy9JQQHmLuFoleOeoRaAN-HwPnOk=w1052-h592",
+      "https://play-lh.googleusercontent.com/wz7GvKKaiHmR0y80w4uW_FTTcvIZk5T9ahI68hhZebPJ0l_zdKjZ_LXyT7cNyJuQZaqucZfUJo4zmmEXkZ_XpCo=w1052-h592",
+      "https://play-lh.googleusercontent.com/CrTFapfmV5JrJn1tEb5kkpCP2kDmSyn8WY3yQqzDvLAc0sRRk26pTD2kaAbXxlt3z_wJa2Wp3cCxxbuXdYa_-w=w1052-h592",
+      "https://play-lh.googleusercontent.com/PRh6vSHxS2wBNFEjuAi4J9rL0VR83q2hbewmuypBK0K8Lw7CYTQMl_OrTT8okAUaKiGhVzUzTpLJUxC_1u91GQ=w1052-h592",
+      "https://play-lh.googleusercontent.com/iEu0pHRdZlD-XffGig6Wx5Sgx5ppqdU0ZoYro7Sdf6K8DMnF1RKIFlgJ19VyUsGWTszM8mIk3YovEk0g2790xA=w1052-h592"
+    ],
+    "marketplaces": [
+      {
+        "name": "Google Play",
+        "url": "https://play.google.com/store/apps/details?id=com.dhanuk.astroprerna&utm_source=dhanuksoftwares&utm_medium=website&utm_campaign=app_page&utm_content=astroprerna_primary&utm_term=play",
+        "type": "play"
+      },
+      {
+        "name": "Uptodown",
+        "url": "https://astroprerna-ai-astrology-and-horoscope.en.uptodown.com/android",
+        "type": "uptodown"
+      }
+    ],
+    "lastUpdated": "2026-06-08",
+    "totalDownloads": "",
+    "appSize": "13.6",
+    "contentRating": "Rated for 18+"
   }
 ]
