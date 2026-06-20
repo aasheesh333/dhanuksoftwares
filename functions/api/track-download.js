@@ -1,3 +1,6 @@
+import { corsHeaders } from '../../lib/auth.mjs';
+
+const ALLOWED_ORIGINS = ['https://dhanuksoftwares.com', 'https://www.dhanuksoftwares.com'];
 const rateLimitMap = new Map();
 const RATE_LIMIT = 30;
 const RATE_WINDOW = 60_000;
@@ -16,15 +19,8 @@ function checkRate(ip) {
 }
 
 export async function onRequest({ request }) {
-  const ALLOWED_ORIGINS = ['https://dhanuksoftwares.com', 'https://www.dhanuksoftwares.com'];
   const requestOrigin = request.headers.get('origin') || '';
-  const allowOrigin = ALLOWED_ORIGINS.includes(requestOrigin) ? requestOrigin : ALLOWED_ORIGINS[0];
-  const headers = {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': allowOrigin,
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    'Vary': 'Origin'
-  };
+  const headers = corsHeaders(requestOrigin, ALLOWED_ORIGINS);
 
   if (request.method === 'OPTIONS') return new Response('', { status: 200, headers });
   if (request.method !== 'POST') return new Response('', { status: 200, headers });

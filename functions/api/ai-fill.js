@@ -1,6 +1,6 @@
-const rateLimitMap = new Map();
-const RATE_LIMIT = 5;
-const RATE_WINDOW = 60_000;
+import { isAuthed, corsHeaders } from '../../lib/auth.mjs';
+
+const ALLOWED_ORIGINS = ['https://dhanuksoftwares.com', 'https://www.dhanuksoftwares.com'];
 const GROQ_MODEL = 'llama-3.3-70b-versatile';
 const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
 const PS_UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36';
@@ -122,25 +122,15 @@ async function scrapePlayStore(url) {
 }
 
 export async function onRequest({ request, env }) {
-  const ADMIN_PASSWORD = env.ADMIN_PASSWORD;
   const GROQ_API_KEY = env.GROQ_API_KEY;
 
-  const ALLOWED_ORIGINS = ['https://dhanuksoftwares.com', 'https://www.dhanuksoftwares.com'];
   const requestOrigin = request.headers.get('origin') || '';
-  const allowOrigin = ALLOWED_ORIGINS.includes(requestOrigin) ? requestOrigin : ALLOWED_ORIGINS[0];
-  const headers = {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': allowOrigin,
-    'Access-Control-Allow-Headers': 'Content-Type, x-admin-token',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    'Vary': 'Origin'
-  };
+  const headers = corsHeaders(requestOrigin, ALLOWED_ORIGINS);
 
   if (request.method === 'OPTIONS') return new Response('', { status: 200, headers });
   if (request.method !== 'POST') return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405, headers });
 
-  const token = request.headers.get('x-admin-token');
-  if (token !== ADMIN_PASSWORD) {
+  if (!await isAuthed(request, env)) {
     return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers });
   }
 

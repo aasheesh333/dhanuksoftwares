@@ -431,20 +431,29 @@
 <div class="toast" id="toast"></div>
 
 <script>
-  const ADMIN_PASSWORD = "__ADMIN_PASSWORD__";
-  const SESSION_KEY = "dhanuk_admin_auth";
+  const SESSION_KEY = "dhanuk_admin_session";
+  const LOGIN_URL = "/api/login";
   const JSON_URL = "../apps.json";
   const AI_FILL_URL = "/api/ai-fill";
   const PUBLISH_URL = "/api/publish";
 
   let apps = [];
   let aiBusy = false;
+  let sessionToken = '';
 
-  function isAuthed() {
-    try { return sessionStorage.getItem(SESSION_KEY) === "1"; } catch (e) { return false; }
+  function getSession() {
+    try { return sessionStorage.getItem(SESSION_KEY) || ''; } catch (e) { return ''; }
   }
+  function setSession(token) {
+    sessionToken = token || '';
+    try {
+      if (token) sessionStorage.setItem(SESSION_KEY, token);
+      else sessionStorage.removeItem(SESSION_KEY);
+    } catch (e) {}
+  }
+  function isAuthed() { return !!getSession(); }
+
   function login() {
-    try { sessionStorage.setItem(SESSION_KEY, "1"); } catch (e) {}
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('panel-wrap').style.display = 'block';
     document.getElementById('logout-btn').style.display = 'inline-block';
@@ -452,21 +461,39 @@
     initPanel();
   }
   function logout() {
-    try { sessionStorage.removeItem(SESSION_KEY); } catch (e) {}
+    setSession('');
     window.location.reload();
   }
   document.getElementById('logout-btn').addEventListener('click', logout);
-  document.getElementById('login-form').addEventListener('submit', (e) => {
+
+  document.getElementById('login-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const pw = document.getElementById('password-input').value;
     const err = document.getElementById('login-error');
-    if (pw === ADMIN_PASSWORD) {
-      err.textContent = '';
-      login();
-    } else {
-      err.textContent = '&#10060; Incorrect password.';
+    const btn = document.querySelector('.login-btn');
+    btn.disabled = true;
+    err.textContent = '';
+    try {
+      const res = await fetch(LOGIN_URL, {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: pw })
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) {
+        err.textContent = '❌ ' + (data.error || 'Login failed.');
+        document.getElementById('password-input').value = '';
+        document.getElementById('password-input').focus();
+        return;
+      }
+      setSession(data.token);
       document.getElementById('password-input').value = '';
-      document.getElementById('password-input').focus();
+      login();
+    } catch (err2) {
+      err.textContent = '❌ Network error. Please retry.';
+    } finally {
+      btn.disabled = false;
     }
   });
 
@@ -641,7 +668,8 @@
     try {
       const res = await fetch(AI_FILL_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-admin-token': ADMIN_PASSWORD },
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json', 'x-admin-token': sessionToken },
         body: JSON.stringify({ name, category, seed, playStoreUrl: playStoreUrl || undefined })
       });
       const data = await res.json();
@@ -742,7 +770,8 @@
   async function publishApps() {
     const res = await fetch(PUBLISH_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-admin-token': ADMIN_PASSWORD },
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json', 'x-admin-token': sessionToken },
       body: JSON.stringify({ apps })
     });
     const result = await res.json();
@@ -831,7 +860,8 @@
     document.getElementById('f-updated').value = new Date().toISOString().slice(0, 10);
   }
 
-  if (isAuthed()) login();
+  sessionToken = getSession();
+  if (sessionToken) login();
 </script>
 
 </body>

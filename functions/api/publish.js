@@ -1,5 +1,8 @@
+import { isAuthed, corsHeaders } from '../../lib/auth.mjs';
+
+const ALLOWED_ORIGINS = ['https://dhanuksoftwares.com', 'https://www.dhanuksoftwares.com'];
+
 export async function onRequest({ request, env }) {
-  const ADMIN_PASSWORD = env.ADMIN_PASSWORD;
   const GITHUB_TOKEN = env.GITHUB_TOKEN;
   const GITHUB_REPO = env.GITHUB_REPO || 'aasheesh333/dhanuksoftwares';
   const GITHUB_BRANCH = env.GITHUB_BRANCH || 'main';
@@ -7,22 +10,13 @@ export async function onRequest({ request, env }) {
   const CLOUDFLARE_API_TOKEN = env.CLOUDFLARE_API_TOKEN;
   const PAGES_PROJECT = env.PAGES_PROJECT || 'dhanuksoftwares';
 
-  const ALLOWED_ORIGINS = ['https://dhanuksoftwares.com', 'https://www.dhanuksoftwares.com'];
   const requestOrigin = request.headers.get('origin') || '';
-  const allowOrigin = ALLOWED_ORIGINS.includes(requestOrigin) ? requestOrigin : ALLOWED_ORIGINS[0];
-  const headers = {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': allowOrigin,
-    'Access-Control-Allow-Headers': 'Content-Type, x-admin-token',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    'Vary': 'Origin'
-  };
+  const headers = corsHeaders(requestOrigin, ALLOWED_ORIGINS);
 
   if (request.method === 'OPTIONS') return new Response('', { status: 200, headers });
   if (request.method !== 'POST') return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405, headers });
 
-  const token = request.headers.get('x-admin-token');
-  if (token !== ADMIN_PASSWORD) {
+  if (!await isAuthed(request, env)) {
     return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers });
   }
 

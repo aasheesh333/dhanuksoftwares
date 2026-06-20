@@ -266,14 +266,11 @@ async function main() {
   const adminSrc = path.join(ROOT, 'docs', 'admin.html');
   if (fs.existsSync(adminSrc)) {
     const adminHtml = fs.readFileSync(adminSrc, 'utf8');
-    const injected = injectSecrets(adminHtml);
-    const adminDir = path.join(DIST, 'admin');
-    mkdirp(adminDir);
-    fs.writeFileSync(path.join(adminDir, 'index.html'), injected);
-    const docsDir = path.join(DIST, 'docs');
-    mkdirp(docsDir);
-    fs.writeFileSync(path.join(docsDir, 'admin.html'), injected);
-    console.log('  /admin/');
+    mkdirp(path.join(DIST, 'admin'));
+    fs.writeFileSync(path.join(DIST, 'admin/index.html'), adminHtml);
+    mkdirp(path.join(DIST, 'docs'));
+    fs.writeFileSync(path.join(DIST, 'docs/admin.html'), adminHtml);
+    console.log('  /admin/ (no secrets in source — uses /api/login)');
   }
 
   for (const f of ['app-ads.txt', 'CNAME', 'apps.json', 'og-banner.png', 'favicon.svg', 'apple-touch-icon.png', 'manifest.json']) {
