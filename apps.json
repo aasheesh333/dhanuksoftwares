@@ -144,6 +144,11 @@
         "name": "Google Play",
         "url": "https://play.google.com/store/apps/details?id=com.kbf.anti.relax.game",
         "type": "play"
+      },
+      {
+        "name": "Uptodown",
+        "url": "https://en.uptodown.com/android/mecha-chameleon",
+        "type": "uptodown"
       }
     ],
     "rating": {

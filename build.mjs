@@ -343,8 +343,8 @@ async function main() {
   for (const app of apps) {
     const related = apps
       .filter(a => a.slug !== app.slug)
-      .slice(0, 4)
-      .map(a => ({ name: a.name, slug: a.slug, emoji: a.emoji, shortDesc: a.shortDesc }));
+      .slice(0, 6)
+      .map(a => ({ name: a.name, slug: a.slug, emoji: a.emoji, icon: a.icon, shortDesc: a.shortDesc, category: a.category }));
     const html = renderApp(app, BASE_URL, related);
     const outPath = path.join(DIST, 'apps', app.slug, 'index.html');
     writeFile(outPath, html);

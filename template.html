@@ -34,7 +34,7 @@
     :root { --bg:#0b0f1a; --surface:#131929; --card:#1a2235; --accent:#4f8ef7; --accent2:#38e0b0; --text:#e8edf7; --muted:#a0b0cc; --border:#1e2d4a; --danger:#ff5a5f; --warning:#ffc857; }
     *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
     html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; overflow-wrap:break-word; }
-    body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; line-height:1.7; overflow-x:hidden; overflow-wrap:break-word; }
+    body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; font-size:17px; line-height:1.75; overflow-x:hidden; overflow-wrap:break-word; }
     body, p, li, h1, h2, h3, h4, a, span, dd, dt, blockquote, code, pre { overflow-wrap:break-word; word-wrap:break-word; }
     .container, .feature-card, .related-card, .step, .tech-item, .faq-item, .final-cta, .about-text, .btn-primary, .btn-secondary { min-width:0; }
     a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline:2px solid var(--accent); outline-offset:2px; border-radius:4px; }
@@ -85,13 +85,13 @@
     .screenshots-section { padding:2rem 5% 1rem; }
     .screenshots-title { text-align:center; margin-bottom:1rem; }
     .about-section { background:var(--surface); }
-    .about-text { color:var(--muted); font-size:1rem; max-width:720px; }
-    .about-text h2 { font-family:'Syne',sans-serif; font-size:1.4rem; font-weight:700; color:var(--text); margin:1.5rem 0 0.7rem; letter-spacing:-0.3px; }
-    .about-text h3 { font-family:'Syne',sans-serif; font-size:1.15rem; font-weight:700; color:var(--accent2); margin:1.3rem 0 0.6rem; }
-    .about-text h4 { font-family:'Syne',sans-serif; font-size:1.02rem; font-weight:700; color:var(--text); margin:1.1rem 0 0.5rem; }
-    .about-text p { margin:0.7rem 0; line-height:1.75; }
-    .about-text ul, .about-text ol { margin:0.7rem 0 0.7rem 1.5rem; }
-    .about-text li { margin-bottom:0.35rem; }
+    .about-text { color:var(--muted); font-size:1.06rem; line-height:1.8; max-width:760px; }
+    .about-text h2 { font-family:'Syne',sans-serif; font-size:1.5rem; font-weight:700; color:var(--text); margin:1.75rem 0 0.85rem; letter-spacing:-0.3px; line-height:1.3; }
+    .about-text h3 { font-family:'Syne',sans-serif; font-size:1.2rem; font-weight:700; color:var(--accent2); margin:1.4rem 0 0.7rem; line-height:1.35; }
+    .about-text h4 { font-family:'Syne',sans-serif; font-size:1.05rem; font-weight:700; color:var(--text); margin:1.2rem 0 0.6rem; }
+    .about-text p { margin:0.85rem 0; line-height:1.85; }
+    .about-text ul, .about-text ol { margin:0.85rem 0 0.85rem 1.5rem; }
+    .about-text li { margin-bottom:0.5rem; line-height:1.75; }
     .about-text strong { color:var(--text); font-weight:600; }
     .about-text em { color:var(--accent2); font-style:italic; }
     .about-text a { color:var(--accent); text-decoration:underline; }
@@ -99,14 +99,14 @@
     .about-text blockquote { border-left:3px solid var(--accent); padding-left:1rem; color:var(--muted); font-style:italic; margin:1rem 0; }
     .about-text hr { border:none; border-top:1px solid var(--border); margin:1.5rem 0; }
     .features-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1rem; max-width:880px; }
-    .feature-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.25rem; }
-    .feature-icon { font-size:1.5rem; margin-bottom:0.5rem; color:var(--accent2); }
-    .feature-title { font-family:'Syne',sans-serif; font-weight:700; margin-bottom:0.4rem; font-size:0.98rem; }
+    .feature-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.25rem 1.35rem; }
+    .feature-icon { font-size:1.5rem; margin-bottom:0.55rem; color:var(--accent2); }
+    .feature-title { font-family:'Syne',sans-serif; font-weight:700; margin-bottom:0.4rem; font-size:1.02rem; line-height:1.4; }
     .steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; max-width:800px; }
-    .step { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.25rem; position:relative; }
+    .step { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.35rem 1.25rem; position:relative; }
     .step-num { position:absolute; top:-10px; left:1rem; background:var(--accent); color:#fff; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.85rem; }
-    .step h3 { font-family:'Syne',sans-serif; font-size:1rem; margin:0.4rem 0 0.5rem; }
-    .step p { color:var(--muted); font-size:0.9rem; }
+    .step h3 { font-family:'Syne',sans-serif; font-size:1.05rem; margin:0.4rem 0 0.55rem; line-height:1.35; }
+    .step p { color:var(--muted); font-size:0.95rem; line-height:1.7; }
     .screenshots { display:flex; flex-wrap:nowrap; gap:0.75rem; overflow-x:auto; overflow-y:hidden; padding:0.5rem 0 1rem; margin:0 -5%; padding-left:5%; padding-right:5%; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:thin; scrollbar-color:var(--border) transparent; }
     .screenshots::-webkit-scrollbar { height:6px; }
     .screenshots::-webkit-scrollbar-track { background:transparent; }
@@ -131,12 +131,56 @@
     .related-emoji { font-size:1.5rem; margin-bottom:0.3rem; }
     .related-name { font-family:'Syne',sans-serif; font-weight:700; margin-bottom:0.2rem; }
     .related-desc { color:var(--muted); font-size:0.85rem; }
+
+    /* APKpure-style app detail bar */
+    .app-detail-section { padding:1.5rem 5% 1rem; background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+    .app-detail-bar { max-width:960px; margin:0 auto; display:flex; align-items:center; gap:1.25rem; padding:1.25rem; background:var(--card); border:1px solid var(--border); border-radius:16px; position:relative; }
+    .app-detail-icon-wrap { flex-shrink:0; position:relative; }
+    .app-detail-icon { width:80px; height:80px; border-radius:18px; border:1px solid var(--border); display:block; background:var(--surface); }
+    .app-detail-emoji { font-size:3.2rem; width:80px; height:80px; display:flex; align-items:center; justify-content:center; background:var(--surface); border-radius:18px; }
+    .app-detail-share { position:absolute; top:-6px; right:-6px; background:var(--bg); border:1px solid var(--border); border-radius:50%; width:30px; height:30px; display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--accent2); font-size:0.95rem; padding:0; box-shadow:0 2px 6px rgba(0,0,0,0.3); }
+    .app-detail-share:hover { background:var(--surface); color:var(--accent); transform:scale(1.05); }
+    .app-detail-content { flex:1; min-width:0; }
+    .app-detail-name { font-family:'Syne',sans-serif; font-size:1.35rem; font-weight:800; margin-bottom:0.65rem; letter-spacing:-0.5px; word-break:break-word; line-height:1.2; }
+    .app-detail-meta { display:flex; flex-wrap:wrap; gap:1.25rem; align-items:flex-start; }
+    .app-detail-meta-item { display:flex; flex-direction:column; gap:2px; min-width:0; }
+    .app-detail-meta-label { font-size:0.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; font-weight:500; }
+    .app-detail-meta-value { font-size:0.95rem; font-weight:600; color:var(--text); line-height:1.3; }
+    .app-detail-meta-value.safe { color:var(--accent2); display:flex; align-items:center; gap:0.25rem; }
+
+    /* Big "Download App" button (APKpure-style) */
+    .download-app-btn { display:flex; align-items:center; justify-content:center; gap:0.6rem; width:100%; max-width:960px; margin:1.25rem auto 0; padding:1.1rem 1.5rem; background:var(--accent2); color:#0b0f1a; border-radius:14px; text-decoration:none; font-weight:700; font-size:1.15rem; box-shadow:0 6px 18px rgba(56,224,176,0.3); transition:transform 0.2s, box-shadow 0.2s; border:none; cursor:pointer; }
+    .download-app-btn:hover { transform:translateY(-2px); box-shadow:0 10px 24px rgba(56,224,176,0.45); }
+    .download-app-hint { text-align:center; color:var(--muted); font-size:0.88rem; margin:0.7rem auto 0; max-width:960px; }
+
+    /* Marketplace list (when multiple) */
+    .download-options { padding:2rem 5%; background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+    .download-options h2 { text-align:center; margin-bottom:1.25rem; }
+    .marketplace-list { max-width:720px; margin:0 auto; display:flex; flex-direction:column; gap:0.6rem; }
+    .marketplace-row { display:flex; align-items:center; justify-content:space-between; padding:1rem 1.25rem; background:var(--card); border:1px solid var(--border); border-radius:12px; text-decoration:none; color:var(--text); transition:border-color 0.2s, transform 0.2s; gap:1rem; }
+    .marketplace-row:hover { border-color:var(--accent2); transform:translateX(4px); }
+    .mp-info { display:flex; flex-direction:column; gap:0.15rem; min-width:0; }
+    .mp-name { font-weight:600; font-size:1rem; }
+    .mp-tag { color:var(--muted); font-size:0.8rem; }
+    .mp-go { color:var(--accent2); font-size:1.3rem; flex-shrink:0; }
+
+    /* Recommended Apps APKpure-style (compact horizontal cards) */
+    .recommended-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:0.75rem; max-width:960px; margin:0 auto; }
+    .recommended-card { display:flex; align-items:center; gap:0.85rem; padding:0.85rem 1rem; background:var(--card); border:1px solid var(--border); border-radius:12px; text-decoration:none; color:var(--text); transition:border-color 0.2s, transform 0.2s; }
+    .recommended-card:hover { border-color:var(--accent); transform:translateY(-2px); }
+    .recommended-card-icon { width:52px; height:52px; border-radius:12px; flex-shrink:0; background:var(--surface); object-fit:cover; border:1px solid var(--border); }
+    .recommended-card-emoji { width:52px; height:52px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:var(--surface); font-size:1.7rem; flex-shrink:0; border:1px solid var(--border); }
+    .recommended-card-info { flex:1; min-width:0; }
+    .recommended-card-name { font-family:'Syne',sans-serif; font-weight:700; font-size:0.98rem; margin-bottom:0.15rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .recommended-card-meta { color:var(--muted); font-size:0.82rem; display:flex; align-items:center; gap:0.5rem; }
+    .recommended-card-go { color:var(--accent); font-size:1.1rem; flex-shrink:0; }
     .final-cta { background:var(--card); border:1px solid var(--border); border-radius:20px; padding:2rem; text-align:center; max-width:700px; margin:0 auto; }
     .final-cta h2 { margin-bottom:0.5rem; }
     .final-cta p { color:var(--muted); margin-bottom:1.5rem; overflow-wrap:break-word; }
     footer { text-align:center; padding:2rem 5%; border-top:1px solid var(--border); color:var(--muted); font-size:0.85rem; margin-top:2rem; }
     footer a { color:var(--accent); text-decoration:none; }
-    .sticky-bar { position:fixed; bottom:0; left:0; right:0; z-index:60; background:rgba(11,15,26,0.96); backdrop-filter:blur(12px); border-top:1px solid var(--border); padding:0.75rem 5%; display:flex; gap:0.5rem; align-items:center; justify-content:center; }
+    .sticky-bar { position:fixed; bottom:0; left:0; right:0; z-index:60; background:rgba(11,15,26,0.96); backdrop-filter:blur(12px); border-top:1px solid var(--border); padding:0.75rem 5%; display:flex; gap:0.5rem; align-items:center; justify-content:center; opacity:0; pointer-events:none; transform:translateY(100%); transition:opacity 0.25s ease, transform 0.25s ease; }
+    .sticky-bar.visible { opacity:1; pointer-events:auto; transform:translateY(0); }
     .sticky-bar .btn-primary { padding:0.7rem 1.2rem; font-size:0.9rem; }
     .sticky-bar .btn-secondary { padding:0.6rem 1rem; font-size:0.8rem; }
     .sticky-bar-more { position:relative; }
@@ -146,7 +190,7 @@
     .back-to-top { position:fixed; right:1rem; bottom:5.5rem; width:42px; height:42px; border-radius:50%; background:var(--accent); color:#fff; border:none; font-size:1.2rem; cursor:pointer; box-shadow:0 6px 18px rgba(0,0,0,0.4); opacity:0; pointer-events:none; transition:opacity 0.2s, transform 0.2s, background 0.2s; z-index:55; }
     .back-to-top:hover { background:#3a7de8; transform:translateY(-2px); }
     .back-to-top.visible { opacity:1; pointer-events:auto; }
-    @media (min-width:769px) { .sticky-bar { display:none; } }
+    @media (min-width:769px) { .sticky-bar { padding:1rem 5%; } }
     @media (max-width:768px) { body { padding-bottom:80px; } .faq-item summary { padding-right:0.5rem; } }
     @media (max-width:600px) {
       section { padding:2.5rem 5%; }
@@ -154,11 +198,11 @@
       .hero h1 { font-size:clamp(1.6rem,6vw,2.4rem); }
       .hero .tagline { font-size:1rem; }
       .snippet-section { padding:1.25rem 5%; }
-      .snippet { font-size:0.98rem; line-height:1.6; }
+      .snippet { font-size:1rem; line-height:1.65; }
       .snippet::before, .snippet::after { font-size:1.3rem; }
       .stats-bar { padding:1.25rem 5%; }
       .stats-bar-inner { grid-template-columns:repeat(2, 1fr); gap:0.75rem; }
-      .stat-value { font-size:1.15rem; }
+      .stat-value { font-size:1.1rem; }
       .screenshots-section { padding:1.5rem 5% 0.75rem; }
       .features-grid, .steps, .related-grid { grid-template-columns:1fr; }
       .tech-grid { grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); }
@@ -169,7 +213,18 @@
       .sticky-bar .btn-secondary { padding:0.5rem 0.8rem; font-size:0.78rem; }
       .about-text h2 { font-size:1.2rem; }
       .about-text h3 { font-size:1.05rem; }
-      .about-text p, .faq-a { font-size:0.95rem; }
+      .about-text p, .faq-a { font-size:1rem; line-height:1.75; }
+      .app-detail-section { padding:1.25rem 5% 0.85rem; }
+      .app-detail-bar { flex-direction:row; padding:1rem; gap:1rem; }
+      .app-detail-icon, .app-detail-emoji { width:64px; height:64px; }
+      .app-detail-name { font-size:1.1rem; }
+      .app-detail-meta { gap:0.85rem; }
+      .app-detail-meta-value { font-size:0.85rem; }
+      .download-app-btn { font-size:1rem; padding:0.95rem 1.25rem; }
+      .download-options { padding:1.5rem 5%; }
+      .recommended-grid { grid-template-columns:1fr; }
+      .recommended-card { padding:0.75rem 0.85rem; gap:0.7rem; }
+      .recommended-card-icon, .recommended-card-emoji { width:44px; height:44px; }
     }
     @media (max-width:380px) {
       .nav-cta { padding:0.4rem 0.9rem; font-size:0.82rem; }
@@ -289,6 +344,75 @@
 </section>
 {{/if}}
 
+{{#if hasPrimaryDownload}}
+<section class="app-detail-section">
+  <div class="container">
+    <div class="app-detail-bar">
+      <div class="app-detail-icon-wrap">
+        {{#if icon}}<img class="app-detail-icon" src="{{icon}}" alt="{{name}} icon" width="80" height="80"/>{{else}}<div class="app-detail-emoji">{{emoji}}</div>{{/if}}
+        <button class="app-detail-share" aria-label="Share this app" type="button" onclick="shareApp()" title="Share">&#8599;</button>
+      </div>
+      <div class="app-detail-content">
+        <div class="app-detail-name">{{name}}</div>
+        <div class="app-detail-meta">
+          {{#if appSize}}
+          <div class="app-detail-meta-item">
+            <span class="app-detail-meta-label">File Size</span>
+            <span class="app-detail-meta-value">{{appSize}}</span>
+          </div>
+          {{/if}}
+          <div class="app-detail-meta-item">
+            <span class="app-detail-meta-label">Security</span>
+            <span class="app-detail-meta-value safe">&#10004; Verified</span>
+          </div>
+          {{#if totalDownloads}}
+          <div class="app-detail-meta-item">
+            <span class="app-detail-meta-label">Downloads</span>
+            <span class="app-detail-meta-value">{{totalDownloads}}</span>
+          </div>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+    {{#unless hasSecondaryDownloads}}
+    <a class="download-app-btn" href="{{primaryDownloadUrl}}" onclick="trackDl('{{slug}}','{{primaryMarketplaceType}}','download_app')" rel="noopener">&#11015; Download App</a>
+    {{/unless}}
+    {{#if hasSecondaryDownloads}}
+    <a class="download-app-btn" href="#download-options" onclick="trackDl('{{slug}}','{{primaryMarketplaceType}}','download_app_scroll'); scrollToDownloadOptions(event);" rel="noopener">&#11015; Download App</a>
+    <p class="download-app-hint">Multiple stores available — tap to choose your preferred marketplace.</p>
+    {{/if}}
+  </div>
+</section>
+{{/if}}
+
+{{#if hasSecondaryDownloads}}
+<section class="download-options" id="download-options">
+  <div class="container">
+    <h2>Choose a Store</h2>
+    <div class="marketplace-list">
+      {{#if primaryDownloadUrl}}
+      <a class="marketplace-row" href="{{primaryDownloadUrl}}" onclick="trackDl('{{slug}}','{{primaryMarketplaceType}}','download_options_primary')" rel="noopener">
+        <div class="mp-info">
+          <span class="mp-name">{{primaryMarketplaceName}}</span>
+          <span class="mp-tag">Primary marketplace</span>
+        </div>
+        <span class="mp-go">&rarr;</span>
+      </a>
+      {{/if}}
+      {{#each marketplaceRows}}
+      <a class="marketplace-row" href="{{url}}" onclick="trackDl('{{../slug}}','{{type}}','download_options_more')" rel="noopener">
+        <div class="mp-info">
+          <span class="mp-name">{{name}}</span>
+          <span class="mp-tag">Alternative store</span>
+        </div>
+        <span class="mp-go">&rarr;</span>
+      </a>
+      {{/each}}
+    </div>
+  </div>
+</section>
+{{/if}}
+
 <section class="about-section">
   <div class="container">
     <h2>About {{name}}</h2>
@@ -366,12 +490,17 @@
   <div class="container">
     <h2>Recommended Apps</h2>
     <p style="color:var(--muted);margin-bottom:1.5rem;font-size:0.95rem;">More apps from Dhanuk Softwares you might like</p>
-    <div class="related-grid">
+    <div class="recommended-grid">
       {{#each relatedApps}}
-      <a class="related-card" href="/apps/{{slug}}/">
-        <div class="related-emoji">{{emoji}}</div>
-        <div class="related-name">{{name}}</div>
-        <div class="related-desc">{{shortDesc}}</div>
+      <a class="recommended-card" href="/apps/{{slug}}/">
+        {{#if icon}}<img class="recommended-card-icon" src="{{icon}}" alt="{{name}} icon" width="52" height="52"/>{{else}}<div class="recommended-card-emoji">{{emoji}}</div>{{/if}}
+        <div class="recommended-card-info">
+          <div class="recommended-card-name">{{name}}</div>
+          <div class="recommended-card-meta">
+            {{#if category}}<span>{{category}}</span>{{/if}}
+          </div>
+        </div>
+        <span class="recommended-card-go">&rarr;</span>
       </a>
       {{/each}}
     </div>
@@ -474,6 +603,60 @@
       });
     } catch (e) {}
   }
+  function shareApp() {
+    var url = window.location.href;
+    var title = document.title;
+    if (navigator.share) {
+      navigator.share({ title: title, url: url }).catch(function(){});
+    } else if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function(){
+        var btn = document.querySelector('.app-detail-share');
+        if (btn) {
+          var orig = btn.innerHTML;
+          btn.innerHTML = '&#10003;';
+          setTimeout(function(){ btn.innerHTML = orig; }, 1500);
+        }
+      }).catch(function(){
+        window.prompt('Copy this link:', url);
+      });
+    } else {
+      window.prompt('Copy this link:', url);
+    }
+  }
+  function scrollToDownloadOptions(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    var el = document.getElementById('download-options');
+    if (!el) return;
+    var nav = document.querySelector('nav');
+    var offset = nav ? nav.offsetHeight + 12 : 0;
+    var top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+    window.scrollTo({ top: top, behavior: 'smooth' });
+  }
+  // Sticky bar: show only when the main Download App button has been scrolled past
+  (function() {
+    var sticky = document.querySelector('.sticky-bar');
+    var target = document.querySelector('.download-app-btn');
+    if (!sticky) return;
+    if (!target || !('IntersectionObserver' in window)) {
+      if (target) sticky.classList.add('visible');
+      return;
+    }
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          sticky.classList.remove('visible');
+        } else {
+          var rect = entry.target.getBoundingClientRect();
+          if (rect.top < 0) {
+            sticky.classList.add('visible');
+          } else {
+            sticky.classList.remove('visible');
+          }
+        }
+      });
+    }, { threshold: 0, rootMargin: '0px' });
+    observer.observe(target);
+  })();
 </script>
 
 </body>
