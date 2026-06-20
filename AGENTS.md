@@ -11,7 +11,7 @@ ADMIN_PASSWORD=... node build.mjs                       # build to dist/ (env re
 wrangler pages deploy dist --project-name=dhanuksoftwares --branch=main --commit-dirty=true
 ```
 
-`build.mjs` reads `apps.json` + `template.html` and emits `dist/apps/{slug}/index.html`, `dist/apps/index.html`, `dist/sitemap.xml`, `dist/robots.txt`, `dist/_headers`, `dist/_redirects`. It also copies `app-ads.txt`, `CNAME`, and `apps.json` to `dist/` — **`apps.json` MUST be in dist or admin breaks** (admin loads it via `fetch('../apps.json')`).
+`build.mjs` reads `apps.json` + `template.html` and emits `dist/apps/{slug}/index.html`, `dist/apps/index.html`, `dist/sitemap.xml`, `dist/robots.txt`, `dist/_headers`, `dist/_redirects`. It also copies `app-ads.txt`, `CNAME`, and `apps.json` to `dist/` — **`apps.json` MUST be in dist or admin breaks** (admin loads it via `fetch('../apps.json')`). Privacy (`privacy.html`), Terms (`terms.html`), and Cookies (`cookies.html`) are also copied to `dist/<page>/index.html`.
 
 `wrangler.jsonc` declares `pages_build_output_dir: "./dist"` and `compatibility_flags: ["nodejs_compat"]` (Functions need it for `btoa`, etc.). No package.json — wrangler is a global CLI install.
 
