@@ -444,6 +444,14 @@ async function main() {
     console.log('  /admin/ (no secrets in source — uses /api/login)');
   }
 
+  // IndexNow: copy key file(s) — matches <32-hex-chars>.txt pattern
+  for (const f of fs.readdirSync(ROOT)) {
+    if (/^[0-9a-f]{32}\.txt$/i.test(f)) {
+      fs.copyFileSync(path.join(ROOT, f), path.join(DIST, f));
+      console.log(`  /${f} (IndexNow key)`);
+    }
+  }
+
   for (const f of ['app-ads.txt', 'CNAME', 'apps.json', 'og-banner.png', 'favicon.svg', 'apple-touch-icon.png', 'manifest.json']) {
     const src = path.join(ROOT, f);
     if (fs.existsSync(src)) {
