@@ -598,14 +598,21 @@
 
     function categorize(id){
       const lower = id.toLowerCase();
-      if (lower.includes('embed') || lower.includes('rerank') || lower.includes('bge-') || lower.includes('nvclip')) return 'embedding';
-      if (lower.includes('flux') || lower.includes('stable-diffusion') || lower.includes('sd-') || lower.includes('image')) return 'image';
-      if (lower.includes('video') || lower.includes('cosmos') || lower.includes('svd')) return 'video';
+      if (lower.includes('embed') || lower.includes('rerank') || lower.includes('bge-') || lower.includes('nvclip') || lower.includes('nv-embed')) return 'embedding';
+      if (lower.includes('flux') || lower.includes('stable-diffusion') || lower.includes('sd-') || lower.includes('image') || lower.includes('trellis')) return 'image';
+      if (lower.includes('video') || lower.includes('cosmos-predict') || lower.includes('svd') || lower.includes('stable-video')) return 'video';
       if (lower.includes('code') || lower.includes('coder')) return 'code';
-      if (lower.includes('vision') || lower.includes('vl-') || lower.includes('-vl') || lower.includes('multimodal') || lower.includes('paligemma') || lower.includes('guard-4')) return 'multimodal';
-      if (lower.includes('alpha') || lower.includes('esm') || lower.includes('boltz') || lower.includes('diffdock') || lower.includes('evo2') || lower.includes('genmol') || lower.includes('molmim') || lower.includes('vista3d') || lower.includes('rfdiffusion') || lower.includes('protein')) return 'healthcare';
-      if (lower.includes('pii') || lower.includes('safety') || lower.includes('jailbreak') || lower.includes('nemoguard')) return 'multimodal';
+      if (lower.includes('vision') || lower.includes('vl-') || lower.includes('-vl') || lower.includes('multimodal') || lower.includes('paligemma') || lower.includes('guard-4') || lower.includes('vila') || lower.includes('neva')) return 'multimodal';
+      if (lower.includes('alpha') || lower.includes('esm') || lower.includes('boltz') || lower.includes('diffdock') || lower.includes('evo2') || lower.includes('genmol') || lower.includes('molmim') || lower.includes('vista3d') || lower.includes('rfdiffusion') || lower.includes('protein') || lower.includes('colabfold')) return 'healthcare';
+      if (lower.includes('pii') || lower.includes('safety') || lower.includes('jailbreak') || lower.includes('nemoguard') || lower.includes('parse') || lower.includes('detect')) return 'multimodal';
+      if (lower.includes('translate') || lower.includes('riva')) return 'multimodal';
+      if (lower.includes('cuopt') || lower.includes('corrdiff') || lower.includes('fourcastnet') || lower.includes('sparsedrive') || lower.includes('streampetr') || lower.includes('bevformer') || lower.includes('ising')) return 'multimodal';
       return 'llm';
+    }
+
+    function canTestChat(id){
+      var cat = categorize(id);
+      return cat === 'llm' || cat === 'code';
     }
 
     // FILTER
@@ -644,15 +651,20 @@
       }
 
       grid.innerHTML = filtered.map(function(m){
+        var testable = canTestChat(m.id);
+        var safeId = m.id.replace(/\//g,'-');
+        var footerContent = testable
+          ? '<button class="btn btn-primary btn-sm" onclick="testModelSpeed(\'' + escAttr(m.id) + '\')">Test Speed</button>'
+          : '<span style="font-size:0.8rem;color:var(--muted);">Chat API only</span>';
         return '<div class="model-card" id="card-' + escHtml(m.id) + '">' +
           '<div class="model-card-header"><div class="model-name">' + escHtml(m.name.split('/').pop()) + '</div><span class="model-provider">' + escHtml(m.provider) + '</span></div>' +
           '<div class="model-category-tag">' + escHtml(m.category) + '</div>' +
           '<div class="model-desc">' + escHtml(m.id) + '</div>' +
           '<div class="model-card-footer">' +
-            '<button class="btn btn-primary btn-sm" onclick="testModelSpeed(\'' + escAttr(m.id) + '\')">Test Speed</button>' +
-            '<div id="status-' + escHtml(m.id).replace(/\//g,'-') + '"></div>' +
+            footerContent +
+            '<div id="status-' + safeId + '"></div>' +
           '</div>' +
-          '<div class="test-results" id="results-' + escHtml(m.id).replace(/\//g,'-') + '" style="display:none;"></div>' +
+          '<div class="test-results" id="results-' + safeId + '" style="display:none;"></div>' +
         '</div>';
       }).join('');
     }
@@ -690,9 +702,15 @@
 
         if (!res.ok) {
           var err = await res.json().catch(function(){ return { error: 'HTTP ' + res.status }; });
+          var errMsg = err.error || ('HTTP ' + res.status);
+          var detail = err.detail || '';
+          if (res.status === 404) errMsg = 'Model not available for chat completions';
+          else if (res.status === 429) errMsg = 'Rate limited by NVIDIA — wait and retry';
+          else if (res.status === 401) errMsg = 'Invalid API key';
           statusEl.innerHTML = '';
           resultsEl.style.display = 'block';
-          resultsEl.innerHTML = '<div class="test-results" style="grid-template-columns:1fr;display:block;text-align:center;"><span class="result-value error">' + escHtml(err.error || 'Error') + '</span></div>';
+          resultsEl.innerHTML = '<div class="result-item" style="grid-column:1/-1;text-align:center;"><div class="result-value error">' + escHtml(errMsg) + '</div>' +
+            (detail ? '<div style="font-size:0.75rem;color:var(--muted);margin-top:0.3rem;">' + escHtml(detail.slice(0,200)) + '</div>' : '') + '</div>';
           return;
         }
 
@@ -748,9 +766,9 @@
       var delay = 0;
       cards.forEach(function(card){
         var btn = card.querySelector('.btn-primary');
-        if (btn) {
+        if (btn && btn.textContent.trim() === 'Test Speed') {
           setTimeout(function(){ btn.click(); }, delay);
-          delay += 1500;
+          delay += 2000;
         }
       });
     };
