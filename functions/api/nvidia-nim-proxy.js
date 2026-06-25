@@ -52,6 +52,11 @@ export async function onRequest({ request }) {
       return new Response(JSON.stringify({ error: 'Invalid or missing NVIDIA API key. Key must start with nvapi-' }), { status: 401, headers });
     }
 
+    let requestBody = null;
+    if (request.method === 'POST') {
+      requestBody = await request.text();
+    }
+
     const fetchOptions = {
       method: request.method === 'POST' ? 'POST' : 'GET',
       headers: {
@@ -61,9 +66,8 @@ export async function onRequest({ request }) {
       },
     };
 
-    if (request.method === 'POST') {
-      const body = await request.text();
-      fetchOptions.body = body;
+    if (requestBody) {
+      fetchOptions.body = requestBody;
     }
 
     let nimUrl;
@@ -79,7 +83,8 @@ export async function onRequest({ request }) {
     } else if (nimAction === 'image-generations') {
       nimUrl = `${NIM_BASE}/image/generations`;
     } else if (nimAction === 'health') {
-      const body = await request.json().catch(() => ({}));
+      let body = {};
+      if (requestBody) { try { body = JSON.parse(requestBody); } catch(e) {} }
       const models = Array.isArray(body.models) ? body.models.slice(0, 50) : [];
       const categories = body.categories || {};
       if (!models.length) {
