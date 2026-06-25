@@ -597,16 +597,17 @@
     }
 
     function categorize(id){
-      const lower = id.toLowerCase();
+      var lower = id.toLowerCase();
       if (lower.includes('embed') || lower.includes('rerank') || lower.includes('bge-') || lower.includes('nvclip') || lower.includes('nv-embed')) return 'embedding';
-      if (lower.includes('flux') || lower.includes('stable-diffusion') || lower.includes('sd-') || lower.includes('image') || lower.includes('trellis')) return 'image';
-      if (lower.includes('video') || lower.includes('cosmos-predict') || lower.includes('svd') || lower.includes('stable-video')) return 'video';
+      if (lower.includes('flux') || lower.includes('stable-diffusion') || lower.includes('trellis')) return 'image';
+      if (lower.includes('video') || lower.includes('cosmos-predict') || lower.includes('stable-video') || lower.includes('ai-synthetic-video')) return 'video';
       if (lower.includes('code') || lower.includes('coder')) return 'code';
-      if (lower.includes('vision') || lower.includes('vl-') || lower.includes('-vl') || lower.includes('multimodal') || lower.includes('paligemma') || lower.includes('guard-4') || lower.includes('vila') || lower.includes('neva')) return 'multimodal';
-      if (lower.includes('alpha') || lower.includes('esm') || lower.includes('boltz') || lower.includes('diffdock') || lower.includes('evo2') || lower.includes('genmol') || lower.includes('molmim') || lower.includes('vista3d') || lower.includes('rfdiffusion') || lower.includes('protein') || lower.includes('colabfold')) return 'healthcare';
-      if (lower.includes('pii') || lower.includes('safety') || lower.includes('jailbreak') || lower.includes('nemoguard') || lower.includes('parse') || lower.includes('detect')) return 'multimodal';
+      if (lower.includes('vision') || lower.includes('-vl') || lower.includes('vl-') || lower.includes('paligemma') || lower.includes('guard-4') || lower.includes('vila') || lower.includes('neva') || lower.includes('kosmos') || lower.includes('phi-3-vision') || lower.includes('phi-4-multimodal') || lower.includes('llama-4-maverick')) return 'multimodal';
+      if (lower.includes('alpha') || lower.includes('esm') || lower.includes('boltz') || lower.includes('diffdock') || lower.includes('evo2') || lower.includes('genmol') || lower.includes('molmim') || lower.includes('protein') || lower.includes('colabfold')) return 'healthcare';
+      if (lower.includes('pii') || lower.includes('safety') || lower.includes('jailbreak') || lower.includes('nemoguard') || lower.includes('parse') || lower.includes('detect') || lower.includes('content-safety') || lower.includes('gliner')) return 'multimodal';
       if (lower.includes('translate') || lower.includes('riva')) return 'multimodal';
-      if (lower.includes('cuopt') || lower.includes('corrdiff') || lower.includes('fourcastnet') || lower.includes('sparsedrive') || lower.includes('streampetr') || lower.includes('bevformer') || lower.includes('ising')) return 'multimodal';
+      if (lower.includes('cuopt') || lower.includes('corrdiff') || lower.includes('fourcastnet') || lower.includes('sparsedrive') || lower.includes('streampetr') || lower.includes('bevformer') || lower.includes('ising') || lower.includes('nemoretriever')) return 'multimodal';
+      if (lower.includes('deplot') || lower.includes('diffusiongemma')) return 'multimodal';
       return 'llm';
     }
 
@@ -630,27 +631,38 @@
     });
 
     // RENDER MODELS
+    var SHOW_LIMIT = 30;
+    var visibleCount = SHOW_LIMIT;
+
     function renderModels(){
       var grid = document.getElementById('models-grid');
       var countEl = document.getElementById('model-count');
+      visibleCount = SHOW_LIMIT;
       if (!allModels.length) {
         grid.innerHTML = '<div class="empty-state"><div style="font-size:2rem;margin-bottom:1rem;">⏳</div><h3>Enter your API key and click Save to load models</h3></div>';
         countEl.textContent = 'No models loaded';
         return;
       }
+      renderModelCards();
+    }
+
+    function renderModelCards(){
+      var grid = document.getElementById('models-grid');
+      var countEl = document.getElementById('model-count');
       var filtered = allModels.filter(function(m){
         var matchFilter = currentFilter === 'all' || m.category === currentFilter;
         var matchSearch = !searchQuery || m.name.toLowerCase().includes(searchQuery) || m.provider.toLowerCase().includes(searchQuery) || m.category.includes(searchQuery);
         return matchFilter && matchSearch;
       });
-      countEl.textContent = 'Showing ' + filtered.length + ' of ' + allModels.length + ' models';
+      var showing = Math.min(visibleCount, filtered.length);
+      countEl.textContent = 'Showing ' + showing + ' of ' + filtered.length + ' models' + (filtered.length !== allModels.length ? ' (' + allModels.length + ' total)' : '');
 
       if (!filtered.length) {
         grid.innerHTML = '<div class="empty-state"><h3>No models match your filter</h3><p>Try a different search term or category.</p></div>';
         return;
       }
 
-      grid.innerHTML = filtered.map(function(m){
+      var cards = filtered.slice(0, visibleCount).map(function(m){
         var testable = canTestChat(m.id);
         var safeId = m.id.replace(/\//g,'-');
         var footerContent = testable
@@ -667,7 +679,18 @@
           '<div class="test-results" id="results-' + safeId + '" style="display:none;"></div>' +
         '</div>';
       }).join('');
+
+      if (filtered.length > visibleCount) {
+        cards += '<div style="grid-column:1/-1;text-align:center;padding:1rem;"><button class="btn btn-outline btn-sm" onclick="showMoreModels()">Show More (' + (filtered.length - visibleCount) + ' remaining)</button></div>';
+      }
+
+      grid.innerHTML = cards;
     }
+
+    window.showMoreModels = function(){
+      visibleCount += SHOW_LIMIT;
+      renderModelCards();
+    };
 
     // TEST MODEL SPEED
     window.testModelSpeed = async function(modelId){
