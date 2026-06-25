@@ -9,6 +9,8 @@
   <meta name="robots" content="index, follow, max-image-preview:large"/>
   <meta name="google-site-verification" content="wUxP6_5lBO1-6cbC6518XVjQ76YmsMDaiOOTrzQKUjE"/>
   <link rel="canonical" href="{{baseUrl}}/apps/{{slug}}/"/>
+  <link rel="alternate" hreflang="x-default" href="{{baseUrl}}/apps/{{slug}}/"/>
+  <link rel="alternate" hreflang="en" href="{{baseUrl}}/apps/{{slug}}/"/>
 
   <meta property="og:title" content="{{name}} - {{tagline}}"/>
   <meta property="og:description" content="{{shortDesc}}"/>
@@ -18,8 +20,10 @@
   <meta property="og:image" content="{{primaryScreenshot}}"/>
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
-  <meta property="og:image:alt" content="{{name}} - {{tagline}}"/>
+  <meta property="og:image:alt" content="{{name}} app preview"/>
   <meta property="og:locale" content="en_IN"/>
+  <meta property="article:published_time" content="{{datePublished}}"/>
+  <meta property="article:modified_time" content="{{lastUpdated}}"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="{{name}} - {{tagline}}"/>
   <meta name="twitter:description" content="{{shortDesc}}"/>
@@ -33,227 +37,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <style>
-    :root { --bg:#0b0f1a; --surface:#131929; --card:#1a2235; --accent:#4f8ef7; --accent2:#38e0b0; --text:#e8edf7; --muted:#a0b0cc; --border:#1e2d4a; --danger:#ff5a5f; --warning:#ffc857; }
-    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
-    html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; overflow-wrap:break-word; }
-    body { background:var(--bg); color:var(--text); font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,sans-serif; font-size:16px; line-height:1.65; overflow-x:hidden; overflow-wrap:break-word; }
-    body, p, li, h1, h2, h3, h4, a, span, dd, dt, blockquote, code, pre { overflow-wrap:break-word; word-wrap:break-word; }
-    .container, .feature-card, .related-card, .step, .tech-item, .faq-item, .final-cta, .about-text, .btn-primary, .btn-secondary { min-width:0; }
-    a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline:2px solid var(--accent); outline-offset:2px; border-radius:4px; }
-    .skip-link { position:absolute; left:-9999px; top:0; background:var(--accent); color:#fff; padding:0.7rem 1.2rem; z-index:200; border-radius:0 0 8px 0; text-decoration:none; font-weight:600; }
-    .skip-link:focus { left:0; }
-    nav { position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:0.85rem 5%; background:rgba(11,15,26,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); gap:1rem; }
-    .nav-logo { font-weight:700; font-size:1.15rem; color:#ffffff; text-decoration:none; flex-shrink:0; }
-    .nav-logo span { color:var(--accent2); }
-    .nav-search { display:flex; align-items:center; gap:0.4rem; flex:1; max-width:340px; min-width:0; }
-    .nav-search-input { background:var(--surface); border:1px solid var(--border); color:var(--text); padding:0.5rem 0.75rem; border-radius:8px; font-size:0.88rem; flex:1; min-width:0; font-family:inherit; outline:none; transition:border-color 0.2s; }
-    .nav-search-input:focus { border-color:var(--accent2); }
-    .nav-search-input::placeholder { color:var(--muted); }
-    .nav-search-submit { background:var(--accent); color:#fff; border:none; padding:0.5rem 0.7rem; border-radius:8px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background 0.2s; flex-shrink:0; }
-    .nav-search-submit:hover { background:#3a7de8; }
-    .nav-cta { background:var(--accent); color:#fff; padding:0.5rem 1.2rem; border-radius:8px; text-decoration:none; font-size:0.9rem; font-weight:500; flex-shrink:0; }
-    .nav-cta:hover { background:#3a7de8; }
-    .container { max-width:960px; margin:0 auto; padding:0 5%; }
-    .breadcrumb { padding:1rem 5%; font-size:0.85rem; color:var(--muted); word-break:break-word; overflow-wrap:anywhere; }
-    .breadcrumb a { color:var(--muted); text-decoration:none; white-space:nowrap; }
-    .breadcrumb span { word-break:break-word; }
-    .breadcrumb a:hover { color:var(--accent); }
-    .hero-mini { padding:1rem 5% 0.5rem; text-align:center; background:var(--surface); border-bottom:1px solid var(--border); }
-    .hero-mini .tagline { color:var(--accent2); font-size:1.05rem; margin-bottom:0.5rem; font-weight:500; line-height:1.4; }
-    .hero-mini .snippet { color:var(--muted); font-size:0.95rem; line-height:1.55; max-width:680px; margin:0 auto 0.5rem; font-weight:400; }
-    .hero-mini .snippet::before, .hero-mini .snippet::after { content:none; }
-
-    .cta-row { display:flex; flex-wrap:wrap; gap:0.6rem; justify-content:center; margin-bottom:1rem; }
-    .btn-primary { background:var(--accent); color:#fff; padding:0.85rem 1.6rem; border-radius:10px; text-decoration:none; font-weight:600; font-size:1rem; display:inline-flex; align-items:center; gap:0.5rem; max-width:100%; white-space:normal; text-align:center; justify-content:center; line-height:1.3; }
-    .btn-primary:hover { background:#3a7de8; transform:translateY(-1px); }
-    .btn-secondary { background:transparent; border:1px solid var(--border); color:var(--text); padding:0.7rem 1.2rem; border-radius:999px; text-decoration:none; font-size:0.85rem; display:inline-flex; align-items:center; gap:0.4rem; max-width:100%; white-space:normal; text-align:center; justify-content:center; line-height:1.3; }
-    .btn-secondary:hover { border-color:var(--accent); color:var(--accent); }
-    .more-stores { text-align:center; margin-top:0.5rem; }
-    .more-stores details { display:inline-block; }
-    .more-stores summary { cursor:pointer; color:var(--muted); font-size:0.85rem; padding:0.4rem 0.8rem; }
-    .more-stores summary:hover { color:var(--accent); }
-    .more-stores .store-list { display:flex; flex-wrap:wrap; gap:0.4rem; justify-content:center; margin-top:0.5rem; }
-    section { padding:3rem 5%; }
-    section h2 { font-size:clamp(1.4rem,3.2vw,1.75rem); font-weight:700; margin-bottom:1rem; letter-spacing:-0.4px; line-height:1.3; }
-    .snippet-section { background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:1.75rem 5%; }
-    .snippet { color:var(--muted); font-size:1rem; line-height:1.65; max-width:720px; margin:0 auto; text-align:center; font-weight:400; }
-    .snippet::before { content:'“'; color:var(--accent); font-size:1.6rem; font-weight:700; margin-right:0.2rem; }
-    .snippet::after { content:'”'; color:var(--accent); font-size:1.6rem; font-weight:700; margin-left:0.2rem; }
-
-    .screenshots-section { padding:2rem 5% 1rem; }
-    .screenshots-title { text-align:center; margin-bottom:1rem; }
-    .about-section { background:var(--surface); }
-    .about-text { color:var(--muted); font-size:1rem; line-height:1.75; max-width:760px; }
-    .about-text h2 { font-size:1.3rem; font-weight:700; color:var(--text); margin:1.5rem 0 0.7rem; letter-spacing:-0.3px; line-height:1.3; }
-    .about-text h3 { font-size:1.1rem; font-weight:700; color:var(--accent2); margin:1.3rem 0 0.6rem; line-height:1.35; }
-    .about-text h4 { font-size:1rem; font-weight:700; color:var(--text); margin:1.1rem 0 0.5rem; }
-    .about-text p { margin:0.8rem 0; line-height:1.75; }
-    .about-text ul, .about-text ol { margin:0.8rem 0 0.8rem 1.5rem; }
-    .about-text li { margin-bottom:0.4rem; line-height:1.7; }
-    .about-text strong { color:var(--text); font-weight:600; }
-    .about-text em { color:var(--accent2); font-style:italic; }
-    .about-text a { color:var(--accent); text-decoration:underline; }
-    .about-text code { background:var(--surface); padding:0.1rem 0.35rem; border-radius:4px; font-size:0.9em; }
-    .about-text blockquote { border-left:3px solid var(--accent); padding-left:1rem; color:var(--muted); font-style:italic; margin:1rem 0; }
-    .about-text hr { border:none; border-top:1px solid var(--border); margin:1.5rem 0; }
-    .features-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1rem; max-width:880px; }
-    .feature-card { display:flex; align-items:flex-start; gap:0.6rem; padding:0.85rem 1.1rem; background:var(--card); border:1px solid var(--border); border-radius:10px; }
-    .feature-icon { font-size:1rem; color:var(--accent2); flex-shrink:0; line-height:1.55; margin-top:1px; }
-    .feature-title { font-weight:500; font-size:0.93rem; line-height:1.55; color:var(--text); }
-    .steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; max-width:800px; }
-    .step { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.25rem; position:relative; }
-    .step-num { position:absolute; top:-10px; left:1rem; background:var(--accent); color:#fff; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:600; font-size:0.85rem; }
-    .step h3 { font-size:1rem; margin:0.4rem 0 0.5rem; line-height:1.35; font-weight:600; }
-    .step p { color:var(--muted); font-size:0.92rem; line-height:1.6; }
-    .screenshots { display:flex; flex-wrap:nowrap; gap:0.75rem; overflow-x:auto; overflow-y:hidden; padding:0.5rem 0 1rem; margin:0 -5%; padding-left:5%; padding-right:5%; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:thin; scrollbar-color:var(--border) transparent; }
-    .screenshots::-webkit-scrollbar { height:6px; }
-    .screenshots::-webkit-scrollbar-track { background:transparent; }
-    .screenshots::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
-    .screenshots img { flex:0 0 auto; width:auto; height:380px; max-width:100%; aspect-ratio:9/16; object-fit:cover; border-radius:14px; border:1px solid var(--border); scroll-snap-align:start; background:var(--surface); }
-    .screenshots img:first-child { margin-left:0; }
-    .faq-item { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:0.95rem 1.2rem; margin-bottom:0.7rem; max-width:760px; }
-    .faq-item summary { cursor:pointer; font-weight:600; color:var(--accent2); list-style:none; display:flex; align-items:center; justify-content:space-between; gap:1rem; font-size:0.98rem; line-height:1.4; }
-    .faq-item summary::-webkit-details-marker { display:none; }
-    .faq-item summary::after { content:'+'; font-size:1.3rem; color:var(--muted); transition:transform 0.2s; }
-    .faq-item[open] summary::after { content:'−'; }
-    .faq-item[open] .faq-a { margin-top:0.65rem; }
-    .faq-q { font-weight:600; color:var(--accent2); }
-    .faq-a { color:var(--muted); font-size:0.95rem; line-height:1.65; }
-    .tech-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:0.75rem; max-width:600px; }
-    .tech-item { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:0.75rem 1rem; }
-    .tech-label { color:var(--muted); font-size:0.75rem; }
-    .tech-value { font-weight:600; font-size:0.95rem; }
-    .related-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; }
-    .related-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1rem; text-decoration:none; color:var(--text); transition:border-color 0.2s; }
-    .related-card:hover { border-color:var(--accent); }
-    .related-emoji { font-size:1.5rem; margin-bottom:0.3rem; }
-    .related-name { font-family:'Inter',sans-serif; font-weight:700; margin-bottom:0.2rem; }
-    .related-desc { color:var(--muted); font-size:0.85rem; }
-
-    /* APKpure-style app detail card — full match of structure: icon + name + developer/date + verified pill + 3-col info row */
-    .app-detail-section { padding:1.5rem 5%; background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
-    .app-info-card { max-width:960px; margin:0 auto; background:var(--card); border:1px solid var(--border); border-radius:14px; padding:1.25rem 1.5rem; }
-    .app-info-header { display:flex; align-items:flex-start; gap:1.25rem; margin-bottom:1rem; }
-    .app-info-icon-wrap { flex-shrink:0; position:relative; }
-    .app-info-icon { width:80px; height:80px; border-radius:18px; border:1px solid var(--border); display:block; background:var(--surface); object-fit:cover; }
-    .app-info-emoji { font-size:3rem; width:80px; height:80px; display:flex; align-items:center; justify-content:center; background:var(--surface); border-radius:18px; }
-    .app-info-share { position:absolute; top:-6px; right:-6px; background:var(--bg); border:1px solid var(--border); border-radius:50%; width:28px; height:28px; display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--accent2); font-size:0.85rem; padding:0; box-shadow:0 2px 6px rgba(0,0,0,0.3); }
-    .app-info-share:hover { background:var(--surface); color:var(--accent); transform:scale(1.05); }
-    .app-info-text { flex:1; min-width:0; padding-top:0.15rem; }
-    .app-info-name { font-size:1.45rem; font-weight:700; color:var(--text); line-height:1.2; margin-bottom:0.35rem; letter-spacing:-0.4px; word-break:break-word; }
-    .app-info-meta { color:var(--muted); font-size:0.88rem; line-height:1.5; margin-bottom:0.65rem; font-weight:400; word-break:break-word; }
-    .app-info-meta a { color:var(--accent); text-decoration:none; }
-    .app-info-safe { display:inline-flex; align-items:center; gap:0.3rem; background:rgba(56,224,176,0.12); color:var(--accent2); border-radius:999px; padding:0.25rem 0.7rem; font-size:0.78rem; font-weight:600; line-height:1.2; }
-    .app-info-safe svg { width:13px; height:13px; fill:var(--accent2); }
-
-    /* 3-column info row: File Size | Security | Android */
-    .app-info-list { display:grid; grid-template-columns:repeat(3, 1fr); gap:0; padding:0; margin:0; list-style:none; border-top:1px solid var(--border); padding-top:1rem; }
-    .app-info-list li { display:flex; flex-direction:column; align-items:center; justify-content:flex-start; gap:0.4rem; text-align:center; padding:0 0.5rem; min-width:0; }
-    .app-info-list li + li { border-left:1px solid var(--border); }
-    .app-info-list .info-icon { width:24px; height:24px; display:flex; align-items:center; justify-content:center; color:var(--muted); margin-bottom:0.15rem; flex-shrink:0; }
-    .app-info-list .info-icon svg { width:22px; height:22px; fill:var(--muted); }
-    .app-info-list .info-head { font-size:0.72rem; color:var(--muted); font-weight:500; text-transform:none; line-height:1.2; }
-    .app-info-list .info-desc { font-size:0.92rem; color:var(--text); font-weight:600; line-height:1.25; word-break:break-word; }
-    .app-info-list .info-desc.safe { color:var(--accent2); }
-
-    /* APKpure-style pill Download App button */
-    .download-app-btn { display:flex; align-items:center; justify-content:center; gap:0.6rem; width:100%; max-width:960px; margin:1.25rem auto 0; padding:0.95rem 1.5rem; background:var(--accent2); color:#0b0f1a; border-radius:999px; text-decoration:none; font-weight:700; font-size:1.05rem; box-shadow:0 4px 14px rgba(56,224,176,0.25); transition:transform 0.2s, box-shadow 0.2s; border:none; cursor:pointer; }
-    .download-app-btn:hover { transform:translateY(-1px); box-shadow:0 8px 20px rgba(56,224,176,0.4); }
-    .download-app-btn svg { width:18px; height:18px; fill:#0b0f1a; }
-    .download-app-hint { text-align:center; color:var(--muted); font-size:0.85rem; margin:0.6rem auto 0; max-width:960px; }
-
-    /* Marketplace list (when multiple) */
-    .download-options { padding:2rem 5%; background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
-    .download-options h2 { text-align:center; margin-bottom:1.25rem; }
-    .marketplace-list { max-width:720px; margin:0 auto; display:flex; flex-direction:column; gap:0.6rem; }
-    .marketplace-row { display:flex; align-items:center; justify-content:space-between; padding:1rem 1.25rem; background:var(--card); border:1px solid var(--border); border-radius:12px; text-decoration:none; color:var(--text); transition:border-color 0.2s, transform 0.2s; gap:1rem; }
-    .marketplace-row:hover { border-color:var(--accent2); transform:translateX(4px); }
-    .mp-info { display:flex; flex-direction:column; gap:0.15rem; min-width:0; }
-    .mp-name { font-weight:600; font-size:1rem; }
-    .mp-tag { color:var(--muted); font-size:0.8rem; }
-    .mp-go { color:var(--accent2); font-size:1.3rem; flex-shrink:0; }
-
-    /* Recommended Apps APKpure-style (compact horizontal cards) */
-    .recommended-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:0.75rem; max-width:960px; margin:0 auto; }
-    .recommended-card { display:flex; align-items:center; gap:0.85rem; padding:0.85rem 1rem; background:var(--card); border:1px solid var(--border); border-radius:12px; text-decoration:none; color:var(--text); transition:border-color 0.2s, transform 0.2s; }
-    .recommended-card:hover { border-color:var(--accent); transform:translateY(-2px); }
-    .recommended-card-icon { width:52px; height:52px; border-radius:12px; flex-shrink:0; background:var(--surface); object-fit:cover; border:1px solid var(--border); }
-    .recommended-card-emoji { width:52px; height:52px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:var(--surface); font-size:1.7rem; flex-shrink:0; border:1px solid var(--border); }
-    .recommended-card-info { flex:1; min-width:0; }
-    .recommended-card-name { font-family:'Inter',sans-serif; font-weight:700; font-size:0.98rem; margin-bottom:0.15rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-    .recommended-card-meta { color:var(--muted); font-size:0.82rem; display:flex; align-items:center; gap:0.5rem; }
-    .recommended-card-go { color:var(--accent); font-size:1.1rem; flex-shrink:0; }
-    .final-cta { background:var(--card); border:1px solid var(--border); border-radius:20px; padding:2rem; text-align:center; max-width:700px; margin:0 auto; }
-    .final-cta h2 { margin-bottom:0.5rem; }
-    .final-cta p { color:var(--muted); margin-bottom:1.5rem; overflow-wrap:break-word; }
-    footer { text-align:center; padding:2rem 5%; border-top:1px solid var(--border); color:var(--muted); font-size:0.85rem; margin-top:2rem; }
-    footer a { color:var(--accent); text-decoration:none; }
-    .sticky-bar { position:fixed; bottom:0; left:0; right:0; z-index:60; background:rgba(11,15,26,0.96); backdrop-filter:blur(12px); border-top:1px solid var(--border); padding:0.75rem 5%; display:flex; gap:0.5rem; align-items:center; justify-content:center; opacity:0; pointer-events:none; transform:translateY(100%); transition:opacity 0.25s ease, transform 0.25s ease; }
-    .sticky-bar.visible { opacity:1; pointer-events:auto; transform:translateY(0); }
-    .sticky-bar .btn-primary { padding:0.7rem 1.2rem; font-size:0.9rem; }
-    .sticky-bar .btn-secondary { padding:0.6rem 1rem; font-size:0.8rem; }
-    .sticky-bar-more { position:relative; }
-    .sticky-bar-more summary { cursor:pointer; list-style:none; }
-    .sticky-bar-more summary::-webkit-details-marker { display:none; }
-    .sticky-bar-dropdown { position:absolute; bottom:60px; right:0; background:var(--card); border:1px solid var(--border); border-radius:10px; padding:0.5rem; display:flex; flex-direction:column; gap:0.3rem; min-width:140px; max-width:calc(100vw - 2rem); box-shadow:0 8px 24px rgba(0,0,0,0.4); }
-    .back-to-top { position:fixed; right:1rem; bottom:5.5rem; width:42px; height:42px; border-radius:50%; background:var(--accent); color:#fff; border:none; font-size:1.2rem; cursor:pointer; box-shadow:0 6px 18px rgba(0,0,0,0.4); opacity:0; pointer-events:none; transition:opacity 0.2s, transform 0.2s, background 0.2s; z-index:55; }
-    .back-to-top:hover { background:#3a7de8; transform:translateY(-2px); }
-    .back-to-top.visible { opacity:1; pointer-events:auto; }
-    @media (min-width:769px) { .sticky-bar { padding:1rem 5%; } }
-    @media (max-width:768px) { body { padding-bottom:80px; } .faq-item summary { padding-right:0.5rem; } }
-    @media (max-width:600px) {
-      section { padding:2.5rem 5%; }
-      nav { padding:0.7rem 4%; gap:0.6rem; }
-      .nav-search-input { font-size:0.82rem; padding:0.42rem 0.6rem; }
-      .nav-search-submit { padding:0.45rem 0.55rem; }
-      .nav-cta { padding:0.4rem 0.8rem; font-size:0.82rem; }
-      .hero-mini { padding:0.85rem 4% 0.4rem; }
-      .hero-mini .tagline { font-size:0.95rem; }
-      .hero-mini .snippet { font-size:0.88rem; }
-      .hero { padding:2rem 5% 1.5rem; }
-      .hero h1 { font-size:clamp(1.6rem,6vw,2.4rem); }
-      .hero .tagline { font-size:1rem; }
-      .snippet-section { padding:1.25rem 5%; }
-      .snippet { font-size:1rem; line-height:1.65; }
-      .snippet::before, .snippet::after { font-size:1.3rem; }
-
-      .screenshots-section { padding:1.5rem 5% 0.75rem; }
-      .features-grid, .steps, .related-grid { grid-template-columns:1fr; }
-      .tech-grid { grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); }
-      .final-cta { padding:1.5rem; border-radius:16px; }
-      .final-cta h2 { font-size:1.4rem; }
-      .sticky-bar { padding:0.5rem 4%; gap:0.4rem; }
-      .sticky-bar .btn-primary { padding:0.6rem 1rem; font-size:0.85rem; }
-      .sticky-bar .btn-secondary { padding:0.5rem 0.8rem; font-size:0.78rem; }
-      .about-text h2 { font-size:1.2rem; }
-      .about-text h3 { font-size:1.05rem; }
-      .about-text p, .faq-a { font-size:1rem; line-height:1.75; }
-      .app-detail-section { padding:1.25rem 5% 0.85rem; }
-      .app-info-card { padding:1rem 1.1rem; }
-      .app-info-header { gap:0.85rem; margin-bottom:0.85rem; }
-      .app-info-icon, .app-info-emoji { width:64px; height:64px; border-radius:14px; }
-      .app-info-name { font-size:1.15rem; }
-      .app-info-meta { font-size:0.82rem; }
-      .app-info-list { padding-top:0.85rem; }
-      .app-info-list li { padding:0 0.4rem; }
-      .app-info-list .info-head { font-size:0.68rem; }
-      .app-info-list .info-desc { font-size:0.82rem; }
-      .download-app-btn { font-size:0.98rem; padding:0.85rem 1.2rem; }
-      .download-options { padding:1.5rem 5%; }
-      .recommended-grid { grid-template-columns:1fr; }
-      .recommended-card { padding:0.75rem 0.85rem; gap:0.7rem; }
-      .recommended-card-icon, .recommended-card-emoji { width:44px; height:44px; }
-    }
-    @media (max-width:380px) {
-      .nav-cta { padding:0.4rem 0.9rem; font-size:0.82rem; }
-      .breadcrumb { font-size:0.78rem; }
-      .btn-primary { padding:0.7rem 1.1rem; font-size:0.92rem; }
-      .btn-secondary { padding:0.55rem 0.9rem; font-size:0.78rem; }
-      .screenshots img { height:320px; }
-      .hero h1 { font-size:1.5rem; }
-    }
-  </style>
+  <link rel="stylesheet" href="{{baseUrl}}/assets/style.css"/>
 </head>
 <body>
 
@@ -284,7 +68,7 @@
           <button class="app-info-share" aria-label="Share this app" type="button" onclick="shareApp()" title="Share">&#8599;</button>
         </div>
         <div class="app-info-text">
-          <h1 class="app-info-name">{{name}}</h1>
+          <div class="app-info-name">{{name}}</div>
           <div class="app-info-meta">{{developer}}{{#if lastUpdated}} &middot; {{lastUpdated}}{{/if}}</div>
           <div class="app-info-safe"><svg viewBox="0 0 24 24"><path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm-1.06 13.54L7.4 12l1.41-1.41 2.12 2.12 4.24-4.24 1.41 1.41-5.64 5.66z"/></svg> Verified</div>
         </div>
@@ -319,8 +103,9 @@
 {{/if}}
 
 <section class="hero-mini" id="main">
+  <h1 class="app-title">{{name}}</h1>
   {{#if tagline}}
-  <div class="tagline">{{tagline}}</div>
+  <p class="tagline">{{tagline}}</p>
   {{/if}}
   {{#if shortSnippet}}
   <p class="snippet">{{shortSnippet}}</p>

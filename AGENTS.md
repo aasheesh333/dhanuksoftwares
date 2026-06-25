@@ -1,108 +1,91 @@
 # AGENTS.md
 
 Repo: Dhanuk Softwares portfolio site (https://dhanuksoftwares.com).
-Stack: static HTML/CSS/JS + Node 22 build script + Cloudflare Pages Functions. No package.json, no npm install, no node_modules.
+Stack: static HTML/CSS/JS + Node 22 build script + Cloudflare Pages Functions. No package.json, no node_modules.
 
 ## Build & test
 
 ```
-node --test tests/                                       # 14 unit tests, must pass before commit
-ADMIN_PASSWORD=... node build.mjs                       # build to dist/ (env required for admin login)
+node --test tests/slug.test.mjs tests/migrate.test.mjs tests/render.test.mjs   # 14 tests
+ADMIN_PASSWORD=... node build.mjs                                              # build to dist/
 wrangler pages deploy dist --project-name=dhanuksoftwares --branch=main --commit-dirty=true
 ```
 
-`build.mjs` reads `apps.json` + `template.html` and emits `dist/apps/{slug}/index.html`, `dist/apps/index.html`, `dist/sitemap.xml`, `dist/robots.txt`, `dist/_headers`, `dist/_redirects`. It also copies `app-ads.txt`, `CNAME`, and `apps.json` to `dist/` — **`apps.json` MUST be in dist or admin breaks** (admin loads it via `fetch('../apps.json')`). Privacy (`privacy.html`), Terms (`terms.html`), and Cookies (`cookies.html`) are also copied to `dist/<page>/index.html`.
+You MUST run tests before committing changes to `lib/`, `template.html`, or `apps.json` schema.
 
-`wrangler.jsonc` declares `pages_build_output_dir: "./dist"` and `compatibility_flags: ["nodejs_compat"]` (Functions need it for `btoa`, etc.). No package.json — wrangler is a global CLI install.
+`build.mjs` reads `apps.json` + `template.html`, emits `dist/apps/{slug}/index.html`, `dist/apps/index.html`, `dist/sitemap.xml`, `dist/robots.txt`, `dist/_headers`, `dist/_redirects`. Copies `app-ads.txt`, `CNAME`, `privacy.html`, `terms.html`, `cookies.html`, `apps.json` to `dist/`. Also injects JSON-LD (Organization, ItemList, WebSite) and SSR app cards into `dist/index.html`.
 
-## Tests
+**`apps.json` MUST be in dist** — admin loads it via `fetch('../apps.json')`.
 
-Three test files in `tests/`:
-- `slug.test.mjs` — slug generation
-- `migrate.test.mjs` — old→new apps.json schema migration
-- `render.test.mjs` — HTML rendering of per-app page
+Wrangler is a global CLI install (no project-local package.json). `wrangler.jsonc` sets `pages_build_output_dir: "./dist"` and `compatibility_flags: ["nodejs_compat"]`.
 
-Run all: `node --test tests/slug.test.mjs tests/migrate.test.mjs tests/render.test.mjs`. Always run before committing changes to `lib/`, `template.html`, or `apps.json` schema.
+## Template placeholders (`template.html` → `lib/render.mjs`)
+
+If you add a new `{{...}}` placeholder, add a `html.replace()` in `lib/render.mjs` `renderApp()` — otherwise it ships as literal text. Current vars:
+- `{{name}}`, `{{slug}}`, `{{tagline}}`, `{{shortDesc}}`, `{{longDescription}}`, `{{keywordsString}}`, `{{emoji}}`, `{{icon}}`, `{{category}}`, `{{lastUpdated}}`, `{{primaryScreenshot}}`
+- `{{primaryDownloadUrl}}`, `{{primaryMarketplaceName}}`, `{{primaryMarketplaceType}}` (mailto if no marketplaces)
+- `{{baseUrl}}` — replaced in `build.mjs` with the site base URL
+- `{{datePublished}}` — set to `app.datePublished || app.lastUpdated`
+- `{{developer}}`, `{{inLanguage}}`, `{{softwareRequirements}}`, `{{appSize}}`, `{{totalDownloads}}`, `{{contentRating}}`, `{{hasStats}}`
+- `{{#each features/faq/screenshots/relatedApps/secondaryDownloads/finalSecondaryDownloads}}` blocks
+- `{{#if hasSecondaryDownloads/features.length/faq.length/relatedApps.length/hasRating/hasPrimaryDownload/lastUpdated/primaryDownloadUrl/icon}}` blocks
+- `{{schemaSoftwareApp}}`, `{{schemaFAQ}}`, `{{schemaBreadcrumb}}` (JSON-LD slots)
 
 ## apps.json schema
 
-Two formats exist. Old (4 fixed URL fields) is auto-migrated to new (`marketplaces[]` array) by `lib/migrate.mjs` on every build. **Never edit old-format fields manually** — they get stripped.
+Old format (4 fixed URL fields) auto-migrated to `marketplaces[]` by `lib/migrate.mjs` every build. **Never edit old-format fields manually** — they get stripped.
 
-New format keys (see an existing entry for the full shape):
-`name, slug, tagline, shortDesc, longDescription, emoji, icon, tag, category, keywords[], features[], faq[{q,a}], screenshots[], rating{value,count}, marketplaces[{name,url,type}], lastUpdated`
+New format keys: `name, slug, tagline, shortDesc, longDescription, emoji, icon, tag, category, keywords[], features[], faq[{q,a}], screenshots[], rating{value,count}, marketplaces[{name,url,type}], lastUpdated, datePublished, version, developer, inLanguage, appSize, contentRating, releaseNotes, totalDownloads, softwareRequirements`
 
-`type` is the marketplace id (`play`, `uptodown`, `oppo`, `vivo`, `huawei`, `samsung`, `amazon`, `xiaomi`, `apple`, `direct`, `custom`). For custom labels the admin uses the type `custom`.
-
-## Template placeholders
-
-`template.html` uses these (rendered by `lib/render.mjs`):
-- `{{name}}`, `{{slug}}`, `{{tagline}}`, `{{shortDesc}}`, `{{longDescription}}`, `{{keywordsString}}`, `{{emoji}}`, `{{icon}}`, `{{category}}`, `{{lastUpdated}}`, `{{primaryScreenshot}}`
-- `{{primaryDownloadUrl}}`, `{{primaryMarketplaceName}}`, `{{primaryMarketplaceType}}` (set to mailto if no marketplaces)
-- `{{#each features/faq/screenshots/relatedApps/secondaryDownloads/finalSecondaryDownloads}}...{{/each}}` blocks
-- `{{#if hasSecondaryDownloads/features.length/faq.length/relatedApps.length/hasRating/hasPrimaryDownload/lastUpdated/primaryDownloadUrl/icon}}...{{/if}}` blocks
-- `{{schemaSoftwareApp}}`, `{{schemaFAQ}}`, `{{schemaBreadcrumb}}` (JSON-LD slots)
-
-If you add a new `{{...}}` placeholder, also handle it in `lib/render.mjs` `renderApp()` — otherwise it ships as literal text in HTML.
+`type` values: `play`, `uptodown`, `oppo`, `vivo`, `huawei`, `samsung`, `amazon`, `xiaomi`, `apple`, `direct`, `custom`.
 
 ## Cloudflare Pages Functions
 
-`functions/api/` (Pages Functions, V8 isolate runtime, `nodejs_compat` flag enabled):
-- `ai-fill.js` — POST `/api/ai-fill`. Groq `llama-3.3-70b-versatile` for SEO copy. Optional `playStoreUrl` triggers a Play Store scrape (returns `data.scraped` with name, tagline, icon, 6 screenshots, rating, downloads, updated, developer, category).
-- `publish.js` — POST `/api/publish`. Commits `apps.json` to GitHub via REST API, then triggers a Pages deployment via `POST /accounts/{id}/pages/projects/{name}/deployments` so the admin "Save & Deploy" button end-to-end publishes without a manual CLI run. Works whether or not Pages Git integration is configured.
-- `track-download.js` — POST `/api/track-download`. Logs to Cloudflare Workers tail/logs only (no DB). Returns 200, not 204 — keeps parity with the old Netlify gotcha and avoids any edge runtime Response-constructor surprises.
+`functions/api/` (V8 isolate, `nodejs_compat` flag):
+- `login.js` — POST `/api/login`. Constant-time password compare against `env.ADMIN_PASSWORD`. Sets HttpOnly session cookie `ds_session`.
+- `ai-fill.js` — POST `/api/ai-fill`. Groq `llama-3.3-70b-versatile` for SEO copy. Optional `playStoreUrl` triggers Play Store scrape.
+- `publish.js` — POST `/api/publish`. Commits `apps.json` to GitHub via REST API, then triggers CF Pages deployment.
+- `track-download.js` — POST `/api/track-download`. Logs to Workers logs only (no DB). Returns 200, not 204 (historical Netlify compatibility).
 
-**Auth:** all three require `x-admin-token` header = `env.ADMIN_PASSWORD`.
+**Auth:** all Functions except `login.js` require `x-admin-token` header = `env.ADMIN_PASSWORD`. `login.js` compares password from JSON body.
 
-**Required env vars (set in Cloudflare Pages project → Settings → Environment variables, production):**
-`ADMIN_PASSWORD`, `GROQ_API_KEY`, `GITHUB_TOKEN`, `GITHUB_REPO` (default `aasheesh333/dhanuksoftwares`), `GITHUB_BRANCH` (default `main`), `CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_API_TOKEN` (with `Cloudflare Pages: Edit`), `PAGES_PROJECT` (default `dhanuksoftwares`). The CF token + account ID are only needed for publish.js's auto-deploy trigger.
+**Core auth module:** `lib/auth.mjs` — `createSessionToken()`, `verifySessionToken()`, `corsHeaders()`.
 
-## Admin password — build-time injection (never hardcoded in source)
+**Required env vars (set in CF Pages dashboard → Settings → Environment variables, production):**
+`ADMIN_PASSWORD`, `GROQ_API_KEY`, `GITHUB_TOKEN`, `GITHUB_REPO` (default `aasheesh333/dhanuksoftwares`), `GITHUB_BRANCH` (default `main`), `CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_API_TOKEN` (Pages: Edit), `PAGES_PROJECT` (default `dhanuksoftwares`).
 
-`docs/admin.html` contains the placeholder `__ADMIN_PASSWORD__` on the line `const ADMIN_PASSWORD = "..."`. `build.mjs` `injectSecrets()` replaces it from `process.env.ADMIN_PASSWORD` when writing to `dist/admin/index.html` and `dist/docs/admin.html`.
+## Admin auth (no build-time injection)
 
-- **Source repo:** contains only the placeholder, never the real password.
-- **Cloudflare Pages env:** `ADMIN_PASSWORD` set to the actual password (encrypted, never returned by the API).
-- **Built output (`dist/`):** contains the real password, baked in at build time. Never committed.
+Admin uses API-based login: `docs/admin.html` POSTs to `/api/login` → receives session token → stores in memory for subsequent API calls. There is no `__ADMIN_PASSWORD__` placeholder in the source HTML. `build.mjs` `injectSecrets()` (`__ADMIN_PASSWORD__` replacement) is a **no-op** — the placeholder doesn't exist in admin.html.
 
-Rotating the password = update Cloudflare Pages env var + rebuild + redeploy. No source edits needed. Without `ADMIN_PASSWORD` set, build prints a warning and emits an empty string — admin login will not work.
+`ADMIN_PASSWORD` is a Pages runtime env var consumed by the Functions. It is **not** needed for the build to succeed, but the build emits a misleading warning if it's missing.
 
-## Admin workflow (the gotchas)
+## CSS — per-app is external
 
-1. **Hard refresh required** after deploy — `dist/_headers` sets `Cache-Control: no-cache` on `/admin/*` and `/docs/*` but browsers cache JS aggressively.
-2. **Edit/delete are local-only** until "Save & Deploy" is clicked. Clicking ✕ in admin removes from in-memory list only. Must click "Save & Deploy" to actually publish the deletion to GitHub.
-3. **Play Store URL fetch** (`/api/ai-fill` with `playStoreUrl`) scrapes name, icon, 6 screenshots, rating, downloads, updated, developer, category, AND injects them into the form. Long description (4000 chars) and FAQ come from Groq.
-4. **Admin password source of truth is Cloudflare Pages env**, not the repo. To rotate: update the env var, rebuild, redeploy. No code changes needed.
+Per-app pages load `{{baseUrl}}/assets/style.css` (~220 lines). If you add CSS for per-app pages, edit `assets/style.css`, NOT inline in `template.html`. `_headers` caches `/assets/*` for **7 days** — CSS changes may need a cache-busting query string for rapid iteration.
 
-## Gotchas that have caused real bugs
+The homepage (`index.html`) has its own inline `<style>` block (separate from per-app CSS).
 
-- **`apps.json` schema migration:** if you add a new field, both admin form (`docs/admin.html` `getFormData()`) and render (`lib/render.mjs`) must handle it. Otherwise saved apps lose the field on next edit.
-- **Per-app pages need fresh build** — if you `git push` only `apps.json` without re-running `build.mjs`, the live `/apps/{slug}/` pages won't update on Pages CDN until a build runs (Pages with Git integration runs `node build.mjs` automatically on push).
-- **`track-download.js` returns 200, not 204** — historical Netlify Edge runtime threw on 204. Pages Functions handle 204 fine, but keeping 200 is the conservative choice and matches the original semantics.
-- **No package.json** — this is intentional. Don't `npm init`. The only dependencies are `node:fs`, `node:path`, `node:test`, `node:assert/strict` (all built-in). Wrangler is a global system CLI, not a project dep.
-- **CNAME file** must stay in `dist/` root. `build.mjs` copies it. Pages reads it as a hint for custom domain binding when the zone is on Cloudflare DNS (but custom domains are normally configured in the dashboard, not via the CNAME file).
+## Gotchas
+
+- **Homepage cards dual-render:** `build.mjs` `injectHomeAppsList()` injects static `<a>` cards into `index.html`. Then client-side `loadApps()` does `grid.innerHTML = ''` and rebuilds from `apps.json`. The JS version MUST create `<a>` elements (not `<div>`) with `text-decoration: none; color: var(--text)` on `.app-card` CSS — otherwise the card body is non-clickable. If you add or change card markup, fix both the SSR template in `build.mjs` AND the JS template in `index.html`.
+- **`apps.json` schema migration:** if you add a new field, handle it in admin form `getFormData()`, `render.mjs`, and `build.mjs` injection. Otherwise saved apps lose the field on next edit.
+- **Per-app pages need fresh build** — `git push` of `apps.json` alone won't update per-app pages on CDN until a build runs.
+- **`_headers` / `_redirects`** emitted by `build.mjs` into `dist/` (not project root). Pages reads them from the publish directory.
 - **`app-ads.txt`** must stay in `dist/` root. Google AdSense verification depends on it.
-- **`_headers` / `_redirects`** are emitted by `build.mjs` into `dist/` (not project root). Pages reads them from the publish directory. Don't move them to project root — Pages won't see them.
-- **Build needs `ADMIN_PASSWORD` in env**, otherwise admin login is broken (empty string injected). For Pages Git integration, set `ADMIN_PASSWORD` as a build environment variable in the dashboard.
-- **`wrangler pages secret put` from CLI is unreliable over piped stdin** (empty value gets stored). Prefer setting secrets via the dashboard, or PATCH the project env_vars directly via the Cloudflare API (see commit history for the exact PATCH shape with `wrangler_config_hash`).
+- **Wrangler `pages secret put`** is unreliable over piped stdin. Set secrets via dashboard or PATCH the API directly.
 
 ## Live infrastructure
 
-- Custom domain: `dhanuksoftwares.com` (DNS currently on Netlify; to migrate, add zone to Cloudflare then attach as Pages custom domain)
-- Cloudflare Pages URL: `https://dhanuksoftwares.pages.dev`
-- Cloudflare account ID: `7fb570ac615a8e2a41a6aff7913114d5`
+- Custom domain: `dhanuksoftwares.com` (DNS on Netlify; to migrate, add zone to Cloudflare then attach as Pages custom domain)
+- Cloudflare Pages: `https://dhanuksoftwares.pages.dev`
+- Account ID: `7fb570ac615a8e2a41a6aff7913114d5`
 - Pages project: `dhanuksoftwares` (production branch `main`)
-- GitHub repo: `aasheesh333/dhanuksoftwares` (main branch)
-- Admin: `https://dhanuksoftwares.pages.dev/admin/` (password set via Pages env `ADMIN_PASSWORD`)
+- GitHub: `aasheesh333/dhanuksoftwares` (main branch)
+- Admin: `https://dhanuksoftwares.pages.dev/admin/`
 
-### One-time setup remaining (manual, in dashboard)
+## Design docs (don't modify unless revisiting the design)
 
-1. **Git integration (optional but recommended):** Pages project → Settings → Builds → Connect to Git → pick `aasheesh333/dhanuksoftwares` → production branch `main` → build command `node build.mjs` → output dir `dist`. Also add `ADMIN_PASSWORD` (and any other build-needed vars) as build environment variables. After this, `git push` auto-builds and deploys.
-2. **Custom domain:** Add `dhanuksoftwares.com` zone to Cloudflare (change nameservers at registrar), then in Pages project → Custom domains → add `dhanuksoftwares.com`. DNS auto-configures.
-
-## Specs & plans (for context)
-
-- `docs/superpowers/specs/2026-06-17-per-app-seo-design.md` — design rationale
-- `docs/superpowers/plans/2026-06-17-per-app-seo.md` — implementation plan with task history
-- `docs/superpowers/specs/2026-06-17-admin-page-design.md` — original admin design
-
-Don't modify these unless revisiting the design itself.
+- `docs/superpowers/specs/2026-06-17-per-app-seo-design.md`
+- `docs/superpowers/plans/2026-06-17-per-app-seo.md`
+- `docs/superpowers/specs/2026-06-17-admin-page-design.md`

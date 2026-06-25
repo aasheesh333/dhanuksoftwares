@@ -172,6 +172,7 @@
       gap: 1.5rem;
     }
     .app-card {
+      text-decoration: none; color: var(--text);
       background: var(--card); border: 1px solid var(--border);
       border-radius: 16px; padding: 2rem;
       transition: border-color 0.25s, transform 0.25s;
@@ -582,8 +583,9 @@
 
       grid.innerHTML = '';
       apps.forEach((app, i) => {
-        const card = document.createElement('div');
+        const card = document.createElement('a');
         card.className = 'app-card';
+        card.href = `/apps/${escapeHtml(app.slug)}/`;
         card.style.animationDelay = (i * 0.08) + 's';
         card.style.animation = 'fadeUp 0.5s ease both';
 
@@ -591,10 +593,6 @@
         const primary = marketplaces[0];
         const marketplacePills = marketplaces.length
           ? `<div style="margin-top:0.6rem;display:flex;flex-wrap:wrap;gap:0.3rem;">${marketplaces.slice(0, 3).map(m => `<span style="font-size:0.7rem;padding:0.2rem 0.55rem;border-radius:999px;background:rgba(79,142,247,0.1);color:var(--accent);border:1px solid rgba(79,142,247,0.2);">${escapeHtml(m.name)}</span>`).join('')}${marketplaces.length > 3 ? `<span style="font-size:0.7rem;color:var(--muted);">+${marketplaces.length - 3}</span>` : ''}</div>`
-          : '';
-
-        const viewPageBtn = app.slug
-          ? `<a style="background:var(--accent);color:#fff;border:1px solid var(--accent);padding:0.4rem 0.9rem;border-radius:8px;text-decoration:none;font-size:0.82rem;font-weight:600;display:inline-block;margin-top:0.5rem;" href="/apps/${escapeHtml(app.slug)}/">View Page &rarr;</a>`
           : '';
 
         card.innerHTML = `
@@ -605,7 +603,6 @@
             <span class="app-tag">${escapeHtml(app.tag || app.category || 'Android')}</span>
           </div>
           ${marketplacePills}
-          ${viewPageBtn}
         `;
         grid.appendChild(card);
       });

@@ -1,9 +1,14 @@
-import { corsHeaders } from '../../lib/auth.mjs';
+const ALLOWED_ORIGINS = ['https://dhanuksoftwares.com', 'https://www.dhanuksoftwares.com'];
 
-const ALLOWED_ORIGINS = ['https://dhanuksoftwares.com', 'https://www.dhanuksoftwares.com', 'https://dhanuksoftwares.pages.dev'];
+function isAllowedOrigin(origin) {
+  if (!origin) return false;
+  if (ALLOWED_ORIGINS.includes(origin)) return true;
+  if (/^https:\/\/[a-z0-9]+\.dhanuksoftwares\.pages\.dev$/.test(origin)) return true;
+  return false;
+}
 const NIM_BASE = 'https://integrate.api.nvidia.com/v1';
 const RATE_LIMIT_MAP = new Map();
-const RATE_LIMIT = 20;
+const RATE_LIMIT = 100;
 const RATE_WINDOW = 60_000;
 
 function checkRate(ip) {
@@ -21,7 +26,15 @@ function checkRate(ip) {
 
 export async function onRequest({ request }) {
   const requestOrigin = request.headers.get('origin') || '';
-  const headers = corsHeaders(requestOrigin, ALLOWED_ORIGINS);
+  const allowOrigin = isAllowedOrigin(requestOrigin) ? requestOrigin : ALLOWED_ORIGINS[0];
+  const headers = {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': allowOrigin,
+    'Access-Control-Allow-Headers': 'Content-Type, x-nvidia-api-key, Authorization',
+    'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
+    'Access-Control-Allow-Credentials': 'true',
+    'Vary': 'Origin'
+  };
 
   if (request.method === 'OPTIONS') return new Response('', { status: 200, headers });
 
