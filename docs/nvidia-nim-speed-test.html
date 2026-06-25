@@ -509,7 +509,7 @@
   (function(){
     var PROXY_BASE = '/api/nvidia-nim-proxy';
     var STORAGE_KEY = 'nim_api_key';
-    var DEAD_CACHE_KEY = 'nim_dead_models';
+    var DEAD_CACHE_KEY = 'nim_dead_models_v2';
     var DEAD_CACHE_TS_KEY = 'nim_dead_models_ts';
     var DEAD_CACHE_TTL = 24 * 60 * 60 * 1000;
     var apiKey = sessionStorage.getItem(STORAGE_KEY) || '';
@@ -517,6 +517,7 @@
     var currentFilter = 'all';
     var searchQuery = '';
 
+    localStorage.removeItem('nim_dead_models');
     var deadCache = [];
     var deadCacheTs = parseInt(localStorage.getItem(DEAD_CACHE_TS_KEY) || '0', 10);
     if (Date.now() - deadCacheTs > DEAD_CACHE_TTL) {
@@ -654,7 +655,10 @@
     }
 
     async function runHealthCheck(){
-      var toCheck = allModels.filter(function(m){ return deadCache.indexOf(m.id) === -1 && m.testType !== 'none'; }).map(function(m){ return m.id; });
+      var eligible = allModels.filter(function(m){ return deadCache.indexOf(m.id) === -1; });
+      var toCheck = eligible.map(function(m){ return m.id; });
+      var catMap = {};
+      eligible.forEach(function(m){ catMap[m.id] = m.category; });
       if (!toCheck.length) {
         updateLiveCount();
         renderModels();
@@ -663,12 +667,14 @@
       showKeyStatus('Checking ' + toCheck.length + ' models for availability...', 'success');
       for (var i = 0; i < toCheck.length; i += 10) {
         var batch = toCheck.slice(i, i + 10);
+        var batchCats = {};
+        batch.forEach(function(id){ if (catMap[id]) batchCats[id] = catMap[id]; });
         showKeyStatus('Checking models... (' + Math.min(i + 10, toCheck.length) + '/' + toCheck.length + ')', 'success');
         try {
           var r = await fetch(PROXY_BASE + '?action=health', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'x-nvidia-api-key': apiKey },
-            body: JSON.stringify({ models: batch })
+            body: JSON.stringify({ models: batch, categories: batchCats })
           });
           if (r.ok) {
             var result = await r.json();
