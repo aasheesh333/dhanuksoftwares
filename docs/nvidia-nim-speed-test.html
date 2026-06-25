@@ -534,6 +534,8 @@
     window.revokeApiKey = function(){
       apiKey = '';
       sessionStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem('nim_dead_models');
+      deadCache = [];
       document.getElementById('api-key-input').value = '';
       showKeyStatus('API key revoked and cleared from memory.', '');
       document.getElementById('save-key-btn').style.display = '';
@@ -549,9 +551,12 @@
     }
 
     // FETCH MODELS
+    var deadCache = JSON.parse(localStorage.getItem('nim_dead_models') || '[]');
+
     async function loadModels(){
       if (!apiKey) return;
       try {
+        showKeyStatus('Loading models from NVIDIA NIM...', 'success');
         const res = await fetch(PROXY_BASE + '?action=models', {
           headers: { 'x-nvidia-api-key': apiKey }
         });
@@ -568,16 +573,62 @@
             provider: extractProvider(m.id || ''),
             category: categorize(m.id || ''),
             created: m.created || 0,
-            owned_by: m.owned_by || ''
+            owned_by: m.owned_by || '',
+            live: deadCache.indexOf(m.id) === -1
           };
         });
         allModels.sort(function(a,b){ return a.name.localeCompare(b.name); });
-        showKeyStatus('Loaded ' + allModels.length + ' models successfully!', 'success');
+        var totalCount = allModels.length;
+        showKeyStatus('Loaded ' + totalCount + ' models. Checking which are live...', 'success');
         renderModels();
         document.getElementById('test-all-btn').disabled = false;
+        // Run health check in background
+        runHealthCheck();
       } catch(e) {
         showKeyStatus('Network error: ' + e.message, 'error');
       }
+    }
+
+    async function runHealthCheck(){
+      var toCheck = allModels.filter(function(m){ return deadCache.indexOf(m.id) === -1; }).map(function(m){ return m.id; });
+      if (!toCheck.length) {
+        updateLiveCount();
+        return;
+      }
+      // Check in batches of 20
+      for (var i = 0; i < toCheck.length; i += 20) {
+        var batch = toCheck.slice(i, i + 20);
+        try {
+          var r = await fetch(PROXY_BASE + '?action=health', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'x-nvidia-api-key': apiKey },
+            body: JSON.stringify({ models: batch })
+          });
+          if (r.ok) {
+            var result = await r.json();
+            // Mark dead models
+            (result.dead || []).forEach(function(id){
+              if (deadCache.indexOf(id) === -1) deadCache.push(id);
+              var m = allModels.find(function(x){ return x.id === id; });
+              if (m) m.live = false;
+            });
+            (result.live || []).forEach(function(id){
+              var idx = deadCache.indexOf(id);
+              if (idx !== -1) deadCache.splice(idx, 1);
+              var m = allModels.find(function(x){ return x.id === id; });
+              if (m) m.live = true;
+            });
+          }
+        } catch(e) {}
+      }
+      localStorage.setItem('nim_dead_models', JSON.stringify(deadCache));
+      updateLiveCount();
+      renderModels();
+    }
+
+    function updateLiveCount(){
+      var liveCount = allModels.filter(function(m){ return m.live; }).length;
+      showKeyStatus(liveCount + ' of ' + allModels.length + ' models live and ready to test', 'success');
     }
 
     function extractProvider(id){
@@ -650,12 +701,14 @@
       var grid = document.getElementById('models-grid');
       var countEl = document.getElementById('model-count');
       var filtered = allModels.filter(function(m){
+        if (!m.live) return false;
         var matchFilter = currentFilter === 'all' || m.category === currentFilter;
         var matchSearch = !searchQuery || m.name.toLowerCase().includes(searchQuery) || m.provider.toLowerCase().includes(searchQuery) || m.category.includes(searchQuery);
         return matchFilter && matchSearch;
       });
       var showing = Math.min(visibleCount, filtered.length);
-      countEl.textContent = 'Showing ' + showing + ' of ' + filtered.length + ' models' + (filtered.length !== allModels.length ? ' (' + allModels.length + ' total)' : '');
+      var totalLive = allModels.filter(function(m){ return m.live; }).length;
+      countEl.textContent = 'Showing ' + showing + ' of ' + filtered.length + ' live models' + (totalLive !== allModels.length ? ' (' + allModels.length + ' total, ' + (allModels.length - totalLive) + ' deprecated)' : '');
 
       if (!filtered.length) {
         grid.innerHTML = '<div class="empty-state"><h3>No models match your filter</h3><p>Try a different search term or category.</p></div>';
@@ -729,7 +782,14 @@
           var detail = err.detail || '';
           if (res.status === 404) {
             if (detail.indexOf('Not found') !== -1 || detail.indexOf('not found') !== -1) {
-              errMsg = 'Model deprecated or unavailable on NIM';
+              errMsg = 'Model deprecated — removed from live cache';
+              // Mark as dead
+              var m = allModels.find(function(x){ return x.id === modelId; });
+              if (m) m.live = false;
+              if (deadCache.indexOf(modelId) === -1) {
+                deadCache.push(modelId);
+                localStorage.setItem('nim_dead_models', JSON.stringify(deadCache));
+              }
             } else {
               errMsg = 'Model not available for chat completions';
             }
@@ -795,7 +855,7 @@
       var delay = 0;
       cards.forEach(function(card){
         var btn = card.querySelector('.btn-primary');
-        if (btn && btn.textContent.trim() === 'Test Speed') {
+        if (btn && btn.textContent.trim() === 'Test Speed' && !card.querySelector('.result-value')) {
           setTimeout(function(){ btn.click(); }, delay);
           delay += 2000;
         }
