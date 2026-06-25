@@ -154,6 +154,8 @@ function renderAppsIndex(apps, baseUrl) {
   <meta name="keywords" content="Dhanuk Softwares apps, free Android apps India, Indian app studio, Google Play apps India"/>
   <meta name="robots" content="index, follow, max-image-preview:large"/>
   <link rel="canonical" href="${baseUrl}/apps/"/>
+  <link rel="alternate" hreflang="x-default" href="${baseUrl}/apps/"/>
+  <link rel="alternate" hreflang="en" href="${baseUrl}/apps/"/>
   <link rel="icon" type="image/svg+xml" href="${baseUrl}/favicon.svg"/>
   <link rel="apple-touch-icon" href="${baseUrl}/apple-touch-icon.png"/>
   <link rel="manifest" href="${baseUrl}/manifest.json"/>
@@ -350,6 +352,7 @@ function generateSitemap(apps, baseUrl) {
   const urls = [
     { loc: `${baseUrl}/`, priority: '1.0', changefreq: 'weekly', lastmod: TODAY },
     { loc: `${baseUrl}/apps/`, priority: '0.9', changefreq: 'weekly', lastmod: TODAY },
+    { loc: `${baseUrl}/nvidia-nim-speed-test/`, priority: '0.8', changefreq: 'weekly', lastmod: TODAY },
     { loc: `${baseUrl}/privacy/`, priority: '0.3', changefreq: 'yearly', lastmod: TODAY },
     { loc: `${baseUrl}/terms/`, priority: '0.3', changefreq: 'yearly', lastmod: TODAY },
     { loc: `${baseUrl}/cookies/`, priority: '0.3', changefreq: 'yearly', lastmod: TODAY }
@@ -436,7 +439,7 @@ async function main() {
 
   const adminSrc = path.join(ROOT, 'docs', 'admin.html');
   if (fs.existsSync(adminSrc)) {
-    const adminHtml = fs.readFileSync(adminSrc, 'utf8');
+    const adminHtml = injectSecrets(fs.readFileSync(adminSrc, 'utf8'));
     mkdirp(path.join(DIST, 'admin'));
     fs.writeFileSync(path.join(DIST, 'admin/index.html'), adminHtml);
     mkdirp(path.join(DIST, 'docs'));
@@ -462,6 +465,17 @@ async function main() {
   // SEO: Privacy / Terms / Cookies policy pages (each becomes /<page>/index.html)
   for (const page of ['privacy', 'terms', 'cookies']) {
     const src = path.join(ROOT, `${page}.html`);
+    if (fs.existsSync(src)) {
+      const pageDir = path.join(DIST, page);
+      mkdirp(pageDir);
+      fs.copyFileSync(src, path.join(pageDir, 'index.html'));
+      console.log(`  /${page}/`);
+    }
+  }
+
+  // SEO: Tool pages (docs/<page>.html → /<page>/index.html)
+  for (const page of ['nvidia-nim-speed-test']) {
+    const src = path.join(ROOT, 'docs', `${page}.html`);
     if (fs.existsSync(src)) {
       const pageDir = path.join(DIST, page);
       mkdirp(pageDir);
@@ -528,6 +542,8 @@ function generate404Html(apps) {
   <meta name="description" content="The page you're looking for doesn't exist. Browse our apps or head back home."/>
   <meta name="robots" content="noindex, nofollow"/>
   <link rel="canonical" href="${BASE_URL}/"/>
+  <link rel="alternate" hreflang="x-default" href="${BASE_URL}/"/>
+  <link rel="alternate" hreflang="en" href="${BASE_URL}/"/>
   <meta property="og:title" content="Page Not Found · Dhanuk Softwares"/>
   <meta property="og:description" content="The page you're looking for doesn't exist. Browse our apps or head back home."/>
   <meta property="og:url" content="${BASE_URL}/"/>
@@ -635,6 +651,9 @@ function generateHeaders() {
 /cookies/
   Cache-Control: public, max-age=86400, must-revalidate
 
+/nvidia-nim-speed-test/
+  Cache-Control: public, max-age=300, must-revalidate
+
 /admin/*
   Cache-Control: public, max-age=0, must-revalidate
   X-Robots-Tag: noindex, nofollow
@@ -645,6 +664,9 @@ function generateHeaders() {
 
 /apps.json
   Cache-Control: public, max-age=300, must-revalidate
+
+/assets/*
+  Cache-Control: public, max-age=604800, must-revalidate
 `;
 }
 

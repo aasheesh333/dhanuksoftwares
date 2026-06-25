@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NVIDIA NIM API Speed Test — Test 100+ AI Models Live | Free Online Tool</title>
+  <meta name="description" content="Test NVIDIA NIM API speed in real-time. Compare 100+ AI models — LLM, code generation, text-to-image, text-to-video, embedding. Check tokens per second, TTFT, latency. Free NVIDIA NIM speed test tool online."/>
+  <meta name="keywords" content="nvidia nim api speed test, nvidia nim speed test, nvidia nim api test, nvidia nim api, nvidia nim models, nvidia ai api, nim api speed, nvidia nim free, nvidia nim api key, test nvidia nim, nvidia inference microservices, nvidia nim online, nvidia ai models speed, nvidia nim latency test, nvidia nim tokens per second, nvidia nim benchmark, nvidia nim api benchmark, free ai api speed test, nvidia nim api performance, nvidia nim model comparison, nvidia nim api tutorial, nvidia nim api guide, nvidia build api, build.nvidia.com api key, nvidia nim api examples, nvidia nim api documentation, nvidia nim supported models, nvidia nim api rate limit, nvidia nim api pricing, nvidia nim free tier, nvidia nemotron speed test, llama nvidia nim, deepseek nvidia nim, qwen nvidia nim, mistral nvidia nim, meta llama nvidia nim, code generation api speed, text to image api speed, embedding api speed, multimodal ai api speed, ai model speed comparison tool, nvidia dgx cloud api, nvidia tensorrt llm api, vllm api speed test, openai compatible api test, nvidia nim api curl, nvidia nim api python, nvidia nim api javascript, nvidia nim streaming, nvidia nim chat completions, nvidia nim api response time, best nvidia nim models, fastest nvidia nim model, nvidia nim api review 2026, nvidia nim vs openai, nvidia nim vs anthropic, free ai inference api, nvidia api catalog, nvidia build platform"/>
+  <meta name="robots" content="index, follow, max-image-preview:large"/>
+  <link rel="canonical" href="https://dhanuksoftwares.com/nvidia-nim-speed-test/"/>
+  <link rel="icon" type="image/svg+xml" href="https://dhanuksoftwares.com/favicon.svg"/>
+  <link rel="apple-touch-icon" href="https://dhanuksoftwares.com/apple-touch-icon.png"/>
+  <link rel="manifest" href="https://dhanuksoftwares.com/manifest.json"/>
+  <meta name="theme-color" content="#0b0f1a"/>
+  <meta property="og:title" content="NVIDIA NIM API Speed Test — Test 100+ AI Models Live | Free Tool"/>
+  <meta property="og:description" content="Real-time NVIDIA NIM API speed test tool. Compare 100+ AI models, check tokens/sec, TTFT, latency. Free online NVIDIA NIM benchmark."/>
+  <meta property="og:url" content="https://dhanuksoftwares.com/nvidia-nim-speed-test/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="Dhanuk Softwares"/>
+  <meta property="og:locale" content="en_IN"/>
+  <meta property="og:image" content="https://dhanuksoftwares.com/og-banner.png"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="NVIDIA NIM API Speed Test — Test 100+ AI Models Live"/>
+  <meta name="twitter:description" content="Real-time NVIDIA NIM API speed test. Compare AI models, check tokens/sec, TTFT. Free online tool."/>
+  <meta name="twitter:image" content="https://dhanuksoftwares.com/og-banner.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--bg:#0b0f1a;--surface:#131929;--card:#1a2235;--accent:#4f8ef7;--accent2:#38e0b0;--text:#e8edf7;--muted:#a0b0cc;--border:#1e2d4a;--warning:#ffc857;--danger:#ff6b6b;--success:#38e0b0;--radius:12px;--radius-sm:8px;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;overflow-wrap:break-word;}
+    body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.7;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column;}
+    body,p,li,h1,h2,h3,h4,a,span{overflow-wrap:break-word;word-wrap:break-word;}
+    a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+    img{max-width:100%;height:auto;}
+    nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:1rem 5%;background:rgba(11,15,26,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+    .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:#fff;text-decoration:none;}
+    .nav-logo span{color:var(--accent2);}
+    .nav-toggle{display:none;background:transparent;border:1px solid var(--border);border-radius:8px;padding:0.5rem;cursor:pointer;flex-direction:column;gap:4px;width:38px;height:38px;align-items:center;justify-content:center;}
+    .nav-toggle-bar{display:block;width:18px;height:2px;background:var(--text);border-radius:1px;transition:transform 0.2s,opacity 0.2s;}
+    .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1){transform:translateY(6px) rotate(45deg);}
+    .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2){opacity:0;}
+    .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+    nav ul{list-style:none;display:flex;gap:1.5rem;align-items:center;}
+    nav ul a{text-decoration:none;color:var(--muted);font-size:0.9rem;font-weight:500;transition:color 0.2s;}
+    nav ul a:hover,nav ul a.active{color:var(--text);}
+    nav ul a.active{color:var(--accent2);}
+    .breadcrumb{padding:0.8rem 5%;font-size:0.85rem;color:var(--muted);}
+    .breadcrumb a{color:var(--accent);text-decoration:none;}
+    .breadcrumb a:hover{text-decoration:underline;}
+    .hero{padding:4rem 5% 3rem;text-align:center;max-width:900px;margin:0 auto;}
+    .hero h1{font-family:'Syne',sans-serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-1px;margin-bottom:1rem;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent;}
+    .hero p{color:var(--muted);font-size:1.1rem;max-width:700px;margin:0 auto 2rem;line-height:1.8;}
+    .hero-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+    .btn{padding:0.85rem 1.8rem;border-radius:var(--radius-sm);text-decoration:none;font-weight:600;font-size:1rem;display:inline-flex;align-items:center;gap:0.5rem;transition:transform 0.15s,background 0.2s;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;}
+    .btn-primary{background:var(--accent);color:#fff;}
+    .btn-primary:hover{background:#3a7de8;transform:translateY(-1px);}
+    .btn-outline{background:transparent;border:1px solid var(--border);color:var(--text);}
+    .btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+    .btn-success{background:var(--accent2);color:#0b0f1a;}
+    .btn-success:hover{background:#2dc99a;transform:translateY(-1px);}
+    .btn-danger{background:transparent;border:1px solid var(--danger);color:var(--danger);}
+    .btn-danger:hover{background:var(--danger);color:#fff;}
+    .btn-sm{padding:0.5rem 1rem;font-size:0.85rem;}
+    .btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+    section{padding:3rem 5%;}
+    section h2{font-family:'Syne',sans-serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:700;margin-bottom:1rem;letter-spacing:-0.5px;}
+    section h3{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:0.75rem;}
+    section p{color:var(--muted);margin-bottom:1rem;max-width:800px;}
+    .section-divider{border:0;border-top:1px solid var(--border);margin:0;}
+    .api-key-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;max-width:600px;margin:0 auto;}
+    .api-key-card h2{text-align:center;font-size:1.4rem;}
+    .api-key-input-wrap{display:flex;gap:0.5rem;margin:1.5rem 0 1rem;align-items:stretch;}
+    .api-key-input{flex:1;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:0.75rem 1rem;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:0.9rem;}
+    .api-key-input:focus{outline:none;border-color:var(--accent);}
+    .api-key-input::placeholder{color:var(--muted);font-family:'DM Sans',sans-serif;}
+    .api-key-actions{display:flex;gap:0.5rem;flex-wrap:wrap;}
+    .api-key-status{display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;margin-top:0.75rem;}
+    .api-key-status.success{color:var(--success);}
+    .api-key-status.error{color:var(--danger);}
+    .privacy-notice{background:var(--card);border-radius:var(--radius-sm);padding:1rem;margin-top:1rem;font-size:0.85rem;color:var(--muted);display:flex;gap:0.75rem;align-items:flex-start;}
+    .privacy-notice .icon{font-size:1.2rem;flex-shrink:0;}
+    .toggle-visibility{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:0.75rem;color:var(--muted);cursor:pointer;font-size:1rem;}
+    .toggle-visibility:hover{color:var(--text);}
+    .filter-bar{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.5rem;align-items:center;}
+    .filter-pills{display:flex;flex-wrap:wrap;gap:0.4rem;}
+    .pill{padding:0.4rem 1rem;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:0.85rem;cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif;}
+    .pill:hover{border-color:var(--accent);color:var(--accent);}
+    .pill.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+    .model-count{color:var(--muted);font-size:0.85rem;margin-left:auto;}
+    .search-box{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:0.5rem 1rem;color:var(--text);font-size:0.9rem;width:100%;margin-bottom:1rem;}
+    .search-box:focus{outline:none;border-color:var(--accent);}
+    .models-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1rem;margin-top:1rem;}
+    .model-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;transition:border-color 0.2s,box-shadow 0.2s;}
+    .model-card:hover{border-color:var(--accent);box-shadow:0 0 20px rgba(79,142,247,0.1);}
+    .model-card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.75rem;gap:0.5rem;}
+    .model-name{font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:var(--text);word-break:break-word;}
+    .model-provider{font-size:0.75rem;padding:0.2rem 0.6rem;border-radius:12px;background:rgba(79,142,247,0.15);color:var(--accent);font-weight:600;white-space:nowrap;flex-shrink:0;}
+    .model-category-tag{font-size:0.7rem;padding:0.15rem 0.5rem;border-radius:10px;background:rgba(56,224,176,0.12);color:var(--accent2);font-weight:500;display:inline-block;margin-bottom:0.5rem;}
+    .model-desc{font-size:0.85rem;color:var(--muted);margin-bottom:1rem;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+    .model-card-footer{display:flex;justify-content:space-between;align-items:center;gap:0.5rem;}
+    .test-results{display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid var(--border);}
+    .result-item{text-align:center;}
+    .result-label{font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;}
+    .result-value{font-family:'JetBrains Mono',monospace;font-size:0.95rem;font-weight:600;color:var(--accent2);}
+    .result-value.error{color:var(--danger);}
+    .spinner{width:18px;height:18px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;display:inline-block;}
+    @keyframes spin{to{transform:rotate(360deg);}}
+    .features-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-top:1.5rem;}
+    .feature-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:border-color 0.2s;}
+    .feature-card:hover{border-color:var(--accent);}
+    .feature-icon{font-size:2rem;margin-bottom:0.75rem;}
+    .feature-card h3{font-size:1.1rem;margin-bottom:0.5rem;}
+    .feature-card p{font-size:0.9rem;color:var(--muted);margin:0;}
+    .table-wrap{overflow-x:auto;margin-top:1rem;}
+    table{width:100%;border-collapse:collapse;font-size:0.9rem;}
+    th,td{padding:0.75rem 1rem;text-align:left;border-bottom:1px solid var(--border);}
+    th{font-family:'Syne',sans-serif;font-weight:600;color:var(--text);background:var(--surface);position:sticky;top:0;}
+    td{color:var(--muted);}
+    tr:hover td{color:var(--text);}
+    .faq-item{border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:0.5rem;overflow:hidden;}
+    .faq-item details{background:var(--surface);}
+    .faq-item summary{padding:1rem 1.25rem;cursor:pointer;font-weight:600;color:var(--text);list-style:none;display:flex;justify-content:space-between;align-items:center;}
+    .faq-item summary::-webkit-details-marker{display:none;}
+    .faq-item summary::after{content:'+';font-size:1.3rem;color:var(--accent);transition:transform 0.2s;}
+    .faq-item details[open] summary::after{content:'\2212';}
+    .faq-item details[open] summary{border-bottom:1px solid var(--border);}
+    .faq-answer{padding:1rem 1.25rem;color:var(--muted);font-size:0.95rem;line-height:1.7;}
+    .faq-answer a{color:var(--accent);text-decoration:none;}
+    .faq-answer a:hover{text-decoration:underline;}
+    .steps{counter-reset:step;list-style:none;margin-top:1rem;}
+    .steps li{counter-increment:step;position:relative;padding-left:3.5rem;margin-bottom:1.5rem;color:var(--muted);}
+    .steps li::before{content:counter(step);position:absolute;left:0;top:0;width:2.2rem;height:2.2rem;background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;}
+    .steps li strong{color:var(--text);}
+    footer{text-align:center;padding:2rem 5%;border-top:1px solid var(--border);color:var(--muted);font-size:0.85rem;}
+    footer a{color:var(--accent);text-decoration:none;}
+    footer a:hover{text-decoration:underline;}
+    .sticky-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(11,15,26,0.95);backdrop-filter:blur(12px);border-top:1px solid var(--border);padding:0.75rem 5%;display:flex;justify-content:center;gap:0.75rem;z-index:40;transform:translateY(100%);transition:transform 0.3s;}
+    .sticky-bar.visible{transform:translateY(0);}
+    .empty-state{text-align:center;padding:3rem;color:var(--muted);}
+    .empty-state h3{font-family:'Syne',sans-serif;color:var(--text);margin-bottom:0.5rem;}
+    .test-all-wrap{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:0.5rem;}
+    .highlight{color:var(--accent2);font-weight:600;}
+    @media(max-width:768px){
+      nav ul{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(11,15,26,0.98);flex-direction:column;padding:1.5rem;gap:1rem;border-bottom:1px solid var(--border);}
+      nav ul.open{display:flex;}
+      .nav-toggle{display:flex;}
+      .models-grid{grid-template-columns:1fr;}
+      .hero h1{font-size:1.8rem;}
+      .features-grid{grid-template-columns:1fr;}
+      section{padding:2rem 5%;}
+      .api-key-input-wrap{flex-direction:column;}
+    }
+    @media(max-width:480px){
+      .hero{padding:2rem 5% 1.5rem;}
+      .hero-ctas{flex-direction:column;align-items:stretch;}
+      .btn{text-align:center;justify-content:center;}
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "NVIDIA NIM API Speed Test — Test 100+ AI Models Live",
+    "description": "Real-time NVIDIA NIM API speed test tool. Compare 100+ AI models, check tokens per second, TTFT, latency. Free online NVIDIA NIM benchmark.",
+    "url": "https://dhanuksoftwares.com/nvidia-nim-speed-test/",
+    "isPartOf": {"@type": "WebSite", "name": "Dhanuk Softwares", "url": "https://dhanuksoftwares.com"},
+    "about": {"@type": "Thing", "name": "NVIDIA NIM API", "url": "https://docs.api.nvidia.com"},
+    "datePublished": "2026-06-25",
+    "dateModified": "2026-06-25",
+    "inLanguage": "en",
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://dhanuksoftwares.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://dhanuksoftwares.com/nvidia-nim-speed-test/"},
+        {"@type": "ListItem", "position": 3, "name": "NVIDIA NIM Speed Test"}
+      ]
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"What is NVIDIA NIM API?","acceptedAnswer":{"@type":"Answer","text":"NVIDIA NIM (NVIDIA Inference Microservices) is a collection of performance-optimized, portable AI inference microservices. The NIM API provides an OpenAI-compatible endpoint at integrate.api.nvidia.com/v1 that lets developers access 100+ AI models including LLMs, code generation, text-to-image, embedding, and multimodal models. It offers a free tier with approximately 40 requests per minute."}},
+      {"@type":"Question","name":"Is NVIDIA NIM API free?","acceptedAnswer":{"@type":"Answer","text":"Yes, NVIDIA NIM offers a free tier with access to 40+ AI models, no credit card required. The free tier provides approximately 40 requests per minute, suitable for development and testing. For production, NVIDIA offers paid tiers through DGX Cloud with higher rate limits and SLA guarantees."}},
+      {"@type":"Question","name":"How do I get a NVIDIA NIM API key?","acceptedAnswer":{"@type":"Answer","text":"To get a NVIDIA NIM API key: 1) Go to build.nvidia.com, 2) Sign up for an NVIDIA Developer account, 3) Verify your account with a phone number, 4) Navigate to API Keys section, 5) Click Create API Key and copy it immediately. Your key starts with nvapi- and is shown only once."}},
+      {"@type":"Question","name":"How fast is NVIDIA NIM API?","acceptedAnswer":{"@type":"Answer","text":"NVIDIA NIM API speed varies by model. Smaller models like Llama 3.2 1B can achieve 100+ tokens/second, while larger models like Llama 3.3 70B deliver 30-60 tokens/second. Time to first token (TTFT) ranges from 200ms to 2 seconds depending on model size and load. Use our speed test tool to benchmark real-time performance."}},
+      {"@type":"Question","name":"What models are available on NVIDIA NIM?","acceptedAnswer":{"@type":"Answer","text":"NVIDIA NIM offers 100+ models: LLMs (Llama 3/4, Nemotron, DeepSeek, Qwen, Mistral, Gemma, GPT-OSS), Code Generation (Qwen Coder, CodeGemma), Text-to-Image (FLUX.1, Stable Diffusion), Video (Stable Video Diffusion, Cosmos), Embedding (NV-EmbedQA, BGE-M3), Reranking, Multimodal (Llama Vision, Phi-4 Multimodal), and Healthcare (AlphaFold, BioNeMo)."}},
+      {"@type":"Question","name":"What are NVIDIA NIM API rate limits?","acceptedAnswer":{"@type":"Answer","text":"The free tier has approximately 40 requests per minute. This is generous for interactive use but may bottleneck automated pipelines. If you hit 429 errors, add delays between requests. Production tiers offer higher rate limits with SLA guarantees."}},
+      {"@type":"Question","name":"Can I use NVIDIA NIM API in production?","acceptedAnswer":{"@type":"Answer","text":"The free tier is for development and testing only — no production guarantees, no SLA, and response times can spike during peak hours. For production, use NVIDIA paid NIM offerings through DGX Cloud with guaranteed uptime, higher rate limits, and enterprise-grade infrastructure."}},
+      {"@type":"Question","name":"How does NVIDIA NIM compare to OpenAI API?","acceptedAnswer":{"@type":"Answer","text":"NVIDIA NIM is free for development while OpenAI charges $0.75-$30 per million tokens. NIM offers 100+ models vs OpenAI's 10+. NIM uses an OpenAI-compatible API, so existing code often works by just changing the base URL. OpenAI offers production SLAs and more mature tooling. NIM is ideal for prototyping and cost-sensitive projects."}},
+      {"@type":"Question","name":"How do I test NVIDIA NIM API speed?","acceptedAnswer":{"@type":"Answer","text":"Use our free NVIDIA NIM Speed Test tool above. Enter your API key from build.nvidia.com, browse available models, and click Test Speed on any model. The tool measures time to first token (TTFT), tokens per second, and total response time in real-time. No installation required."}},
+      {"@type":"Question","name":"Is NVIDIA NIM API compatible with OpenAI SDK?","acceptedAnswer":{"@type":"Answer","text":"Yes, NVIDIA NIM uses an OpenAI-compatible API format. You can use the OpenAI Python SDK by setting base_url to https://integrate.api.nvidia.com/v1 and using your NVIDIA API key. This works with ChatGPT, Cursor, OpenClaw, and other tools that support custom OpenAI-compatible endpoints."}}
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#api-key">Skip to tool</a>
+
+  <nav>
+    <a class="nav-logo" href="https://dhanuksoftwares.com/">Dhanuk<span>Softwares</span></a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+      <span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span>
+    </button>
+    <ul id="nav-menu">
+      <li><a href="https://dhanuksoftwares.com/">Home</a></li>
+      <li><a href="https://dhanuksoftwares.com/apps/">Apps</a></li>
+      <li><a href="https://dhanuksoftwares.com/nvidia-nim-speed-test/" class="active">Tools</a></li>
+      <li><a href="https://dhanuksoftwares.com/#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="breadcrumb">
+    <a href="https://dhanuksoftwares.com/">Home</a> &rsaquo; <a href="https://dhanuksoftwares.com/nvidia-nim-speed-test/">Tools</a> &rsaquo; NVIDIA NIM Speed Test
+  </div>
+
+  <section class="hero">
+    <h1>NVIDIA NIM API Speed Test — Test 100+ AI Models Live</h1>
+    <p>Test <strong>NVIDIA NIM API speed</strong> in real-time. Compare 100+ AI models — LLM, code generation, text-to-image, text-to-video, embedding, and more. Measure <strong>tokens per second</strong>, <strong>time to first token (TTFT)</strong>, and <strong>API latency</strong>. Free online <strong>NVIDIA NIM speed test</strong> tool.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#api-key">Test Models Now</a>
+      <a class="btn btn-outline" href="https://build.nvidia.com" target="_blank" rel="noopener">Get API Key &rarr;</a>
+    </div>
+  </section>
+
+  <hr class="section-divider"/>
+
+  <!-- API KEY SECTION -->
+  <section id="api-key">
+    <div class="api-key-card">
+      <h2>Enter Your NVIDIA NIM API Key</h2>
+      <p style="text-align:center;color:var(--muted);font-size:0.9rem;">Get your free API key from <a href="https://build.nvidia.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">build.nvidia.com</a></p>
+      <div class="api-key-input-wrap">
+        <input type="password" class="api-key-input" id="api-key-input" placeholder="nvapi-xxxxxxxxxxxxxxxxxxxx" autocomplete="off" spellcheck="false"/>
+        <button class="toggle-visibility" id="toggle-key" title="Show/Hide key" aria-label="Toggle API key visibility">Show</button>
+      </div>
+      <div class="api-key-actions">
+        <button class="btn btn-success btn-sm" id="save-key-btn" onclick="saveApiKey()">Save Key</button>
+        <button class="btn btn-danger btn-sm" id="revoke-key-btn" onclick="revokeApiKey()" style="display:none;">Revoke Key</button>
+      </div>
+      <div class="api-key-status" id="api-key-status"></div>
+      <div class="privacy-notice">
+        <span class="icon">🔒</span>
+        <div><strong>Privacy First:</strong> Your API key is stored only in your browser's session storage. We never store, transmit, or log your key on our servers. It is automatically cleared when you close the tab. You can revoke it anytime.</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider"/>
+
+  <!-- MODEL BROWSER SECTION -->
+  <section id="models">
+    <h2>Browse & Test NVIDIA NIM Models</h2>
+    <p>Select a category to filter models. Click <strong>Test Speed</strong> on any model to measure its real-time performance — TTFT, tokens/sec, and total response time.</p>
+
+    <input type="text" class="search-box" id="model-search" placeholder="Search models... (e.g., llama, deepseek, flux, qwen)"/>
+
+    <div class="filter-bar">
+      <div class="filter-pills" id="filter-pills">
+        <button class="pill active" data-filter="all">All</button>
+        <button class="pill" data-filter="llm">LLM</button>
+        <button class="pill" data-filter="code">Code</button>
+        <button class="pill" data-filter="image">Image</button>
+        <button class="pill" data-filter="video">Video</button>
+        <button class="pill" data-filter="embedding">Embedding</button>
+        <button class="pill" data-filter="multimodal">Multimodal</button>
+        <button class="pill" data-filter="healthcare">Healthcare</button>
+      </div>
+      <span class="model-count" id="model-count">Loading models...</span>
+    </div>
+
+    <div class="test-all-wrap">
+      <button class="btn btn-primary btn-sm" id="test-all-btn" onclick="testAllVisible()" disabled>Test All Visible Models</button>
+      <button class="btn btn-outline btn-sm" onclick="clearAllResults()">Clear Results</button>
+    </div>
+
+    <div class="models-grid" id="models-grid">
+      <div class="empty-state" id="models-loading">
+        <div style="font-size:2rem;margin-bottom:1rem;">⏳</div>
+        <h3>Enter your API key and click Save to load models</h3>
+        <p>Or models will load automatically if you've saved your key before.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider"/>
+
+  <!-- WHAT IS NVIDIA NIM -->
+  <section id="what-is-nim">
+    <h2>What is NVIDIA NIM API?</h2>
+    <p><strong>NVIDIA NIM</strong> (NVIDIA Inference Microservices) is a groundbreaking platform that provides performance-optimized, portable AI inference microservices. Launched by NVIDIA as part of their AI Enterprise platform, <strong>NIM API</strong> gives developers instant access to over 100 pre-optimized AI models through a simple, <strong>OpenAI-compatible API</strong> endpoint.</p>
+    <p>Unlike traditional AI API providers that charge per-token fees, <strong>NVIDIA NIM free tier</strong> offers generous access to cutting-edge models including <strong>Meta Llama</strong>, <strong>DeepSeek</strong>, <strong>Qwen</strong>, <strong>Mistral</strong>, <strong>Google Gemma</strong>, <strong>NVIDIA Nemotron</strong>, and many more — all without requiring a credit card. The <strong>NIM API</strong> endpoint at <code>integrate.api.nvidia.com/v1</code> follows the OpenAI Chat Completions format, making it incredibly easy to migrate existing applications.</p>
+    <p>The platform runs on <strong>NVIDIA DGX Cloud</strong> infrastructure, ensuring enterprise-grade reliability and performance. Whether you're building a <strong>chatbot</strong>, <strong>code assistant</strong>, <strong>image generator</strong>, or <strong>multimodal AI application</strong>, NVIDIA NIM provides the inference backbone. The <strong>NIM API</strong> supports streaming responses, tool calling, and system prompts — everything modern AI applications need.</p>
+    <p>For developers looking to <strong>test AI model performance</strong> before committing to a provider, our <strong>NVIDIA NIM speed test tool</strong> above lets you benchmark any model in real-time. Measure <strong>tokens per second</strong>, <strong>time to first token</strong>, and <strong>total API latency</strong> to find the perfect model for your use case.</p>
+  </section>
+
+  <hr class="section-divider"/>
+
+  <!-- HOW TO USE -->
+  <section id="how-to-use">
+    <h2>How to Use This NVIDIA NIM Speed Test Tool</h2>
+    <p>Follow these simple steps to <strong>test NVIDIA NIM API speed</strong> and compare model performance:</p>
+    <ol class="steps">
+      <li><strong>Get your NVIDIA NIM API key</strong> — Visit <a href="https://build.nvidia.com" target="_blank" rel="noopener" style="color:var(--accent);">build.nvidia.com</a>, create a free account, verify with your phone number, and generate an API key (starts with <code>nvapi-</code>).</li>
+      <li><strong>Enter your API key</strong> — Paste your key in the field above and click Save. Your key is stored only in your browser's session storage and is never sent to our servers.</li>
+      <li><strong>Browse available models</strong> — Once your key is saved, the tool automatically loads all available <strong>NVIDIA NIM models</strong>. Use the category filters (LLM, Code, Image, Video, Embedding, Multimodal, Healthcare) or search box to find specific models.</li>
+      <li><strong>Test model speed</strong> — Click the <strong>Test Speed</strong> button on any model card. The tool sends a standardized prompt and measures <strong>time to first token (TTFT)</strong>, <strong>tokens per second</strong>, and <strong>total response time</strong>.</li>
+      <li><strong>Compare results</strong> — Test multiple models and compare their performance side by side. Find the fastest <strong>NVIDIA NIM model</strong> for your specific use case — whether it's real-time chat, code generation, or image creation.</li>
+    </ol>
+  </section>
+
+  <hr class="section-divider"/>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <h2>NVIDIA NIM API Features — Why Developers Love It</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🔌</div>
+        <h3>OpenAI Compatible</h3>
+        <p>Drop-in replacement for OpenAI API. Change base_url and your existing code works with 100+ models instantly.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🆓</div>
+        <h3>Generous Free Tier</h3>
+        <p>40+ models completely free, no credit card required. ~40 requests per minute — more than enough for development and testing.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Low Latency Inference</h3>
+        <p>Powered by NVIDIA DGX Cloud and TensorRT-LLM. Optimized for speed with streaming support and fast time-to-first-token.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <h3>100+ AI Models</h3>
+        <p>Access Llama, DeepSeek, Qwen, Mistral, Gemma, Nemotron, FLUX, Stable Diffusion, and more — all from one API.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Enterprise Grade</h3>
+        <p>Built on NVIDIA DGX Cloud infrastructure. Continuous vulnerability fixes, SOC2 compliance, and enterprise support available.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌍</div>
+        <h3>Global CDN</h3>
+        <p>NIM API endpoints are distributed globally for minimal latency. Test from anywhere in the world with consistent performance.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider"/>
+
+  <!-- MODELS LIST -->
+  <section id="models-list">
+    <h2>NVIDIA NIM Models — Complete List 2026</h2>
+    <p>Here's a comprehensive list of popular <strong>NVIDIA NIM models</strong> available through the API catalog. Use our speed test tool above to benchmark their real-time performance.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Model</th><th>Provider</th><th>Category</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>meta/llama-3.3-70b-instruct</strong></td><td>Meta</td><td>LLM</td><td>70B parameter flagship instruct model</td></tr>
+          <tr><td><strong>meta/llama-4-maverick-17b-128e-instruct</strong></td><td>Meta</td><td>Multimodal</td><td>Latest Llama 4 with vision capabilities</td></tr>
+          <tr><td><strong>deepseek-ai/deepseek-v4-pro</strong></td><td>DeepSeek</td><td>LLM</td><td>1M-token context window MoE model</td></tr>
+          <tr><td><strong>nvidia/llama-3.1-nemotron-ultra-253b-v1</strong></td><td>NVIDIA</td><td>LLM</td><td>253B parameter reasoning model</td></tr>
+          <tr><td><strong>qwen/qwen3-coder-480b-a35b-instruct</strong></td><td>Qwen</td><td>Code</td><td>480B MoE code generation model</td></tr>
+          <tr><td><strong>qwen/qwq-32b</strong></td><td>Qwen</td><td>LLM</td><td>32B reasoning model</td></tr>
+          <tr><td><strong>mistralai/mistral-nemotron</strong></td><td>Mistral</td><td>LLM</td><td>Mistral-NVIDIA collaboration model</td></tr>
+          <tr><td><strong>google/gemma-4-31b-it</strong></td><td>Google</td><td>LLM</td><td>Latest Gemma instruction-tuned model</td></tr>
+          <tr><td><strong>black-forest-labs/flux.1-dev</strong></td><td>Black Forest Labs</td><td>Image</td><td>High-quality text-to-image generation</td></tr>
+          <tr><td><strong>stabilityai/stable-diffusion-xl</strong></td><td>Stability AI</td><td>Image</td><td>SDXL text-to-image model</td></tr>
+          <tr><td><strong>stabilityai/stable-video-diffusion</strong></td><td>Stability AI</td><td>Video</td><td>Image-to-video generation</td></tr>
+          <tr><td><strong>nvidia/cosmos-predict1-7b</strong></td><td>NVIDIA</td><td>Video</td><td>World model for video prediction</td></tr>
+          <tr><td><strong>nvidia/nv-embedqa-e5-v5</strong></td><td>NVIDIA</td><td>Embedding</td><td>Text embedding for RAG and search</td></tr>
+          <tr><td><strong>baai/bge-m3</strong></td><td>BAAI</td><td>Embedding</td><td>Multi-lingual embedding model</td></tr>
+          <tr><td><strong>nvidia/llama-3.2-11b-vision-instruct</strong></td><td>Meta</td><td>Multimodal</td><td>Vision-language model</td></tr>
+          <tr><td><strong>microsoft/phi-4-multimodal-instruct</strong></td><td>Microsoft</td><td>Multimodal</td><td>Small multimodal instruct model</td></tr>
+          <tr><td><strong>openai/gpt-oss-120b</strong></td><td>OpenAI</td><td>LLM</td><td>Open-source 120B parameter model</td></tr>
+          <tr><td><strong>nvidia/nemotron-mini-4b-instruct</strong></td><td>NVIDIA</td><td>LLM</td><td>Compact 4B instruction model</td></tr>
+          <tr><td><strong>moonshotai/kimi-k2-instruct</strong></td><td>Moonshot AI</td><td>LLM</td><td>Moonshot's instruction-tuned model</td></tr>
+          <tr><td><strong>arc/evo2-40b</strong></td><td>Arc</td><td>Healthcare</td><td>DNA sequence generation model</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="section-divider"/>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <h2>NVIDIA NIM API Pricing — Free vs Paid</h2>
+    <p>Understanding <strong>NVIDIA NIM pricing</strong> helps you choose the right tier for your project. Here's a detailed comparison of the <strong>NIM free tier</strong> vs paid offerings.</p>
+    <div class="table-wrap">
+      <table class="comparison-table">
+        <thead>
+          <tr><th>Feature</th><th class="highlight">NIM Free Tier</th><th>NIM Paid (DGX Cloud)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Price</td><td class="highlight">Free forever</td><td>Pay-per-use (varies by model)</td></tr>
+          <tr><td>Models Available</td><td class="highlight">40+ models</td><td>100+ models</td></tr>
+          <tr><td>Rate Limit</td><td class="highlight">~40 requests/min</td><td>Custom (higher limits)</td></tr>
+          <tr><td>Credit Card Required</td><td class="highlight">No</td><td>Yes</td></tr>
+          <tr><td>SLA Guarantee</td><td class="highlight">None</td><td>Yes (99.9%+ uptime)</td></tr>
+          <tr><td>Support</td><td class="highlight">Community</td><td>Priority enterprise support</td></tr>
+          <tr><td>Production Ready</td><td class="highlight">Dev/testing only</td><td>Yes</td></tr>
+          <tr><td>Fine-tuning</td><td class="highlight">Not available</td><td>Available</td></tr>
+          <tr><td>API Format</td><td class="highlight">OpenAI-compatible</td><td>OpenAI-compatible</td></tr>
+          <tr><td>Best For</td><td class="highlight">Prototyping, learning, personal projects</td><td>Production apps, enterprise, high-scale</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:1.5rem;"><strong>Pro tip:</strong> Start with the <strong>NVIDIA NIM free tier</strong> to prototype and benchmark. Use our <strong>speed test tool</strong> above to find the fastest model for your use case, then upgrade to paid when you need production reliability.</p>
+  </section>
+
+  <hr class="section-divider"/>
+
+  <!-- GET API KEY -->
+  <section id="get-api-key">
+    <h2>How to Get Your NVIDIA NIM API Key</h2>
+    <p>Getting a <strong>NVIDIA NIM API key</strong> is free and takes less than 2 minutes. Follow these steps to start building with <strong>100+ AI models</strong>:</p>
+    <ol class="steps">
+      <li><strong>Visit build.nvidia.com</strong> — Go to <a href="https://build.nvidia.com" target="_blank" rel="noopener" style="color:var(--accent);">build.nvidia.com/explore/discover</a> and explore the model catalog.</li>
+      <li><strong>Create an account</strong> — Click "Get API Key" and sign up for a free NVIDIA Developer account. You can use your email or sign in with Google/GitHub.</li>
+      <li><strong>Verify your identity</strong> — NVIDIA requires phone number verification for API access. Enter your phone number and confirm with the SMS code sent to you.</li>
+      <li><strong>Generate your API key</strong> — Once verified, navigate to the "API Keys" section in the dashboard. Click "Create API Key" and copy it immediately — it's only shown once.</li>
+      <li><strong>Start testing</strong> — Paste your API key (starts with <code>nvapi-</code>) in our speed test tool above and start benchmarking models instantly!</li>
+    </ol>
+    <p style="margin-top:1rem;"><strong>Important:</strong> Your <strong>NVIDIA NIM API key</strong> provides access to the free tier with ~40 requests per minute. No credit card is required. The key works with the OpenAI Python SDK, JavaScript SDK, curl, and any HTTP client.</p>
+  </section>
+
+  <hr class="section-divider"/>
+
+  <!-- WHY TEST SPEED -->
+  <section id="why-test">
+    <h2>Why Test NVIDIA NIM API Speed?</h2>
+    <p>Testing <strong>NVIDIA NIM API speed</strong> before deploying is critical for building responsive AI applications. Our <strong>speed test tool</strong> measures three key metrics that directly impact user experience:</p>
+    <p><strong>Time to First Token (TTFT)</strong> — This measures how quickly the API starts streaming a response. For chat applications, a low TTFT (under 500ms) creates the feeling of instant responsiveness. Large models like <strong>Llama 3.3 70B</strong> may have higher TTFT due to model initialization, while smaller models like <strong>Nemotron Mini 4B</strong> respond almost instantly.</p>
+    <p><strong>Tokens per Second</strong> — This determines how fast the full response streams in. Higher tokens/sec means users see the complete answer faster. This metric is crucial for code generation, long-form writing, and any application where response length matters. Our tool measures this in real-time using the <strong>NIM streaming API</strong>.</p>
+    <p><strong>Total Response Time</strong> — The complete end-to-end latency from request to final token. This is the "wall clock time" users actually experience. By benchmarking <strong>NIM API response time</strong> across different models, you can find the optimal balance between model capability and speed for your specific use case.</p>
+    <p>Different <strong>NVIDIA NIM models</strong> have vastly different performance characteristics. A 70B parameter model produces higher quality outputs but runs slower than a 7B model. Our <strong>NVIDIA NIM benchmark tool</strong> helps you make data-driven decisions about which model to use, saving development time and ensuring the best user experience for your AI-powered application.</p>
+  </section>
+
+  <hr class="section-divider"/>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <h2>Frequently Asked Questions About NVIDIA NIM API</h2>
+    <div class="faq-item"><details><summary>What is NVIDIA NIM API and how does it work?</summary><div class="faq-answer">NVIDIA NIM (NVIDIA Inference Microservices) is a platform that provides optimized AI model inference through an OpenAI-compatible API. It offers 100+ pre-optimized models hosted on NVIDIA DGX Cloud infrastructure. You send requests to <code>https://integrate.api.nvidia.com/v1</code> with your API key, and NIM returns model responses. It supports chat completions, text completions, streaming, and tool calling — just like OpenAI's API.</div></details></div>
+    <div class="faq-item"><details><summary>Is NVIDIA NIM API really free?</summary><div class="faq-answer">Yes! NVIDIA NIM offers a genuinely free tier with 40+ models, no credit card required. You get approximately 40 requests per minute, which is generous for development, testing, and personal projects. For production workloads requiring higher rate limits and SLA guarantees, NVIDIA offers paid tiers through DGX Cloud. See our pricing comparison above for details.</div></details></div>
+    <div class="faq-item"><details><summary>How do I get a NVIDIA NIM API key?</summary><div class="faq-answer">Visit <a href="https://build.nvidia.com" target="_blank" rel="noopener">build.nvidia.com</a>, create a free NVIDIA Developer account, verify your phone number, then navigate to the API Keys section and click "Create API Key". Your key starts with <code>nvapi-</code> and is displayed only once — copy it immediately. See our step-by-step guide above for detailed instructions.</div></details></div>
+    <div class="faq-item"><details><summary>How fast is NVIDIA NIM API compared to OpenAI?</summary><div class="faq-answer">NVIDIA NIM API performance is competitive with OpenAI, especially for open-source models. Smaller models (1B-8B parameters) achieve 100+ tokens/sec, while larger models (70B+) deliver 30-60 tokens/sec. TTFT is typically 200ms-2s depending on model size and load. Our speed test tool lets you benchmark both and compare directly.</div></details></div>
+    <div class="faq-item"><details><summary>What programming languages work with NVIDIA NIM?</summary><div class="faq-answer">Since NVIDIA NIM uses an OpenAI-compatible API, any language that works with the OpenAI API works with NIM. Official SDKs are available for Python and JavaScript/TypeScript. You can also use curl, Go, Rust, Java, or any HTTP client. Simply change the base URL to <code>https://integrate.api.nvidia.com/v1</code> and use your NVIDIA API key for authentication.</div></details></div>
+    <div class="faq-item"><details><summary>Can I use NVIDIA NIM for code generation?</summary><div class="faq-answer">Absolutely! NVIDIA NIM offers several excellent code generation models including Qwen Qwen3 Coder 480B (one of the largest code models available), Qwen 2.5 Coder 32B, Google CodeGemma 7B, and NVIDIA's own code-specialized models. Use our speed test tool to benchmark code generation speed and find the best model for your coding assistant.</div></details></div>
+    <div class="faq-item"><details><summary>What are the rate limits for NVIDIA NIM free tier?</summary><div class="faq-answer">The free tier provides approximately 40 requests per minute per API key. This is suitable for interactive use, development, and testing. Automated pipelines may need to implement backoff logic for 429 (Too Many Requests) errors. Production tiers offer significantly higher rate limits with guaranteed SLAs.</div></details></div>
+    <div class="faq-item"><details><summary>Is my API key safe when using this speed test tool?</summary><div class="faq-answer">Yes. Your API key is stored only in your browser's sessionStorage and is never transmitted to our servers. All API calls go through a lightweight Cloudflare Pages Function proxy that forwards your request directly to NVIDIA's servers. The proxy does not log, store, or inspect your API key. When you close the tab or click "Revoke Key", the key is completely removed.</div></details></div>
+    <div class="faq-item"><details><summary>Which NVIDIA NIM model is the fastest?</summary><div class="faq-answer">Speed depends on model size. The fastest models are smaller ones: NVIDIA Nemotron Mini 4B, Meta Llama 3.2 1B, and Google Gemma 2B achieve 100+ tokens/sec. Mid-size models (8B-14B) typically deliver 60-100 tokens/sec. Larger models (70B+) trade speed for quality at 30-60 tokens/sec. Use our speed test to find the best speed/quality tradeoff for your needs.</div></details></div>
+  </section>
+
+  <hr class="section-divider"/>
+
+  <footer>
+    <p>&copy; 2026 <strong>Dhanuk Softwares</strong> &middot; <a href="https://dhanuksoftwares.com/">Home</a> &middot; <a href="https://dhanuksoftwares.com/apps/">Apps</a> &middot; <a href="https://dhanuksoftwares.com/privacy/">Privacy</a> &middot; <a href="https://dhanuksoftwares.com/terms/">Terms</a></p>
+    <p style="margin-top:0.5rem;">Made with love in India</p>
+  </footer>
+
+  <div class="sticky-bar" id="sticky-bar">
+    <a class="btn btn-primary btn-sm" href="#models">Test Models</a>
+    <a class="btn btn-outline btn-sm" href="#faq">FAQ</a>
+  </div>
+
+  <script>
+  (function(){
+    const PROXY_BASE = '/api/nvidia-nim-proxy';
+    const STORAGE_KEY = 'nim_api_key';
+    let apiKey = sessionStorage.getItem(STORAGE_KEY) || '';
+    let allModels = [];
+    let currentFilter = 'all';
+    let searchQuery = '';
+
+    // NAV TOGGLE
+    document.querySelector('.nav-toggle').addEventListener('click', function(){
+      const expanded = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', !expanded);
+      document.getElementById('nav-menu').classList.toggle('open');
+    });
+
+    // STICKY BAR
+    const stickyBar = document.getElementById('sticky-bar');
+    const heroSection = document.querySelector('.hero');
+    if (heroSection && stickyBar) {
+      const obs = new IntersectionObserver(function(entries){
+        stickyBar.classList.toggle('visible', !entries[0].isIntersecting);
+      }, { threshold: 0 });
+      obs.observe(heroSection);
+    }
+
+    // API KEY VISIBILITY TOGGLE
+    document.getElementById('toggle-key').addEventListener('click', function(){
+      const input = document.getElementById('api-key-input');
+      if (input.type === 'password') { input.type = 'text'; this.textContent = 'Hide'; }
+      else { input.type = 'password'; this.textContent = 'Show'; }
+    });
+
+    // INIT
+    if (apiKey) {
+      document.getElementById('api-key-input').value = apiKey;
+      showKeyStatus('API key saved. Models loading...', 'success');
+      document.getElementById('save-key-btn').style.display = 'none';
+      document.getElementById('revoke-key-btn').style.display = '';
+      loadModels();
+    }
+
+    window.saveApiKey = function(){
+      const input = document.getElementById('api-key-input');
+      const key = input.value.trim();
+      if (!key) { showKeyStatus('Please enter an API key.', 'error'); return; }
+      if (!key.startsWith('nvapi-')) { showKeyStatus('Invalid key. Must start with nvapi-', 'error'); return; }
+      apiKey = key;
+      sessionStorage.setItem(STORAGE_KEY, key);
+      showKeyStatus('API key saved! Loading models...', 'success');
+      document.getElementById('save-key-btn').style.display = 'none';
+      document.getElementById('revoke-key-btn').style.display = '';
+      loadModels();
+    };
+
+    window.revokeApiKey = function(){
+      apiKey = '';
+      sessionStorage.removeItem(STORAGE_KEY);
+      document.getElementById('api-key-input').value = '';
+      showKeyStatus('API key revoked and cleared from memory.', '');
+      document.getElementById('save-key-btn').style.display = '';
+      document.getElementById('revoke-key-btn').style.display = 'none';
+      allModels = [];
+      renderModels();
+    };
+
+    function showKeyStatus(msg, type){
+      const el = document.getElementById('api-key-status');
+      el.textContent = msg;
+      el.className = 'api-key-status' + (type ? ' ' + type : '');
+    }
+
+    // FETCH MODELS
+    async function loadModels(){
+      if (!apiKey) return;
+      try {
+        const res = await fetch(PROXY_BASE + '?action=models', {
+          headers: { 'x-nvidia-api-key': apiKey }
+        });
+        if (!res.ok) {
+          const err = await res.json().catch(()=>({error:'Failed to load models'}));
+          showKeyStatus('Error: ' + (err.error || res.status), 'error');
+          return;
+        }
+        const data = await res.json();
+        allModels = (data.data || []).map(function(m){
+          return {
+            id: m.id || '',
+            name: m.id || 'Unknown Model',
+            provider: extractProvider(m.id || ''),
+            category: categorize(m.id || ''),
+            created: m.created || 0,
+            owned_by: m.owned_by || ''
+          };
+        });
+        allModels.sort(function(a,b){ return a.name.localeCompare(b.name); });
+        showKeyStatus('Loaded ' + allModels.length + ' models successfully!', 'success');
+        renderModels();
+        document.getElementById('test-all-btn').disabled = false;
+      } catch(e) {
+        showKeyStatus('Network error: ' + e.message, 'error');
+      }
+    }
+
+    function extractProvider(id){
+      const parts = id.split('/');
+      if (parts.length >= 2) return parts[0];
+      const lower = id.toLowerCase();
+      if (lower.includes('nvidia') || lower.includes('nemotron')) return 'NVIDIA';
+      if (lower.includes('llama') || lower.includes('meta')) return 'Meta';
+      if (lower.includes('deepseek')) return 'DeepSeek';
+      if (lower.includes('qwen')) return 'Qwen';
+      if (lower.includes('mistral') || lower.includes('mixtral')) return 'Mistral';
+      if (lower.includes('google') || lower.includes('gemma')) return 'Google';
+      if (lower.includes('microsoft') || lower.includes('phi')) return 'Microsoft';
+      if (lower.includes('flux')) return 'Black Forest Labs';
+      if (lower.includes('stability')) return 'Stability AI';
+      return parts[0] || 'Unknown';
+    }
+
+    function categorize(id){
+      const lower = id.toLowerCase();
+      if (lower.includes('embed') || lower.includes('rerank') || lower.includes('bge-') || lower.includes('nvclip')) return 'embedding';
+      if (lower.includes('flux') || lower.includes('stable-diffusion') || lower.includes('sd-') || lower.includes('image')) return 'image';
+      if (lower.includes('video') || lower.includes('cosmos') || lower.includes('svd')) return 'video';
+      if (lower.includes('code') || lower.includes('coder')) return 'code';
+      if (lower.includes('vision') || lower.includes('vl-') || lower.includes('-vl') || lower.includes('multimodal') || lower.includes('paligemma') || lower.includes('guard-4')) return 'multimodal';
+      if (lower.includes('alpha') || lower.includes('esm') || lower.includes('boltz') || lower.includes('diffdock') || lower.includes('evo2') || lower.includes('genmol') || lower.includes('molmim') || lower.includes('vista3d') || lower.includes('rfdiffusion') || lower.includes('protein')) return 'healthcare';
+      if (lower.includes('pii') || lower.includes('safety') || lower.includes('jailbreak') || lower.includes('nemoguard')) return 'multimodal';
+      return 'llm';
+    }
+
+    // FILTER
+    document.getElementById('filter-pills').addEventListener('click', function(e){
+      if (!e.target.classList.contains('pill')) return;
+      document.querySelectorAll('.pill').forEach(function(p){ p.classList.remove('active'); });
+      e.target.classList.add('active');
+      currentFilter = e.target.dataset.filter;
+      renderModels();
+    });
+
+    document.getElementById('model-search').addEventListener('input', function(){
+      searchQuery = this.value.toLowerCase().trim();
+      renderModels();
+    });
+
+    // RENDER MODELS
+    function renderModels(){
+      var grid = document.getElementById('models-grid');
+      var countEl = document.getElementById('model-count');
+      if (!allModels.length) {
+        grid.innerHTML = '<div class="empty-state"><div style="font-size:2rem;margin-bottom:1rem;">⏳</div><h3>Enter your API key and click Save to load models</h3></div>';
+        countEl.textContent = 'No models loaded';
+        return;
+      }
+      var filtered = allModels.filter(function(m){
+        var matchFilter = currentFilter === 'all' || m.category === currentFilter;
+        var matchSearch = !searchQuery || m.name.toLowerCase().includes(searchQuery) || m.provider.toLowerCase().includes(searchQuery) || m.category.includes(searchQuery);
+        return matchFilter && matchSearch;
+      });
+      countEl.textContent = 'Showing ' + filtered.length + ' of ' + allModels.length + ' models';
+
+      if (!filtered.length) {
+        grid.innerHTML = '<div class="empty-state"><h3>No models match your filter</h3><p>Try a different search term or category.</p></div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map(function(m){
+        return '<div class="model-card" id="card-' + escHtml(m.id) + '">' +
+          '<div class="model-card-header"><div class="model-name">' + escHtml(m.name.split('/').pop()) + '</div><span class="model-provider">' + escHtml(m.provider) + '</span></div>' +
+          '<div class="model-category-tag">' + escHtml(m.category) + '</div>' +
+          '<div class="model-desc">' + escHtml(m.id) + '</div>' +
+          '<div class="model-card-footer">' +
+            '<button class="btn btn-primary btn-sm" onclick="testModelSpeed(\'' + escAttr(m.id) + '\')">Test Speed</button>' +
+            '<div id="status-' + escHtml(m.id).replace(/\//g,'-') + '"></div>' +
+          '</div>' +
+          '<div class="test-results" id="results-' + escHtml(m.id).replace(/\//g,'-') + '" style="display:none;"></div>' +
+        '</div>';
+      }).join('');
+    }
+
+    // TEST MODEL SPEED
+    window.testModelSpeed = async function(modelId){
+      var safeId = modelId.replace(/\//g,'-');
+      var statusEl = document.getElementById('status-' + safeId);
+      var resultsEl = document.getElementById('results-' + safeId);
+      if (!statusEl || !resultsEl) return;
+      if (!apiKey) { showKeyStatus('Please save your API key first.', 'error'); return; }
+
+      statusEl.innerHTML = '<span class="spinner"></span>';
+      resultsEl.style.display = 'none';
+
+      var startTime = performance.now();
+      var ttft = 0;
+      var tokenCount = 0;
+      var fullText = '';
+
+      try {
+        var res = await fetch(PROXY_BASE + '?action=chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-nvidia-api-key': apiKey
+          },
+          body: JSON.stringify({
+            model: modelId,
+            messages: [{ role: 'user', content: 'Write a haiku about artificial intelligence. Be brief.' }],
+            max_tokens: 100,
+            stream: true
+          })
+        });
+
+        if (!res.ok) {
+          var err = await res.json().catch(function(){ return { error: 'HTTP ' + res.status }; });
+          statusEl.innerHTML = '';
+          resultsEl.style.display = 'block';
+          resultsEl.innerHTML = '<div class="test-results" style="grid-template-columns:1fr;display:block;text-align:center;"><span class="result-value error">' + escHtml(err.error || 'Error') + '</span></div>';
+          return;
+        }
+
+        var reader = res.body.getReader();
+        var decoder = new TextDecoder();
+        var buffer = '';
+
+        while(true){
+          var chunk = await reader.read();
+          if (chunk.done) break;
+          buffer += decoder.decode(chunk.value, { stream: true });
+          var lines = buffer.split('\n');
+          buffer = lines.pop();
+          for (var i = 0; i < lines.length; i++){
+            var line = lines[i].trim();
+            if (!line.startsWith('data:')) continue;
+            var payload = line.slice(5).trim();
+            if (payload === '[DONE]') continue;
+            try {
+              var obj = JSON.parse(payload);
+              var delta = obj.choices && obj.choices[0] && obj.choices[0].delta;
+              if (delta && delta.content) {
+                if (tokenCount === 0) ttft = performance.now() - startTime;
+                tokenCount++;
+                fullText += delta.content;
+              }
+            } catch(e){}
+          }
+        }
+
+        var totalTime = performance.now() - startTime;
+        var tokensPerSec = tokenCount > 0 ? (tokenCount / (totalTime / 1000)).toFixed(1) : '0';
+        ttft = ttft > 0 ? Math.round(ttft) : 'N/A';
+        totalTime = Math.round(totalTime);
+
+        statusEl.innerHTML = '';
+        resultsEl.style.display = 'grid';
+        resultsEl.innerHTML =
+          '<div class="result-item"><div class="result-label">TTFT</div><div class="result-value">' + (ttft === 'N/A' ? 'N/A' : ttft + 'ms') + '</div></div>' +
+          '<div class="result-item"><div class="result-label">Tokens/sec</div><div class="result-value">' + tokensPerSec + '</div></div>' +
+          '<div class="result-item"><div class="result-label">Total</div><div class="result-value">' + totalTime + 'ms</div></div>';
+
+      } catch(e) {
+        statusEl.innerHTML = '';
+        resultsEl.style.display = 'block';
+        resultsEl.innerHTML = '<div class="result-item" style="grid-column:1/-1;text-align:center;"><div class="result-value error">Error: ' + escHtml(e.message) + '</div></div>';
+      }
+    };
+
+    // TEST ALL VISIBLE
+    window.testAllVisible = function(){
+      var cards = document.querySelectorAll('.model-card');
+      var delay = 0;
+      cards.forEach(function(card){
+        var btn = card.querySelector('.btn-primary');
+        if (btn) {
+          setTimeout(function(){ btn.click(); }, delay);
+          delay += 1500;
+        }
+      });
+    };
+
+    window.clearAllResults = function(){
+      document.querySelectorAll('.test-results').forEach(function(el){
+        el.style.display = 'none';
+        el.innerHTML = '';
+      });
+      document.querySelectorAll('[id^="status-"]').forEach(function(el){
+        el.innerHTML = '';
+      });
+    };
+
+    function escHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+    function escAttr(s){ return String(s).replace(/'/g,'&#39;').replace(/"/g,'&quot;'); }
+  })();
+  </script>
+</body>
+</html>
