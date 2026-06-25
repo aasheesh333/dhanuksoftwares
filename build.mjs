@@ -124,13 +124,16 @@ function renderAppsIndex(apps, baseUrl) {
     ? `${apps.length} free Android app${apps.length === 1 ? '' : 's'}. Tap any to learn more.`
     : 'No apps published yet — check back soon. In the meantime, learn more about us below.';
 
-  const cards = apps.map(a => `
-    <a class="app-card" href="/apps/${a.slug}/" data-app-card data-search="${escapeHtml(((a.name || '') + ' ' + (a.shortDesc || '') + ' ' + (a.category || a.tag || '') + ' ' + (a.keywords || []).join(' ')).toLowerCase())}">
+  const cards = apps.map(a => {
+    const href = a.isTool && a.permalink ? a.permalink : `/apps/${a.slug}/`;
+    return `
+    <a class="app-card" href="${href}" data-app-card data-search="${escapeHtml(((a.name || '') + ' ' + (a.shortDesc || '') + ' ' + (a.category || a.tag || '') + ' ' + (a.keywords || []).join(' ')).toLowerCase())}">
       ${a.icon ? `<img class="app-icon-img" src="${escapeHtml(a.icon)}" alt="${escapeHtml(a.name)}" loading="lazy" width="56" height="56"/>` : `<div class="app-emoji">${escapeHtml(a.emoji || '📱')}</div>`}
       <div class="app-name">${escapeHtml(a.name)}</div>
       <div class="app-desc">${escapeHtml(a.shortDesc || '')}</div>
       <div class="app-footer"><span class="app-tag">${escapeHtml(a.category || a.tag || 'Android')}</span></div>
-    </a>`).join('\n');
+    </a>`;
+  }).join('\n');
 
   const itemListJson = hasApps ? JSON.stringify({
     '@context': 'https://schema.org',
@@ -139,7 +142,7 @@ function renderAppsIndex(apps, baseUrl) {
     itemListElement: apps.map((app, idx) => ({
       '@type': 'ListItem',
       position: idx + 1,
-      url: `${baseUrl}/apps/${app.slug}/`,
+      url: app.isTool && app.permalink ? `${baseUrl}${app.permalink}` : `${baseUrl}/apps/${app.slug}/`,
       name: app.name || ''
     }))
   }, null, 2).replace(/</g, '\\u003c') : '';
@@ -352,16 +355,16 @@ function generateSitemap(apps, baseUrl) {
   const urls = [
     { loc: `${baseUrl}/`, priority: '1.0', changefreq: 'weekly', lastmod: TODAY },
     { loc: `${baseUrl}/apps/`, priority: '0.9', changefreq: 'weekly', lastmod: TODAY },
-    { loc: `${baseUrl}/nvidia-nim-speed-test/`, priority: '0.8', changefreq: 'weekly', lastmod: TODAY },
     { loc: `${baseUrl}/privacy/`, priority: '0.3', changefreq: 'yearly', lastmod: TODAY },
     { loc: `${baseUrl}/terms/`, priority: '0.3', changefreq: 'yearly', lastmod: TODAY },
     { loc: `${baseUrl}/cookies/`, priority: '0.3', changefreq: 'yearly', lastmod: TODAY }
   ];
   for (const app of apps) {
+    const appUrl = app.isTool && app.permalink ? `${baseUrl}${app.permalink}` : `${baseUrl}/apps/${app.slug}/`;
     urls.push({
-      loc: `${baseUrl}/apps/${app.slug}/`,
-      priority: '0.8',
-      changefreq: 'monthly',
+      loc: appUrl,
+      priority: app.isTool ? '0.8' : '0.8',
+      changefreq: app.isTool ? 'weekly' : 'monthly',
       lastmod: app.lastUpdated || TODAY
     });
   }
@@ -412,8 +415,9 @@ async function main() {
   }
 
   for (const app of apps) {
+    if (app.isTool) continue;
     const related = apps
-      .filter(a => a.slug !== app.slug)
+      .filter(a => a.slug !== app.slug && !a.isTool)
       .slice(0, 6)
       .map(a => ({ name: a.name, slug: a.slug, emoji: a.emoji, icon: a.icon, shortDesc: a.shortDesc, category: a.category }));
     const html = renderApp(app, BASE_URL, related);
@@ -714,7 +718,7 @@ function injectHomeItemList(html, apps) {
     itemListElement: apps.map((app, idx) => ({
       '@type': 'ListItem',
       position: idx + 1,
-      url: `${BASE_URL}/apps/${app.slug}/`,
+      url: app.isTool && app.permalink ? `${BASE_URL}${app.permalink}` : `${BASE_URL}/apps/${app.slug}/`,
       name: app.name || ''
     }))
   };
@@ -819,12 +823,15 @@ function injectHomeAppsList(html, apps) {
     `<div class="stat-num" id="app-count-stat">${apps.length}+</div>`);
 
   // SSR noscript + JS-rendered cards
-  const cards = apps.map(a => `<a class="app-card" href="/apps/${a.slug}/">
+  const cards = apps.map(a => {
+    const href = a.isTool && a.permalink ? a.permalink : `/apps/${a.slug}/`;
+    return `<a class="app-card" href="${href}">
       ${a.icon ? `<img class="app-icon-img" src="${escapeHtml(a.icon)}" alt="${escapeHtml(a.name)}" loading="lazy" width="56" height="56"/>` : `<div class="app-emoji">${escapeHtml(a.emoji || '📱')}</div>`}
       <div class="app-name">${escapeHtml(a.name)}</div>
       <div class="app-desc">${escapeHtml(a.shortDesc || '')}</div>
       <div class="app-footer"><span class="app-tag">${escapeHtml(a.category || a.tag || 'Android')}</span></div>
-    </a>`).join('\n    ');
+    </a>`;
+  }).join('\n    ');
 
   return html.replace(
     /<div class="apps-loading loading-pulse">Loading apps[^<]*<\/div>/,

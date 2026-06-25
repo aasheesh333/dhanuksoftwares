@@ -74,6 +74,10 @@ export async function onRequest({ request }) {
       nimUrl = `${NIM_BASE}/chat/completions`;
     } else if (nimAction === 'completions') {
       nimUrl = `${NIM_BASE}/completions`;
+    } else if (nimAction === 'embeddings') {
+      nimUrl = `${NIM_BASE}/embeddings`;
+    } else if (nimAction === 'image-generations') {
+      nimUrl = `${NIM_BASE}/image/generations`;
     } else if (nimAction === 'health') {
       // Batch health check: POST with { models: ["id1","id2",...] }
       // Returns { live: ["id1",...], dead: ["id2",...] }

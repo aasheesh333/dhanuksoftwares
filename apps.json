@@ -165,7 +165,7 @@
         "type": "uptodown"
       }
     ],
-    "lastUpdated": "2026-06-08",
+    "lastUpdated": "2026-06-09",
     "totalDownloads": "",
     "appSize": "13.6",
     "contentRating": "Rated for 18+",
@@ -338,5 +338,60 @@
     "totalDownloads": "100+",
     "appSize": "10.22",
     "contentRating": "Rated for 3+"
+  },
+  {
+    "name": "NVIDIA NIM API Speed Test",
+    "slug": "nvidia-nim-speed-test",
+    "category": "Tools",
+    "tag": "Tools",
+    "tagline": "Benchmark 100+ AI models live",
+    "shortDesc": "Test NVIDIA NIM API speed in real-time. Compare 100+ AI models — LLM, code, image, embedding. Check TTFT, tokens/sec, latency.",
+    "longDescription": "<p>Benchmark NVIDIA NIM API speed in real-time with our free online tool. Compare over 100 AI models including Meta Llama, DeepSeek, Qwen, Mistral, NVIDIA Nemotron, and more. Measure time to first token (TTFT), tokens per second, and total API latency to find the fastest model for your use case.</p><h2>What is NVIDIA NIM API?</h2><p>NVIDIA NIM (NVIDIA Inference Microservices) provides performance-optimized AI inference through an OpenAI-compatible API endpoint. It offers a generous free tier with 40+ models and no credit card required.</p><h2>How to Use This Speed Test Tool</h2><p>Simply enter your NVIDIA NIM API key from build.nvidia.com, browse available models, and click Test Speed on any model. The tool measures TTFT, tokens/sec, and total response time in real-time. You can also test embedding models and image generation models.</p><h2>Key Features</h2><ul><li>Real-time speed benchmarking for 100+ AI models</li><li>Model category filters: LLM, Code, Image, Video, Embedding, Multimodal, Healthcare</li><li>Live health checks — only shows models currently available</li><li>Batch testing — test all visible models at once</li><li>Privacy-first — your API key stays in your browser only</li></ul>",
+    "keywords": [
+      "nvidia nim api speed test",
+      "nvidia nim benchmark",
+      "ai api speed test",
+      "nvidia nim models",
+      "free ai api test",
+      "nvidia inference microservices"
+    ],
+    "features": [
+      "Real-time speed benchmarking",
+      "100+ AI model comparison",
+      "Category filters and search",
+      "Live model health checks",
+      "Batch testing",
+      "Privacy-first API key handling"
+    ],
+    "faq": [
+      {
+        "q": "Is NVIDIA NIM API Speed Test free?",
+        "a": "Yes, this tool is completely free. You need a free NVIDIA NIM API key from build.nvidia.com."
+      },
+      {
+        "q": "Is my API key safe?",
+        "a": "Your API key is stored only in your browser's sessionStorage and is never sent to our servers. It is automatically cleared when you close the tab."
+      },
+      {
+        "q": "What models can I test?",
+        "a": "You can test any model available on NVIDIA NIM — LLMs, code generation, embedding, image generation, and more. The tool runs a health check to show only currently live models."
+      },
+      {
+        "q": "How do I get a NVIDIA NIM API key?",
+        "a": "Visit build.nvidia.com, create a free NVIDIA Developer account, verify your phone number, and generate an API key that starts with nvapi-."
+      },
+      {
+        "q": "What does TTFT mean?",
+        "a": "TTFT stands for Time to First Token — how quickly the API starts streaming a response. Lower TTFT means more responsive AI applications."
+      }
+    ],
+    "emoji": "⚡",
+    "icon": "",
+    "marketplaces": [],
+    "lastUpdated": "2026-06-26",
+    "datePublished": "2026-06-25",
+    "developer": "Dhanuk Softwares",
+    "isTool": true,
+    "permalink": "/nvidia-nim-speed-test/"
   }
 ]

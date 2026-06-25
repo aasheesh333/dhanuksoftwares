@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NVIDIA NIM API Speed Test — Test 100+ AI Models Live | Free Online Tool</title>
-  <meta name="description" content="Test NVIDIA NIM API speed in real-time. Compare 100+ AI models — LLM, code generation, text-to-image, text-to-video, embedding. Check tokens per second, TTFT, latency. Free NVIDIA NIM speed test tool online."/>
+  <meta name="description" content="Test NVIDIA NIM API speed in real-time. Compare 100+ AI models — LLM, code gen, image, video, embedding. Check tokens/sec, TTFT, latency. Free NVIDIA NIM speed test online."/>
   <meta name="keywords" content="nvidia nim api speed test, nvidia nim speed test, nvidia nim api test, nvidia nim api, nvidia nim models, nvidia ai api, nim api speed, nvidia nim free, nvidia nim api key, test nvidia nim, nvidia inference microservices, nvidia nim online, nvidia ai models speed, nvidia nim latency test, nvidia nim tokens per second, nvidia nim benchmark, nvidia nim api benchmark, free ai api speed test, nvidia nim api performance, nvidia nim model comparison, nvidia nim api tutorial, nvidia nim api guide, nvidia build api, build.nvidia.com api key, nvidia nim api examples, nvidia nim api documentation, nvidia nim supported models, nvidia nim api rate limit, nvidia nim api pricing, nvidia nim free tier, nvidia nemotron speed test, llama nvidia nim, deepseek nvidia nim, qwen nvidia nim, mistral nvidia nim, meta llama nvidia nim, code generation api speed, text to image api speed, embedding api speed, multimodal ai api speed, ai model speed comparison tool, nvidia dgx cloud api, nvidia tensorrt llm api, vllm api speed test, openai compatible api test, nvidia nim api curl, nvidia nim api python, nvidia nim api javascript, nvidia nim streaming, nvidia nim chat completions, nvidia nim api response time, best nvidia nim models, fastest nvidia nim model, nvidia nim api review 2026, nvidia nim vs openai, nvidia nim vs anthropic, free ai inference api, nvidia api catalog, nvidia build platform"/>
   <meta name="robots" content="index, follow, max-image-preview:large"/>
   <link rel="canonical" href="https://dhanuksoftwares.com/nvidia-nim-speed-test/"/>
@@ -25,7 +25,7 @@
   <meta name="twitter:image" content="https://dhanuksoftwares.com/og-banner.png"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
     :root{--bg:#0b0f1a;--surface:#131929;--card:#1a2235;--accent:#4f8ef7;--accent2:#38e0b0;--text:#e8edf7;--muted:#a0b0cc;--border:#1e2d4a;--warning:#ffc857;--danger:#ff6b6b;--success:#38e0b0;--radius:12px;--radius-sm:8px;}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -72,7 +72,9 @@
     .api-key-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;max-width:600px;margin:0 auto;}
     .api-key-card h2{text-align:center;font-size:1.4rem;}
     .api-key-input-wrap{display:flex;gap:0.5rem;margin:1.5rem 0 1rem;align-items:stretch;}
-    .api-key-input{flex:1;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:0.75rem 1rem;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:0.9rem;}
+    .skip-link{position:absolute;left:-9999px;top:0;background:var(--accent);color:#fff;padding:0.7rem 1.2rem;z-index:200;border-radius:0 0 8px 0;text-decoration:none;font-weight:600;}
+    .skip-link:focus{left:0;}
+    .api-key-input{flex:1;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:0.75rem 1rem;color:var(--text);font-family:'Courier New',monospace;font-size:0.9rem;}
     .api-key-input:focus{outline:none;border-color:var(--accent);}
     .api-key-input::placeholder{color:var(--muted);font-family:'DM Sans',sans-serif;}
     .api-key-actions{display:flex;gap:0.5rem;flex-wrap:wrap;}
@@ -103,7 +105,7 @@
     .test-results{display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid var(--border);}
     .result-item{text-align:center;}
     .result-label{font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;}
-    .result-value{font-family:'JetBrains Mono',monospace;font-size:0.95rem;font-weight:600;color:var(--accent2);}
+    .result-value{font-family:'Courier New',monospace;font-size:0.95rem;font-weight:600;color:var(--accent2);}
     .result-value.error{color:var(--danger);}
     .spinner{width:18px;height:18px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;display:inline-block;}
     @keyframes spin{to{transform:rotate(360deg);}}
@@ -200,6 +202,29 @@
     ]
   }
   </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "NVIDIA NIM API Speed Test",
+    "description": "Real-time NVIDIA NIM API speed test tool. Compare 100+ AI models, check tokens per second, TTFT, latency.",
+    "url": "https://dhanuksoftwares.com/nvidia-nim-speed-test/",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "browserRequirements": "Requires JavaScript. Requires an NVIDIA NIM API key (free at build.nvidia.com).",
+    "author": {
+      "@type": "Organization",
+      "name": "Dhanuk Softwares",
+      "url": "https://dhanuksoftwares.com"
+    }
+  }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#api-key">Skip to tool</a>
@@ -242,8 +267,8 @@
         <button class="toggle-visibility" id="toggle-key" title="Show/Hide key" aria-label="Toggle API key visibility">Show</button>
       </div>
       <div class="api-key-actions">
-        <button class="btn btn-success btn-sm" id="save-key-btn" onclick="saveApiKey()">Save Key</button>
-        <button class="btn btn-danger btn-sm" id="revoke-key-btn" onclick="revokeApiKey()" style="display:none;">Revoke Key</button>
+        <button class="btn btn-success btn-sm" id="save-key-btn" onclick="saveApiKey()">Fetch Models</button>
+        <button class="btn btn-danger btn-sm" id="revoke-key-btn" onclick="revokeApiKey()" style="display:none;">Clear Key & Data</button>
       </div>
       <div class="api-key-status" id="api-key-status"></div>
       <div class="privacy-notice">
@@ -272,13 +297,17 @@
         <button class="pill" data-filter="embedding">Embedding</button>
         <button class="pill" data-filter="multimodal">Multimodal</button>
         <button class="pill" data-filter="healthcare">Healthcare</button>
+        <button class="pill" data-filter="safety">Safety</button>
       </div>
       <span class="model-count" id="model-count">Loading models...</span>
     </div>
 
     <div class="test-all-wrap">
-      <button class="btn btn-primary btn-sm" id="test-all-btn" onclick="testAllVisible()" disabled>Test All Visible Models</button>
-      <button class="btn btn-outline btn-sm" onclick="clearAllResults()">Clear Results</button>
+      <div>
+        <button class="btn btn-primary btn-sm" id="test-all-btn" onclick="testAllVisible()" disabled>Test All Visible Models</button>
+        <button class="btn btn-outline btn-sm" onclick="clearAllResults()">Clear Results</button>
+      </div>
+      <button class="btn btn-outline btn-sm" id="refresh-models-btn" onclick="refreshModels()" style="display:none;">Refresh Models</button>
     </div>
 
     <div class="models-grid" id="models-grid">
@@ -298,7 +327,7 @@
     <p><strong>NVIDIA NIM</strong> (NVIDIA Inference Microservices) is a groundbreaking platform that provides performance-optimized, portable AI inference microservices. Launched by NVIDIA as part of their AI Enterprise platform, <strong>NIM API</strong> gives developers instant access to over 100 pre-optimized AI models through a simple, <strong>OpenAI-compatible API</strong> endpoint.</p>
     <p>Unlike traditional AI API providers that charge per-token fees, <strong>NVIDIA NIM free tier</strong> offers generous access to cutting-edge models including <strong>Meta Llama</strong>, <strong>DeepSeek</strong>, <strong>Qwen</strong>, <strong>Mistral</strong>, <strong>Google Gemma</strong>, <strong>NVIDIA Nemotron</strong>, and many more — all without requiring a credit card. The <strong>NIM API</strong> endpoint at <code>integrate.api.nvidia.com/v1</code> follows the OpenAI Chat Completions format, making it incredibly easy to migrate existing applications.</p>
     <p>The platform runs on <strong>NVIDIA DGX Cloud</strong> infrastructure, ensuring enterprise-grade reliability and performance. Whether you're building a <strong>chatbot</strong>, <strong>code assistant</strong>, <strong>image generator</strong>, or <strong>multimodal AI application</strong>, NVIDIA NIM provides the inference backbone. The <strong>NIM API</strong> supports streaming responses, tool calling, and system prompts — everything modern AI applications need.</p>
-    <p>For developers looking to <strong>test AI model performance</strong> before committing to a provider, our <strong>NVIDIA NIM speed test tool</strong> above lets you benchmark any model in real-time. Measure <strong>tokens per second</strong>, <strong>time to first token</strong>, and <strong>total API latency</strong> to find the perfect model for your use case.</p>
+    <p>For developers looking to <strong>test AI model performance</strong> before committing to a provider, our <strong>NVIDIA NIM speed test tool</strong> above lets you benchmark any model in real-time. Measure <strong>tokens per second</strong>, <strong>time to first token</strong>, and <strong>total API latency</strong> to find the perfect model for your use case. We use NVIDIA NIM to power the AI in our own <a href="https://dhanuksoftwares.com/apps/astroprerna/" style="color:var(--accent);text-decoration:none;">AstroPrerna AI astrology app</a> — try it to see NIM in action.</p>
   </section>
 
   <hr class="section-divider"/>
@@ -478,25 +507,38 @@
 
   <script>
   (function(){
-    const PROXY_BASE = '/api/nvidia-nim-proxy';
-    const STORAGE_KEY = 'nim_api_key';
-    let apiKey = sessionStorage.getItem(STORAGE_KEY) || '';
-    let allModels = [];
-    let currentFilter = 'all';
-    let searchQuery = '';
+    var PROXY_BASE = '/api/nvidia-nim-proxy';
+    var STORAGE_KEY = 'nim_api_key';
+    var DEAD_CACHE_KEY = 'nim_dead_models';
+    var DEAD_CACHE_TS_KEY = 'nim_dead_models_ts';
+    var DEAD_CACHE_TTL = 24 * 60 * 60 * 1000;
+    var apiKey = sessionStorage.getItem(STORAGE_KEY) || '';
+    var allModels = [];
+    var currentFilter = 'all';
+    var searchQuery = '';
+
+    var deadCache = [];
+    var deadCacheTs = parseInt(localStorage.getItem(DEAD_CACHE_TS_KEY) || '0', 10);
+    if (Date.now() - deadCacheTs > DEAD_CACHE_TTL) {
+      localStorage.removeItem(DEAD_CACHE_KEY);
+      localStorage.removeItem(DEAD_CACHE_TS_KEY);
+      deadCache = [];
+    } else {
+      try { deadCache = JSON.parse(localStorage.getItem(DEAD_CACHE_KEY) || '[]'); } catch(e) { deadCache = []; }
+    }
 
     // NAV TOGGLE
     document.querySelector('.nav-toggle').addEventListener('click', function(){
-      const expanded = this.getAttribute('aria-expanded') === 'true';
+      var expanded = this.getAttribute('aria-expanded') === 'true';
       this.setAttribute('aria-expanded', !expanded);
       document.getElementById('nav-menu').classList.toggle('open');
     });
 
     // STICKY BAR
-    const stickyBar = document.getElementById('sticky-bar');
-    const heroSection = document.querySelector('.hero');
+    var stickyBar = document.getElementById('sticky-bar');
+    var heroSection = document.querySelector('.hero');
     if (heroSection && stickyBar) {
-      const obs = new IntersectionObserver(function(entries){
+      var obs = new IntersectionObserver(function(entries){
         stickyBar.classList.toggle('visible', !entries[0].isIntersecting);
       }, { threshold: 0 });
       obs.observe(heroSection);
@@ -504,7 +546,7 @@
 
     // API KEY VISIBILITY TOGGLE
     document.getElementById('toggle-key').addEventListener('click', function(){
-      const input = document.getElementById('api-key-input');
+      var input = document.getElementById('api-key-input');
       if (input.type === 'password') { input.type = 'text'; this.textContent = 'Hide'; }
       else { input.type = 'password'; this.textContent = 'Show'; }
     });
@@ -519,8 +561,8 @@
     }
 
     window.saveApiKey = function(){
-      const input = document.getElementById('api-key-input');
-      const key = input.value.trim();
+      var input = document.getElementById('api-key-input');
+      var key = input.value.trim();
       if (!key) { showKeyStatus('Please enter an API key.', 'error'); return; }
       if (!key.startsWith('nvapi-')) { showKeyStatus('Invalid key. Must start with nvapi-', 'error'); return; }
       apiKey = key;
@@ -534,7 +576,8 @@
     window.revokeApiKey = function(){
       apiKey = '';
       sessionStorage.removeItem(STORAGE_KEY);
-      localStorage.removeItem('nim_dead_models');
+      localStorage.removeItem(DEAD_CACHE_KEY);
+      localStorage.removeItem(DEAD_CACHE_TS_KEY);
       deadCache = [];
       document.getElementById('api-key-input').value = '';
       showKeyStatus('API key revoked and cleared from memory.', '');
@@ -545,58 +588,79 @@
     };
 
     function showKeyStatus(msg, type){
-      const el = document.getElementById('api-key-status');
+      var el = document.getElementById('api-key-status');
       el.textContent = msg;
       el.className = 'api-key-status' + (type ? ' ' + type : '');
     }
 
-    // FETCH MODELS
-    var deadCache = JSON.parse(localStorage.getItem('nim_dead_models') || '[]');
+    function persistDeadCache(){
+      localStorage.setItem(DEAD_CACHE_KEY, JSON.stringify(deadCache));
+      localStorage.setItem(DEAD_CACHE_TS_KEY, String(Date.now()));
+    }
 
-    async function loadModels(){
+    // FETCH MODELS
+    async function refreshModels(){
+      allModels = [];
+      deadCache = [];
+      localStorage.removeItem(DEAD_CACHE_KEY);
+      localStorage.removeItem(DEAD_CACHE_TS_KEY);
+      showKeyStatus('Refreshing models...', 'success');
+      await loadModels(true);
+      showKeyStatus('Models refreshed!', 'success');
+    }
+
+    var _loadModelsRunning = false;
+    async function loadModels(isRefresh){
+      if (_loadModelsRunning) return;
       if (!apiKey) return;
+      _loadModelsRunning = true;
       try {
         showKeyStatus('Loading models from NVIDIA NIM...', 'success');
         document.getElementById('models-grid').innerHTML = '<div class="empty-state"><div class="spinner" style="width:32px;height:32px;margin:0 auto 1rem;"></div><h3>Loading and verifying models...</h3><p style="font-size:0.85rem;">This takes a few seconds as we check which models are live.</p></div>';
         document.getElementById('model-count').textContent = 'Loading...';
-        const res = await fetch(PROXY_BASE + '?action=models', {
+        var res = await fetch(PROXY_BASE + '?action=models', {
           headers: { 'x-nvidia-api-key': apiKey }
         });
         if (!res.ok) {
-          const err = await res.json().catch(()=>({error:'Failed to load models'}));
+          var err = await res.json().catch(function(){ return {error:'Failed to load models'}; });
           showKeyStatus('Error: ' + (err.error || res.status), 'error');
+          _loadModelsRunning = false;
           return;
         }
-        const data = await res.json();
+        var data = await res.json();
         allModels = (data.data || []).map(function(m){
+          var id = m.id || '';
+          var cat = categorize(id);
           return {
-            id: m.id || '',
-            name: m.id || 'Unknown Model',
-            provider: extractProvider(m.id || ''),
-            category: categorize(m.id || ''),
+            id: id,
+            name: id || 'Unknown Model',
+            provider: extractProvider(id),
+            category: cat,
+            testType: getTestType(cat),
             created: m.created || 0,
             owned_by: m.owned_by || '',
-            live: deadCache.indexOf(m.id) === -1
+            live: deadCache.indexOf(id) === -1
           };
         });
         allModels.sort(function(a,b){ return a.name.localeCompare(b.name); });
         document.getElementById('test-all-btn').disabled = false;
-        // Run health check BEFORE rendering
+        document.getElementById('refresh-models-btn').style.display = '';
         await runHealthCheck();
       } catch(e) {
         showKeyStatus('Network error: ' + e.message, 'error');
+      } finally {
+        _loadModelsRunning = false;
       }
     }
 
     async function runHealthCheck(){
-      var toCheck = allModels.filter(function(m){ return deadCache.indexOf(m.id) === -1; }).map(function(m){ return m.id; });
+      var toCheck = allModels.filter(function(m){ return deadCache.indexOf(m.id) === -1 && m.testType !== 'none'; }).map(function(m){ return m.id; });
       if (!toCheck.length) {
         updateLiveCount();
         renderModels();
         return;
       }
       showKeyStatus('Checking ' + toCheck.length + ' models for availability...', 'success');
-      // Check in batches of 10 (smaller = more accurate, less rate limit issues)
       for (var i = 0; i < toCheck.length; i += 10) {
         var batch = toCheck.slice(i, i + 10);
         showKeyStatus('Checking models... (' + Math.min(i + 10, toCheck.length) + '/' + toCheck.length + ')', 'success');
@@ -622,7 +686,7 @@
           }
         } catch(e) {}
       }
-      localStorage.setItem('nim_dead_models', JSON.stringify(deadCache));
+      persistDeadCache();
       updateLiveCount();
       renderModels();
     }
@@ -633,9 +697,9 @@
     }
 
     function extractProvider(id){
-      const parts = id.split('/');
+      var parts = id.split('/');
       if (parts.length >= 2) return parts[0];
-      const lower = id.toLowerCase();
+      var lower = id.toLowerCase();
       if (lower.includes('nvidia') || lower.includes('nemotron')) return 'NVIDIA';
       if (lower.includes('llama') || lower.includes('meta')) return 'Meta';
       if (lower.includes('deepseek')) return 'DeepSeek';
@@ -645,27 +709,36 @@
       if (lower.includes('microsoft') || lower.includes('phi')) return 'Microsoft';
       if (lower.includes('flux')) return 'Black Forest Labs';
       if (lower.includes('stability')) return 'Stability AI';
+      if (lower.includes('snowflake')) return 'Snowflake';
+      if (lower.includes('baai')) return 'BAAI';
+      if (lower.includes('moonshot')) return 'Moonshot AI';
+      if (lower.includes('arc')) return 'Arc';
       return parts[0] || 'Unknown';
     }
 
     function categorize(id){
       var lower = id.toLowerCase();
-      if (lower.includes('embed') || lower.includes('rerank') || lower.includes('bge-') || lower.includes('nvclip') || lower.includes('nv-embed')) return 'embedding';
-      if (lower.includes('flux') || lower.includes('stable-diffusion') || lower.includes('trellis')) return 'image';
-      if (lower.includes('video') || lower.includes('cosmos-predict') || lower.includes('stable-video') || lower.includes('ai-synthetic-video')) return 'video';
-      if (lower.includes('code') || lower.includes('coder')) return 'code';
-      if (lower.includes('vision') || lower.includes('-vl') || lower.includes('vl-') || lower.includes('paligemma') || lower.includes('guard-4') || lower.includes('vila') || lower.includes('neva') || lower.includes('kosmos') || lower.includes('phi-3-vision') || lower.includes('phi-4-multimodal') || lower.includes('llama-4-maverick')) return 'multimodal';
-      if (lower.includes('alpha') || lower.includes('esm') || lower.includes('boltz') || lower.includes('diffdock') || lower.includes('evo2') || lower.includes('genmol') || lower.includes('molmim') || lower.includes('protein') || lower.includes('colabfold')) return 'healthcare';
-      if (lower.includes('pii') || lower.includes('safety') || lower.includes('jailbreak') || lower.includes('nemoguard') || lower.includes('parse') || lower.includes('detect') || lower.includes('content-safety') || lower.includes('gliner')) return 'multimodal';
-      if (lower.includes('translate') || lower.includes('riva')) return 'multimodal';
-      if (lower.includes('cuopt') || lower.includes('corrdiff') || lower.includes('fourcastnet') || lower.includes('sparsedrive') || lower.includes('streampetr') || lower.includes('bevformer') || lower.includes('ising') || lower.includes('nemoretriever')) return 'multimodal';
-      if (lower.includes('deplot') || lower.includes('diffusiongemma')) return 'multimodal';
+      if (lower.includes('embed') || lower.includes('rerank') || lower.includes('bge-') || lower.includes('nv-embed') || lower.includes('arctic-embed') || lower.includes('gte-') || lower.includes('nvclip') || lower.includes('nv-rerank') || lower.includes('bce-') || lower.includes('rank') || lower.includes('retriev')) return 'embedding';
+      if (lower.includes('flux') || lower.includes('stable-diffusion') || lower.includes('sdxl') || lower.includes('trellis') || lower.includes('kandinsky') || lower.includes('diffusiongemma') || lower.includes('stable-image')) return 'image';
+      if (lower.includes('video') || lower.includes('cosmos-predict') || lower.includes('stable-video') || lower.includes('ai-synthetic-video') || lower.includes('svd')) return 'video';
+      if (lower.includes('code') || lower.includes('coder') || lower.includes('codegemma') || lower.includes('codestral') || lower.includes('deepseek-coder')) return 'code';
+      if (lower.includes('vision') || lower.includes('-vl') || lower.includes('vl-') || lower.includes('paligemma') || lower.includes('phi-3-vision') || lower.includes('phi-4-multimodal') || lower.includes('llama-4-maverick') || lower.includes('llama-4-scout') || lower.includes('vila') || lower.includes('neva') || lower.includes('kosmos') || lower.includes('fuyu') || lower.includes('pixtral') || lower.includes('qwen2-vl') || lower.includes('qwen-qvq')) return 'multimodal';
+      if (lower.includes('alpha') || lower.includes('esm') || lower.includes('boltz') || lower.includes('diffdock') || lower.includes('evo2') || lower.includes('genmol') || lower.includes('molmim') || lower.includes('protein') || lower.includes('colabfold') || lower.includes('biomolecular') || lower.includes('openbiomed')) return 'healthcare';
+      if (lower.includes('pii') || lower.includes('safety') || lower.includes('jailbreak') || lower.includes('nemoguard') || lower.includes('content-safety') || lower.includes('gliner')) return 'safety';
+      if (lower.includes('translate') || lower.includes('riva')) return 'speech';
+      if (lower.includes('deplot') || lower.includes('chart') || lower.includes('parse') || lower.includes('detect')) return 'multimodal';
+      if (lower.includes('cuopt') || lower.includes('corrdiff') || lower.includes('fourcastnet') || lower.includes('sparsedrive') || lower.includes('streampetr') || lower.includes('bevformer') || lower.includes('ising') || lower.includes('nemoretriever')) return 'tool';
       return 'llm';
     }
 
-    function canTestChat(id){
-      var cat = categorize(id);
-      return cat === 'llm' || cat === 'code';
+    function getTestType(cat){
+      switch(cat){
+        case 'llm': case 'code': case 'multimodal': return 'chat';
+        case 'image': return 'image';
+        case 'embedding': return 'embedding';
+        case 'safety': return 'chat';
+        default: return 'none';
+      }
     }
 
     // FILTER
@@ -679,7 +752,11 @@
 
     document.getElementById('model-search').addEventListener('input', function(){
       searchQuery = this.value.toLowerCase().trim();
-      renderModels();
+      if (window._searchTimeout) clearTimeout(window._searchTimeout);
+      window._searchTimeout = setTimeout(function(){
+        visibleCount = SHOW_LIMIT;
+        renderModelCards();
+      }, 300);
     });
 
     // RENDER MODELS
@@ -698,6 +775,12 @@
       renderModelCards();
     }
 
+    var CATEGORY_LABELS = {
+      llm: 'LLM', code: 'Code', image: 'Image', video: 'Video',
+      embedding: 'Embedding', multimodal: 'Multimodal', healthcare: 'Healthcare',
+      safety: 'Safety', speech: 'Speech', tool: 'DevOps'
+    };
+
     function renderModelCards(){
       var grid = document.getElementById('models-grid');
       var countEl = document.getElementById('model-count');
@@ -709,7 +792,7 @@
       });
       var showing = Math.min(visibleCount, filtered.length);
       var totalLive = allModels.filter(function(m){ return m.live; }).length;
-      countEl.textContent = 'Showing ' + showing + ' of ' + filtered.length + ' live models' + (totalLive !== allModels.length ? ' (' + allModels.length + ' total, ' + (allModels.length - totalLive) + ' deprecated)' : '');
+      countEl.textContent = 'Showing ' + showing + ' of ' + filtered.length + ' live models' + (totalLive !== allModels.length ? ' (' + allModels.length + ' total, ' + (allModels.length - totalLive) + ' unavailable)' : '');
 
       if (!filtered.length) {
         grid.innerHTML = '<div class="empty-state"><h3>No models match your filter</h3><p>Try a different search term or category.</p></div>';
@@ -717,14 +800,22 @@
       }
 
       var cards = filtered.slice(0, visibleCount).map(function(m){
-        var testable = canTestChat(m.id);
+        var tt = m.testType;
         var safeId = m.id.replace(/\//g,'-');
-        var footerContent = testable
-          ? '<button class="btn btn-primary btn-sm" onclick="testModelSpeed(\'' + escAttr(m.id) + '\')">Test Speed</button>'
-          : '<span style="font-size:0.8rem;color:var(--muted);">Chat API only</span>';
+        var label = CATEGORY_LABELS[m.category] || m.category;
+        var footerContent;
+        if (tt === 'chat') {
+          footerContent = '<button class="btn btn-primary btn-sm" onclick="testModelSpeed(\'' + escAttr(m.id) + '\')">Test Speed</button>';
+        } else if (tt === 'embedding') {
+          footerContent = '<button class="btn btn-success btn-sm" onclick="testEmbeddingSpeed(\'' + escAttr(m.id) + '\')">Test Embed</button>';
+        } else if (tt === 'image') {
+          footerContent = '<button class="btn btn-outline btn-sm" onclick="testImageSpeed(\'' + escAttr(m.id) + '\')">Test Image</button>';
+        } else {
+          footerContent = '<span style="font-size:0.8rem;color:var(--muted);">Benchmark not available</span>';
+        }
         return '<div class="model-card" id="card-' + escHtml(m.id) + '">' +
           '<div class="model-card-header"><div class="model-name">' + escHtml(m.name.split('/').pop()) + '</div><span class="model-provider">' + escHtml(m.provider) + '</span></div>' +
-          '<div class="model-category-tag">' + escHtml(m.category) + '</div>' +
+          '<div class="model-category-tag">' + escHtml(label) + '</div>' +
           '<div class="model-desc">' + escHtml(m.id) + '</div>' +
           '<div class="model-card-footer">' +
             footerContent +
@@ -746,7 +837,26 @@
       renderModelCards();
     };
 
-    // TEST MODEL SPEED
+    function markModelDead(modelId){
+      var m = allModels.find(function(x){ return x.id === modelId; });
+      if (m) m.live = false;
+      if (deadCache.indexOf(modelId) === -1) {
+        deadCache.push(modelId);
+        persistDeadCache();
+      }
+    }
+
+    function showModelError(safeId, msg){
+      var statusEl = document.getElementById('status-' + safeId);
+      var resultsEl = document.getElementById('results-' + safeId);
+      if (statusEl) statusEl.innerHTML = '';
+      if (resultsEl) {
+        resultsEl.style.display = 'block';
+        resultsEl.innerHTML = '<div class="result-item" style="grid-column:1/-1;text-align:center;"><div class="result-value error">' + escHtml(msg) + '</div></div>';
+      }
+    }
+
+    // TEST CHAT MODEL SPEED
     window.testModelSpeed = async function(modelId){
       var safeId = modelId.replace(/\//g,'-');
       var statusEl = document.getElementById('status-' + safeId);
@@ -779,28 +889,9 @@
 
         if (!res.ok) {
           var err = await res.json().catch(function(){ return { error: 'HTTP ' + res.status }; });
-          var errMsg = err.error || ('HTTP ' + res.status);
-          var detail = err.detail || '';
-          if (res.status === 404) {
-            if (detail.indexOf('Not found') !== -1 || detail.indexOf('not found') !== -1) {
-              errMsg = 'Model deprecated — removed from live cache';
-              // Mark as dead
-              var m = allModels.find(function(x){ return x.id === modelId; });
-              if (m) m.live = false;
-              if (deadCache.indexOf(modelId) === -1) {
-                deadCache.push(modelId);
-                localStorage.setItem('nim_dead_models', JSON.stringify(deadCache));
-              }
-            } else {
-              errMsg = 'Model not available for chat completions';
-            }
-          }
-          else if (res.status === 429) errMsg = 'Rate limited by NVIDIA — wait and retry';
-          else if (res.status === 401) errMsg = 'Invalid API key — check your key';
-          else if (res.status === 400) errMsg = 'Invalid request — model may not support this format';
-          statusEl.innerHTML = '';
-          resultsEl.style.display = 'block';
-          resultsEl.innerHTML = '<div class="result-item" style="grid-column:1/-1;text-align:center;"><div class="result-value error">' + escHtml(errMsg) + '</div></div>';
+          var errMsg = getFriendlyError(res.status, err);
+          if (res.status === 404 || res.status === 400) markModelDead(modelId);
+          showModelError(safeId, errMsg);
           return;
         }
 
@@ -844,11 +935,134 @@
           '<div class="result-item"><div class="result-label">Total</div><div class="result-value">' + totalTime + 'ms</div></div>';
 
       } catch(e) {
-        statusEl.innerHTML = '';
-        resultsEl.style.display = 'block';
-        resultsEl.innerHTML = '<div class="result-item" style="grid-column:1/-1;text-align:center;"><div class="result-value error">Error: ' + escHtml(e.message) + '</div></div>';
+        showModelError(safeId, 'Connection error — check your network');
       }
     };
+
+    // TEST EMBEDDING MODEL SPEED
+    window.testEmbeddingSpeed = async function(modelId){
+      var safeId = modelId.replace(/\//g,'-');
+      var statusEl = document.getElementById('status-' + safeId);
+      var resultsEl = document.getElementById('results-' + safeId);
+      if (!statusEl || !resultsEl) return;
+      if (!apiKey) { showKeyStatus('Please save your API key first.', 'error'); return; }
+
+      statusEl.innerHTML = '<span class="spinner"></span>';
+      resultsEl.style.display = 'none';
+
+      var startTime = performance.now();
+
+      try {
+        var res = await fetch(PROXY_BASE + '?action=embeddings', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-nvidia-api-key': apiKey
+          },
+          body: JSON.stringify({
+            model: modelId,
+            input: 'This is a test sentence for embedding speed benchmark.',
+            encoding_format: 'float'
+          })
+        });
+
+        if (!res.ok) {
+          var err = await res.json().catch(function(){ return { error: 'HTTP ' + res.status }; });
+          var errMsg = getFriendlyError(res.status, err);
+          if (res.status === 404 || res.status === 400) markModelDead(modelId);
+          showModelError(safeId, errMsg);
+          return;
+        }
+
+        var data = await res.json();
+        var totalTime = Math.round(performance.now() - startTime);
+        var dims = (data.data && data.data[0] && data.data[0].embedding) ? data.data[0].embedding.length : 'N/A';
+
+        statusEl.innerHTML = '';
+        resultsEl.style.display = 'grid';
+        resultsEl.innerHTML =
+          '<div class="result-item"><div class="result-label">Latency</div><div class="result-value">' + totalTime + 'ms</div></div>' +
+          '<div class="result-item"><div class="result-label">Dimensions</div><div class="result-value">' + dims + '</div></div>' +
+          '<div class="result-item"><div class="result-label">Status</div><div class="result-value">OK</div></div>';
+
+      } catch(e) {
+        showModelError(safeId, 'Connection error — check your network');
+      }
+    };
+
+    // TEST IMAGE MODEL SPEED
+    window.testImageSpeed = async function(modelId){
+      var safeId = modelId.replace(/\//g,'-');
+      var statusEl = document.getElementById('status-' + safeId);
+      var resultsEl = document.getElementById('results-' + safeId);
+      if (!statusEl || !resultsEl) return;
+      if (!apiKey) { showKeyStatus('Please save your API key first.', 'error'); return; }
+
+      statusEl.innerHTML = '<span class="spinner"></span>';
+      resultsEl.style.display = 'none';
+
+      var startTime = performance.now();
+
+      try {
+        var res = await fetch(PROXY_BASE + '?action=image-generations', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-nvidia-api-key': apiKey
+          },
+          body: JSON.stringify({
+            model: modelId,
+            prompt: 'A simple sunset over mountains, minimal art style.',
+            max_tokens: 100
+          })
+        });
+
+        if (!res.ok) {
+          var err = await res.json().catch(function(){ return { error: 'HTTP ' + res.status }; });
+          var errMsg = getFriendlyError(res.status, err);
+          if (res.status === 404 || res.status === 400) markModelDead(modelId);
+          showModelError(safeId, errMsg);
+          return;
+        }
+
+        var data = await res.json();
+        var totalTime = Math.round(performance.now() - startTime);
+        var hasImage = data.data && data.data.length > 0;
+
+        statusEl.innerHTML = '';
+        resultsEl.style.display = 'grid';
+        resultsEl.innerHTML =
+          '<div class="result-item"><div class="result-label">Latency</div><div class="result-value">' + totalTime + 'ms</div></div>' +
+          '<div class="result-item"><div class="result-label">Generated</div><div class="result-value">' + (hasImage ? 'Yes' : 'No') + '</div></div>' +
+          '<div class="result-item"><div class="result-label">Status</div><div class="result-value">OK</div></div>';
+
+      } catch(e) {
+        showModelError(safeId, 'Connection error — check your network');
+      }
+    };
+
+    function getFriendlyError(status, errBody){
+      var detail = (errBody && (errBody.detail || '')) || '';
+      var lower = detail.toLowerCase();
+      if (status === 404) {
+        if (lower.includes('not found') || lower.includes('deprecated') || lower.includes('removed')) {
+          return 'Model no longer available — removed from catalog';
+        }
+        return 'Model not available';
+      }
+      if (status === 400) {
+        if (lower.includes('not support') || lower.includes('incompatible') || lower.includes('format')) {
+          return 'Not available for this test type — model uses a different API format';
+        }
+        return 'Bad request — model may require different parameters';
+      }
+      if (status === 401) return 'Invalid API key — check your key at build.nvidia.com';
+      if (status === 403) return 'Access denied — your key may not have access to this model';
+      if (status === 429) return 'Rate limited by NVIDIA — wait a moment and retry';
+      if (status === 500) return 'NVIDIA server error — try again later';
+      if (status === 503) return 'Model temporarily unavailable — try again later';
+      return 'Request failed (HTTP ' + status + ')';
+    }
 
     // TEST ALL VISIBLE
     window.testAllVisible = function(){
@@ -873,8 +1087,8 @@
       });
     };
 
-    function escHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-    function escAttr(s){ return String(s).replace(/'/g,'&#39;').replace(/"/g,'&quot;'); }
+    function escHtml(s){ return String(s).replace(/&/g,'&').replace(/</g,'<').replace(/>/g,'>').replace(/"/g,'"'); }
+    function escAttr(s){ return String(s).replace(/'/g,'&#39;').replace(/"/g,'"'); }
   })();
   </script>
 </body>
