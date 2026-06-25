@@ -557,6 +557,8 @@
       if (!apiKey) return;
       try {
         showKeyStatus('Loading models from NVIDIA NIM...', 'success');
+        document.getElementById('models-grid').innerHTML = '<div class="empty-state"><div class="spinner" style="width:32px;height:32px;margin:0 auto 1rem;"></div><h3>Loading and verifying models...</h3><p style="font-size:0.85rem;">This takes a few seconds as we check which models are live.</p></div>';
+        document.getElementById('model-count').textContent = 'Loading...';
         const res = await fetch(PROXY_BASE + '?action=models', {
           headers: { 'x-nvidia-api-key': apiKey }
         });
@@ -578,12 +580,9 @@
           };
         });
         allModels.sort(function(a,b){ return a.name.localeCompare(b.name); });
-        var totalCount = allModels.length;
-        showKeyStatus('Loaded ' + totalCount + ' models. Checking which are live...', 'success');
-        renderModels();
         document.getElementById('test-all-btn').disabled = false;
-        // Run health check in background
-        runHealthCheck();
+        // Run health check BEFORE rendering
+        await runHealthCheck();
       } catch(e) {
         showKeyStatus('Network error: ' + e.message, 'error');
       }
@@ -593,11 +592,14 @@
       var toCheck = allModels.filter(function(m){ return deadCache.indexOf(m.id) === -1; }).map(function(m){ return m.id; });
       if (!toCheck.length) {
         updateLiveCount();
+        renderModels();
         return;
       }
-      // Check in batches of 20
-      for (var i = 0; i < toCheck.length; i += 20) {
-        var batch = toCheck.slice(i, i + 20);
+      showKeyStatus('Checking ' + toCheck.length + ' models for availability...', 'success');
+      // Check in batches of 10 (smaller = more accurate, less rate limit issues)
+      for (var i = 0; i < toCheck.length; i += 10) {
+        var batch = toCheck.slice(i, i + 10);
+        showKeyStatus('Checking models... (' + Math.min(i + 10, toCheck.length) + '/' + toCheck.length + ')', 'success');
         try {
           var r = await fetch(PROXY_BASE + '?action=health', {
             method: 'POST',
@@ -606,7 +608,6 @@
           });
           if (r.ok) {
             var result = await r.json();
-            // Mark dead models
             (result.dead || []).forEach(function(id){
               if (deadCache.indexOf(id) === -1) deadCache.push(id);
               var m = allModels.find(function(x){ return x.id === id; });

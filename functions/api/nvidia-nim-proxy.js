@@ -85,18 +85,22 @@ export async function onRequest({ request }) {
       const results = await Promise.all(models.map(async (modelId) => {
         try {
           const ctrl = new AbortController();
-          const timer = setTimeout(() => ctrl.abort(), 10000);
+          const timer = setTimeout(() => ctrl.abort(), 8000);
           const r = await fetch(`${NIM_BASE}/chat/completions`, {
             method: 'POST',
             headers: {
               'Authorization': `Bearer ${apiKey}`,
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ model: modelId, messages: [{ role: 'user', content: 'hi' }], max_tokens: 1, stream: false }),
+            body: JSON.stringify({ model: modelId, messages: [{ role: 'user', content: 'hi' }], max_tokens: 3, stream: false }),
             signal: ctrl.signal,
           });
           clearTimeout(timer);
-          return { id: modelId, live: r.ok };
+          if (!r.ok) return { id: modelId, live: false };
+          const data = await r.json().catch(() => null);
+          // Must have choices with content to be truly live
+          const hasContent = data && data.choices && data.choices.length > 0 && data.choices[0].message && data.choices[0].message.content;
+          return { id: modelId, live: !!hasContent };
         } catch (e) {
           return { id: modelId, live: false };
         }
