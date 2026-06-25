@@ -704,13 +704,19 @@
           var err = await res.json().catch(function(){ return { error: 'HTTP ' + res.status }; });
           var errMsg = err.error || ('HTTP ' + res.status);
           var detail = err.detail || '';
-          if (res.status === 404) errMsg = 'Model not available for chat completions';
+          if (res.status === 404) {
+            if (detail.indexOf('Not found') !== -1 || detail.indexOf('not found') !== -1) {
+              errMsg = 'Model deprecated or unavailable on NIM';
+            } else {
+              errMsg = 'Model not available for chat completions';
+            }
+          }
           else if (res.status === 429) errMsg = 'Rate limited by NVIDIA — wait and retry';
-          else if (res.status === 401) errMsg = 'Invalid API key';
+          else if (res.status === 401) errMsg = 'Invalid API key — check your key';
+          else if (res.status === 400) errMsg = 'Invalid request — model may not support this format';
           statusEl.innerHTML = '';
           resultsEl.style.display = 'block';
-          resultsEl.innerHTML = '<div class="result-item" style="grid-column:1/-1;text-align:center;"><div class="result-value error">' + escHtml(errMsg) + '</div>' +
-            (detail ? '<div style="font-size:0.75rem;color:var(--muted);margin-top:0.3rem;">' + escHtml(detail.slice(0,200)) + '</div>' : '') + '</div>';
+          resultsEl.innerHTML = '<div class="result-item" style="grid-column:1/-1;text-align:center;"><div class="result-value error">' + escHtml(errMsg) + '</div></div>';
           return;
         }
 
