@@ -165,7 +165,7 @@
         "type": "uptodown"
       }
     ],
-    "lastUpdated": "2026-06-09",
+    "lastUpdated": "2026-06-08",
     "totalDownloads": "",
     "appSize": "13.6",
     "contentRating": "Rated for 18+",
@@ -256,10 +256,11 @@
         "type": "xiaomi"
       }
     ],
-    "lastUpdated": "2026-06-21",
+    "lastUpdated": "2026-06-14",
     "totalDownloads": "100+",
     "appSize": "27 MB",
-    "contentRating": "Rated for 16+"
+    "contentRating": "Rated for 16+",
+    "developer": "Dhanuk Softwares"
   },
   {
     "name": "Lofiga: Lofi Slow Reverb Maker",
@@ -332,9 +333,14 @@
         "name": "Uptodown",
         "url": "https://lofiga-lofi-slow-reverb-maker.en.uptodown.com/android",
         "type": "uptodown"
+      },
+      {
+        "name": "Google Play",
+        "url": "https://play.google.com/store/apps/details?id=com.dhanuk.lofiga",
+        "type": "play"
       }
     ],
-    "lastUpdated": "2026-06-21",
+    "lastUpdated": "2026-07-04",
     "totalDownloads": "100+",
     "appSize": "10.22",
     "contentRating": "Rated for 3+"
