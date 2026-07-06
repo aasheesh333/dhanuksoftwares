@@ -340,10 +340,11 @@
         "type": "play"
       }
     ],
-    "lastUpdated": "2026-07-04",
+    "lastUpdated": "2026-06-11",
     "totalDownloads": "100+",
     "appSize": "10.22",
-    "contentRating": "Rated for 3+"
+    "contentRating": "Rated for 3+",
+    "developer": "Dhanuk Softwares"
   },
   {
     "name": "NVIDIA NIM API Speed Test",
@@ -399,5 +400,89 @@
     "developer": "Dhanuk Softwares",
     "isTool": true,
     "permalink": "/nvidia-nim-speed-test/"
+  },
+  {
+    "name": "PicFix Pro: Photo Editor",
+    "slug": "picfix-pro-photo-editor",
+    "category": "Tools",
+    "tag": "Tools",
+    "tagline": "Enhance, Retouch & Edit Like a Pro",
+    "shortDesc": "Remove backgrounds, erase objects, and enhance photos with PicFix Pro",
+    "longDescription": "<p>PicFix Pro is an all-in-one photo editor that puts 8+ powerful tools in one fast, lightweight app. Remove backgrounds, erase unwanted objects, enhance image quality, convert images to PDF, adjust colors, fix perspective, resize, compress, and protect your privacy — no design skills needed.</p><h2>Key Benefits of PicFix Pro</h2><p>Whether you’re editing photos for social media, online selling, school, work, or just cleaning up your gallery, PicFix Pro gives you professional results in a few taps. With its user-friendly interface and robust features, you can easily remove backgrounds, erase unwanted objects, and enhance image quality.</p><h3>Remove Background</h3><p>Get a clean, one-tap background cutout. Perfect for profile pictures, product photos, stickers, and transparent PNGs. This feature is especially useful for e-commerce sellers, social media influencers, and content creators who need to remove backgrounds from their product images or profile pictures.</p><h3>Object Eraser</h3><p>Remove unwanted objects, people, or blemishes from any photo. Just brush over what you want gone and let the eraser do the rest. This feature is great for removing unwanted objects or people from your photos, giving you a clean and professional-looking image.</p><h3>Enhance Image</h3><p>Upscale and clean up low-quality or blurry pictures. Sharpen details and improve clarity to make old photos look better. This feature is perfect for restoring old photos or enhancing low-quality images taken with low-resolution cameras.</p><h3>Image to PDF</h3><p>Convert single or multiple images into a clean, shareable multi-page PDF. Great for documents, notes, and receipts. This feature is useful for students, professionals, and individuals who need to convert their images into PDF format for easy sharing or storage.</p><h3>Color Adjustments</h3><p>Fine-tune brightness, contrast, saturation, and warmth with simple sliders to make every photo pop. This feature is great for adjusting the color and brightness of your photos to make them look more vibrant and appealing.</p><h3>Privacy Doctor</h3><p>Strip hidden EXIF metadata — including GPS location, date, and camera info — before you share. Protect your personal data with one tap. This feature is especially useful for individuals who are concerned about their privacy and want to remove sensitive information from their photos before sharing them online.</p><h3>Perspective Crop</h3><p>Auto-crop and straighten tilted photos and documents. Fix angles and get perfectly aligned shots every time. This feature is great for correcting tilted or skewed photos, giving you a professional-looking image.</p><h3>Resize & Compress</h3><p>Shrink photos and reduce file size without losing quality. Save storage space and share faster. This feature is useful for individuals who need to reduce the file size of their photos without compromising on quality.</p><h2>Why Choose PicFix Pro?</h2><p>PicFix Pro is built to be your everyday photo toolkit — simple enough for quick edits and powerful enough for serious cleanups. With its 8+ editing tools, you can edit, enhance, and optimize your photos with ease. Whether you’re a beginner or an experienced photo editor, PicFix Pro has something to offer.</p><h3>Advantages of PicFix Pro</h3><ul><li>8+ editing tools in one app — no need to install many apps</li><li>Fast and easy to use, even for beginners</li><li>Clean, modern interface</li><li>Works on photos from your camera or gallery</li><li>Edit history so you can find your work anytime</li><li>Privacy-friendly tools that keep your data safe</li></ul><h2>Get Started with PicFix Pro</h2><p>Download PicFix Pro today and turn ordinary pictures into clean, professional, share-ready images! With its robust features and user-friendly interface, you can easily edit, enhance, and optimize your photos. Whether you’re a student, professional, or individual, PicFix Pro is the perfect photo editing app for you.</p>",
+    "keywords": [
+      "photo editor",
+      "remove background",
+      "erase objects",
+      "enhance photos",
+      "image to pdf",
+      "color adjustments",
+      "privacy doctor",
+      "perspective crop"
+    ],
+    "features": [
+      "Remove backgrounds",
+      "Erase unwanted objects",
+      "Enhance image quality",
+      "Convert images to PDF",
+      "Adjust colors",
+      "Fix perspective",
+      "Resize and compress",
+      "Protect privacy"
+    ],
+    "faq": [
+      {
+        "q": "Is PicFix Pro free to use?",
+        "a": "Yes, PicFix Pro offers a free version with limited features. You can upgrade to the premium version for more features and functionality."
+      },
+      {
+        "q": "Can I use PicFix Pro offline?",
+        "a": "Yes, you can use PicFix Pro offline. However, some features may require internet connectivity to function properly."
+      },
+      {
+        "q": "Is my data safe with PicFix Pro?",
+        "a": "Yes, PicFix Pro takes your privacy seriously. We use secure servers to store your data and ensure that it is protected from unauthorized access."
+      },
+      {
+        "q": "Is PicFix Pro compatible with my device?",
+        "a": "PicFix Pro is compatible with most Android devices. However, we recommend checking the system requirements before downloading the app."
+      },
+      {
+        "q": "How do I remove backgrounds from my photos?",
+        "a": "To remove backgrounds from your photos, simply select the 'Remove Background' feature and follow the prompts. You can also adjust the settings to fine-tune the background removal process."
+      },
+      {
+        "q": "Can I use PicFix Pro for commercial purposes?",
+        "a": "Yes, you can use PicFix Pro for commercial purposes. However, we recommend checking our terms and conditions to ensure that you are complying with our usage policies."
+      },
+      {
+        "q": "How does PicFix Pro compare to other photo editing apps?",
+        "a": "PicFix Pro offers a unique combination of features and functionality that sets it apart from other photo editing apps. With its 8+ editing tools and user-friendly interface, PicFix Pro is the perfect choice for individuals and professionals who need to edit and enhance their photos."
+      },
+      {
+        "q": "What if I need help or support with PicFix Pro?",
+        "a": "If you need help or support with PicFix Pro, you can contact our customer support team via email or through our website. We are always happy to assist you with any questions or concerns you may have."
+      }
+    ],
+    "emoji": "",
+    "icon": "https://play-lh.googleusercontent.com/5aj_o3b6cDP6k_wbI1JkQRGaBV6KGRnLG2Qj_Ym85TJbB1prdU0Th7-XQmxU3SpwYtJ26I-SzB3M9n3N2jZoqg",
+    "screenshots": [
+      "https://play-lh.googleusercontent.com/8RDvXxh9mI_bq8t8_XNEA57_4QnUZSdPwb88dAY9SA-XqgaImVFuZtxC3Oe-xsFJfXd4cAj0x3RiwmB9kCmfRw=w1052-h592",
+      "https://play-lh.googleusercontent.com/ckV6xY3HdN-FHA95Cvk2BK1bLAzKFVMbVJr-rGTA3169NUUiDUKInB-ScF_TFMSLZQCU_rDLQyyYJIktUohJnQ=w1052-h592",
+      "https://play-lh.googleusercontent.com/pEniLczkGyC5RcJ1pFiv_mKhJaZFIVaKRnB3PnK2-maBQzZMCz_2gOiV94mzxmHyjZvSCk7wqNA3JJ4QBQot=w1052-h592",
+      "https://play-lh.googleusercontent.com/a4zrVJNvkYJp8c5r0uNW8Izd1v3Yf1DBnayQ3jdTDxDybrpfqYWb0QIYdV3bAcycZe6Hl2Q_vZcR1w2eFAJb=w1052-h592",
+      "https://play-lh.googleusercontent.com/3j9_hOoWPjoG7H8zLRDHI9H6aiENopMiOK0fy4q6__dJFpgtXNAmjP2gYyqq3-KWMg3mSjGd1pzSSXpS1jMiNg=w1052-h592",
+      "https://play-lh.googleusercontent.com/9DHSbbfx0qBdb0D40GobJRsR7UNmNMc0qRBpctJM_LMm51mpCJNixFkyZq89c8hqp0YMtFdqSGIiWMbnCsgnkCg=w1052-h592"
+    ],
+    "marketplaces": [
+      {
+        "name": "Google Play",
+        "url": "https://play.google.com/store/apps/details?id=com.dhanuk.photodoctorpro",
+        "type": "play"
+      }
+    ],
+    "lastUpdated": "2026-06-28",
+    "totalDownloads": "100+",
+    "appSize": "53.49",
+    "contentRating": "Rated for 3+"
   }
 ]
