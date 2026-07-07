@@ -480,9 +480,95 @@
         "type": "play"
       }
     ],
-    "lastUpdated": "2026-06-28",
+    "lastUpdated": "2026-06-29",
     "totalDownloads": "100+",
     "appSize": "53.49",
+    "contentRating": "Rated for 3+",
+    "developer": "Dhanuk Softwares"
+  },
+  {
+    "name": "DebtPayoff Pro: Debt Tracker",
+    "slug": "debtpayoff-pro-debt-tracker",
+    "category": "Productivity",
+    "tag": "Productivity",
+    "tagline": "Track debts, split bills, get paid",
+    "shortDesc": "Get paid back effortlessly with DebtPayoff Pro, the simple debt tracker for friends and roommates",
+    "longDescription": "<p>Are you tired of being the friend who always lends money but never gets paid back? Do you struggle to keep track of who owes you what and when? DebtPayoff Pro is here to help. This innovative debt tracker app makes it easy to log every IOU, split bills instantly, and send reminders to your friends and roommates.</p>\n      <h2>How DebtPayoff Pro Works</h2>\n      <p>DebtPayoff Pro is designed to be simple and intuitive. You can add a debt in seconds, with options to include the name, amount, reason, due date, and notes. The app also includes fun avatars for every debt, making it easy to visualize your IOUs. You can search debts by name or reason, and filter by pending and settled debts, with overdue highlighting.</p>\n      <h3>Tracking Debts, Made Easy</h3>\n      <p>With DebtPayoff Pro, you can track every debt, both ways. The app includes two main sections: \"They Owe Me\" and \"I Owe Them\", making it easy to see who owes you what and when. You can also log partial payments and see the remaining balance and total paid for every person.</p>\n      <ul>\n         <li>Add debts with name, amount, reason, due date, and notes</li>\n         <li>Search debts by name or reason</li>\n         <li>Filter by pending and settled debts, with overdue highlighting</li>\n         <li>Log partial payments and see remaining balance and total paid</li>\n      </ul>\n      <h2>AI Reminder Writer</h2>\n      <p>One of the most innovative features of DebtPayoff Pro is the AI reminder writer. This feature uses artificial intelligence to write the perfect reminder message for you, so you can get paid back without any awkward conversations. You can choose from three different tones: Mild, Medium, or Spicy, and send the message straight to WhatsApp with one tap.</p>\n      <h3>Split Bills in Seconds</h3>\n      <p>DebtPayoff Pro also makes it easy to split bills with your friends and roommates. You can split trips, dinners, movies, and group expenses equally, and see each person's share instantly. You can also turn any split into tracked debts with one tap, and get a witty summary of every split from the AI Take feature.</p>\n      <ul>\n         <li>Split bills with friends and roommates</li>\n         <li>See each person's share instantly</li>\n         <li>Turn any split into tracked debts with one tap</li>\n         <li>Get a witty summary of every split from the AI Take feature</li>\n      </ul>\n      <h2>Stats That Make Money Fun</h2>\n      <p>DebtPayoff Pro also includes a range of stats and insights that make money fun. You can see your financial insights, including owed to me, I owe, net balance, and all-time settled. You can also track your debt recovery rate, and see a monthly lending trend chart. The app also includes a debt leaderboard, which shows who owes you the most, and Most Trusted friend and Worst Offender badges.</p>\n      <h3>Smart Notifications</h3>\n      <p>DebtPayoff Pro includes smart notifications that remind you of overdue debts, and provide a weekly debt summary. You can also get payment alerts when a debt is nearly settled, making it easy to stay on top of your finances.</p>\n      <ul>\n         <li>Daily reminders for overdue debts</li>\n         <li>Weekly debt summary</li>\n         <li>Payment alerts when a debt is nearly settled</li>\n      </ul>\n      <h2>Your Data, Safe and Portable</h2>\n      <p>DebtPayoff Pro takes the security of your data seriously. The app includes cloud backup and sync with Google Sign-In, so you can access your data from anywhere. You can also export all debts to CSV, and use the app in multiple languages, with Light and Dark themes.</p>\n      <h3>Perfect For</h3>\n      <p>DebtPayoff Pro is perfect for anyone who lends money to friends and wants to get paid back. This includes friends who always \"forget\" to pay you back, roommates splitting rent, groceries, and utilities, college students tracking trip and food money, couples and coworkers managing shared expenses, and anyone who wants to keep track of their IOUs.</p>\n      <p>Stop being the friend who never gets paid back. Download DebtPayoff Pro today and get your money back, with a smile.</p>",
+    "keywords": [
+      "debt tracker",
+      "IOU tracker",
+      "split bills",
+      "money lent",
+      "friend debt",
+      "roommate debt",
+      "debt recovery",
+      "personal finance"
+    ],
+    "features": [
+      "Track every debt, both ways",
+      "Add debts with name, amount, reason, due date, and notes",
+      "Search debts by name or reason",
+      "Filter by pending and settled debts, with overdue highlighting",
+      "Log partial payments and see remaining balance and total paid",
+      "AI reminder writer with three tones: Mild, Medium, or Spicy",
+      "Split bills with friends and roommates",
+      "See each person's share instantly",
+      "Turn any split into tracked debts with one tap"
+    ],
+    "faq": [
+      {
+        "q": "Is DebtPayoff Pro free to use?",
+        "a": "Yes, DebtPayoff Pro is free to download and use, with optional in-app purchases."
+      },
+      {
+        "q": "Can I use DebtPayoff Pro offline?",
+        "a": "Yes, DebtPayoff Pro can be used offline, but some features may require an internet connection."
+      },
+      {
+        "q": "Is my data safe with DebtPayoff Pro?",
+        "a": "Yes, DebtPayoff Pro takes the security of your data seriously, with cloud backup and sync with Google Sign-In."
+      },
+      {
+        "q": "Is DebtPayoff Pro compatible with my device?",
+        "a": "DebtPayoff Pro is compatible with most Android devices, but please check the system requirements before downloading."
+      },
+      {
+        "q": "How does DebtPayoff Pro compare to other debt tracker apps?",
+        "a": "DebtPayoff Pro is one of the most innovative and user-friendly debt tracker apps available, with features like AI reminder writer and split bills."
+      },
+      {
+        "q": "Can I export my data from DebtPayoff Pro?",
+        "a": "Yes, you can export all debts to CSV, and also share individual debts as images."
+      },
+      {
+        "q": "Does DebtPayoff Pro provide loans or credit?",
+        "a": "No, DebtPayoff Pro does not provide loans or credit, and is only a personal record-keeping tool for informal IOUs between friends."
+      },
+      {
+        "q": "Can I use DebtPayoff Pro for business purposes?",
+        "a": "DebtPayoff Pro is designed for personal use only, and is not intended for business purposes."
+      }
+    ],
+    "emoji": "",
+    "icon": "https://play-lh.googleusercontent.com/C_sO0SgD-2oxIiBnYRO4P1Q7yfMOCkuWJyoRXmIaBgLGvze1Rrk8bBUkY1T2OZcdgVAWylf4FZUXgncp_kNzuVs",
+    "screenshots": [
+      "https://play-lh.googleusercontent.com/3wZRX4VftMXgVTEmA1QBtai5j8HQx0sx45XjUhyV3aRg5A2omsnYdez7EUCcmMOw451Wdxh87tlpzm-oCMCz9ck=w1052-h592",
+      "https://play-lh.googleusercontent.com/5M7pmfoTFueoif7U9bnP4WSqBC5PEnDTNA9K8ZclOtv8sX9vJWWHAVfZEOSR8oNsejc6dZ8rPxDeJTlF73BNOQ=w1052-h592",
+      "https://play-lh.googleusercontent.com/QGbciMb79OWmwMxwLpjG6HePuyBcLg-dfMRIrZkQiFrZoJt1erM5YnmAl3b2tOlLSMf9E-4L_OZQerusmGfM=w1052-h592",
+      "https://play-lh.googleusercontent.com/plIsO3YEdm803B75mvZtMlfqTNXrtpoTrq68BFzvTt2NOTCr3DwDDsTZYL4KytJj1OAJ9im6jpeWNKQN7AGRFQ=w1052-h592",
+      "https://play-lh.googleusercontent.com/wCUrLp4F8pRPyUwLkULDM2JOgfqbzf-BlWO4pzj1LsdT45_OXPqVqTr78S4U7lKY4U2Q_8xO9LoQ3vFGYexseg=w1052-h592",
+      "https://play-lh.googleusercontent.com/O2VetwHXz-KMPgmh53rRdOqKLj7nNXrCbeE00-368mjZkCw_JFgcB6iVYA7vOySWtnVMlSAA7N2ufs64iiMvvQ=w1052-h592"
+    ],
+    "marketplaces": [
+      {
+        "name": "Google Play",
+        "url": "https://play.google.com/store/apps/details?id=com.dhanuk.debtbro",
+        "type": "play"
+      }
+    ],
+    "lastUpdated": "2026-07-05",
+    "totalDownloads": "100+",
+    "appSize": "7.98 MB",
     "contentRating": "Rated for 3+"
   }
 ]
