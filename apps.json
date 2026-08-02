@@ -480,7 +480,7 @@
         "type": "play"
       }
     ],
-    "lastUpdated": "2026-06-29",
+    "lastUpdated": "2026-06-28",
     "totalDownloads": "100+",
     "appSize": "53.49",
     "contentRating": "Rated for 3+",
@@ -566,9 +566,90 @@
         "type": "play"
       }
     ],
-    "lastUpdated": "2026-07-05",
+    "lastUpdated": "2026-07-06",
     "totalDownloads": "100+",
     "appSize": "7.98 MB",
+    "contentRating": "Rated for 3+",
+    "developer": "Dhanuk Softwares"
+  },
+  {
+    "name": "GovPhoto: Exam Photo Resizer",
+    "slug": "govphoto-exam-photo-resizer",
+    "category": "Tools",
+    "tag": "Tools",
+    "tagline": "Resize photos for 400+ exams",
+    "shortDesc": "Get the perfect photo size for government exams and ID documents with GovPhoto Resizer",
+    "longDescription": "<p>Are you tired of having your government exam or ID document application rejected due to incorrect photo sizes? GovPhoto Resizer is here to help. This app resizes your photo and signature to the exact dimensions and file size required by 400+ All India exams and documents, including UPSC, SSC, IBPS, RBI, Railways, PAN Card, Aadhaar, Passport, Voter ID, and Driving Licence.</p><h2>Why Choose GovPhoto Resizer?</h2><p>Online application forms often reject photos and signatures that don't match the official guidelines, resulting in delays and frustration. GovPhoto Resizer ensures that your application never gets rejected due to a photo error. With this app, you can get a perfectly sized, form-ready photo in seconds.</p><h2>How it Works</h2><p>Using GovPhoto Resizer is easy. Simply choose your exam or document type, take a new photo or select one from your gallery, and get your photo resized to the exact required size. You can also enter a custom size manually if needed.</p><h3>Key Benefits</h3><ul><li>400+ Exam & Document Presets: Ready-made photo and signature sizes for various exams and documents.</li><li>Exact Size, Every Time: Set width and height in cm, mm, inches, or pixels, and compress your photo to the exact KB limit.</li><li>Perfect Fit – Head Size & Proportion Check: Smart checks help you match head size and face proportions to official photo guidelines.</li><li>Auto Enhance: Improve lighting and remove shadows with one tap for a clean, professional-looking application photo.</li><li>Signature Resizer: Resize scanned signatures to the exact pixel dimensions and KB size required by exams and documents.</li><li>Custom Size Mode: Enter any custom width, height, and file size manually and get a perfectly resized photo.</li></ul><h2>Who is it For?</h2><p>GovPhoto Resizer is perfect for UPSC, SSC, IBPS, SBI, RBI, LIC, Railway, and Defence exam aspirants, as well as students filling college, scholarship, and entrance exam forms. It's also ideal for anyone applying for PAN Card, Aadhaar update, Passport, Voter ID, or Driving Licence. Even cyber cafes and shops that prepare application photos for customers can benefit from this app.</p><h3>Additional Features</h3><p>The app is available in both Hindi and English, making it accessible to a wider audience. It also features large buttons, high-contrast mode, light/dark theme, and dynamic colors (Android 12+), ensuring a comfortable user experience. Moreover, your document photos stay private, and the special “Prevent Screenshots” option blocks screenshots of your sensitive document photos.</p><h2>Conclusion</h2><p>In conclusion, GovPhoto Resizer is a must-have app for anyone applying for government exams or ID documents. With its easy-to-use interface, exact size guarantee, and additional features, it's the perfect solution for ensuring that your application is never rejected due to a photo error. Download GovPhoto Resizer today and get the perfect photo size for your application.</p>",
+    "keywords": [
+      "govt exam photo size",
+      "passport size photo",
+      "Aadhaar photo size",
+      "UPSC photo size",
+      "SSC photo size",
+      "IBPS photo size",
+      "RBI photo size",
+      "Railway photo size"
+    ],
+    "features": [
+      "400+ Exam & Document Presets",
+      "Exact Size, Every Time",
+      "Perfect Fit – Head Size & Proportion Check",
+      "Auto Enhance",
+      "Signature Resizer",
+      "Custom Size Mode",
+      "Hindi + English Support",
+      "Privacy Protection"
+    ],
+    "faq": [
+      {
+        "q": "Is GovPhoto Resizer free to use?",
+        "a": "Yes, GovPhoto Resizer is free to use, with no charges for resizing photos and signatures."
+      },
+      {
+        "q": "Can I use GovPhoto Resizer offline?",
+        "a": "Yes, GovPhoto Resizer can be used offline, but some features may require internet connectivity."
+      },
+      {
+        "q": "Is my data secure with GovPhoto Resizer?",
+        "a": "Yes, GovPhoto Resizer prioritizes user data security and privacy, with features like 'Prevent Screenshots' to protect sensitive information."
+      },
+      {
+        "q": "Is GovPhoto Resizer compatible with all devices?",
+        "a": "GovPhoto Resizer is compatible with most Android devices, but compatibility may vary depending on the device and operating system."
+      },
+      {
+        "q": "How do I resize a photo using GovPhoto Resizer?",
+        "a": "To resize a photo, simply choose your exam or document type, take a new photo or select one from your gallery, and get your photo resized to the exact required size."
+      },
+      {
+        "q": "Can I use GovPhoto Resizer for multiple exams and documents?",
+        "a": "Yes, GovPhoto Resizer supports 400+ exam and document presets, making it a one-stop solution for all your photo resizing needs."
+      },
+      {
+        "q": "How does GovPhoto Resizer compare to other photo resizing apps?",
+        "a": "GovPhoto Resizer stands out from other photo resizing apps with its exact size guarantee, smart checks, and additional features like auto-enhance and signature resizer."
+      }
+    ],
+    "emoji": "",
+    "icon": "https://play-lh.googleusercontent.com/rQ-K_ZtA29Pk0aSdY2bwpnJw7JCBxjGgm10I5wUryVvhIn-2p-xmmKYkuA3CQQ0t5IZQtG9qev-GOFMELOmG0g",
+    "screenshots": [
+      "https://play-lh.googleusercontent.com/XdURxGUJ2UoIRkL3DWaH7Q2JxZ-OZY-6mHCTJ9edJ3h6ihimF4kg6bkcVh8u3866EzL55A5Aep5ZOrhmDgyN0Q=w1052-h592",
+      "https://play-lh.googleusercontent.com/O6gjb0K2Xd29uPGcgstHhwLlg10hkAurxDHd3Zf0cR-aSACT015V4ZMkmEREUlFVq_S4MJe97tdp5vBMkBc8=w1052-h592",
+      "https://play-lh.googleusercontent.com/o1YgnOlyrbj9XzUkAnQJwn9Wm7qBnfAkIhX8OUWksEaQtHTNjgInda9SBBa6cxDy1xExFlQ3B_tK1ks3txrCvQQ=w1052-h592",
+      "https://play-lh.googleusercontent.com/THUYwjE2gf6ATOopmnw3NVaF_83_gEMIY9wOHXwH5eHPv_tfKH4Bv6s1RMzrGh-lfAhjuaBwclIbenvHPmFR=w1052-h592",
+      "https://play-lh.googleusercontent.com/lJL1TrSL8Q6YQapMhZpTlZZRKM6J3EydxKV1CMQMkSuJvCriGi_ZGagq0zCLKg_MLXBcl11czaN6MggEsTImAQ=w1052-h592",
+      "https://play-lh.googleusercontent.com/FbAUkXP7Jkz_O28207_vFo4kYkXPk6tQ4nHQAcy90e4gT3VnM4Iob6IoL9DFTHhWILHo2Fsgx5YXoSckYD7SLQ=w1052-h592"
+    ],
+    "marketplaces": [
+      {
+        "name": "Google Play",
+        "url": "https://play.google.com/store/apps/details?id=com.dhanuk.govphoto&pli=1",
+        "type": "play"
+      }
+    ],
+    "lastUpdated": "2026-07-26",
+    "totalDownloads": "100+",
+    "appSize": "16 MB",
     "contentRating": "Rated for 3+"
   }
 ]
