@@ -26,18 +26,18 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <style>
     :root { --bg:#0b0f1a; --surface:#131929; --card:#1a2235; --accent:#4f8ef7; --accent2:#38e0b0; --text:#e8edf7; --muted:#a0b0cc; --border:#1e2d4a; }
     *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
     html { scroll-behavior:smooth; overflow-wrap:break-word; }
-    body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; line-height:1.7; overflow-x:hidden; min-height:100vh; display:flex; flex-direction:column; overflow-wrap:break-word; }
+    body { background:var(--bg); color:var(--text); font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; line-height:1.7; overflow-x:hidden; min-height:100vh; display:flex; flex-direction:column; overflow-wrap:break-word; }
     body, p, li, h1, h2, h3, h4, a, span, dd, dt, blockquote, code, pre { overflow-wrap:break-word; word-wrap:break-word; }
     a:focus-visible, button:focus-visible { outline:2px solid var(--accent); outline-offset:2px; border-radius:4px; }
     .skip-link { position:absolute; left:-9999px; top:0; background:var(--accent); color:#fff; padding:0.7rem 1.2rem; z-index:200; border-radius:0 0 8px 0; text-decoration:none; font-weight:600; }
     .skip-link:focus { left:0; }
     nav { position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:1rem 5%; background:rgba(11,15,26,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
-    .nav-logo { font-family:'Syne',sans-serif; font-weight:800; font-size:1.2rem; color:#fff; text-decoration:none; }
+    .nav-logo { font-family:'Inter',sans-serif; font-weight:800; font-size:1.2rem; letter-spacing:-0.02em; color:#fff; text-decoration:none; }
     .nav-logo span { color:var(--accent2); }
     .nav-toggle { display:none; background:transparent; border:1px solid var(--border); border-radius:8px; padding:0.5rem; cursor:pointer; flex-direction:column; gap:4px; width:38px; height:38px; align-items:center; justify-content:center; }
     .nav-toggle-bar { display:block; width:18px; height:2px; background:var(--text); border-radius:1px; transition:transform 0.2s, opacity 0.2s; }
@@ -53,8 +53,8 @@
     .breadcrumb a { color:var(--muted); text-decoration:none; }
     .breadcrumb a:hover { color:var(--accent); }
     .breadcrumb span { word-break:break-word; }
-    h1 { font-family:'Syne',sans-serif; font-size:clamp(1.8rem, 4vw, 2.6rem); font-weight:800; letter-spacing:-0.02em; margin-bottom:0.5rem; }
-    h2 { font-family:'Syne',sans-serif; font-size:clamp(1.3rem, 2.5vw, 1.6rem); font-weight:700; letter-spacing:-0.01em; margin:2.5rem 0 0.5rem; color:var(--text); }
+    h1 { font-family:'Inter',sans-serif; font-size:clamp(1.8rem, 4vw, 2.6rem); font-weight:800; letter-spacing:-0.02em; margin-bottom:0.5rem; }
+    h2 { font-family:'Inter',sans-serif; font-size:clamp(1.3rem, 2.5vw, 1.6rem); font-weight:700; letter-spacing:-0.01em; margin:2.5rem 0 0.5rem; color:var(--text); }
     .lead { color:var(--muted); margin-bottom:2rem; font-size:1rem; }
     p { margin-bottom:1rem; }
     ul { margin:0.5rem 0 1rem 1.5rem; }
@@ -127,7 +127,7 @@
       <h2>5. Third-Party Services</h2>
       <ul>
         <li><strong>Cloudflare Pages</strong> — hosts our website and provides anonymized analytics (privacy policy: cloudflare.com/privacypolicy).</li>
-        <li><strong>Google Fonts</strong> — serves the Syne and DM Sans fonts from Google's CDN (no personal data).</li>
+        <li><strong>Google Fonts</strong> — serves the Inter font from Google's CDN (no personal data).</li>
         <li><strong>GitHub Pages (via Cloudflare)</strong> — stores the source code of this site (no personal data).</li>
         <li><strong>Groq (for AI features)</strong> — when you use the AI Auto-fill tool in admin, the seed text and app name you enter are sent to Groq's API for content generation. They are not stored by us beyond the request and are subject to Groq's privacy policy.</li>
       </ul>
