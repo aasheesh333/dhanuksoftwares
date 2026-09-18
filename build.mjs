@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { renderApp } from './lib/render.mjs';
+import { renderBlogPost, renderBlogIndex } from './lib/render-blog.mjs';
 import { migrateAll } from './lib/migrate.mjs';
 import { slugify, ensureUnique } from './lib/slug.mjs';
 
@@ -351,10 +352,11 @@ ${itemListJson}
 </html>`;
 }
 
-function generateSitemap(apps, baseUrl) {
+function generateSitemap(apps, baseUrl, posts = []) {
   const urls = [
     { loc: `${baseUrl}/`, priority: '1.0', changefreq: 'weekly', lastmod: TODAY },
     { loc: `${baseUrl}/apps/`, priority: '0.9', changefreq: 'weekly', lastmod: TODAY },
+    { loc: `${baseUrl}/blog/`, priority: '0.9', changefreq: 'weekly', lastmod: TODAY },
     { loc: `${baseUrl}/privacy/`, priority: '0.3', changefreq: 'yearly', lastmod: TODAY },
     { loc: `${baseUrl}/terms/`, priority: '0.3', changefreq: 'yearly', lastmod: TODAY },
     { loc: `${baseUrl}/cookies/`, priority: '0.3', changefreq: 'yearly', lastmod: TODAY }
@@ -366,6 +368,14 @@ function generateSitemap(apps, baseUrl) {
       priority: app.isTool ? '0.8' : '0.8',
       changefreq: app.isTool ? 'weekly' : 'monthly',
       lastmod: app.lastUpdated || TODAY
+    });
+  }
+  for (const post of posts) {
+    urls.push({
+      loc: `${baseUrl}/blog/${post.slug}/`,
+      priority: '0.8',
+      changefreq: 'monthly',
+      lastmod: post.lastModified || post.publishedDate || TODAY
     });
   }
   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -459,7 +469,7 @@ async function main() {
     }
   }
 
-  for (const f of ['app-ads.txt', 'CNAME', 'apps.json', 'og-banner.png', 'favicon.svg', 'apple-touch-icon.png', 'manifest.json']) {
+  for (const f of ['app-ads.txt', 'CNAME', 'apps.json', 'posts.json', 'og-banner.png', 'favicon.svg', 'apple-touch-icon.png', 'manifest.json']) {
     const src = path.join(ROOT, f);
     if (fs.existsSync(src)) {
       fs.copyFileSync(src, path.join(DIST, f));
@@ -495,7 +505,25 @@ async function main() {
     }
   }
 
-  const sitemap = generateSitemap(apps, BASE_URL);
+  // Blog pages: render individual post pages + blog catalog index
+  const postsPath = path.join(ROOT, 'posts.json');
+  const posts = fs.existsSync(postsPath) ? readJson(postsPath) : [];
+  console.log(`${posts.length} blog posts loaded`);
+
+  for (const post of posts) {
+    const postHtml = renderBlogPost(post, BASE_URL, apps);
+    const postOutDir = path.join(DIST, 'blog', post.slug);
+    writeFile(path.join(postOutDir, 'index.html'), postHtml);
+    console.log(`  /blog/${post.slug}/`);
+  }
+
+  if (posts.length > 0) {
+    const blogIndexHtml = renderBlogIndex(posts, BASE_URL);
+    writeFile(path.join(DIST, 'blog', 'index.html'), blogIndexHtml);
+    console.log('  /blog/');
+  }
+
+  const sitemap = generateSitemap(apps, BASE_URL, posts);
   writeFile(path.join(DIST, 'sitemap.xml'), sitemap);
   console.log('  /sitemap.xml');
 
@@ -644,6 +672,12 @@ function generateHeaders() {
   Cache-Control: public, max-age=300, must-revalidate
 
 /apps/*
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/blog/
+  Cache-Control: public, max-age=300, must-revalidate
+
+/blog/*
   Cache-Control: public, max-age=3600, must-revalidate
 
 /privacy/
