@@ -186,6 +186,15 @@
     }
     .app-card:hover { border-color: var(--accent); transform: translateY(-4px); }
     .app-card:hover::before { opacity: 1; }
+    .blog-home-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.75rem; display: flex;
+      flex-direction: column; position: relative;
+      transition: transform 0.25s, border-color 0.25s;
+    }
+    .blog-home-card:hover {
+      border-color: var(--accent); transform: translateY(-4px);
+    }
     .app-emoji { font-size: 2.5rem; margin-bottom: 1rem; }
     .app-icon-img {
       width: 56px; height: 56px; border-radius: 12px;
@@ -351,6 +360,7 @@
   <ul id="nav-menu">
     <li><a href="#about">About</a></li>
     <li><a href="#apps">Apps</a></li>
+    <li><a href="/blog/">Blog</a></li>
     <li><a href="#team">Team</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -367,7 +377,7 @@
     <p>Dhanuk Softwares builds simple, lightweight Android applications designed to make daily tasks easier — for real people, real needs.</p>
     <div class="btn-group">
       <a href="#apps" class="btn btn-primary">Explore Our Apps</a>
-      <a href="#contact" class="btn btn-outline">Contact Us</a>
+      <a href="/blog/" class="btn btn-outline">Read Our Blog &rarr;</a>
     </div>
   </div>
 </section>
@@ -423,8 +433,37 @@
   <div class="apps-grid" id="apps-grid">
     <div class="apps-loading loading-pulse">Loading apps…</div>
   </div>
-  <div style="text-align:center; margin-top:2rem;">
-    <a href="/apps/" class="btn btn-outline">View All Apps &rarr;</a>
+  <div style="text-align:center; margin-top:2rem; display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;">
+    <a href="/apps/" class="btn btn-primary">View All Apps &rarr;</a>
+    <a href="/blog/" class="btn btn-outline">Explore Blog &amp; Guides &rarr;</a>
+  </div>
+</section>
+
+<!-- BLOG PREVIEW -->
+<section id="blog" style="background:var(--bg);">
+  <div class="section-label">Articles &amp; Guides</div>
+  <h2 class="section-title">Latest From Our Blog</h2>
+  <p class="section-sub">In-depth guides, productivity breakdowns, and tips to get the most out of Dhanuk Softwares apps.</p>
+  <div class="blog-home-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:1.5rem; margin-top:2.5rem; max-width:1100px; margin-left:auto; margin-right:auto;">
+    <article class="blog-home-card">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem;">
+        <span class="app-tag">Productivity</span>
+        <span style="font-size:0.8rem; color:var(--muted);">5 min read</span>
+      </div>
+      <h3 style="font-family:'Syne', sans-serif; font-size:1.2rem; line-height:1.4; margin-bottom:0.75rem;">
+        <a href="/blog/how-to-stay-focused-while-studying-with-focusstreak/" style="color:#fff; text-decoration:none;">How to Stay Focused While Studying: 7 Proven Techniques with FocusStreak</a>
+      </h3>
+      <p style="color:var(--muted); font-size:0.9rem; line-height:1.6; flex:1; margin-bottom:1.5rem;">
+        Discover 7 science-backed techniques to eliminate phone distractions, maintain deep focus, and build long daily study streaks.
+      </p>
+      <div style="display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--border); padding-top:1rem;">
+        <span style="font-size:0.82rem; color:var(--muted);">By Aasheesh Katheriya</span>
+        <a href="/blog/how-to-stay-focused-while-studying-with-focusstreak/" style="color:var(--accent); text-decoration:none; font-weight:600; font-size:0.88rem;">Read Guide &rarr;</a>
+      </div>
+    </article>
+  </div>
+  <div style="text-align:center; margin-top:2.5rem;">
+    <a href="/blog/" class="btn btn-outline">Browse All Articles &rarr;</a>
   </div>
 </section>
 
@@ -496,6 +535,7 @@
   <p style="margin-top:0.5rem;">
     <a href="/">Home</a> &middot;
     <a href="/apps/">Apps</a> &middot;
+    <a href="/blog/">Blog</a> &middot;
     <a href="/privacy/">Privacy</a> &middot;
     <a href="/terms/">Terms</a> &middot;
     <a href="/cookies/">Cookies</a> &middot;
