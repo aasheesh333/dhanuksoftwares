@@ -209,7 +209,7 @@ function renderAppsIndex(apps, baseUrl) {
     .breadcrumb a:hover { color:var(--accent); }
     .breadcrumb span { word-break:break-word; }
     .search-bar { margin: 1rem 0 2rem; max-width: 480px; }
-    .search-bar input { width:100%; padding: 0.85rem 1.1rem; border-radius: 12px; background: var(--card); border: 1px solid var(--border); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.95rem; }
+    .search-bar input { width:100%; padding: 0.85rem 1.1rem; border-radius: 12px; background: var(--card); border: 1px solid var(--border); color: var(--text); font-family: 'Inter', sans-serif; font-size: 0.95rem; }
     .search-bar input:focus { outline:none; border-color: var(--accent); }
     .search-bar input::placeholder { color: var(--muted); }
     .lead { color:var(--muted); margin-bottom:2rem; font-size:1.05rem; }
@@ -459,6 +459,16 @@ async function main() {
     mkdirp(path.join(DIST, 'docs'));
     fs.writeFileSync(path.join(DIST, 'docs/admin.html'), adminHtml);
     console.log('  /admin/ (no secrets in source — uses /api/login)');
+  }
+
+  const blogAdminSrc = path.join(ROOT, 'docs', 'blog-admin.html');
+  if (fs.existsSync(blogAdminSrc)) {
+    const blogAdminHtml = injectSecrets(fs.readFileSync(blogAdminSrc, 'utf8'));
+    mkdirp(path.join(DIST, 'admin/blog'));
+    fs.writeFileSync(path.join(DIST, 'admin/blog/index.html'), blogAdminHtml);
+    mkdirp(path.join(DIST, 'docs'));
+    fs.writeFileSync(path.join(DIST, 'docs/blog-admin.html'), blogAdminHtml);
+    console.log('  /admin/blog/ (protected blog editor — uses /api/login)');
   }
 
   // IndexNow: copy key file(s) — matches <32-hex-chars>.txt pattern
