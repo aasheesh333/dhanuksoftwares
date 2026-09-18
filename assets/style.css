@@ -148,6 +148,15 @@
     .recommended-card-name { font-family:'Inter',sans-serif; font-weight:700; font-size:0.98rem; margin-bottom:0.15rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .recommended-card-meta { color:var(--muted); font-size:0.82rem; display:flex; align-items:center; gap:0.5rem; }
     .recommended-card-go { color:var(--accent); font-size:1.1rem; flex-shrink:0; }
+
+    /* From the Blog (app page -> blog internal links) */
+    .related-posts-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1rem; max-width:960px; margin:0 auto; }
+    .related-post-card { display:flex; flex-direction:column; gap:0.5rem; padding:1.25rem; background:var(--card); border:1px solid var(--border); border-radius:14px; text-decoration:none; color:var(--text); transition:border-color 0.2s, transform 0.2s; }
+    .related-post-card:hover { border-color:var(--accent); transform:translateY(-2px); }
+    .related-post-tag { font-size:0.72rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent2); }
+    .related-post-title { font-family:'Inter',sans-serif; font-size:1.05rem; font-weight:700; line-height:1.35; }
+    .related-post-desc { font-size:0.88rem; color:var(--muted); line-height:1.55; }
+    .related-post-go { font-size:0.9rem; font-weight:600; color:var(--accent); margin-top:auto; padding-top:0.35rem; }
     .final-cta { background:var(--card); border:1px solid var(--border); border-radius:20px; padding:2rem; text-align:center; max-width:700px; margin:0 auto; }
     .final-cta h2 { margin-bottom:0.5rem; }
     .final-cta p { color:var(--muted); margin-bottom:1.5rem; overflow-wrap:break-word; }
@@ -208,6 +217,7 @@
       .recommended-grid { grid-template-columns:1fr; }
       .recommended-card { padding:0.75rem 0.85rem; gap:0.7rem; }
       .recommended-card-icon, .recommended-card-emoji { width:44px; height:44px; }
+      .related-posts-grid { grid-template-columns:1fr; }
     }
     @media (max-width:380px) {
       .nav-cta { padding:0.4rem 0.9rem; font-size:0.82rem; }
