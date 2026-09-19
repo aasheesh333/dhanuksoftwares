@@ -424,13 +424,22 @@ async function main() {
     usedSlugs.add(app.slug);
   }
 
+  // Blog pages: render individual post pages + blog catalog index
+  const postsPath = path.join(ROOT, 'posts.json');
+  const posts = fs.existsSync(postsPath) ? readJson(postsPath) : [];
+  console.log(`${posts.length} blog posts loaded`);
+
   for (const app of apps) {
     if (app.isTool) continue;
     const related = apps
       .filter(a => a.slug !== app.slug && !a.isTool)
       .slice(0, 6)
       .map(a => ({ name: a.name, slug: a.slug, emoji: a.emoji, icon: a.icon, shortDesc: a.shortDesc, category: a.category }));
-    const html = renderApp(app, BASE_URL, related);
+    const relatedPosts = posts
+      .filter(p => p.relatedAppSlug && p.relatedAppSlug === app.slug)
+      .slice(0, 3)
+      .map(p => ({ slug: p.slug, title: p.title, description: p.description || p.tagline, category: p.category }));
+    const html = renderApp(app, BASE_URL, related, relatedPosts);
     const outPath = path.join(DIST, 'apps', app.slug, 'index.html');
     writeFile(outPath, html);
     console.log(`  /apps/${app.slug}/`);
@@ -516,10 +525,6 @@ async function main() {
   }
 
   // Blog pages: render individual post pages + blog catalog index
-  const postsPath = path.join(ROOT, 'posts.json');
-  const posts = fs.existsSync(postsPath) ? readJson(postsPath) : [];
-  console.log(`${posts.length} blog posts loaded`);
-
   for (const post of posts) {
     const postHtml = renderBlogPost(post, BASE_URL, apps);
     const postOutDir = path.join(DIST, 'blog', post.slug);
