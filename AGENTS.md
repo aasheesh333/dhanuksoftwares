@@ -1,5 +1,26 @@
 # AGENTS.md
 
+<EXTREMELY_IMPORTANT>
+You have superpowers. If there is even a 1% chance a Superpowers skill applies to
+what you are doing, you MUST use it. If a skill applies you have no choice.
+Announce "Using [skill] to [purpose]" and follow it exactly; if it has a checklist,
+create one todo per item. Process skills first, then implementation skills:
+- "Let's build X" -> brainstorming, then implementation skills
+- "Fix this bug" -> systematic-debugging first
+- Any feature or bugfix -> test-driven-development
+- Before claiming done -> verification-before-completion
+- Multi-step spec -> writing-plans, then executing-plans
+
+Load a skill (the `skill` tool is not wired for this plugin):
+  ROOT=$(ls -d /data/user/0/com.dhanuk.ovidai/app_flutter/plugin-runtime/jesse-vincent/superpowers/*/content | tail -1)
+  cat "$ROOT/skills/<name>/SKILL.md"
+Skills: brainstorming, systematic-debugging, test-driven-development,
+verification-before-completion, writing-plans, executing-plans,
+requesting-code-review, receiving-code-review, subagent-driven-development,
+dispatching-parallel-agents, using-git-worktrees, finishing-a-development-branch,
+writing-skills, using-superpowers, diagnosing-superpowers
+</EXTREMELY_IMPORTANT>
+
 Repo: Dhanuk Softwares portfolio site (https://dhanuksoftwares.com).
 Stack: static HTML/CSS/JS + Node 22 build script + Cloudflare Pages Functions. No package.json, no node_modules.
 
@@ -89,57 +110,3 @@ The homepage (`index.html`) has its own inline `<style>` block (separate from pe
 - `docs/superpowers/specs/2026-06-17-per-app-seo-design.md`
 - `docs/superpowers/plans/2026-06-17-per-app-seo.md`
 - `docs/superpowers/specs/2026-06-17-admin-page-design.md`
-
-
-## Superpowers skills (obra/superpowers) — MUST use
-
-<EXTREMELY_IMPORTANT>
-If you think there is even a 1% chance a Superpowers skill applies to what you are
-doing, you MUST use it. If a skill applies, you do not have a choice. You cannot
-rationalize your way out of it.
-
-Process skills come first (they set the approach), then implementation skills:
-- "Let's build X"        -> superpowers:brainstorming FIRST, then implementation skills.
-- "Fix this bug"         -> superpowers:systematic-debugging FIRST.
-- Any feature or bugfix  -> superpowers:test-driven-development.
-- Before claiming done   -> superpowers:verification-before-completion.
-- Multi-step spec        -> superpowers:writing-plans, then superpowers:executing-plans.
-</EXTREMELY_IMPORTANT>
-
-Announce "Using [skill] to [purpose]" and follow the skill exactly. If it has a
-checklist, create one todo per item.
-
-### How to load a skill on Ovid
-
-The `skill` tool is NOT wired for this plugin yet (it returns "not active in the
-current manifest"). Load skill files directly from disk instead:
-
-```bash
-ROOT=$(ls -d /data/user/0/com.dhanuk.ovidai/app_flutter/plugin-runtime/jesse-vincent/superpowers/*/content 2>/dev/null | tail -1)
-cat "$ROOT/skills/<skill-name>/SKILL.md"
-```
-
-Available skills (each is `$ROOT/skills/<name>/SKILL.md`):
-- `brainstorming` — before any creative work: features, components, behavior changes
-- `systematic-debugging` — any bug, test failure, or unexpected behavior
-- `test-driven-development` — any feature or bugfix, before writing implementation
-- `verification-before-completion` — before claiming work is done/fixed/passing
-- `writing-plans` — a spec/requirements for a multi-step task
-- `executing-plans` — executing a plan inline as the implementer
-- `subagent-driven-development` — executing plans with independent tasks
-- `dispatching-parallel-agents` — 2+ independent tasks, no shared state
-- `requesting-code-review` / `receiving-code-review`
-- `finishing-a-development-branch`
-- `using-git-worktrees`
-- `writing-skills`
-- `diagnosing-superpowers`
-- `using-superpowers` — the intro to the whole system
-
-Skill files may reference supporting files (`prompts/`, `references/`,
-`templates/`, `examples/`) in the same directory — read those too when the
-skill tells you to.
-
-> Note: `hooks/hooks.json` registers a `SessionStart` hook that emits the
-> `using-superpowers` preamble as `additionalContext`. Ovid runs the hook but
-> does not inject hook stdout into the system prompt, so this AGENTS.md section
-> is the working equivalent.
