@@ -1,0 +1,11 @@
+Alibaba Cloud Model Studio (Bailian) — International, region: Singapore (ap-southeast-1)
+Created: 2026-09-19 19:32 (IST)
+Description: ovid-agent
+API Key ID: 1258935
+
+API Key:
+sk-ws-H.DHRYXIR.hnfw.MEUCIQDO6g-wa27w21amzeKeW7dxIqSrjQpmCLcjBUmJD_pgSgIgEUt-pXdvJ3wq7UxkRlobgnuGhv9S8A2ZQ6IqrxHe6xc
+
+Base URLs:
+[OI]-compatible : https://ws-2imzgis2ccn4q3s8.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1
+Anthropic      : https://ws-2imzgis2ccn4q3s8.ap-southeast-1.maas.aliyuncs.com/apps/anthropic
