@@ -1,3 +1,5 @@
+<!-- App page template for Dhanuk Softwares -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -244,6 +246,25 @@
           </div>
         </div>
         <span class="recommended-card-go">&rarr;</span>
+      </a>
+      {{/each}}
+    </div>
+  </div>
+</section>
+{{/if}}
+
+{{#if relatedPosts.length}}
+<section class="related-posts-section" style="background:var(--surface);">
+  <div class="container">
+    <h2>From the Blog</h2>
+    <p style="color:var(--muted);margin-bottom:1.5rem;font-size:0.95rem;">Guides and tips for {{name}}</p>
+    <div class="related-posts-grid">
+      {{#each relatedPosts}}
+      <a class="related-post-card" href="/blog/{{slug}}/">
+        <div class="related-post-tag">{{category}}</div>
+        <div class="related-post-title">{{title}}</div>
+        <div class="related-post-desc">{{description}}</div>
+        <span class="related-post-go">Read guide &rarr;</span>
       </a>
       {{/each}}
     </div>
