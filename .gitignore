@@ -8,3 +8,6 @@ node_modules/
 .env
 .env.*
 !.env.example
+# Local scratch / research artifacts (never shipped)
+.spill/
+kw/
