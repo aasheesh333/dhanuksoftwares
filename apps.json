@@ -81,7 +81,7 @@
         "type": "uptodown"
       }
     ],
-    "lastUpdated": "2026-06-05",
+    "lastUpdated": "2026-08-26",
     "totalDownloads": "",
     "appSize": "11.7 MB",
     "contentRating": "Rated for 3+",
@@ -165,7 +165,7 @@
         "type": "uptodown"
       }
     ],
-    "lastUpdated": "2026-06-08",
+    "lastUpdated": "2026-08-26",
     "totalDownloads": "",
     "appSize": "13.6",
     "contentRating": "Rated for 18+",
@@ -256,7 +256,7 @@
         "type": "xiaomi"
       }
     ],
-    "lastUpdated": "2026-06-14",
+    "lastUpdated": "2026-08-26",
     "totalDownloads": "100+",
     "appSize": "27 MB",
     "contentRating": "Rated for 16+",
@@ -340,7 +340,7 @@
         "type": "play"
       }
     ],
-    "lastUpdated": "2026-06-11",
+    "lastUpdated": "2026-08-26",
     "totalDownloads": "100+",
     "appSize": "10.22",
     "contentRating": "Rated for 3+",
@@ -480,7 +480,7 @@
         "type": "play"
       }
     ],
-    "lastUpdated": "2026-06-28",
+    "lastUpdated": "2026-08-26",
     "totalDownloads": "100+",
     "appSize": "53.49",
     "contentRating": "Rated for 3+",
@@ -566,7 +566,7 @@
         "type": "play"
       }
     ],
-    "lastUpdated": "2026-07-06",
+    "lastUpdated": "2026-08-26",
     "totalDownloads": "100+",
     "appSize": "7.98 MB",
     "contentRating": "Rated for 3+",
@@ -647,9 +647,10 @@
         "type": "play"
       }
     ],
-    "lastUpdated": "2026-07-26",
+    "lastUpdated": "2026-08-26",
     "totalDownloads": "100+",
     "appSize": "16 MB",
-    "contentRating": "Rated for 3+"
+    "contentRating": "Rated for 3+",
+    "developer": "Dhanuk Softwares"
   }
 ]
