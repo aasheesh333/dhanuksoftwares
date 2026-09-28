@@ -13,6 +13,7 @@ const RATE_WINDOW = 60_000;
 
 function checkRate(ip) {
   const now = Date.now();
+  if (RATE_LIMIT_MAP.size > 2000) RATE_LIMIT_MAP.clear();
   const record = RATE_LIMIT_MAP.get(ip) || { count: 0, resetAt: now + RATE_WINDOW };
   if (now > record.resetAt) {
     record.count = 0;
@@ -39,7 +40,7 @@ export async function onRequest({ request }) {
   if (request.method === 'OPTIONS') return new Response('', { status: 200, headers });
 
   try {
-    const ip = request.headers.get('x-forwarded-for')?.split(',')[0] || 'unknown';
+    const ip = request.headers.get('cf-connecting-ip') || request.headers.get('x-forwarded-for')?.split(',')[0] || 'unknown';
     if (!checkRate(ip)) {
       return new Response(JSON.stringify({ error: 'Rate limit exceeded. Try again in a minute.' }), { status: 429, headers });
     }
@@ -132,8 +133,12 @@ export async function onRequest({ request }) {
           if (r.status === 404) return { id: modelId, live: false };
           if (r.status === 400) {
             const errData = await r.json().catch(() => ({}));
-            const detail = (errData.detail || errData.error || '').toLowerCase();
+            const detail = String(errData.detail || (errData.error && errData.error.message) || errData.error || '').toLowerCase();
             if (detail.includes('not found') || detail.includes('deprecated') || detail.includes('removed')) return { id: modelId, live: false };
+            // Live model, but it rejects the benchmark endpoint (e.g. parse/extract
+            // models that don't speak chat-completions). Client shows it as live
+            // with "Benchmark not supported" instead of offering a doomed Test button.
+            if (detail.includes('not support') || detail.includes('not supported') || detail.includes('incompatible') || detail.includes('invalid model')) return { id: modelId, live: true, untestable: true };
             return { id: modelId, live: true };
           }
           if (r.status === 401) return { id: modelId, live: true };
@@ -151,7 +156,8 @@ export async function onRequest({ request }) {
       }));
       const live = results.filter(r => r.live).map(r => r.id);
       const dead = results.filter(r => !r.live).map(r => r.id);
-      return new Response(JSON.stringify({ live, dead, checked: models.length }), { status: 200, headers });
+      const untestable = results.filter(r => r.untestable).map(r => r.id);
+      return new Response(JSON.stringify({ live, dead, untestable, checked: models.length }), { status: 200, headers });
     } else {
       return new Response(JSON.stringify({ error: 'Invalid action. Use: models, chat, completions' }), { status: 400, headers });
     }

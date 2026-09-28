@@ -64,7 +64,7 @@
     .btn-danger:hover{background:var(--danger);color:#fff;}
     .btn-sm{padding:0.5rem 1rem;font-size:0.85rem;}
     .btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
-    section{padding:3rem 5%;}
+    section{padding:3rem 5%;scroll-margin-top:84px;}
     section h2{font-family:'Inter',sans-serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:700;margin-bottom:1rem;letter-spacing:-0.5px;}
     section h3{font-family:'Inter',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:0.75rem;}
     section p{color:var(--muted);margin-bottom:1rem;max-width:800px;}
@@ -94,7 +94,7 @@
     .search-box{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:0.5rem 1rem;color:var(--text);font-size:0.9rem;width:100%;margin-bottom:1rem;}
     .search-box:focus{outline:none;border-color:var(--accent);}
     .models-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1rem;margin-top:1rem;}
-    .model-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;transition:border-color 0.2s,box-shadow 0.2s;}
+    .model-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;transition:border-color 0.2s,box-shadow 0.2s;scroll-margin-top:84px;}
     .model-card:hover{border-color:var(--accent);box-shadow:0 0 20px rgba(43,27,77,0.1);}
     .model-card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.75rem;gap:0.5rem;}
     .model-name{font-family:'Inter',sans-serif;font-weight:700;font-size:1.05rem;color:var(--text);word-break:break-word;}
@@ -140,6 +140,8 @@
     footer a:hover{text-decoration:underline;}
     .sticky-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(255,244,224,0.95);backdrop-filter:blur(12px);border-top:1px solid var(--border);padding:0.75rem 5%;display:flex;justify-content:center;gap:0.75rem;z-index:40;transform:translateY(100%);transition:transform 0.3s;}
     .sticky-bar.visible{transform:translateY(0);}
+    body.has-sticky-bar{padding-bottom:76px;}
+    .batch-progress{font-size:0.85rem;color:var(--muted);}
     .empty-state{text-align:center;padding:3rem;color:var(--muted);}
     .empty-state h3{font-family:'Inter',sans-serif;color:var(--text);margin-bottom:0.5rem;}
     .test-all-wrap{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:0.5rem;}
@@ -305,15 +307,19 @@
     <div class="test-all-wrap">
       <div>
         <button class="btn btn-primary btn-sm" id="test-all-btn" onclick="testAllVisible()" disabled>Test All Visible Models</button>
+        <button class="btn btn-danger btn-sm" id="stop-batch-btn" onclick="stopBatch()" style="display:none;">Stop</button>
         <button class="btn btn-outline btn-sm" onclick="clearAllResults()">Clear Results</button>
       </div>
-      <button class="btn btn-outline btn-sm" id="refresh-models-btn" onclick="refreshModels()" style="display:none;">Refresh Models</button>
+      <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
+        <span class="batch-progress" id="batch-progress" style="display:none;"></span>
+        <button class="btn btn-outline btn-sm" id="refresh-models-btn" onclick="refreshModels()" style="display:none;">Refresh Models</button>
+      </div>
     </div>
 
     <div class="models-grid" id="models-grid">
       <div class="empty-state" id="models-loading">
         <div style="font-size:2rem;margin-bottom:1rem;">⏳</div>
-        <h3>Enter your API key and click Save to load models</h3>
+        <h3>Enter your API key and click Fetch Models to load models</h3>
         <p>Or models will load automatically if you've saved your key before.</p>
       </div>
     </div>
@@ -338,7 +344,7 @@
     <p>Follow these simple steps to <strong>test NVIDIA NIM API speed</strong> and compare model performance:</p>
     <ol class="steps">
       <li><strong>Get your NVIDIA NIM API key</strong> — Visit <a href="https://build.nvidia.com" target="_blank" rel="noopener" style="color:var(--accent);">build.nvidia.com</a>, create a free account, verify with your phone number, and generate an API key (starts with <code>nvapi-</code>).</li>
-      <li><strong>Enter your API key</strong> — Paste your key in the field above and click Save. Your key is stored only in your browser's session storage and is never sent to our servers.</li>
+      <li><strong>Enter your API key</strong> — Paste your key in the field above and click Fetch Models. Your key is stored only in your browser's session storage and is never sent to our servers.</li>
       <li><strong>Browse available models</strong> — Once your key is saved, the tool automatically loads all available <strong>NVIDIA NIM models</strong>. Use the category filters (LLM, Code, Image, Video, Embedding, Multimodal, Healthcare) or search box to find specific models.</li>
       <li><strong>Test model speed</strong> — Click the <strong>Test Speed</strong> button on any model card. The tool sends a standardized prompt and measures <strong>time to first token (TTFT)</strong>, <strong>tokens per second</strong>, and <strong>total response time</strong>.</li>
       <li><strong>Compare results</strong> — Test multiple models and compare their performance side by side. Find the fastest <strong>NVIDIA NIM model</strong> for your specific use case — whether it's real-time chat, code generation, or image creation.</li>
@@ -507,6 +513,7 @@
 
   <script>
   (function(){
+    'use strict';
     var PROXY_BASE = '/api/nvidia-nim-proxy';
     var STORAGE_KEY = 'nim_api_key';
     var DEAD_CACHE_KEY = 'nim_dead_models_v2';
@@ -516,6 +523,9 @@
     var allModels = [];
     var currentFilter = 'all';
     var searchQuery = '';
+    var batchActive = false;
+    var batchTotal = 0;
+    var batchDone = 0;
 
     localStorage.removeItem('nim_dead_models');
     var deadCache = [];
@@ -528,6 +538,12 @@
       try { deadCache = JSON.parse(localStorage.getItem(DEAD_CACHE_KEY) || '[]'); } catch(e) { deadCache = []; }
     }
 
+    function findModel(id){
+      for (var i = 0; i < allModels.length; i++) if (allModels[i].id === id) return allModels[i];
+      return null;
+    }
+    function safeIdFor(id){ return id.replace(/\//g, '-'); }
+
     // NAV TOGGLE
     document.querySelector('.nav-toggle').addEventListener('click', function(){
       var expanded = this.getAttribute('aria-expanded') === 'true';
@@ -535,12 +551,14 @@
       document.getElementById('nav-menu').classList.toggle('open');
     });
 
-    // STICKY BAR
+    // STICKY BAR (adds body padding while visible so it never covers content)
     var stickyBar = document.getElementById('sticky-bar');
     var heroSection = document.querySelector('.hero');
     if (heroSection && stickyBar) {
       var obs = new IntersectionObserver(function(entries){
-        stickyBar.classList.toggle('visible', !entries[0].isIntersecting);
+        var show = !entries[0].isIntersecting;
+        stickyBar.classList.toggle('visible', show);
+        document.body.classList.toggle('has-sticky-bar', show);
       }, { threshold: 0 });
       obs.observe(heroSection);
     }
@@ -555,7 +573,7 @@
     // INIT
     if (apiKey) {
       document.getElementById('api-key-input').value = apiKey;
-      showKeyStatus('API key saved. Models loading...', 'success');
+      showKeyStatus('API key restored. Loading models...', 'success');
       document.getElementById('save-key-btn').style.display = 'none';
       document.getElementById('revoke-key-btn').style.display = '';
       loadModels();
@@ -580,10 +598,13 @@
       localStorage.removeItem(DEAD_CACHE_KEY);
       localStorage.removeItem(DEAD_CACHE_TS_KEY);
       deadCache = [];
+      batchActive = false; batchDone = 0; batchTotal = 0;
+      updateBatchUi();
       document.getElementById('api-key-input').value = '';
       showKeyStatus('API key revoked and cleared from memory.', '');
       document.getElementById('save-key-btn').style.display = '';
       document.getElementById('revoke-key-btn').style.display = 'none';
+      document.getElementById('test-all-btn').disabled = true;
       allModels = [];
       renderModels();
     };
@@ -599,16 +620,16 @@
       localStorage.setItem(DEAD_CACHE_TS_KEY, String(Date.now()));
     }
 
-    // FETCH MODELS
-    async function refreshModels(){
+    // FETCH MODELS (attached to window — the Refresh button calls it via inline onclick)
+    window.refreshModels = async function(){
+      if (batchActive) window.stopBatch();
       allModels = [];
       deadCache = [];
       localStorage.removeItem(DEAD_CACHE_KEY);
       localStorage.removeItem(DEAD_CACHE_TS_KEY);
       showKeyStatus('Refreshing models...', 'success');
       await loadModels(true);
-      showKeyStatus('Models refreshed!', 'success');
-    }
+    };
 
     var _loadModelsRunning = false;
     async function loadModels(isRefresh){
@@ -619,12 +640,16 @@
         showKeyStatus('Loading models from NVIDIA NIM...', 'success');
         document.getElementById('models-grid').innerHTML = '<div class="empty-state"><div class="spinner" style="width:32px;height:32px;margin:0 auto 1rem;"></div><h3>Loading and verifying models...</h3><p style="font-size:0.85rem;">This takes a few seconds as we check which models are live.</p></div>';
         document.getElementById('model-count').textContent = 'Loading...';
+        document.getElementById('test-all-btn').disabled = true;
         var res = await fetch(PROXY_BASE + '?action=models', {
           headers: { 'x-nvidia-api-key': apiKey }
         });
         if (!res.ok) {
           var err = await res.json().catch(function(){ return {error:'Failed to load models'}; });
-          showKeyStatus('Error: ' + (err.error || res.status), 'error');
+          var msg = err.error || ('HTTP ' + res.status);
+          showKeyStatus('Error: ' + msg, 'error');
+          document.getElementById('model-count').textContent = 'Failed to load models';
+          document.getElementById('models-grid').innerHTML = '<div class="empty-state"><h3>Could not load models</h3><p>' + escHtml(msg) + '. Check your API key and try again.</p></div>';
           _loadModelsRunning = false;
           return;
         }
@@ -640,7 +665,12 @@
             testType: getTestType(cat),
             created: m.created || 0,
             owned_by: m.owned_by || '',
-            live: deadCache.indexOf(id) === -1
+            live: deadCache.indexOf(id) === -1,
+            keepVisible: false,
+            untestable: false,
+            testing: false,
+            testToken: 0,
+            testResult: null
           };
         });
         allModels.sort(function(a,b){ return a.name.localeCompare(b.name); });
@@ -649,6 +679,7 @@
         await runHealthCheck();
       } catch(e) {
         showKeyStatus('Network error: ' + e.message, 'error');
+        document.getElementById('model-count').textContent = 'Failed to load models';
       } finally {
         _loadModelsRunning = false;
       }
@@ -680,14 +711,18 @@
             var result = await r.json();
             (result.dead || []).forEach(function(id){
               if (deadCache.indexOf(id) === -1) deadCache.push(id);
-              var m = allModels.find(function(x){ return x.id === id; });
-              if (m) m.live = false;
+              var m = findModel(id);
+              if (m) { m.live = false; m.keepVisible = false; }
+            });
+            (result.untestable || []).forEach(function(id){
+              var m2 = findModel(id);
+              if (m2 && m2.live) { m2.untestable = true; m2.testType = 'none'; }
             });
             (result.live || []).forEach(function(id){
               var idx = deadCache.indexOf(id);
               if (idx !== -1) deadCache.splice(idx, 1);
-              var m = allModels.find(function(x){ return x.id === id; });
-              if (m) m.live = true;
+              var m3 = findModel(id);
+              if (m3) { m3.live = true; m3.keepVisible = false; m3.untestable = false; m3.testType = getTestType(m3.category); }
             });
           }
         } catch(e) {}
@@ -697,9 +732,16 @@
       renderModels();
     }
 
+    function liveModels(){
+      return allModels.filter(function(m){ return m.live; });
+    }
+
+    // Single source of truth for the status-line counts (kept in sync with the grid toolbar)
     function updateLiveCount(){
-      var liveCount = allModels.filter(function(m){ return m.live; }).length;
-      showKeyStatus(liveCount + ' of ' + allModels.length + ' models live and ready to test', 'success');
+      var live = liveModels().length;
+      var total = allModels.length;
+      var unav = total - live;
+      showKeyStatus(live + ' of ' + total + ' models live and ready to test' + (unav > 0 ? ' (' + unav + ' unavailable)' : ''), 'success');
     }
 
     function extractProvider(id){
@@ -770,14 +812,7 @@
     var visibleCount = SHOW_LIMIT;
 
     function renderModels(){
-      var grid = document.getElementById('models-grid');
-      var countEl = document.getElementById('model-count');
       visibleCount = SHOW_LIMIT;
-      if (!allModels.length) {
-        grid.innerHTML = '<div class="empty-state"><div style="font-size:2rem;margin-bottom:1rem;">⏳</div><h3>Enter your API key and click Save to load models</h3></div>';
-        countEl.textContent = 'No models loaded';
-        return;
-      }
       renderModelCards();
     }
 
@@ -787,18 +822,87 @@
       safety: 'Safety', speech: 'Speech', tool: 'DevOps'
     };
 
+    function modelVisible(m){
+      if (!m.live && !m.keepVisible) return false;
+      var matchFilter = currentFilter === 'all' || m.category === currentFilter;
+      var matchSearch = !searchQuery || m.name.toLowerCase().indexOf(searchQuery) !== -1 || m.provider.toLowerCase().indexOf(searchQuery) !== -1 || m.category.indexOf(searchQuery) !== -1;
+      return matchFilter && matchSearch;
+    }
+
+    function resultsHtml(m){
+      var r = m.testResult;
+      if (!r) return '';
+      if (r.type === 'error') {
+        return '<div class="result-item" style="grid-column:1/-1;text-align:center;"><div class="result-value error">' + escHtml(r.message) + '</div></div>';
+      }
+      if (r.type === 'chat') {
+        return '<div class="result-item"><div class="result-label">TTFT</div><div class="result-value">' + (r.ttft === null ? 'N/A' : r.ttft + 'ms') + '</div></div>' +
+          '<div class="result-item"><div class="result-label">Tokens/sec</div><div class="result-value">' + escHtml(r.tokensPerSec) + '</div></div>' +
+          '<div class="result-item"><div class="result-label">Total</div><div class="result-value">' + r.totalTime + 'ms</div></div>';
+      }
+      if (r.type === 'embedding') {
+        return '<div class="result-item"><div class="result-label">Latency</div><div class="result-value">' + r.latency + 'ms</div></div>' +
+          '<div class="result-item"><div class="result-label">Dimensions</div><div class="result-value">' + escHtml(String(r.dims)) + '</div></div>' +
+          '<div class="result-item"><div class="result-label">Status</div><div class="result-value">OK</div></div>';
+      }
+      if (r.type === 'image') {
+        return '<div class="result-item"><div class="result-label">Latency</div><div class="result-value">' + r.latency + 'ms</div></div>' +
+          '<div class="result-item"><div class="result-label">Generated</div><div class="result-value">' + (r.hasImage ? 'Yes' : 'No') + '</div></div>' +
+          '<div class="result-item"><div class="result-label">Status</div><div class="result-value">OK</div></div>';
+      }
+      return '';
+    }
+
+    function footerHtml(m){
+      if (m.testing) {
+        return '<button class="btn btn-primary btn-sm" disabled><span class="spinner" style="width:14px;height:14px;"></span> Testing&hellip;</button>';
+      }
+      if (!m.live) {
+        return '<span style="font-size:0.8rem;color:var(--muted);">Unavailable</span>';
+      }
+      var tt = m.testType;
+      if (tt === 'chat') {
+        return '<button class="btn btn-primary btn-sm" onclick="testModelSpeed(\'' + escAttr(m.id) + '\')">Test Speed</button>';
+      }
+      if (tt === 'embedding') {
+        return '<button class="btn btn-success btn-sm" onclick="testEmbeddingSpeed(\'' + escAttr(m.id) + '\')">Test Embed</button>';
+      }
+      if (tt === 'image') {
+        return '<button class="btn btn-outline btn-sm" onclick="testImageSpeed(\'' + escAttr(m.id) + '\')">Test Image</button>';
+      }
+      if (m.untestable) {
+        return '<span style="font-size:0.8rem;color:var(--muted);" title="This model is live but does not support the benchmark endpoint">Benchmark not supported</span>';
+      }
+      return '<span style="font-size:0.8rem;color:var(--muted);">Benchmark not available</span>';
+    }
+
+    // Repaint a single card's footer + results from its model state (null-safe if filtered out)
+    function paintCard(m){
+      var sid = safeIdFor(m.id);
+      var footerEl = document.getElementById('footer-' + sid);
+      var resultsEl = document.getElementById('results-' + sid);
+      if (footerEl) footerEl.innerHTML = footerHtml(m);
+      if (resultsEl) {
+        var h = resultsHtml(m);
+        resultsEl.innerHTML = h;
+        resultsEl.style.display = h ? 'grid' : 'none';
+      }
+    }
+
     function renderModelCards(){
       var grid = document.getElementById('models-grid');
       var countEl = document.getElementById('model-count');
-      var filtered = allModels.filter(function(m){
-        if (!m.live) return false;
-        var matchFilter = currentFilter === 'all' || m.category === currentFilter;
-        var matchSearch = !searchQuery || m.name.toLowerCase().includes(searchQuery) || m.provider.toLowerCase().includes(searchQuery) || m.category.includes(searchQuery);
-        return matchFilter && matchSearch;
-      });
+      if (!grid || !countEl) return;
+      if (!allModels.length) {
+        grid.innerHTML = '<div class="empty-state"><div style="font-size:2rem;margin-bottom:1rem;">&#9203;</div><h3>Enter your API key and click Fetch Models to load models</h3></div>';
+        countEl.textContent = 'No models loaded';
+        return;
+      }
+      var filtered = allModels.filter(modelVisible);
       var showing = Math.min(visibleCount, filtered.length);
-      var totalLive = allModels.filter(function(m){ return m.live; }).length;
-      countEl.textContent = 'Showing ' + showing + ' of ' + filtered.length + ' live models' + (totalLive !== allModels.length ? ' (' + allModels.length + ' total, ' + (allModels.length - totalLive) + ' unavailable)' : '');
+      var live = liveModels().length;
+      var unav = allModels.length - live;
+      countEl.textContent = 'Showing ' + showing + ' of ' + filtered.length + ' models (' + live + ' live' + (unav > 0 ? ', ' + unav + ' unavailable' : '') + ')';
 
       if (!filtered.length) {
         grid.innerHTML = '<div class="empty-state"><h3>No models match your filter</h3><p>Try a different search term or category.</p></div>';
@@ -806,28 +910,16 @@
       }
 
       var cards = filtered.slice(0, visibleCount).map(function(m){
-        var tt = m.testType;
-        var safeId = m.id.replace(/\//g,'-');
         var label = CATEGORY_LABELS[m.category] || m.category;
-        var footerContent;
-        if (tt === 'chat') {
-          footerContent = '<button class="btn btn-primary btn-sm" onclick="testModelSpeed(\'' + escAttr(m.id) + '\')">Test Speed</button>';
-        } else if (tt === 'embedding') {
-          footerContent = '<button class="btn btn-success btn-sm" onclick="testEmbeddingSpeed(\'' + escAttr(m.id) + '\')">Test Embed</button>';
-        } else if (tt === 'image') {
-          footerContent = '<button class="btn btn-outline btn-sm" onclick="testImageSpeed(\'' + escAttr(m.id) + '\')">Test Image</button>';
-        } else {
-          footerContent = '<span style="font-size:0.8rem;color:var(--muted);">Benchmark not available</span>';
-        }
-        return '<div class="model-card" id="card-' + escHtml(m.id) + '">' +
+        var sid = safeIdFor(m.id);
+        var statusTag = m.live ? '' : ' <span class="model-category-tag" style="background:rgba(255,90,95,.12);color:var(--danger);">Unavailable</span>';
+        var resHtml = resultsHtml(m);
+        return '<div class="model-card" data-model-id="' + escAttr(m.id) + '">' +
           '<div class="model-card-header"><div class="model-name">' + escHtml(m.name.split('/').pop()) + '</div><span class="model-provider">' + escHtml(m.provider) + '</span></div>' +
-          '<div class="model-category-tag">' + escHtml(label) + '</div>' +
+          '<div><span class="model-category-tag">' + escHtml(label) + '</span>' + statusTag + '</div>' +
           '<div class="model-desc">' + escHtml(m.id) + '</div>' +
-          '<div class="model-card-footer">' +
-            footerContent +
-            '<div id="status-' + safeId + '"></div>' +
-          '</div>' +
-          '<div class="test-results" id="results-' + safeId + '" style="display:none;"></div>' +
+          '<div class="model-card-footer" id="footer-' + escAttr(sid) + '">' + footerHtml(m) + '</div>' +
+          '<div class="test-results" id="results-' + escAttr(sid) + '" style="display:' + (resHtml ? 'grid' : 'none') + ';">' + resHtml + '</div>' +
         '</div>';
       }).join('');
 
@@ -843,41 +935,53 @@
       renderModelCards();
     };
 
-    function markModelDead(modelId){
-      var m = allModels.find(function(x){ return x.id === modelId; });
-      if (m) m.live = false;
+    // A model that fails at test time stays visible with its error (instead of
+    // silently vanishing) and both count displays are refreshed together.
+    function markModelDead(modelId, errMsg){
+      var m = findModel(modelId);
+      if (m) {
+        m.live = false;
+        m.keepVisible = true;
+        m.testing = false;
+        m.testResult = { type: 'error', message: errMsg };
+      }
       if (deadCache.indexOf(modelId) === -1) {
         deadCache.push(modelId);
         persistDeadCache();
       }
+      updateLiveCount();
+      renderModelCards();
+      onBatchSettle();
     }
 
-    function showModelError(safeId, msg){
-      var statusEl = document.getElementById('status-' + safeId);
-      var resultsEl = document.getElementById('results-' + safeId);
-      if (statusEl) statusEl.innerHTML = '';
-      if (resultsEl) {
-        resultsEl.style.display = 'block';
-        resultsEl.innerHTML = '<div class="result-item" style="grid-column:1/-1;text-align:center;"><div class="result-value error">' + escHtml(msg) + '</div></div>';
-      }
+    // ---- test lifecycle: every in-flight test carries a token; Clear/Stop
+    // bumps the token so stale responses can never write over fresh UI ----
+    function beginTest(m){
+      if (!apiKey) { showKeyStatus('Please save your API key first.', 'error'); return null; }
+      if (!m || m.testing || !m.live) return null;
+      if (m.testType !== 'chat' && m.testType !== 'embedding' && m.testType !== 'image') return null;
+      m.testing = true;
+      m.testToken = (m.testToken || 0) + 1;
+      m.testResult = null;
+      paintCard(m);
+      return m.testToken;
     }
 
-    // TEST CHAT MODEL SPEED
-    window.testModelSpeed = async function(modelId){
-      var safeId = modelId.replace(/\//g,'-');
-      var statusEl = document.getElementById('status-' + safeId);
-      var resultsEl = document.getElementById('results-' + safeId);
-      if (!statusEl || !resultsEl) return;
-      if (!apiKey) { showKeyStatus('Please save your API key first.', 'error'); return; }
+    function endTest(m, token, result){
+      if (!m || m.testToken !== token) return false;
+      m.testing = false;
+      m.testResult = result;
+      paintCard(m);
+      onBatchSettle();
+      return true;
+    }
 
-      statusEl.innerHTML = '<span class="spinner"></span>';
-      resultsEl.style.display = 'none';
-
+    async function runChatTest(m){
+      var token = beginTest(m);
+      if (token === null) return;
       var startTime = performance.now();
       var ttft = 0;
       var tokenCount = 0;
-      var fullText = '';
-
       try {
         var res = await fetch(PROXY_BASE + '?action=chat', {
           method: 'POST',
@@ -886,26 +990,24 @@
             'x-nvidia-api-key': apiKey
           },
           body: JSON.stringify({
-            model: modelId,
+            model: m.id,
             messages: [{ role: 'user', content: 'Write a haiku about artificial intelligence. Be brief.' }],
             max_tokens: 100,
             stream: true
           })
         });
-
+        if (m.testToken !== token) return;
         if (!res.ok) {
           var err = await res.json().catch(function(){ return { error: 'HTTP ' + res.status }; });
           var errMsg = getFriendlyError(res.status, err);
-          if (res.status === 404 || res.status === 400) markModelDead(modelId);
-          showModelError(safeId, errMsg);
+          if (res.status === 404 || res.status === 400) markModelDead(m.id, errMsg);
+          else endTest(m, token, { type: 'error', message: errMsg });
           return;
         }
-
         var reader = res.body.getReader();
         var decoder = new TextDecoder();
         var buffer = '';
-
-        while(true){
+        for (;;) {
           var chunk = await reader.read();
           if (chunk.done) break;
           buffer += decoder.decode(chunk.value, { stream: true });
@@ -922,42 +1024,28 @@
               if (delta && delta.content) {
                 if (tokenCount === 0) ttft = performance.now() - startTime;
                 tokenCount++;
-                fullText += delta.content;
               }
             } catch(e){}
           }
         }
-
+        if (m.testToken !== token) return;
         var totalTime = performance.now() - startTime;
-        var tokensPerSec = tokenCount > 0 ? (tokenCount / (totalTime / 1000)).toFixed(1) : '0';
-        ttft = ttft > 0 ? Math.round(ttft) : 'N/A';
-        totalTime = Math.round(totalTime);
-
-        statusEl.innerHTML = '';
-        resultsEl.style.display = 'grid';
-        resultsEl.innerHTML =
-          '<div class="result-item"><div class="result-label">TTFT</div><div class="result-value">' + (ttft === 'N/A' ? 'N/A' : ttft + 'ms') + '</div></div>' +
-          '<div class="result-item"><div class="result-label">Tokens/sec</div><div class="result-value">' + tokensPerSec + '</div></div>' +
-          '<div class="result-item"><div class="result-label">Total</div><div class="result-value">' + totalTime + 'ms</div></div>';
-
+        endTest(m, token, {
+          type: 'chat',
+          ttft: ttft > 0 ? Math.round(ttft) : null,
+          tokensPerSec: tokenCount > 0 ? (tokenCount / (totalTime / 1000)).toFixed(1) : '0.0',
+          totalTime: Math.round(totalTime)
+        });
       } catch(e) {
-        showModelError(safeId, 'Connection error — check your network');
+        if (m.testToken !== token) return;
+        endTest(m, token, { type: 'error', message: 'Connection error — check your network' });
       }
-    };
+    }
 
-    // TEST EMBEDDING MODEL SPEED
-    window.testEmbeddingSpeed = async function(modelId){
-      var safeId = modelId.replace(/\//g,'-');
-      var statusEl = document.getElementById('status-' + safeId);
-      var resultsEl = document.getElementById('results-' + safeId);
-      if (!statusEl || !resultsEl) return;
-      if (!apiKey) { showKeyStatus('Please save your API key first.', 'error'); return; }
-
-      statusEl.innerHTML = '<span class="spinner"></span>';
-      resultsEl.style.display = 'none';
-
+    async function runEmbeddingTest(m){
+      var token = beginTest(m);
+      if (token === null) return;
       var startTime = performance.now();
-
       try {
         var res = await fetch(PROXY_BASE + '?action=embeddings', {
           method: 'POST',
@@ -966,49 +1054,34 @@
             'x-nvidia-api-key': apiKey
           },
           body: JSON.stringify({
-            model: modelId,
+            model: m.id,
             input: 'This is a test sentence for embedding speed benchmark.',
             encoding_format: 'float'
           })
         });
-
+        if (m.testToken !== token) return;
         if (!res.ok) {
           var err = await res.json().catch(function(){ return { error: 'HTTP ' + res.status }; });
           var errMsg = getFriendlyError(res.status, err);
-          if (res.status === 404 || res.status === 400) markModelDead(modelId);
-          showModelError(safeId, errMsg);
+          if (res.status === 404 || res.status === 400) markModelDead(m.id, errMsg);
+          else endTest(m, token, { type: 'error', message: errMsg });
           return;
         }
-
         var data = await res.json();
+        if (m.testToken !== token) return;
         var totalTime = Math.round(performance.now() - startTime);
         var dims = (data.data && data.data[0] && data.data[0].embedding) ? data.data[0].embedding.length : 'N/A';
-
-        statusEl.innerHTML = '';
-        resultsEl.style.display = 'grid';
-        resultsEl.innerHTML =
-          '<div class="result-item"><div class="result-label">Latency</div><div class="result-value">' + totalTime + 'ms</div></div>' +
-          '<div class="result-item"><div class="result-label">Dimensions</div><div class="result-value">' + dims + '</div></div>' +
-          '<div class="result-item"><div class="result-label">Status</div><div class="result-value">OK</div></div>';
-
+        endTest(m, token, { type: 'embedding', latency: totalTime, dims: dims });
       } catch(e) {
-        showModelError(safeId, 'Connection error — check your network');
+        if (m.testToken !== token) return;
+        endTest(m, token, { type: 'error', message: 'Connection error — check your network' });
       }
-    };
+    }
 
-    // TEST IMAGE MODEL SPEED
-    window.testImageSpeed = async function(modelId){
-      var safeId = modelId.replace(/\//g,'-');
-      var statusEl = document.getElementById('status-' + safeId);
-      var resultsEl = document.getElementById('results-' + safeId);
-      if (!statusEl || !resultsEl) return;
-      if (!apiKey) { showKeyStatus('Please save your API key first.', 'error'); return; }
-
-      statusEl.innerHTML = '<span class="spinner"></span>';
-      resultsEl.style.display = 'none';
-
+    async function runImageTest(m){
+      var token = beginTest(m);
+      if (token === null) return;
       var startTime = performance.now();
-
       try {
         var res = await fetch(PROXY_BASE + '?action=image-generations', {
           method: 'POST',
@@ -1017,34 +1090,40 @@
             'x-nvidia-api-key': apiKey
           },
           body: JSON.stringify({
-            model: modelId,
-            prompt: 'A simple sunset over mountains, minimal art style.',
-            max_tokens: 100
+            model: m.id,
+            prompt: 'A simple sunset over mountains, minimal art style.'
           })
         });
-
+        if (m.testToken !== token) return;
         if (!res.ok) {
           var err = await res.json().catch(function(){ return { error: 'HTTP ' + res.status }; });
           var errMsg = getFriendlyError(res.status, err);
-          if (res.status === 404 || res.status === 400) markModelDead(modelId);
-          showModelError(safeId, errMsg);
+          if (res.status === 404 || res.status === 400) markModelDead(m.id, errMsg);
+          else endTest(m, token, { type: 'error', message: errMsg });
           return;
         }
-
         var data = await res.json();
+        if (m.testToken !== token) return;
         var totalTime = Math.round(performance.now() - startTime);
-        var hasImage = data.data && data.data.length > 0;
-
-        statusEl.innerHTML = '';
-        resultsEl.style.display = 'grid';
-        resultsEl.innerHTML =
-          '<div class="result-item"><div class="result-label">Latency</div><div class="result-value">' + totalTime + 'ms</div></div>' +
-          '<div class="result-item"><div class="result-label">Generated</div><div class="result-value">' + (hasImage ? 'Yes' : 'No') + '</div></div>' +
-          '<div class="result-item"><div class="result-label">Status</div><div class="result-value">OK</div></div>';
-
+        var hasImage = !!(data.data && data.data.length > 0);
+        endTest(m, token, { type: 'image', latency: totalTime, hasImage: hasImage });
       } catch(e) {
-        showModelError(safeId, 'Connection error — check your network');
+        if (m.testToken !== token) return;
+        endTest(m, token, { type: 'error', message: 'Connection error — check your network' });
       }
+    }
+
+    window.testModelSpeed = function(modelId){
+      var m = findModel(modelId);
+      if (m) runChatTest(m);
+    };
+    window.testEmbeddingSpeed = function(modelId){
+      var m = findModel(modelId);
+      if (m) runEmbeddingTest(m);
+    };
+    window.testImageSpeed = function(modelId){
+      var m = findModel(modelId);
+      if (m) runImageTest(m);
     };
 
     function getFriendlyError(status, errBody){
@@ -1070,31 +1149,92 @@
       return 'Request failed (HTTP ' + status + ')';
     }
 
-    // TEST ALL VISIBLE
+    // TEST ALL VISIBLE (chat models only, sequential, with progress + stop)
+    function updateBatchUi(){
+      var prog = document.getElementById('batch-progress');
+      var stopBtn = document.getElementById('stop-batch-btn');
+      if (!prog || !stopBtn) return;
+      if (batchActive) {
+        prog.style.display = '';
+        stopBtn.style.display = '';
+        prog.textContent = 'Testing ' + Math.min(batchDone + 1, batchTotal) + ' of ' + batchTotal + ' models…';
+      } else {
+        prog.style.display = 'none';
+        stopBtn.style.display = 'none';
+      }
+    }
+
+    function onBatchSettle(){
+      if (!batchActive) return;
+      batchDone++;
+      if (batchDone >= batchTotal) {
+        batchActive = false;
+        batchDone = 0;
+        batchTotal = 0;
+        document.getElementById('test-all-btn').disabled = false;
+        showKeyStatus('Batch test complete.', 'success');
+      }
+      updateBatchUi();
+    }
+
+    window.stopBatch = function(){
+      if (!batchActive) return;
+      batchActive = false;
+      batchDone = 0;
+      batchTotal = 0;
+      allModels.forEach(function(m){
+        if (m.testing) { m.testToken++; m.testing = false; }
+      });
+      document.getElementById('test-all-btn').disabled = false;
+      updateBatchUi();
+      renderModelCards();
+      showKeyStatus('Batch test stopped.', 'success');
+    };
+
     window.testAllVisible = function(){
-      var cards = document.querySelectorAll('.model-card');
-      var delay = 0;
-      cards.forEach(function(card){
-        var btn = card.querySelector('.btn-primary');
-        if (btn && btn.textContent.trim() === 'Test Speed' && !card.querySelector('.result-value')) {
-          setTimeout(function(){ btn.click(); }, delay);
-          delay += 2000;
-        }
+      if (batchActive || !apiKey) return;
+      var visible = allModels.filter(modelVisible).slice(0, visibleCount);
+      var targets = visible.filter(function(m){
+        return m.live && !m.testing && m.testType === 'chat' && !m.testResult;
+      });
+      if (!targets.length) {
+        showKeyStatus('Nothing to test — all visible chat models already have results.', 'success');
+        return;
+      }
+      batchActive = true;
+      batchTotal = targets.length;
+      batchDone = 0;
+      document.getElementById('test-all-btn').disabled = true;
+      updateBatchUi();
+      showKeyStatus('Batch test started: ' + batchTotal + ' models…', 'success');
+      targets.forEach(function(m, i){
+        setTimeout(function(){
+          if (!batchActive) return;
+          runChatTest(m);
+        }, i * 2000);
       });
     };
 
     window.clearAllResults = function(){
-      document.querySelectorAll('.test-results').forEach(function(el){
-        el.style.display = 'none';
-        el.innerHTML = '';
+      if (batchActive) {
+        batchActive = false;
+        batchDone = 0;
+        batchTotal = 0;
+        document.getElementById('test-all-btn').disabled = false;
+        updateBatchUi();
+      }
+      // invalidate every in-flight test so late responses cannot repaint the grid
+      allModels.forEach(function(m){
+        m.testToken = (m.testToken || 0) + 1;
+        m.testing = false;
+        if (m.live) m.testResult = null;
       });
-      document.querySelectorAll('[id^="status-"]').forEach(function(el){
-        el.innerHTML = '';
-      });
+      renderModelCards();
+      showKeyStatus('Results cleared.', 'success');
     };
 
-    function escHtml(s){ return String(s).replace(/&/g,'&').replace(/</g,'<').replace(/>/g,'>').replace(/"/g,'"'); }
-    function escAttr(s){ return String(s).replace(/'/g,'&#39;').replace(/"/g,'"'); }
+    function escHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+    function escAttr(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
   })();
   </script>
 </body>
