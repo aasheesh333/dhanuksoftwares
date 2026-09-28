@@ -12,7 +12,7 @@
   <link rel="icon" type="image/svg+xml" href="https://dhanuksoftwares.com/favicon.svg"/>
   <link rel="apple-touch-icon" href="https://dhanuksoftwares.com/apple-touch-icon.png"/>
   <link rel="manifest" href="https://dhanuksoftwares.com/manifest.json"/>
-  <meta name="theme-color" content="#0b0f1a"/>
+  <meta name="theme-color" content="#2B1B4D"/>
 
   <!-- Open Graph -->
   <meta property="og:title" content="Dhanuk Softwares – Smart Android Apps"/>
@@ -36,19 +36,19 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="preconnect" href="https://static.cloudflareinsights.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <!-- Site-wide typography: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet"/>
+  <!-- Site-wide typography: Inter body, Poppins headings (Brand v1.0) -->
   <style>
     :root {
-      --bg: #0b0f1a;
-      --surface: #131929;
-      --card: #1a2235;
-      --accent: #4f8ef7;
-      --accent2: #38e0b0;
-      --text: #e8edf7;
-      --muted: #a0b0cc;
-      --border: #1e2d4a;
-      --warning: #ffc857;
+      --bg: #FFF4E0;
+      --surface: #FFFFFF;
+      --card: #FFFFFF;
+      --accent: #2B1B4D;
+      --accent2: #FF6B57;
+      --text: #2B1B4D;
+      --muted: #6E6383;
+      --border: #E9DCC3;
+      --warning: #FFC93C;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; overflow-wrap: break-word; }
@@ -69,15 +69,15 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1.1rem 5%;
-      background: rgba(11,15,26,0.85);
+      background: rgba(255,244,224,0.85);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
     }
     .skip-link { position:absolute; left:-9999px; top:0; background:var(--accent); color:#fff; padding:0.7rem 1.2rem; z-index:200; border-radius:0 0 8px 0; text-decoration:none; font-weight:600; }
     .skip-link:focus { left:0; }
     .nav-logo {
-      font-family: 'Inter', sans-serif; font-weight: 800; font-size: 1.3rem;
-      color: #ffffff; letter-spacing: -0.5px; text-decoration: none;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem;
+      color: #2B1B4D; letter-spacing: -0.02em; text-decoration: none;
     }
     .nav-logo span { color: var(--accent2); font-weight: 800; }
     nav ul { list-style: none; display: flex; gap: 2rem; }
@@ -93,32 +93,37 @@
     .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) { transform:translateY(-6px) rotate(-45deg); }
     a:focus-visible, button:focus-visible { outline:2px solid var(--accent); outline-offset:2px; border-radius:4px; }
 
-    /* HERO */
+    /* HERO — Brand v1.0: Plum background + Cream text */
     .hero {
       min-height: clamp(480px, 80vh, 720px); display: flex; align-items: center;
       justify-content: center; text-align: center; padding: 7rem 5% 4rem;
       position: relative; overflow: hidden;
+      background: #2B1B4D; color: #FFF4E0;
     }
     .hero::before {
       content: ''; position: absolute; top: -200px; left: 50%;
       transform: translateX(-50%); width: 700px; height: 700px;
-      background: radial-gradient(circle, rgba(79,142,247,0.12) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(255,107,87,0.16) 0%, transparent 70%);
       pointer-events: none;
     }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      background: rgba(79,142,247,0.1); border: 1px solid rgba(79,142,247,0.3);
-      color: var(--accent); font-size: 0.8rem; font-weight: 500;
+      background: rgba(255,107,87,0.12); border: 1px solid rgba(255,107,87,0.4);
+      color: #FFC93C; font-size: 0.8rem; font-weight: 500;
       padding: 0.35rem 1rem; border-radius: 999px; margin-bottom: 1.5rem; letter-spacing: 0.5px;
     }
     .hero-badge svg { width: 16px; height: 12px; border-radius: 2px; flex-shrink: 0; }
     .hero h1 {
-      font-family: 'Inter', sans-serif; font-size: clamp(2.2rem, 6vw, 4rem);
-      font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1.2rem;
+      font-family: 'Poppins', sans-serif; font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1.2rem; color: #FFF4E0;
     }
-    .hero h1 .highlight { color: var(--accent); }
-    .hero h1 .highlight2 { color: var(--accent2); }
-    .hero p { max-width: 540px; margin: 0 auto 2.5rem; color: var(--muted); font-size: 1.1rem; }
+    .hero h1 .highlight { color: #FF6B57; }
+    .hero h1 .highlight2 { color: #FFC93C; }
+    .hero p { max-width: 540px; margin: 0 auto 2.5rem; color: rgba(255,244,224,0.88); font-size: 1.1rem; }
+    .hero .btn-primary { background: var(--accent2); color: #2B1B4D; }
+    .hero .btn-primary:hover { background: #E85A42; color: #2B1B4D; transform: translateY(-1px); }
+    .hero .btn-outline { border-color: rgba(255,244,224,0.5); color: #FFF4E0; }
+    .hero .btn-outline:hover { border-color: var(--accent2); color: var(--accent2); }
     .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
     .btn {
       padding: 0.75rem 1.8rem; border-radius: 10px;
@@ -127,7 +132,7 @@
       max-width: 100%; white-space: normal; text-align: center;
     }
     .btn-primary { background: var(--accent); color: #fff; }
-    .btn-primary:hover { background: #3a7de8; transform: translateY(-1px); }
+    .btn-primary:hover { background: #1E1339; transform: translateY(-1px); }
     .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
     .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
@@ -207,8 +212,8 @@
     .app-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 1.2rem; }
     .app-tag {
       display: inline-block; font-size: 0.75rem; padding: 0.25rem 0.75rem;
-      border-radius: 999px; background: rgba(79,142,247,0.1);
-      color: var(--accent); border: 1px solid rgba(79,142,247,0.2);
+      border-radius: 999px; background: rgba(43,27,77,0.1);
+      color: var(--accent); border: 1px solid rgba(43,27,77,0.2);
     }
 
     /* STORE BUTTONS */
@@ -223,8 +228,8 @@
       transition: transform 0.15s, opacity 0.15s;
     }
     .store-btn:hover { transform: translateY(-1px); opacity: 0.9; }
-    .store-play   { background: rgba(56,224,176,0.12); border: 1px solid rgba(56,224,176,0.35); color: #38e0b0; }
-    .store-utd    { background: rgba(79,142,247,0.12); border: 1px solid rgba(79,142,247,0.35); color: #4f8ef7; }
+    .store-play   { background: rgba(255,107,87,0.12); border: 1px solid rgba(255,107,87,0.35); color: #FF6B57; }
+    .store-utd    { background: rgba(43,27,77,0.12); border: 1px solid rgba(43,27,77,0.35); color: #2B1B4D; }
     .store-oppo   { background: rgba(255,90,95,0.12);  border: 1px solid rgba(255,90,95,0.35);  color: #ff5a5f; }
     .store-vivo   { background: rgba(170,110,255,0.12); border: 1px solid rgba(170,110,255,0.35); color: #aa6eff; }
     .store-btn .ico { font-size: 0.85rem; line-height: 1; }
@@ -236,7 +241,7 @@
     }
     .apps-count {
       display: inline-block;
-      background: rgba(56,224,176,0.1); border: 1px solid rgba(56,224,176,0.25);
+      background: rgba(255,107,87,0.1); border: 1px solid rgba(255,107,87,0.25);
       color: var(--accent2); font-size: 0.78rem; font-weight: 600;
       padding: 0.3rem 0.9rem; border-radius: 999px; margin-bottom: 2rem;
     }
@@ -273,7 +278,7 @@
     .contact-item:last-child { border-bottom: none; }
     .contact-icon {
       width: 42px; height: 42px; border-radius: 10px;
-      background: rgba(79,142,247,0.1); display: flex;
+      background: rgba(43,27,77,0.1); display: flex;
       align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
     }
     .contact-label { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.1rem; }
@@ -281,15 +286,23 @@
     .contact-value a { color: var(--accent); text-decoration: none; }
     .contact-value a:hover { text-decoration: underline; }
 
-    /* FOOTER */
+    /* FOOTER — Brand v1.0: Plum background + Cream text */
     footer {
       text-align: center; padding: 2.5rem 5%;
-      border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85rem;
+      background: #2B1B4D; color: rgba(255,244,224,0.85); font-size: 0.85rem;
     }
-    footer a { color: var(--accent); text-decoration: none; }
+    footer a { color: #FFC93C; text-decoration: none; }
+    footer strong { color: #FFF4E0; }
+
+    /* BRAND v1.0 — Poppins for headings + wordmark */
+    h1, h2, .section-title, .page-title, .app-name, .team-name, .blog-home-card h3,
+    .stat-num, .about-tagline {
+      font-family: 'Poppins', sans-serif !important; letter-spacing: -0.02em;
+    }
+    .app-card, .app-card * { text-decoration: none; }
 
     .back-to-top { position:fixed; right:1rem; bottom:1.5rem; width:42px; height:42px; border-radius:50%; background:var(--accent); color:#fff; border:none; font-size:1.2rem; cursor:pointer; box-shadow:0 6px 18px rgba(0,0,0,0.4); opacity:0; pointer-events:none; transition:opacity 0.2s, transform 0.2s, background 0.2s; z-index:55; }
-    .back-to-top:hover { background:#3a7de8; transform:translateY(-2px); }
+    .back-to-top:hover { background:#1E1339; transform:translateY(-2px); }
     .back-to-top.visible { opacity:1; pointer-events:auto; }
 
     /* ANIMATIONS */
@@ -310,7 +323,7 @@
     }
     @media (max-width: 768px) {
       .nav-toggle { display:flex; }
-      nav ul { display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; gap:0; background:rgba(11,15,26,0.98); backdrop-filter:blur(14px); border-bottom:1px solid var(--border); padding:0.5rem 0; }
+      nav ul { display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; gap:0; background:rgba(255,244,224,0.98); backdrop-filter:blur(14px); border-bottom:1px solid var(--border); padding:0.5rem 0; }
       nav ul.open { display:flex; }
       nav ul li { width:100%; }
       nav ul a { display:block; padding:0.75rem 5%; }
@@ -452,7 +465,7 @@
         <span style="font-size:0.8rem; color:var(--muted);">5 min read</span>
       </div>
       <h3 style="font-family:'Inter', sans-serif; font-size:1.2rem; line-height:1.4; margin-bottom:0.75rem;">
-        <a href="/blog/how-to-stay-focused-while-studying-with-focusstreak/" style="color:#fff; text-decoration:none;">How to Stay Focused While Studying: 7 Proven Techniques with FocusStreak</a>
+        <a href="/blog/how-to-stay-focused-while-studying-with-focusstreak/" style="color:#2B1B4D; text-decoration:none;">How to Stay Focused While Studying: 7 Proven Techniques with FocusStreak</a>
       </h3>
       <p style="color:var(--muted); font-size:0.9rem; line-height:1.6; flex:1; margin-bottom:1.5rem;">
         Discover 7 science-backed techniques to eliminate phone distractions, maintain deep focus, and build long daily study streaks.
@@ -633,7 +646,7 @@
         const marketplaces = app.marketplaces || [];
         const primary = marketplaces[0];
         const marketplacePills = marketplaces.length
-          ? `<div style="margin-top:0.6rem;display:flex;flex-wrap:wrap;gap:0.3rem;">${marketplaces.slice(0, 3).map(m => `<span style="font-size:0.7rem;padding:0.2rem 0.55rem;border-radius:999px;background:rgba(79,142,247,0.1);color:var(--accent);border:1px solid rgba(79,142,247,0.2);">${escapeHtml(m.name)}</span>`).join('')}${marketplaces.length > 3 ? `<span style="font-size:0.7rem;color:var(--muted);">+${marketplaces.length - 3}</span>` : ''}</div>`
+          ? `<div style="margin-top:0.6rem;display:flex;flex-wrap:wrap;gap:0.3rem;">${marketplaces.slice(0, 3).map(m => `<span style="font-size:0.7rem;padding:0.2rem 0.55rem;border-radius:999px;background:rgba(43,27,77,0.1);color:var(--accent);border:1px solid rgba(43,27,77,0.2);">${escapeHtml(m.name)}</span>`).join('')}${marketplaces.length > 3 ? `<span style="font-size:0.7rem;color:var(--muted);">+${marketplaces.length - 3}</span>` : ''}</div>`
           : '';
 
         card.innerHTML = `

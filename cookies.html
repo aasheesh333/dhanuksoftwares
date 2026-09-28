@@ -10,7 +10,7 @@
   <link rel="icon" type="image/svg+xml" href="https://dhanuksoftwares.com/favicon.svg"/>
   <link rel="apple-touch-icon" href="https://dhanuksoftwares.com/apple-touch-icon.png"/>
   <link rel="manifest" href="https://dhanuksoftwares.com/manifest.json"/>
-  <meta name="theme-color" content="#0b0f1a"/>
+  <meta name="theme-color" content="#2B1B4D"/>
 
   <meta property="og:title" content="Cookie Policy · Dhanuk Softwares"/>
   <meta property="og:description" content="What cookies Dhanuk Softwares uses (almost none) and why."/>
@@ -26,9 +26,9 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root { --bg:#0b0f1a; --surface:#131929; --card:#1a2235; --accent:#4f8ef7; --accent2:#38e0b0; --text:#e8edf7; --muted:#a0b0cc; --border:#1e2d4a; }
+    :root { --bg:#FFF4E0; --surface:#FFFFFF; --card:#FFFFFF; --accent:#2B1B4D; --accent2:#FF6B57; --text:#2B1B4D; --muted:#6E6383; --border:#E9DCC3; --danger:#ff5a5f; --warning:#FFC93C; --success:#3DDC97; }
     *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
     html { scroll-behavior:smooth; overflow-wrap:break-word; }
     body { background:var(--bg); color:var(--text); font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; line-height:1.7; overflow-x:hidden; min-height:100vh; display:flex; flex-direction:column; overflow-wrap:break-word; }
@@ -36,8 +36,8 @@
     a:focus-visible, button:focus-visible { outline:2px solid var(--accent); outline-offset:2px; border-radius:4px; }
     .skip-link { position:absolute; left:-9999px; top:0; background:var(--accent); color:#fff; padding:0.7rem 1.2rem; z-index:200; border-radius:0 0 8px 0; text-decoration:none; font-weight:600; }
     .skip-link:focus { left:0; }
-    nav { position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:1rem 5%; background:rgba(11,15,26,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
-    .nav-logo { font-family:'Inter',sans-serif; font-weight:800; font-size:1.2rem; letter-spacing:-0.02em; color:#fff; text-decoration:none; }
+    nav { position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:1rem 5%; background:rgba(255,244,224,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
+    .nav-logo { font-family:'Poppins',sans-serif; font-weight:700; font-size:1.2rem; letter-spacing:-0.02em; color:#2B1B4D; text-decoration:none; }
     .nav-logo span { color:var(--accent2); }
     .nav-toggle { display:none; background:transparent; border:1px solid var(--border); border-radius:8px; padding:0.5rem; cursor:pointer; flex-direction:column; gap:4px; width:38px; height:38px; align-items:center; justify-content:center; }
     .nav-toggle-bar { display:block; width:18px; height:2px; background:var(--text); border-radius:1px; transition:transform 0.2s, opacity 0.2s; }
@@ -53,7 +53,7 @@
     .breadcrumb a { color:var(--muted); text-decoration:none; }
     .breadcrumb a:hover { color:var(--accent); }
     .breadcrumb span { word-break:break-word; }
-    h1 { font-family:'Inter',sans-serif; font-size:clamp(1.8rem, 4vw, 2.6rem); font-weight:800; letter-spacing:-0.02em; margin-bottom:0.5rem; }
+    h1 { font-family:'Poppins',sans-serif; font-size:clamp(1.8rem, 4vw, 2.6rem); font-weight:800; letter-spacing:-0.02em; margin-bottom:0.5rem; }
     h2 { font-family:'Inter',sans-serif; font-size:clamp(1.3rem, 2.5vw, 1.6rem); font-weight:700; letter-spacing:-0.01em; margin:2.5rem 0 0.5rem; color:var(--text); }
     .lead { color:var(--muted); margin-bottom:2rem; font-size:1rem; }
     p { margin-bottom:1rem; }
@@ -61,12 +61,13 @@
     li { margin-bottom:0.35rem; }
     a { color:var(--accent); }
     .updated { font-size:0.85rem; color:var(--muted); margin-top:1rem; }
-    footer { text-align:center; padding:2rem 5%; border-top:1px solid var(--border); color:var(--muted); font-size:0.85rem; margin-top:2rem; }
-    footer a { color:var(--accent); text-decoration:none; }
+    footer { text-align:center; padding:2rem 5%; background:#2B1B4D; color:rgba(255,244,224,0.85); font-size:0.85rem; margin-top:2rem; }
+    footer a { color:#FFC93C; text-decoration:none; }
+    footer strong { color:#FFF4E0; }
     footer .footer-links a { margin: 0 0.4rem; }
     @media (max-width: 768px) {
       .nav-toggle { display:flex; }
-      nav ul { display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; gap:0; background:rgba(11,15,26,0.98); border-bottom:1px solid var(--border); padding:0.5rem 0; }
+      nav ul { display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; gap:0; background:rgba(255,244,224,0.98); border-bottom:1px solid var(--border); padding:0.5rem 0; }
       nav ul.open { display:flex; }
       nav ul li { width:100%; }
       nav ul a { display:block; padding:0.75rem 5%; }

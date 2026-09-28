@@ -163,7 +163,7 @@ function renderAppsIndex(apps, baseUrl) {
   <link rel="icon" type="image/svg+xml" href="${baseUrl}/favicon.svg"/>
   <link rel="apple-touch-icon" href="${baseUrl}/apple-touch-icon.png"/>
   <link rel="manifest" href="${baseUrl}/manifest.json"/>
-  <meta name="theme-color" content="#0b0f1a"/>
+  <meta name="theme-color" content="#2B1B4D"/>
 
   <meta property="og:title" content="All Apps by Dhanuk Softwares"/>
   <meta property="og:description" content="${escapeHtml(ogDescription)}"/>
@@ -180,9 +180,9 @@ function renderAppsIndex(apps, baseUrl) {
 
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root { --bg:#0b0f1a; --surface:#131929; --card:#1a2235; --accent:#4f8ef7; --accent2:#38e0b0; --text:#e8edf7; --muted:#a0b0cc; --border:#1e2d4a; }
+    :root { --bg:#FFF4E0; --surface:#FFFFFF; --card:#FFFFFF; --accent:#2B1B4D; --accent2:#FF6B57; --text:#2B1B4D; --muted:#6E6383; --border:#E9DCC3; --danger:#ff5a5f; --warning:#FFC93C; --success:#3DDC97; }
     *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
     html { scroll-behavior:smooth; overflow-wrap:break-word; }
     body { background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; line-height:1.7; overflow-x:hidden; min-height:100vh; display:flex; flex-direction:column; overflow-wrap:break-word; }
@@ -190,8 +190,8 @@ function renderAppsIndex(apps, baseUrl) {
     a:focus-visible, button:focus-visible { outline:2px solid var(--accent); outline-offset:2px; border-radius:4px; }
     .skip-link { position:absolute; left:-9999px; top:0; background:var(--accent); color:#fff; padding:0.7rem 1.2rem; z-index:200; border-radius:0 0 8px 0; text-decoration:none; font-weight:600; }
     .skip-link:focus { left:0; }
-    nav { position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:1rem 5%; background:rgba(11,15,26,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
-    .nav-logo { font-family:'Inter',sans-serif; font-weight:800; font-size:1.2rem; color:#fff; text-decoration:none; }
+    nav { position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:1rem 5%; background:rgba(255,244,224,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
+    .nav-logo { font-family:'Poppins',sans-serif; font-weight:700; font-size:1.2rem; color:#2B1B4D; text-decoration:none; letter-spacing:-0.02em; }
     .nav-logo span { color:var(--accent2); }
     .nav-toggle { display:none; background:transparent; border:1px solid var(--border); border-radius:8px; padding:0.5rem; cursor:pointer; flex-direction:column; gap:4px; width:38px; height:38px; align-items:center; justify-content:center; }
     .nav-toggle-bar { display:block; width:18px; height:2px; background:var(--text); border-radius:1px; transition:transform 0.2s, opacity 0.2s; }
@@ -203,7 +203,7 @@ function renderAppsIndex(apps, baseUrl) {
     nav ul a:hover { color:var(--text); }
     main { flex:1; padding:3rem 5%; }
     .container { max-width:1100px; margin:0 auto; }
-    .page-title { font-family:'Inter',sans-serif; font-size:clamp(1.8rem, 4vw, 2.6rem); font-weight:800; letter-spacing:-0.02em; margin-bottom:0.5rem; }
+    .page-title { font-family:'Poppins',sans-serif; font-size:clamp(1.8rem, 4vw, 2.6rem); font-weight:800; letter-spacing:-0.02em; margin-bottom:0.5rem; }
     .breadcrumb { padding:1rem 5%; font-size:0.85rem; color:var(--muted); }
     .breadcrumb a { color:var(--muted); text-decoration:none; }
     .breadcrumb a:hover { color:var(--accent); }
@@ -223,17 +223,18 @@ function renderAppsIndex(apps, baseUrl) {
     .app-name { font-family:'Inter',sans-serif; font-size:1.15rem; font-weight:700; margin-bottom:0.5rem; }
     .app-desc { color:var(--muted); font-size:0.9rem; line-height:1.5; }
     .app-footer { margin-top:1rem; }
-    .app-tag { display:inline-block; font-size:0.75rem; padding:0.25rem 0.75rem; border-radius:999px; background:rgba(79,142,247,0.1); color:var(--accent); border:1px solid rgba(79,142,247,0.2); }
+    .app-tag { display:inline-block; font-size:0.75rem; padding:0.25rem 0.75rem; border-radius:999px; background:rgba(43,27,77,0.1); color:var(--accent); border:1px solid rgba(43,27,77,0.2); }
     .empty-state-block { text-align:center; padding: 3rem 2rem; background: var(--surface); border:1px solid var(--border); border-radius: 16px; color: var(--muted); }
     .empty-state-block h2 { font-family:'Inter',sans-serif; font-size: 1.4rem; font-weight:700; color: var(--text); margin-bottom:0.5rem; }
     .empty-state-block a { color: var(--accent); text-decoration:none; font-weight:600; }
     .empty-state-block a:hover { text-decoration:underline; }
-    footer { text-align:center; padding:2rem 5%; border-top:1px solid var(--border); color:var(--muted); font-size:0.85rem; margin-top:2rem; }
-    footer a { color:var(--accent); text-decoration:none; }
+    footer { text-align:center; padding:2rem 5%; background:#2B1B4D; color:rgba(255,244,224,0.85); font-size:0.85rem; margin-top:2rem; }
+    footer a { color:#FFC93C; text-decoration:none; }
+    footer strong { color:#FFF4E0; }
     footer .footer-links a { margin: 0 0.4rem; }
     @media (max-width: 768px) {
       .nav-toggle { display:flex; }
-      nav ul { display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; gap:0; background:rgba(11,15,26,0.98); border-bottom:1px solid var(--border); padding:0.5rem 0; }
+      nav ul { display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; gap:0; background:rgba(255,244,224,0.98); border-bottom:1px solid var(--border); padding:0.5rem 0; }
       nav ul.open { display:flex; }
       nav ul li { width:100%; }
       nav ul a { display:block; padding:0.75rem 5%; }
@@ -598,26 +599,26 @@ function generate404Html(apps) {
   <meta property="og:site_name" content="Dhanuk Softwares"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root { --bg:#0b0f1a; --surface:#131929; --card:#1a2235; --accent:#4f8ef7; --accent2:#38e0b0; --text:#e8edf7; --muted:#a0b0cc; --border:#1e2d4a; }
+    :root { --bg:#FFF4E0; --surface:#FFFFFF; --card:#FFFFFF; --accent:#2B1B4D; --accent2:#FF6B57; --text:#2B1B4D; --muted:#6E6383; --border:#E9DCC3; --danger:#ff5a5f; --warning:#FFC93C; --success:#3DDC97; }
     *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
     html { scroll-behavior:smooth; overflow-wrap:break-word; }
     body { background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; line-height:1.7; overflow-x:hidden; display:flex; flex-direction:column; min-height:100vh; }
-    nav { position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:1rem 5%; background:rgba(11,15,26,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
-    .nav-logo { font-family:'Inter',sans-serif; font-weight:800; font-size:1.2rem; color:#fff; text-decoration:none; }
+    nav { position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:1rem 5%; background:rgba(255,244,224,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
+    .nav-logo { font-family:'Poppins',sans-serif; font-weight:700; font-size:1.2rem; color:#2B1B4D; text-decoration:none; letter-spacing:-0.02em; }
     .nav-logo span { color:var(--accent2); }
     nav ul { list-style:none; display:flex; gap:2rem; }
     nav ul a { text-decoration:none; color:var(--muted); font-size:0.9rem; font-weight:500; }
     nav ul a:hover { color:var(--text); }
     main { flex:1; display:flex; align-items:center; justify-content:center; padding:4rem 5%; text-align:center; }
     .error-code { font-family:'Inter',sans-serif; font-size:clamp(5rem, 18vw, 9rem); font-weight:800; line-height:1; background:linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent; letter-spacing:-0.04em; margin-bottom:1rem; }
-    h1 { font-family:'Inter',sans-serif; font-size:clamp(1.6rem, 4vw, 2.4rem); font-weight:700; letter-spacing:-1px; margin-bottom:0.75rem; }
+    h1 { font-family:'Poppins',sans-serif; font-size:clamp(1.6rem, 4vw, 2.4rem); font-weight:700; letter-spacing:-1px; margin-bottom:0.75rem; }
     p { color:var(--muted); max-width:520px; margin:0 auto 2rem; font-size:1.05rem; }
     .actions { display:flex; gap:0.75rem; justify-content:center; flex-wrap:wrap; margin-bottom:3rem; }
     .btn { padding:0.85rem 1.6rem; border-radius:10px; text-decoration:none; font-weight:600; font-size:1rem; display:inline-flex; align-items:center; gap:0.5rem; transition:transform 0.15s, background 0.2s; max-width:100%; white-space:normal; text-align:center; justify-content:center; }
     .btn-primary { background:var(--accent); color:#fff; }
-    .btn-primary:hover { background:#3a7de8; transform:translateY(-1px); }
+    .btn-primary:hover { background:#1E1339; transform:translateY(-1px); }
     .btn-outline { background:transparent; border:1px solid var(--border); color:var(--text); }
     .btn-outline:hover { border-color:var(--accent); color:var(--accent); }
     .suggestions { max-width:680px; margin:0 auto; }
@@ -631,8 +632,9 @@ function generate404Html(apps) {
     .suggestions-empty h2 { font-family:'Inter',sans-serif; font-size:1.1rem; font-weight:700; color:var(--text); margin-bottom:0.5rem; }
     .suggestions-empty a { color:var(--accent); text-decoration:none; font-weight:600; }
     .suggestions-empty a:hover { text-decoration:underline; }
-    footer { text-align:center; padding:2rem 5%; border-top:1px solid var(--border); color:var(--muted); font-size:0.85rem; }
-    footer a { color:var(--accent); text-decoration:none; }
+    footer { text-align:center; padding:2rem 5%; background:#2B1B4D; color:rgba(255,244,224,0.85); font-size:0.85rem; }
+    footer a { color:#FFC93C; text-decoration:none; }
+    footer strong { color:#FFF4E0; }
     @media (max-width: 768px) { nav ul { display:none; } }
   </style>
 </head>
