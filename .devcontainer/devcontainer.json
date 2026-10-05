@@ -1,14 +1,1 @@
-{
-  "name": "9router-test",
-  "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
-  "postCreateCommand": "npm install -g 9router",
-  "postStartCommand": "nohup 9router --no-browser --skip-update > /tmp/9router.log 2>&1 &",
-  "forwardPorts": [20128],
-  "portsAttributes": {
-    "20128": {
-      "label": "9router gateway",
-      "visibility": "public",
-      "protocol": "https"
-    }
-  }
-}
+{"forwardPorts":[20128],"image":"mcr.microsoft.com/devcontainers/javascript-node:22","name":"9router-test","portsAttributes":{"20128":{"label":"9router gateway","protocol":"https","visibility":"public"}},"postCreateCommand":"npm install -g 9router","postStartCommand":"nohup bash .devcontainer/start-gateway.sh >/tmp/poststart.log 2>&1 &"}
