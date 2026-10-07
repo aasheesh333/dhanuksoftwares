@@ -1,5 +1,27 @@
 [
   {
+    "slug": "meet-ovid-ai-super-app",
+    "title": "Meet Ovid: The AI Super-App We're Building at Dhanuk Softwares",
+    "tagline": "One app for AI chat, autonomous agents, plugins, and MCP — chat-first, agent-native, free by default.",
+    "description": "Ovid is our upcoming AI super-app: multi-provider AI chat (Claude, GPT, Gemini and more), autonomous agents, a plugin system, and MCP support — all in one Android app. Here's what it does and how it'll help you.",
+    "publishedDate": "2026-10-07",
+    "lastModified": "2026-10-07",
+    "author": "Aasheesh Katheriya",
+    "category": "AI",
+    "tags": [
+      "Ovid",
+      "AI App",
+      "AI Chat",
+      "AI Agents",
+      "MCP",
+      "Android AI",
+      "Dhanuk Softwares"
+    ],
+    "coverImage": "https://dhanuksoftwares.com/og-banner.png",
+    "readTime": "6 min read",
+    "contentHtml": "<p>Okay so we've been quietly building something big. It's called <strong>Ovid</strong> — an AI super-app for Android — and I figured it's time to talk about it properly. Not a demo, not a concept. Real app, real code, in active development right now at Dhanuk Softwares.</p><h2>What is Ovid?</h2><p>Short version: one app where you can chat with AI, run autonomous AI agents, install plugins, and connect MCP servers. Chat-first, agent-native. The idea is simple — instead of juggling five different AI apps (one for chat, one for coding help, one for automation), Ovid puts all of it in one place.</p><h2>Chat with any AI provider</h2><p>Ovid isn't locked to one model. It supports multiple AI providers — Claude (Anthropic), GPT (OpenAI), Gemini, OpenRouter, and more. You bring your own API keys, pick the model you want, and chat. Different task, different model, same app. No need to switch apps when you want Claude's reasoning for one thing and a fast cheap model for another.</p><h2>Agents that actually do things</h2><p>This is the part I'm most excited about. Ovid has agent support — you can give it a goal and it works through it using tools, step by step, in sessions you can watch and control. Think: \"research this topic and summarize it,\" or \"help me debug this code.\" It's not just a chatbot that answers — it's an assistant that acts.</p><h2>Plugins from GitHub</h2><p>Ovid has a real plugin system. You can install plugins straight from GitHub — including Claude Code plugins, Codex-style manifests, and generic MCP servers. Every install goes through one clear approval screen that shows you exactly what the plugin wants to access, and installs are transactional (if something fails halfway, it rolls back cleanly instead of leaving your app in a weird broken state).</p><h2>MCP support</h2><p>For the nerds (affectionate): Ovid speaks MCP — the Model Context Protocol. Both stdio and Streamable-HTTP servers. That means your AI can connect to external tools and data sources through a standard protocol instead of janky one-off integrations. Skills, hooks, commands, subagents — the whole agent-native toolkit is in there.</p><h2>How Ovid helps you</h2><p>Here's the practical bit. If you're a student, Ovid is a study buddy that can quiz you, explain concepts with whatever model you prefer, and automate the boring parts of assignments. If you code, it's a pair programmer with your plugins and MCP tools wired in. If you just want a smarter daily assistant — reminders, writing help, research, planning — it's one app instead of five subscriptions and six logins.</p><p>And because you choose the provider and the model, you're not stuck paying for one expensive AI when a cheaper one would do. Use Claude for the hard reasoning, a fast model for the quick stuff. Your keys, your choice, your bill under control.</p><h2>Where things stand</h2><p>Ovid is in active development — we're building, testing, and polishing it right now. It's an Android app (Flutter), and we're working toward a public release. If you want to follow along, keep an eye on this blog and our apps page. We'll post updates as we hit milestones.</p><p>We're building Ovid because we kept hitting the same wall: AI tools are powerful but scattered. One app per model, one app per use case, subscriptions everywhere. Ovid is our answer — one super-app for chat, agents, plugins, and everything MCP. Can't wait to get it into your hands.</p>"
+  },
+  {
     "slug": "how-to-stay-focused-while-studying-with-focusstreak",
     "title": "How to Stay Focused While Studying: 7 Proven Techniques with FocusStreak",
     "tagline": "Master deep study sessions, beat digital distractions, and build unbreakable habits.",
