@@ -360,7 +360,8 @@ function generateSitemap(apps, baseUrl, posts = []) {
     { loc: `${baseUrl}/blog/`, priority: '0.9', changefreq: 'weekly', lastmod: TODAY },
     { loc: `${baseUrl}/privacy/`, priority: '0.3', changefreq: 'yearly', lastmod: TODAY },
     { loc: `${baseUrl}/terms/`, priority: '0.3', changefreq: 'yearly', lastmod: TODAY },
-    { loc: `${baseUrl}/cookies/`, priority: '0.3', changefreq: 'yearly', lastmod: TODAY }
+    { loc: `${baseUrl}/cookies/`, priority: '0.3', changefreq: 'yearly', lastmod: TODAY },
+    { loc: `${baseUrl}/hire-us/`, priority: '0.9', changefreq: 'weekly', lastmod: TODAY }
   ];
   for (const app of apps) {
     const appUrl = app.isTool && app.permalink ? `${baseUrl}${app.permalink}` : `${baseUrl}/apps/${app.slug}/`;
@@ -496,8 +497,8 @@ async function main() {
     }
   }
 
-  // SEO: Privacy / Terms / Cookies policy pages (each becomes /<page>/index.html)
-  for (const page of ['privacy', 'terms', 'cookies']) {
+  // SEO: Privacy / Terms / Cookies policy pages + Hire Us services page (each becomes /<page>/index.html)
+  for (const page of ['privacy', 'terms', 'cookies', 'hire-us']) {
     const src = path.join(ROOT, `${page}.html`);
     if (fs.existsSync(src)) {
       const pageDir = path.join(DIST, page);
