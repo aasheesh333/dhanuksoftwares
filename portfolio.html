@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio — Websites &amp; Android Apps We Built | Dhanuk Softwares</title>
+  <meta name="description" content="The Dhanuk Softwares portfolio: Android apps on Google Play, e-commerce storefronts, institutional sites and data-driven web tools. Filter by apps or websites and see the work."/>
+  <meta name="keywords" content="Dhanuk Softwares portfolio, Android app portfolio India, website development portfolio, app developer Noida, e-commerce website India, web design portfolio"/>
+  <meta name="robots" content="index, follow, max-image-preview:large"/>
+  <link rel="canonical" href="https://dhanuksoftwares.com/portfolio/"/>
+  <link rel="alternate" hreflang="x-default" href="https://dhanuksoftwares.com/portfolio/"/>
+  <link rel="alternate" hreflang="en" href="https://dhanuksoftwares.com/portfolio/"/>
+  <link rel="icon" type="image/svg+xml" href="https://dhanuksoftwares.com/favicon.svg"/>
+  <link rel="apple-touch-icon" href="https://dhanuksoftwares.com/apple-touch-icon.png"/>
+  <meta name="theme-color" content="#2B1B4D"/>
+  <meta property="og:title" content="Portfolio — Websites &amp; Android Apps We Built | Dhanuk Softwares"/>
+  <meta property="og:description" content="Android apps on Google Play, e-commerce storefronts, institutional sites and data-driven web tools — all built by Dhanuk Softwares."/>
+  <meta property="og:url" content="https://dhanuksoftwares.com/portfolio/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="Dhanuk Softwares"/>
+  <meta property="og:locale" content="en_IN"/>
+  <meta property="og:image" content="https://dhanuksoftwares.com/og-banner.png"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Portfolio — Websites &amp; Android Apps We Built | Dhanuk Softwares"/>
+  <meta name="twitter:description" content="Android apps, storefronts, institutional sites and data tools — the Dhanuk Softwares portfolio."/>
+  <meta name="twitter:image" content="https://dhanuksoftwares.com/og-banner.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Dhanuk Softwares Portfolio",
+    "url": "https://dhanuksoftwares.com/portfolio/",
+    "description": "Android apps and websites built by Dhanuk Softwares.",
+    "isPartOf": { "@id": "https://dhanuksoftwares.com/#website" },
+    "about": { "@id": "https://dhanuksoftwares.com/#organization" }
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #FFF4E0;
+      --surface: #FFFFFF;
+      --card: #FFFFFF;
+      --accent: #2B1B4D;
+      --accent2: #FF6B57;
+      --gold: #FFC93C;
+      --text: #2B1B4D;
+      --muted: #6E6383;
+      --border: #E9DCC3;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-wrap: break-word; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+    .skip-link { position: absolute; left: -9999px; top: 0; background: var(--accent); color: #fff; padding: 0.7rem 1.2rem; z-index: 300; border-radius: 0 0 8px 0; text-decoration: none; font-weight: 600; }
+    .skip-link:focus { left: 0; }
+
+    /* ── NAV ─────────────────────────────────────────── */
+    nav.topnav {
+      position: sticky; top: 0; z-index: 90;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 5%;
+      background: rgba(255,244,224,0.92); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.25rem; color: #2B1B4D; text-decoration: none; letter-spacing: -0.02em; }
+    .nav-logo span { color: var(--accent2); font-weight: 800; }
+    nav.topnav ul { list-style: none; display: flex; gap: 1.6rem; align-items: center; }
+    nav.topnav ul a { text-decoration: none; color: var(--muted); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+    nav.topnav ul a:hover { color: var(--text); }
+    nav.topnav ul a.active { color: var(--accent); font-weight: 600; }
+    nav.topnav ul a.nav-cta { background: var(--accent2); color: #fff !important; padding: 0.5rem 1.05rem; border-radius: 10px; font-weight: 600; }
+    nav.topnav ul a.nav-cta:hover { background: #e85a45; }
+    .nav-toggle { display: none; background: transparent; border: 1px solid var(--border); border-radius: 8px; width: 38px; height: 38px; cursor: pointer; flex-direction: column; gap: 4px; align-items: center; justify-content: center; }
+    .nav-toggle-bar { display: block; width: 18px; height: 2px; background: var(--text); border-radius: 1px; transition: transform 0.2s, opacity 0.2s; }
+    .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* ── HERO ────────────────────────────────────────── */
+    .pf-hero { background: #2B1B4D; color: #FFF4E0; padding: 4.5rem 5% 0; position: relative; overflow: hidden; }
+    .pf-hero::before {
+      content: ''; position: absolute; top: -220px; right: -80px; width: 620px; height: 620px;
+      background: radial-gradient(circle, rgba(255,107,87,0.20) 0%, transparent 68%); pointer-events: none;
+    }
+    .pf-hero-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 3rem; align-items: start; max-width: 1240px; margin: 0 auto; position: relative; z-index: 2; }
+    .pf-eyebrow { display: inline-block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.1rem; }
+    .pf-hero h1 { font-family: 'Poppins', sans-serif; font-size: clamp(2rem, 4.4vw, 3.05rem); font-weight: 700; line-height: 1.12; letter-spacing: -0.025em; margin-bottom: 1.2rem; }
+    .pf-hero h1 em { font-style: normal; color: var(--accent2); }
+    .pf-hero p.lead { color: rgba(255,244,224,0.82); font-size: 1.05rem; max-width: 520px; margin-bottom: 2rem; }
+    .pf-stats { display: flex; gap: 2.5rem; flex-wrap: wrap; padding-top: 0.5rem; }
+    .pf-stat-num { font-family: 'Poppins', sans-serif; font-size: clamp(1.7rem, 3vw, 2.2rem); font-weight: 700; color: #FFF4E0; line-height: 1; }
+    .pf-stat-num em { font-style: normal; color: var(--gold); }
+    .pf-stat-label { font-size: 0.82rem; color: rgba(255,244,224,0.62); margin-top: 0.4rem; max-width: 150px; line-height: 1.4; }
+    .pf-hero-btns { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+    .pf-btn {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      padding: 0.72rem 1.5rem; border-radius: 11px; text-decoration: none;
+      font-weight: 600; font-size: 0.93rem; transition: transform 0.15s, background 0.2s, color 0.2s, border-color 0.2s;
+      border: 1px solid transparent; cursor: pointer; font-family: 'Inter', sans-serif;
+    }
+    .pf-btn:hover { transform: translateY(-2px); }
+    .pf-btn-solid { background: var(--accent2); color: #2B1B4D; }
+    .pf-btn-solid:hover { background: #ff7d6b; }
+    .pf-btn-ghost { background: transparent; border-color: rgba(255,244,224,0.28); color: #FFF4E0; }
+    .pf-btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+    .pf-btn-dark { background: var(--accent); color: #fff; }
+    .pf-btn-dark:hover { background: #1e1339; }
+    .pf-btn-line { background: transparent; border-color: var(--border); color: var(--text); }
+    .pf-btn-line:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* Display word with ribbon */
+    .pf-display { position: relative; max-width: 1240px; margin: 2.5rem auto 0; padding: 0 0 2.5rem; }
+    .pf-ribbon { position: absolute; left: -6%; right: -6%; top: 34%; height: 190px; z-index: 1; pointer-events: none; overflow: hidden; border-radius: 60% 40% 55% 45% / 50%; }
+    .pf-ribbon span { position: absolute; inset: 0; display: block; }
+    .pf-ribbon span:nth-child(1) { background: linear-gradient(96deg, rgba(255,107,87,0) 4%, #FF6B57 30%, #FFC93C 58%, rgba(255,201,60,0) 96%); filter: blur(34px); opacity: 0.55; }
+    .pf-ribbon span:nth-child(2) { background: linear-gradient(92deg, rgba(255,201,60,0) 10%, rgba(255,201,60,0.9) 42%, rgba(255,107,87,0.9) 66%, rgba(255,107,87,0) 92%); filter: blur(10px); transform: rotate(-2.6deg) translateY(14px); opacity: 0.42; }
+    .pf-word {
+      position: relative; z-index: 2;
+      font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-weight: 400;
+      font-size: clamp(3.4rem, 13vw, 9.4rem); line-height: 0.92; letter-spacing: -0.035em;
+      color: #FFF4E0; text-align: left; padding-left: 2%;
+    }
+    .pf-hero-fade { height: 70px; background: linear-gradient(180deg, #2B1B4D 0%, #3a2660 55%, var(--bg) 100%); }
+
+    /* ── FILTER BAR ──────────────────────────────────── */
+    .pf-filter-wrap { position: sticky; top: 65px; z-index: 80; background: rgba(255,244,224,0.94); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .pf-filter {
+      max-width: 1240px; margin: 0 auto; padding: 0.85rem 5%;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+    }
+    .pf-pills { display: flex; gap: 0.5rem; }
+    .pf-pill {
+      font-family: 'Inter', sans-serif; font-size: 0.88rem; font-weight: 600;
+      padding: 0.5rem 1.15rem; border-radius: 999px; cursor: pointer;
+      border: 1px solid var(--border); background: transparent; color: var(--muted);
+      transition: background 0.18s, color 0.18s, border-color 0.18s;
+    }
+    .pf-pill:hover { border-color: var(--accent); color: var(--accent); }
+    .pf-pill[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: #FFF4E0; }
+    .pf-pill .pf-count { font-size: 0.76rem; opacity: 0.65; margin-left: 0.3rem; }
+    .pf-result-note { font-size: 0.82rem; color: var(--muted); }
+
+    /* ── SECTIONS ────────────────────────────────────── */
+    .pf-section { max-width: 1240px; margin: 0 auto; padding: 4rem 5% 1rem; }
+    .pf-section-head { margin-bottom: 2.5rem; }
+    .pf-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent2); margin-bottom: 0.5rem; }
+    .pf-section-head h2 { font-family: 'Poppins', sans-serif; font-size: clamp(1.5rem, 3vw, 2.05rem); font-weight: 700; letter-spacing: -0.02em; }
+    .pf-section-head p { color: var(--muted); max-width: 620px; margin-top: 0.55rem; font-size: 1rem; }
+
+    /* ── APP ROWS ────────────────────────────────────── */
+    .pf-project {
+      background: var(--card); border: 1px solid var(--border); border-radius: 22px;
+      padding: 2.2rem; margin-bottom: 1.6rem;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+    .pf-project:hover { border-color: rgba(43,27,77,0.28); box-shadow: 0 18px 44px -28px rgba(43,27,77,0.5); }
+    .pf-project[hidden] { display: none; }
+    .pf-proj-head { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 0.35rem; }
+    .pf-num { font-family: 'Poppins', sans-serif; font-size: 0.82rem; font-weight: 700; color: var(--accent2); padding-top: 0.55rem; letter-spacing: 0.02em; flex-shrink: 0; }
+    .pf-proj-title { flex: 1; min-width: 0; }
+    .pf-proj-title h3 { font-family: 'Poppins', sans-serif; font-size: clamp(1.15rem, 2.4vw, 1.5rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.25; }
+    .pf-tagline { color: var(--accent2); font-size: 0.88rem; font-weight: 500; margin-top: 0.2rem; }
+    .pf-chip {
+      flex-shrink: 0; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+      padding: 0.28rem 0.7rem; border-radius: 999px; background: rgba(43,27,77,0.07);
+      border: 1px solid rgba(43,27,77,0.14); color: var(--accent); white-space: nowrap;
+    }
+    .pf-shots {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.7rem;
+      margin: 1.5rem 0 1.6rem;
+    }
+    .pf-shot {
+      border-radius: 12px; overflow: hidden; background: #f2e9d8; border: 1px solid var(--border);
+      aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center;
+    }
+    .pf-shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .pf-shot-empty {
+      grid-column: 1 / -1; border-radius: 12px; border: 1px dashed var(--border);
+      padding: 1.6rem; text-align: center; color: var(--muted); font-size: 0.9rem; background: #fdf8ef;
+    }
+    .pf-proj-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 2rem; }
+    .pf-desc { color: var(--muted); font-size: 0.97rem; }
+    .pf-mods-title { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text); font-weight: 700; margin-bottom: 0.7rem; }
+    .pf-mods { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .pf-mods li {
+      font-size: 0.78rem; color: var(--muted); padding: 0.28rem 0.66rem;
+      background: rgba(255,244,224,0.85); border: 1px solid var(--border); border-radius: 7px;
+    }
+    .pf-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
+    .pf-actions .pf-btn { padding: 0.55rem 1.15rem; font-size: 0.84rem; border-radius: 9px; }
+
+    /* ── WEBSITE CARDS ───────────────────────────────── */
+    .pf-sites { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.4rem; }
+    .pf-site {
+      background: var(--card); border: 1px solid var(--border); border-radius: 20px;
+      padding: 1.7rem; display: flex; flex-direction: column;
+      transition: border-color 0.22s, transform 0.22s;
+      text-decoration: none; color: inherit;
+    }
+    .pf-site:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .pf-site[hidden] { display: none; }
+    .pf-site-top { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 1.1rem; }
+    .pf-mono {
+      width: 46px; height: 46px; border-radius: 12px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.15rem; color: #FFF4E0;
+    }
+    .pf-site-name { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.05rem; line-height: 1.3; }
+    .pf-site-cat { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.04em; margin-top: 0.1rem; }
+    .pf-site-desc { color: var(--muted); font-size: 0.92rem; flex: 1; }
+    .pf-site-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 1rem 0 1.15rem; }
+    .pf-site-tags span {
+      font-size: 0.72rem; color: var(--accent); padding: 0.22rem 0.6rem;
+      border-radius: 999px; background: rgba(43,27,77,0.06); border: 1px solid rgba(43,27,77,0.12);
+    }
+    .pf-site-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.86rem; font-weight: 600; color: var(--accent2);
+    }
+    .pf-site-link .arrow { transition: transform 0.2s; }
+    .pf-site:hover .pf-site-link .arrow { transform: translateX(3px); }
+    .pf-site-mirror { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 0.6rem; }
+
+    /* ── CTA ─────────────────────────────────────────── */
+    .pf-cta { max-width: 1240px; margin: 3rem auto 0; padding: 0 5% 5rem; }
+    .pf-cta-inner {
+      background: linear-gradient(135deg, #2B1B4D 0%, #3d2568 100%);
+      border-radius: 26px; padding: clamp(2.2rem, 5vw, 3.6rem); text-align: center; color: #FFF4E0;
+      position: relative; overflow: hidden;
+    }
+    .pf-cta-inner::after {
+      content: ''; position: absolute; bottom: -140px; left: 50%; transform: translateX(-50%);
+      width: 520px; height: 340px; background: radial-gradient(ellipse, rgba(255,201,60,0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .pf-cta-inner h2 { font-family: 'Poppins', sans-serif; font-size: clamp(1.5rem, 3.4vw, 2.2rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.7rem; position: relative; z-index: 2; }
+    .pf-cta-inner p { color: rgba(255,244,224,0.78); max-width: 520px; margin: 0 auto 1.8rem; position: relative; z-index: 2; }
+    .pf-cta-inner .pf-hero-btns { justify-content: center; position: relative; z-index: 2; }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer { background: var(--accent); color: rgba(255,244,224,0.8); padding: 2.6rem 5%; text-align: center; font-size: 0.86rem; }
+    footer strong { color: #FFF4E0; }
+    footer a { color: var(--gold); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 960px) {
+      .pf-hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .pf-proj-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .pf-shots { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      nav.topnav ul { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; background: rgba(255,244,224,0.99); border-bottom: 1px solid var(--border); padding: 0.4rem 0; box-shadow: 0 12px 24px -18px rgba(43,27,77,0.6); }
+      nav.topnav ul.open { display: flex; }
+      nav.topnav ul li { width: 100%; }
+      nav.topnav ul a { display: block; padding: 0.8rem 5%; }
+      nav.topnav ul a.nav-cta { margin: 0.4rem 5%; padding: 0.6rem 1rem; text-align: center; }
+      .nav-toggle { display: flex; }
+      .pf-hero { padding-top: 3rem; }
+      .pf-project { padding: 1.5rem; border-radius: 18px; }
+      .pf-proj-head { flex-wrap: wrap; }
+      .pf-chip { order: -1; }
+      .pf-filter { justify-content: center; }
+      .pf-result-note { display: none; }
+      .pf-word { padding-left: 0; }
+      .pf-ribbon { height: 130px; top: 30%; }
+    }
+    @media (max-width: 480px) {
+      .pf-shots { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+      .pf-stats { gap: 1.5rem; }
+      .pf-stat-label { font-size: 0.76rem; }
+      .pf-site { padding: 1.4rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="#work" class="skip-link">Skip to the work</a>
+
+<nav class="topnav">
+  <a class="nav-logo" href="/">Dhanuk<span>Softwares</span></a>
+  <button class="nav-toggle" id="nav-toggle" aria-controls="nav-menu" aria-expanded="false" aria-label="Open navigation menu">
+    <span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span>
+  </button>
+  <ul id="nav-menu">
+    <li><a href="/">Home</a></li>
+    <li><a href="/apps/">Apps</a></li>
+    <li><a href="/portfolio/" class="active">Portfolio</a></li>
+    <li><a href="/blog/">Blog</a></li>
+    <li><a href="/hire-us/">Services</a></li>
+    <li><a href="/get-a-quote/" class="nav-cta">Get a Quote</a></li>
+  </ul>
+</nav>
+
+<header class="pf-hero">
+  <div class="pf-hero-grid">
+    <div>
+      <span class="pf-eyebrow">Portfolio</span>
+      <h1>We design, build and ship <em>software people actually use.</em></h1>
+      <p class="lead">Android apps live on Google Play. Websites run real businesses — storefronts, institutions, data tools. Here's the whole shelf, filter it however you like.</p>
+      <div class="pf-hero-btns">
+        <a href="#work" class="pf-btn pf-btn-solid">See the work</a>
+        <a href="/get-a-quote/" class="pf-btn pf-btn-ghost">Get a quote &rarr;</a>
+      </div>
+    </div>
+    <div>
+      <div class="pf-stats">
+        <div>
+          <div class="pf-stat-num">8<em>+</em></div>
+          <div class="pf-stat-label">Android apps published on Google Play</div>
+        </div>
+        <div>
+          <div class="pf-stat-num">7</div>
+          <div class="pf-stat-label">Websites built and running live</div>
+        </div>
+        <div>
+          <div class="pf-stat-num">100<em>%</em></div>
+          <div class="pf-stat-label">Designed and developed in-house</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pf-display">
+    <div class="pf-ribbon" aria-hidden="true"><span></span><span></span></div>
+    <div class="pf-word" aria-hidden="true">Portfolio</div>
+  </div>
+</header>
+<div class="pf-hero-fade" aria-hidden="true"></div>
+
+<div class="pf-filter-wrap">
+  <div class="pf-filter">
+    <div class="pf-pills" role="tablist" aria-label="Filter work by type">
+      <button class="pf-pill" role="tab" aria-selected="true" data-filter="all">All <span class="pf-count">15</span></button>
+      <button class="pf-pill" role="tab" aria-selected="false" data-filter="app">Apps <span class="pf-count">8</span></button>
+      <button class="pf-pill" role="tab" aria-selected="false" data-filter="website">Websites <span class="pf-count">7</span></button>
+    </div>
+    <div class="pf-result-note" id="pf-result-note" aria-live="polite">Showing 15 projects</div>
+  </div>
+</div>
+
+<main id="work">
+
+  <section class="pf-section" id="apps-section" aria-labelledby="apps-heading">
+    <div class="pf-section-head">
+      <div class="pf-label">Apps</div>
+      <h2 id="apps-heading">Android apps on Google Play</h2>
+      <p>Self-published products, shipped end to end — design, build, store listing, updates. Every one of these is live and installable right now.</p>
+    </div>
+    <div id="pf-apps">
+<article class="pf-project" data-type="app" data-search="focusstreak: stay focus daily focusstreak productivity productivity focus daily, succeed always boost your study sessions with a simple focus timer and streak tracker">
+      <div class="pf-proj-head">
+        <span class="pf-num">01</span>
+        <div class="pf-proj-title">
+          <h3>FocusStreak: Stay Focus Daily</h3>
+          <div class="pf-tagline">Focus daily, succeed always</div>
+        </div>
+        <span class="pf-chip">Productivity</span>
+      </div>
+      <div class="pf-shots"><div class="pf-shot"><img src="https://play-lh.googleusercontent.com/T9fVrygTH7RtVzdp_lRofd3Tf_zpcndrwq89NMFRNa1lmQKuhtMDt8a9OvkJLT0ij6OgKzKQNyWYzh1VswCI=w1052-h592" alt="FocusStreak: Stay Focus Daily screenshot 1" loading="lazy" decoding="async"/></div><div class="pf-shot"><img src="https://play-lh.googleusercontent.com/uWGWq8M7WNTI7_C5KuimsmJPPMtaxuc46ENNVFq1M5RMn2AuZYL2Bv3oqkJXEu0_P65dTDVMSNoS7gemII6A=w1052-h592" alt="FocusStreak: Stay Focus Daily screenshot 2" loading="lazy" decoding="async"/></div><div class="pf-shot"><img src="https://play-lh.googleusercontent.com/5cCAobK9mqEbnL3eJbiaQOPTlKgnpcDTsPSDWFdsrI2EECZVXjUSjLjZg9gnyl05TFTVhZsPTKEZ2MUw3oKylA=w1052-h592" alt="FocusStreak: Stay Focus Daily screenshot 3" loading="lazy" decoding="async"/></div><div class="pf-shot"><img src="https://play-lh.googleusercontent.com/vhjbayxPFkIy_U3felbCAjmmsNTr0rDFL5s0gbF6k0EKStiN45kCkl_bTUdLfI8fIdVwrMNmuVHq4HmyM0vd=w1052-h592" alt="FocusStreak: Stay Focus Daily screenshot 4" loading="lazy" decoding="async"/></div></div>
+      <div class="pf-proj-grid">
+        <p class="pf-desc">Boost your study sessions with a simple focus timer and streak tracker</p>
+        <div><div class="pf-mods-title">What it does</div><ul class="pf-mods"><li>Simple focus timer</li><li>Study streak tracker</li><li>Visual motivation system</li><li>Offline access</li><li>Lightweight and efficient</li><li>Clean and intuitive interface</li><li>Customizable timer and settings</li></ul></div>
+      </div>
+      <div class="pf-actions"><a class="pf-btn pf-btn-dark" href="/apps/focusstreak/">Project details &rarr;</a><a class="pf-btn pf-btn-line" href="https://play.google.com/store/apps/details?id=com.dhanuk.focusstreak" target="_blank" rel="noopener">Google Play &nearr;</a><a class="pf-btn pf-btn-line" href="https://focusstreak.en.uptodown.com/android" target="_blank" rel="noopener">Uptodown &nearr;</a></div>
+    </article>
+<article class="pf-project" data-type="app" data-search="astroprerna ai chat &amp; rashifal astroprerna astrology astrology kundli, rashifal &amp; ai guidance get your personalized astrology companion with instant kundli, daily rashifal, and ai-powered guidance">
+      <div class="pf-proj-head">
+        <span class="pf-num">02</span>
+        <div class="pf-proj-title">
+          <h3>AstroPrerna AI Chat &amp; Rashifal</h3>
+          <div class="pf-tagline">Kundli, Rashifal &amp; AI Guidance</div>
+        </div>
+        <span class="pf-chip">Astrology</span>
+      </div>
+      <div class="pf-shots"><div class="pf-shot"><img src="https://play-lh.googleusercontent.com/wB6k-qMiK1AwsIhqdjafYI_n_uxVU2KRJZjdtTUMawKbVkriQizRN7Zkrm7bGN0PPbJTdqI4LHRtK_IMfgq8iNc=w1052-h592" alt="AstroPrerna AI Chat &amp; Rashifal screenshot 1" loading="lazy" decoding="async"/></div><div class="pf-shot"><img src="https://play-lh.googleusercontent.com/GUpTmiiL_aZ__gflzpRYFDrCaHtX3sF2byVzq7UjWmHwEb7Fv_kSJ09Sx3WTy9JQQHmLuFoleOeoRaAN-HwPnOk=w1052-h592" alt="AstroPrerna AI Chat &amp; Rashifal screenshot 2" loading="lazy" decoding="async"/></div><div class="pf-shot"><img src="https://play-lh.googleusercontent.com/wz7GvKKaiHmR0y80w4uW_FTTcvIZk5T9ahI68hhZebPJ0l_zdKjZ_LXyT7cNyJuQZaqucZfUJo4zmmEXkZ_XpCo=w1052-h592" alt="AstroPrerna AI Chat &amp; Rashifal screenshot 3" loading="lazy" decoding="async"/></div><div class="pf-shot"><img src="https://play-lh.googleusercontent.com/CrTFapfmV5JrJn1tEb5kkpCP2kDmSyn8WY3yQqzDvLAc0sRRk26pTD2kaAbXxlt3z_wJa2Wp3cCxxbuXdYa_-w=w1052-h592" alt="AstroPrerna AI Chat &amp; Rashifal screenshot 4" loading="lazy" decoding="async"/></div></div>
+      <div class="pf-proj-grid">
+        <p class="pf-desc">Get your personalized astrology companion with instant Kundli, daily Rashifal, and AI-powered guidance</p>
+        <div><div class="pf-mods-title">What it does</div><ul class="pf-mods"><li>Instant Kundli</li><li>AI Astrology Chat</li><li>Love Match &amp; Compatibility Score</li><li>Daily Rashifal</li><li>Future Predictions</li><li>Clean and Easy-to-Use Interface</li></ul></div>
+      </div>
+      <div class="pf-actions"><a class="pf-btn pf-btn-dark" href="/apps/astroprerna/">Project details &rarr;</a><a class="pf-btn pf-btn-line" href="https://play.google.com/store/apps/details?id=com.dhanuk.astroprerna&amp;utm_source=dhanuksoftwares&amp;utm_medium=website&amp;utm_campaign=app_page&amp;utm_content=astroprerna_primary&amp;utm_term=play" target="_blank" rel="noopener">Google Play &nearr;</a><a class="pf-btn pf-btn-line" href="https://astroprerna-ai-astrology-and-horoscope.en.uptodown.com/android" target="_blank" rel="noopener">Uptodown &nearr;</a></div>
+    </article>
+<article class="pf-project" data-type="app" data-search="cgpa &amp; gpa calculator cgpa-gpa-calculator tools tools unlock your academic potential calculate gpa, cgpa, and grade percentages instantly with gradeastra">
+      <div class="pf-proj-head">
+        <span class="pf-num">03</span>
+        <div class="pf-proj-title">
+          <h3>CGPA &amp; GPA Calculator</h3>
+          <div class="pf-tagline">Unlock Your Academic Potential</div>
+        </div>
+        <span class="pf-chip">Tools</span>
+      </div>
+      <div class="pf-shots"><div class="pf-shot"><img src="https://lh3.googleusercontent.com/YZ3K_vle3U0MLFMpE8K_ON-a18s2ndc5ybV4qAcS07PoLkJYztgdsz-HuTLhZpJDghSfjwZsdaJ2y3xNmUfG3w" alt="CGPA &amp; GPA Calculator screenshot 1" loading="lazy" decoding="async"/></div><div class="pf-shot"><img src="https://lh3.googleusercontent.com/16udYIaWmDi7nIaSelNh0u53tYl4VKhxBJLwbOP6xvjijyo1mHIvZ7mOBYpaz6e_eIJS8TRcwKu3Xici5bq4mw" alt="CGPA &amp; GPA Calculator screenshot 2" loading="lazy" decoding="async"/></div><div class="pf-shot"><img src="https://lh3.googleusercontent.com/DLTorG9aa9SwBqrehHM9gHMF_i2d2L4kc4UR8-DBempJ6wruIZ4nsvkMJ0ua2vaoDS19sbr3i7ZmIgLjXKW-" alt="CGPA &amp; GPA Calculator screenshot 3" loading="lazy" decoding="async"/></div><div class="pf-shot"><img src="https://lh3.googleusercontent.com/Xg8J_dsK4kQeVWdAhI92VpNLbPJRt8zBbsgrdXhUyhze1SAnjRw1NIQVmq3XNMKJoigHw1rITfNgRa3ASUEWNA" alt="CGPA &amp; GPA Calculator screenshot 4" loading="lazy" decoding="async"/></div></div>
+      <div class="pf-proj-grid">
+        <p class="pf-desc">Calculate GPA, CGPA, and grade percentages instantly with GradeAstra</p>
+        <div><div class="pf-mods-title">What it does</div><ul class="pf-mods"><li>GPA and CGPA calculations</li><li>Grade percentage calculations</li><li>Customizable grading systems</li><li>Offline access</li><li>User-friendly interface</li><li>Instant calculations</li><li>Beautiful design</li></ul></div>
+      </div>
+      <div class="pf-actions"><a class="pf-btn pf-btn-dark" href="/apps/cgpa-gpa-calculator/">Project details &rarr;</a><a class="pf-btn pf-btn-line" href="https://play.google.com/store/apps/details?id=com.dhanuk.gradeastra" target="_blank" rel="noopener">Google Play &nearr;</a><a class="pf-btn pf-btn-line" href="https://global.app.mi.com/details?lo=IN&amp;la=en_US&amp;id=com.dhanuk.gradeastra" target="_blank" rel="noopener">GetApps &nearr;</a></div>
+    </article>
+<article class="pf-project" data-type="app" data-search="lofiga: lofi slow reverb maker lofiga-lofi-slow-reverb-maker tools tools transform music, elevate mood turn songs lofi, slow reverb &amp; vintage. 10+ presets, atmosphere &amp; wav/m4a export">
+      <div class="pf-proj-head">
+        <span class="pf-num">04</span>
+        <div class="pf-proj-title">
+          <h3>Lofiga: Lofi Slow Reverb Maker</h3>
+          <div class="pf-tagline">Transform Music, Elevate Mood</div>
+        </div>
+        <span class="pf-chip">Tools</span>
+      </div>
+      <div class="pf-shots"><div class="pf-shot"><img src="https://lh3.googleusercontent.com/cqM7hbcGW8XHEbCmoSpAaUS-gvoo-6isUFvYOt9T2K1Rg5C5B4iTiMJQKoizBS8HyodsaTtTJR-7tkZIMCaWKQ" alt="Lofiga: Lofi Slow Reverb Maker screenshot 1" loading="lazy" decoding="async"/></div><div class="pf-shot"><img src="https://lh3.googleusercontent.com/MnjmoqvH1jRSHfTba5z5vKRH7SbIDnv6vVWur1Z_Heybo0c6tHQsd8YnZTgFRvdaaD-mnaSsCGikFVSQ7IaX" alt="Lofiga: Lofi Slow Reverb Maker screenshot 2" loading="lazy" decoding="async"/></div><div class="pf-shot"><img src="https://lh3.googleusercontent.com/aCnvMuqk6SBHjPFPzqRe_WWCJj6f2ZL8bJiw4EEK3zNygbxj6iyvScDRGb2zDqN_xN8wOlyWil6iGa9tclHlcg" alt="Lofiga: Lofi Slow Reverb Maker screenshot 3" loading="lazy" decoding="async"/></div><div class="pf-shot"><img src="https://lh3.googleusercontent.com/naqBlP2X4Ixez9eN0v8MOtfi7SXeg6BXwQtZmxVhyAPJk2AC-XV6rWXuJ0C45YCR7yKOlxm4cxPfpFcjHIwWhA" alt="Lofiga: Lofi Slow Reverb Maker screenshot 4" loading="lazy" decoding="async"/></div></div>
+      <div class="pf-proj-grid">
+        <p class="pf-desc">Turn songs Lofi, Slow Reverb &amp; Vintage. 10+ Presets, Atmosphere &amp; WAV/M4A export</p>
+        <div><div class="pf-mods-title">What it does</div><ul class="pf-mods"><li>Transform any song into stunning lofi audio st</li><li>Create dreamy slow reverb effects</li><li>Add a retro vintage feel to your music</li><li>Customize your sound with adjustable settings </li><li>Save and share your creations with others</li><li>Access a vast library of user-generated conten</li></ul></div>
+      </div>
+      <div class="pf-actions"><a class="pf-btn pf-btn-dark" href="/apps/lofiga-lofi-slow-reverb-maker/">Project details &rarr;</a><a class="pf-btn pf-btn-line" href="https://lofiga-lofi-slow-reverb-maker.en.uptodown.com/android" target="_blank" rel="noopener">Uptodown &nearr;</a><a class="pf-btn pf-btn-line" href="https://play.google.com/store/apps/details?id=com.dhanuk.lofiga" target="_blank" rel="noopener">Google Play &nearr;</a></div>
+    </article>
+<article class="pf-project" data-type="app" data-search="nvidia nim api speed test nvidia-nim-speed-test tools tools benchmark 100+ ai models live test nvidia nim api speed in real-time. compare 100+ ai models — llm, code, image, embedding. check ttft, tokens/sec, latency.">
+      <div class="pf-proj-head">
+        <span class="pf-num">05</span>
+        <div class="pf-proj-title">
+          <h3>NVIDIA NIM API Speed Test</h3>
+          <div class="pf-tagline">Benchmark 100+ AI models live</div>
+        </div>
+        <span class="pf-chip">Tools</span>
+      </div>
+      <div class="pf-shots"><div class="pf-shot-empty">No app-store screenshots for this one — it runs in the browser. Open the live tool to try it.</div></div>
+      <div class="pf-proj-grid">
+        <p class="pf-desc">Test NVIDIA NIM API speed in real-time. Compare 100+ AI models — LLM, code, image, embedding. Check TTFT, tokens/sec, latency.</p>
+        <div><div class="pf-mods-title">What it does</div><ul class="pf-mods"><li>Real-time speed benchmarking</li><li>100+ AI model comparison</li><li>Category filters and search</li><li>Live model health checks</li><li>Batch testing</li><li>Privacy-first API key handling</li></ul></div>
+      </div>
+      <div class="pf-actions"><a class="pf-btn pf-btn-line" href="/nvidia-nim-speed-test/">Open the tool &rarr;</a></div>
+    </article>
+<article class="pf-project" data-type="app" data-search="picfix pro: photo editor picfix-pro-photo-editor tools tools enhance, retouch &amp; edit like a pro remove backgrounds, erase objects, and enhance photos with picfix pro">
+      <div class="pf-proj-head">
+        <span class="pf-num">06</span>
+        <div class="pf-proj-title">
+          <h3>PicFix Pro: Photo Editor</h3>
+          <div class="pf-tagline">Enhance, Retouch &amp; Edit Like a Pro</div>
+        </div>
+        <span class="pf-chip">Tools</span>
+      </div>
+      <div class="pf-shots"><div class="pf-shot"><img src="https://play-lh.googleusercontent.com/8RDvXxh9mI_bq8t8_XNEA57_4QnUZSdPwb88dAY9SA-XqgaImVFuZtxC3Oe-xsFJfXd4cAj0x3RiwmB9kCmfRw=w1052-h592" alt="PicFix Pro: Photo Editor screenshot 1" loading="lazy" decoding="async"/></div><div class="pf-shot"><img src="https://play-lh.googleusercontent.com/ckV6xY3HdN-FHA95Cvk2BK1bLAzKFVMbVJr-rGTA3169NUUiDUKInB-ScF_TFMSLZQCU_rDLQyyYJIktUohJnQ=w1052-h592" alt="PicFix Pro: Photo Editor screenshot 2" loading="lazy" decoding="async"/></div><div class="pf-shot"><img src="https://play-lh.googleusercontent.com/pEniLczkGyC5RcJ1pFiv_mKhJaZFIVaKRnB3PnK2-maBQzZMCz_2gOiV94mzxmHyjZvSCk7wqNA3JJ4QBQot=w1052-h592" alt="PicFix Pro: Photo Editor screenshot 3" loading="lazy" decoding="async"/></div><div class="pf-shot"><img src="https://play-lh.googleusercontent.com/a4zrVJNvkYJp8c5r0uNW8Izd1v3Yf1DBnayQ3jdTDxDybrpfqYWb0QIYdV3bAcycZe6Hl2Q_vZcR1w2eFAJb=w1052-h592" alt="PicFix Pro: Photo Editor screenshot 4" loading="lazy" decoding="async"/></div></div>
+      <div class="pf-proj-grid">
+        <p class="pf-desc">Remove backgrounds, erase objects, and enhance photos with PicFix Pro</p>
+        <div><div class="pf-mods-title">What it does</div><ul class="pf-mods"><li>Remove backgrounds</li><li>Erase unwanted objects</li><li>Enhance image quality</li><li>Convert images to PDF</li><li>Adjust colors</li><li>Fix perspective</li><li>Resize and compress</li><li>Protect privacy</li></ul></div>
+      </div>
+      <div class="pf-actions"><a class="pf-btn pf-btn-dark" href="/apps/picfix-pro-photo-editor/">Project details &rarr;</a><a class="pf-btn pf-btn-line" href="https://play.google.com/store/apps/details?id=com.dhanuk.photodoctorpro" target="_blank" rel="noopener">Google Play &nearr;</a></div>
+    </article>
+<article class="pf-project" data-type="app" data-search="debtpayoff pro: debt tracker debtpayoff-pro-debt-tracker productivity productivity track debts, split bills, get paid get paid back effortlessly with debtpayoff pro, the simple debt tracker for friends and roommates">
+      <div class="pf-proj-head">
+        <span class="pf-num">07</span>
+        <div class="pf-proj-title">
+          <h3>DebtPayoff Pro: Debt Tracker</h3>
+          <div class="pf-tagline">Track debts, split bills, get paid</div>
+        </div>
+        <span class="pf-chip">Productivity</span>
+      </div>
+      <div class="pf-shots"><div class="pf-shot"><img src="https://play-lh.googleusercontent.com/3wZRX4VftMXgVTEmA1QBtai5j8HQx0sx45XjUhyV3aRg5A2omsnYdez7EUCcmMOw451Wdxh87tlpzm-oCMCz9ck=w1052-h592" alt="DebtPayoff Pro: Debt Tracker screenshot 1" loading="lazy" decoding="async"/></div><div class="pf-shot"><img src="https://play-lh.googleusercontent.com/5M7pmfoTFueoif7U9bnP4WSqBC5PEnDTNA9K8ZclOtv8sX9vJWWHAVfZEOSR8oNsejc6dZ8rPxDeJTlF73BNOQ=w1052-h592" alt="DebtPayoff Pro: Debt Tracker screenshot 2" loading="lazy" decoding="async"/></div><div class="pf-shot"><img src="https://play-lh.googleusercontent.com/QGbciMb79OWmwMxwLpjG6HePuyBcLg-dfMRIrZkQiFrZoJt1erM5YnmAl3b2tOlLSMf9E-4L_OZQerusmGfM=w1052-h592" alt="DebtPayoff Pro: Debt Tracker screenshot 3" loading="lazy" decoding="async"/></div><div class="pf-shot"><img src="https://play-lh.googleusercontent.com/plIsO3YEdm803B75mvZtMlfqTNXrtpoTrq68BFzvTt2NOTCr3DwDDsTZYL4KytJj1OAJ9im6jpeWNKQN7AGRFQ=w1052-h592" alt="DebtPayoff Pro: Debt Tracker screenshot 4" loading="lazy" decoding="async"/></div></div>
+      <div class="pf-proj-grid">
+        <p class="pf-desc">Get paid back effortlessly with DebtPayoff Pro, the simple debt tracker for friends and roommates</p>
+        <div><div class="pf-mods-title">What it does</div><ul class="pf-mods"><li>Track every debt, both ways</li><li>Add debts with name, amount, reason, due date,</li><li>Search debts by name or reason</li><li>Filter by pending and settled debts, with over</li><li>Log partial payments and see remaining balance</li><li>AI reminder writer with three tones: Mild, Med</li><li>Split bills with friends and roommates</li><li>See each person&#039;s share instantly</li><li>Turn any split into tracked debts with one tap</li></ul></div>
+      </div>
+      <div class="pf-actions"><a class="pf-btn pf-btn-dark" href="/apps/debtpayoff-pro-debt-tracker/">Project details &rarr;</a><a class="pf-btn pf-btn-line" href="https://play.google.com/store/apps/details?id=com.dhanuk.debtbro" target="_blank" rel="noopener">Google Play &nearr;</a></div>
+    </article>
+<article class="pf-project" data-type="app" data-search="govphoto: exam photo resizer govphoto-exam-photo-resizer tools tools resize photos for 400+ exams get the perfect photo size for government exams and id documents with govphoto resizer">
+      <div class="pf-proj-head">
+        <span class="pf-num">08</span>
+        <div class="pf-proj-title">
+          <h3>GovPhoto: Exam Photo Resizer</h3>
+          <div class="pf-tagline">Resize photos for 400+ exams</div>
+        </div>
+        <span class="pf-chip">Tools</span>
+      </div>
+      <div class="pf-shots"><div class="pf-shot"><img src="https://play-lh.googleusercontent.com/XdURxGUJ2UoIRkL3DWaH7Q2JxZ-OZY-6mHCTJ9edJ3h6ihimF4kg6bkcVh8u3866EzL55A5Aep5ZOrhmDgyN0Q=w1052-h592" alt="GovPhoto: Exam Photo Resizer screenshot 1" loading="lazy" decoding="async"/></div><div class="pf-shot"><img src="https://play-lh.googleusercontent.com/O6gjb0K2Xd29uPGcgstHhwLlg10hkAurxDHd3Zf0cR-aSACT015V4ZMkmEREUlFVq_S4MJe97tdp5vBMkBc8=w1052-h592" alt="GovPhoto: Exam Photo Resizer screenshot 2" loading="lazy" decoding="async"/></div><div class="pf-shot"><img src="https://play-lh.googleusercontent.com/o1YgnOlyrbj9XzUkAnQJwn9Wm7qBnfAkIhX8OUWksEaQtHTNjgInda9SBBa6cxDy1xExFlQ3B_tK1ks3txrCvQQ=w1052-h592" alt="GovPhoto: Exam Photo Resizer screenshot 3" loading="lazy" decoding="async"/></div><div class="pf-shot"><img src="https://play-lh.googleusercontent.com/THUYwjE2gf6ATOopmnw3NVaF_83_gEMIY9wOHXwH5eHPv_tfKH4Bv6s1RMzrGh-lfAhjuaBwclIbenvHPmFR=w1052-h592" alt="GovPhoto: Exam Photo Resizer screenshot 4" loading="lazy" decoding="async"/></div></div>
+      <div class="pf-proj-grid">
+        <p class="pf-desc">Get the perfect photo size for government exams and ID documents with GovPhoto Resizer</p>
+        <div><div class="pf-mods-title">What it does</div><ul class="pf-mods"><li>400+ Exam &amp; Document Presets</li><li>Exact Size, Every Time</li><li>Perfect Fit – Head Size &amp; Proportion Check</li><li>Auto Enhance</li><li>Signature Resizer</li><li>Custom Size Mode</li><li>Hindi + English Support</li><li>Privacy Protection</li></ul></div>
+      </div>
+      <div class="pf-actions"><a class="pf-btn pf-btn-dark" href="/apps/govphoto-exam-photo-resizer/">Project details &rarr;</a><a class="pf-btn pf-btn-line" href="https://play.google.com/store/apps/details?id=com.dhanuk.govphoto&amp;pli=1" target="_blank" rel="noopener">Google Play &nearr;</a></div>
+    </article>
+    </div>
+  </section>
+
+  <section class="pf-section" id="websites-section" aria-labelledby="websites-heading">
+    <div class="pf-section-head">
+      <div class="pf-label">Websites</div>
+      <h2 id="websites-heading">Websites built for real businesses</h2>
+      <p>Storefronts, institutional publishing and data-heavy reference tools. Different problems, same rule — it has to be fast on a phone and easy to update later.</p>
+    </div>
+    <div class="pf-sites" id="pf-sites">
+<a class="pf-site" data-type="website" href="https://evianworld.com" target="_blank" rel="noopener">
+      <div class="pf-site-top">
+        <div class="pf-mono" style="background:#2B1B4D">E</div>
+        <div>
+          <div class="pf-site-name">Evian World</div>
+          <div class="pf-site-cat">E-commerce &middot; 2026</div>
+        </div>
+      </div>
+      <p class="pf-site-desc">A full WooCommerce storefront for India&#039;s workspace furniture market — mesh, gaming and executive seating, category-driven browsing, product comparison, and a checkout flow tuned for a catalogue that runs into the hundreds of SKUs. Built for a physical business moving its showroom online.</p>
+      <div class="pf-site-tags"><span>WooCommerce</span><span>Product catalogue</span><span>Payments</span><span>Mobile-first</span></div>
+      <span class="pf-site-link">Visit the live site <span class="arrow">&rarr;</span></span>
+      
+    </a>
+<a class="pf-site" data-type="website" href="https://colorwhale.in" target="_blank" rel="noopener">
+      <div class="pf-site-top">
+        <div class="pf-mono" style="background:#FF6B57">C</div>
+        <div>
+          <div class="pf-site-name">Colorwhale</div>
+          <div class="pf-site-cat">E-commerce &middot; 2025</div>
+        </div>
+      </div>
+      <p class="pf-site-desc">A fashion e-commerce build where the brand had to survive the scroll. Full-bleed lookbook sections, category landing pages, size and variant handling, and a product page that keeps the story in front of the sale instead of burying it under specs.</p>
+      <div class="pf-site-tags"><span>WooCommerce</span><span>Apparel</span><span>Lookbook</span><span>Variants</span></div>
+      <span class="pf-site-link">Visit the live site <span class="arrow">&rarr;</span></span>
+      
+    </a>
+<a class="pf-site" data-type="website" href="https://activismfoundation.in" target="_blank" rel="noopener">
+      <div class="pf-site-top">
+        <div class="pf-mono" style="background:#3D2568">A</div>
+        <div>
+          <div class="pf-site-name">Activism Foundation</div>
+          <div class="pf-site-cat">Institutional &middot; 2025</div>
+        </div>
+      </div>
+      <p class="pf-site-desc">An institutional publishing site for a research foundation — journal volumes, paper submission calls, seminar announcements and an events archive. Structured so a reader can find last year&#039;s call for papers without emailing anyone, and so the foundation can post a new volume without a developer.</p>
+      <div class="pf-site-tags"><span>WordPress</span><span>Journal archive</span><span>Events</span><span>CMS</span></div>
+      <span class="pf-site-link">Visit the live site <span class="arrow">&rarr;</span></span>
+      
+    </a>
+<a class="pf-site" data-type="website" href="https://thecoppercraftsman.com" target="_blank" rel="noopener">
+      <div class="pf-site-top">
+        <div class="pf-mono" style="background:#C27A3A">T</div>
+        <div>
+          <div class="pf-site-name">The Copper Craftsman</div>
+          <div class="pf-site-cat">E-commerce &middot; 2025</div>
+        </div>
+      </div>
+      <p class="pf-site-desc">A handcrafted-goods storefront where the product photography carries the brand. Copper bottles, cookware and decor with variant pricing, COD support, offer banners and a cart drawer built to convert on a phone, since that&#039;s where most of the traffic arrives.</p>
+      <div class="pf-site-tags"><span>Shopify</span><span>D2C</span><span>COD</span><span>Craft goods</span></div>
+      <span class="pf-site-link">Visit the live site <span class="arrow">&rarr;</span></span>
+      
+    </a>
+<a class="pf-site" data-type="website" href="https://dhanuk-davidrose.pages.dev" target="_blank" rel="noopener">
+      <div class="pf-site-top">
+        <div class="pf-mono" style="background:#8E6B4A">D</div>
+        <div>
+          <div class="pf-site-name">Dress David Rose</div>
+          <div class="pf-site-cat">Showcase &middot; 2024</div>
+        </div>
+      </div>
+      <p class="pf-site-desc">A pure craft build: a filterable, season-by-season clothing archive with hundreds of illustrated entries, keyboard-navigable galleries and a layout that has to stay readable at four hundred items. Kept on a static stack so it loads instantly and costs almost nothing to run.</p>
+      <div class="pf-site-tags"><span>Static site</span><span>Filter UI</span><span>Illustration</span><span>Zero backend</span></div>
+      <span class="pf-site-link">Visit the live site <span class="arrow">&rarr;</span></span>
+      <div class="pf-site-mirror">Mirrored build &middot; original at davidrose.style</div>
+    </a>
+<a class="pf-site" data-type="website" href="https://dhanuk-airportcodes.pages.dev" target="_blank" rel="noopener">
+      <div class="pf-site-top">
+        <div class="pf-mono" style="background:#1F5F8B">A</div>
+        <div>
+          <div class="pf-site-name">Airport Codes</div>
+          <div class="pf-site-cat">Data &amp; Tools &middot; 2024</div>
+        </div>
+      </div>
+      <p class="pf-site-desc">A data-heavy reference tool: thousands of airports, live search, and generated detail pages that stay fast because the whole index ships as static output rather than querying a database on every keystroke. The kind of build that lives or dies on its information architecture.</p>
+      <div class="pf-site-tags"><span>Static site</span><span>Search</span><span>Generated pages</span><span>Reference</span></div>
+      <span class="pf-site-link">Visit the live site <span class="arrow">&rarr;</span></span>
+      <div class="pf-site-mirror">Mirrored build &middot; original at airportcod.es</div>
+    </a>
+<a class="pf-site" data-type="website" href="https://dhanuk-topchefstats.pages.dev" target="_blank" rel="noopener">
+      <div class="pf-site-top">
+        <div class="pf-mono" style="background:#B0322B">T</div>
+        <div>
+          <div class="pf-site-name">Top Chef Stats</div>
+          <div class="pf-site-cat">Data &amp; Tools &middot; 2024</div>
+        </div>
+      </div>
+      <p class="pf-site-desc">An editorial data project — every season, every contestant, every elimination, compiled by hand and turned into charts, records and per-season pages. Heavy tabular content held together with a strict visual system so the numbers stay readable instead of turning into a spreadsheet.</p>
+      <div class="pf-site-tags"><span>Static site</span><span>Data viz</span><span>Editorial</span><span>Per-season pages</span></div>
+      <span class="pf-site-link">Visit the live site <span class="arrow">&rarr;</span></span>
+      <div class="pf-site-mirror">Mirrored build &middot; original at topchefstats.com</div>
+    </a>
+    </div>
+  </section>
+
+  <section class="pf-section" style="padding-bottom:0;">
+    <div class="pf-cta" style="padding:0;margin:0;max-width:none;">
+      <div class="pf-cta-inner">
+        <h2>Your project could be on this page next.</h2>
+        <p>Tell us what you're building. You'll get a straight answer, a timeline and a number — usually within a day.</p>
+        <div class="pf-hero-btns">
+          <a href="/get-a-quote/" class="pf-btn pf-btn-solid">Get a quote</a>
+          <a href="https://wa.me/919205269466" target="_blank" rel="noopener" class="pf-btn pf-btn-ghost">WhatsApp us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>&copy; <span id="footer-year"></span> <strong>Dhanuk Softwares</strong>. All rights reserved. · GST &amp; MSME Registered · Made in India</p>
+  <p style="margin-top:0.5rem;">
+    <a href="/">Home</a> &middot;
+    <a href="/apps/">Apps</a> &middot;
+    <a href="/portfolio/">Portfolio</a> &middot;
+    <a href="/get-a-quote/">Get a Quote</a> &middot;
+    <a href="/privacy/">Privacy</a> &middot;
+    <a href="/terms/">Terms</a>
+  </p>
+</footer>
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+  // Mobile nav
+  (function () {
+    var btn = document.getElementById('nav-toggle');
+    var menu = document.getElementById('nav-menu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function () {
+      var open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    menu.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        menu.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+
+  // Filter: all / app / website
+  (function () {
+    var pills = Array.prototype.slice.call(document.querySelectorAll('.pf-pill'));
+    var apps = document.getElementById('pf-apps');
+    var sites = document.getElementById('pf-sites');
+    var appsSection = document.getElementById('apps-section');
+    var sitesSection = document.getElementById('websites-section');
+    var note = document.getElementById('pf-result-note');
+    var appRows = Array.prototype.slice.call(document.querySelectorAll('.pf-project'));
+    var siteCards = Array.prototype.slice.call(document.querySelectorAll('.pf-site'));
+
+    function apply(mode, push) {
+      var showApps = mode !== 'website';
+      var showSites = mode !== 'app';
+      appsSection.hidden = !showApps;
+      sitesSection.hidden = !showSites;
+      appRows.forEach(function (r) { r.hidden = !showApps; });
+      siteCards.forEach(function (c) { c.hidden = !showSites; });
+      pills.forEach(function (p) {
+        p.setAttribute('aria-selected', p.dataset.filter === mode ? 'true' : 'false');
+      });
+      var total = (showApps ? appRows.length : 0) + (showSites ? siteCards.length : 0);
+      note.textContent = mode === 'all'
+        ? 'Showing all ' + total + ' projects'
+        : 'Showing ' + total + ' ' + (mode === 'app' ? 'apps' : 'websites');
+      if (push) {
+        var url = mode === 'all' ? window.location.pathname : window.location.pathname + '#' + mode;
+        history.replaceState({}, '', url);
+      }
+    }
+
+    pills.forEach(function (p) {
+      p.addEventListener('click', function () { apply(p.dataset.filter, true); });
+    });
+
+    var hash = (window.location.hash || '').replace('#', '');
+    if (hash === 'app' || hash === 'website') apply(hash, false);
+    else apply('all', false);
+  })();
+</script>
+</body>
+</html>
