@@ -42,8 +42,11 @@ async function autoFetchFromPlayStore(apps) {
           }
         }
       }
-      // Developer (from developer link in head_app_info or "wMUdtb" class)
-      let devMatch = html.match(/href="\/store\/apps\/dev[eloper]*\?id=[^"]+"[^>]*>\s*([^<]+)/);
+      // Developer: JSON-LD author is authoritative. The "wMUdtb" class also
+      // matches related-app cards, which previously mis-attributed FocusStreak
+      // to "iSMART i-Generation" (a similar app, not the developer).
+      let devMatch = html.match(/"author"\s*:\s*\{\s*"@type"\s*:\s*"[^"]+"\s*,\s*"name"\s*:\s*"([^"]+)"/);
+      if (!devMatch) devMatch = html.match(/href="\/store\/apps\/dev[eloper]*\?id=[^"]+"[^>]*>\s*([^<]+)/);
       if (!devMatch) devMatch = html.match(/class="wMUdtb">([^<]+)/);
       if (devMatch) {
         const dev = devMatch[1].trim();
