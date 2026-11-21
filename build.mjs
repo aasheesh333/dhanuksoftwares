@@ -557,7 +557,7 @@ async function main() {
   writeFile(path.join(DIST, '_headers'), headers);
   console.log('  /_headers');
 
-  const redirects = generateRedirects(apps);
+  const redirects = generateRedirects(apps, posts);
   writeFile(path.join(DIST, '_redirects'), redirects);
   console.log('  /_redirects');
 
@@ -731,7 +731,7 @@ function generateHeaders() {
 `;
 }
 
-function generateRedirects(apps) {
+function generateRedirects(apps, posts = []) {
   // Track which app slugs were ever published so we can 301 stale URLs.
   // We don't have this history, but we can redirect slugs that AREN'T in current apps.json
   // and that we know were historical: focus-app, quick-scan, photo-editor (the old 4).
@@ -743,10 +743,27 @@ function generateRedirects(apps) {
     .filter(slug => !currentSlugs.has(slug))
     .map(slug => `/apps/${slug}/  /apps/  301`)
     .join('\n');
+
+  // Renamed URLs (PicFix Pro -> PhotoDoctor Pro, Nov 2026). The old paths are no longer
+  // built, so a 301 keeps inbound links and search rankings alive. Each rule is only
+  // emitted when its destination exists in this build, so we never redirect into a 404.
+  // Both the slash and no-slash forms are listed because _redirects matches exactly.
+  const currentPostSlugs = new Set((posts || []).map(p => p.slug));
+  const renamedRedirects = [
+    { from: '/apps/picfix-pro-photo-editor/', to: '/apps/photodoctor-pro-photo-editor/', ok: currentSlugs.has('photodoctor-pro-photo-editor') },
+    { from: '/blog/photo-object-remover-free-app-picfix-pro/', to: '/blog/photo-object-remover-free-app-photodoctor-pro/', ok: currentPostSlugs.has('photo-object-remover-free-app-photodoctor-pro') }
+  ]
+    .filter(r => r.ok)
+    .map(r => `${r.from}  ${r.to}  301\n${r.from.slice(0, -1)}  ${r.to}  301`)
+    .join('\n');
+
   return `# SEO: 301 redirect www → non-www (fixes duplicate content, canonical mismatch, Bing crawl issue)
 https://www.dhanuksoftwares.com/* https://dhanuksoftwares.com/:splat 301
 
 /admin /admin/ 301
+
+# SEO: 301 renamed URLs (PicFix Pro -> PhotoDoctor Pro)
+${renamedRedirects}
 
 # SEO: 301 redirect stale per-app URLs (apps that no longer exist in apps.json) → /apps/
 ${staleRedirects}
