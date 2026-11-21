@@ -340,7 +340,7 @@
         "type": "play"
       }
     ],
-    "lastUpdated": "2026-08-27",
+    "lastUpdated": "2026-08-26",
     "totalDownloads": "100+",
     "appSize": "10.22",
     "contentRating": "Rated for 3+",
@@ -652,5 +652,87 @@
     "appSize": "16 MB",
     "contentRating": "Rated for 3+",
     "developer": "Dhanuk Softwares"
+  },
+  {
+    "name": "SubBurn: Subscription Tracker",
+    "slug": "subburn-subscription-tracker",
+    "category": "Finance",
+    "tag": "Finance",
+    "tagline": "Track AI & SaaS subscription burn",
+    "shortDesc": "See what your AI and SaaS subscriptions cost you every month, spot ghost spend, and cancel what you never use. 100% on-device.",
+    "longDescription": "<p>You are probably paying for more AI subscriptions than you think. ChatGPT Plus, Claude Pro, Cursor, Perplexity, Gemini, Copilot &mdash; added up, they are the fastest growing line in most people's monthly spending, and the easiest to forget.</p>\n<p>SubBurn is a subscription tracker that answers one question in under a second: how much am I burning every month, and how much of it do I actually use?</p>\n<p>No account. No cloud database. Your subscriptions stay on your phone.</p>\n<h2>How it works</h2>\n<p>Add a subscription in three taps. Pick from 124 built-in tools &mdash; ChatGPT Plus, Claude Pro, Cursor Pro, GitHub Copilot, Perplexity Pro, Gemini Advanced, Midjourney, Notion, Figma, Adobe Creative Cloud, Netflix, Spotify and more &mdash; or type your own. Set the price and the billing date, and the tracker does the rest. Weekly, monthly, quarterly and yearly plans are all supported.</p>\n<h2>See your monthly burn</h2>\n<p>Every plan is normalised to a monthly figure, so a yearly Figma licence and a weekly tool sit on the same scale. You get one number: what your subscriptions cost you per month, with a yearly total underneath. Switch between rupees and dollars at any time; amounts are stored as charged and totals convert at the live rate.</p>\n<h2>Spot ghost spend</h2>\n<p>Mark each tool as daily use, occasional, or barely touched. The tracker splits your burn into active use and ghost spend, so waste is visible before you read a single row. If a third of your subscription money goes to tools you opened twice this year, ghost spend shows it as a number, not a feeling.</p>\n<h2>Know before it charges</h2>\n<p>Renewal reminders arrive 48 hours and 24 hours before every charge. They are scheduled on your device, so they work offline and need no special alarm access. Nothing renews quietly. A 48 hour window on the dashboard shows exactly what is about to bill.</p>\n<h2>Cancel without the hunt</h2>\n<p>Every subscription carries a direct link to that vendor's own cancellation page. No searching through help centres, no fake contact loops. SubBurn never touches your credentials and never asks for your password.</p>\n<h2>Lifetime spend, done properly</h2>\n<p>See what each subscription has cost you since you started, prorated from your real billing dates, not a rough estimate. Correct the next charge date once and the lifetime figure recalculates from that point forward.</p>\n<h2>A receipt worth sharing</h2>\n<p>Export a 9:16 receipt of your year in subscriptions, with a deterministic roast line at the bottom. It is designed to be screenshotted and sent to the group chat, and it exports at 1080 x 1920. No watermark, no login, no share sheet detour.</p>\n<h2>Private by default</h2>\n<p>There is no sign-up. SubBurn does not ask for your name, your email, your bank details, or your card. Your ledger is stored on your device only, so uninstalling removes it completely. No account deletion request, because there is no account. Nothing is uploaded, and there is no cloud sync to switch off.</p>\n<p>Light and dark themes follow your device, and a manual choice is remembered on this device.</p>\n<h2>Ads, honestly</h2>\n<p>One banner above the navigation bar, and an optional rewarded video you choose to watch. That is all. Nothing is locked behind an ad, and no feature is gated by watching anything.</p>\n<h2>Who it is for</h2>\n<p>People with too many tabs. Freelancers expensing AI subscriptions. Students on a free trial that quietly became a paid plan. Anyone who signed up in 2023 and is still paying for it. If you have ever opened your bank statement and thought &ldquo;what is Cursor Pro again&rdquo;, this subscription tracker is for you.</p>\n<h2>What SubBurn is not</h2>\n<p>It is not a bank connection. It does not read your SMS, your notifications, or your statements. You type what you pay, once, and the tracker keeps the arithmetic honest from there.</p>\n<p>SubBurn is a subscription tracker, not a financial product. It does not move money, lend, or give financial advice.</p>",
+    "keywords": [
+      "subscription tracker",
+      "ai subscription tracker",
+      "saas spend tracker",
+      "subscription manager",
+      "cancel subscriptions",
+      "ghost spend",
+      "chatgpt plus tracker",
+      "monthly subscription cost"
+    ],
+    "features": [
+      "124 built-in AI & SaaS tools",
+      "Monthly burn + yearly total",
+      "Ghost spend: active vs barely used",
+      "48h and 24h renewal reminders",
+      "Direct cancel links for every vendor",
+      "Lifetime spend prorated from real billing dates",
+      "Shareable 9:16 yearly receipt (1080 x 1920)",
+      "Rupees and dollars with live FX",
+      "No account, no cloud, on-device only",
+      "Light and dark themes",
+      "Honest ads: one banner, optional rewarded video"
+    ],
+    "faq": [
+      {
+        "q": "Is SubBurn free to use?",
+        "a": "Yes. SubBurn is free, with one banner above the navigation bar and an optional rewarded video you choose to watch. No feature is locked behind an ad."
+      },
+      {
+        "q": "Do I need an account or bank details?",
+        "a": "No. There is no sign-up and no bank connection. SubBurn never asks for your name, email, bank details or card, and your ledger stays on your device."
+      },
+      {
+        "q": "Which subscriptions can I track?",
+        "a": "124 built-in tools including ChatGPT Plus, Claude Pro, Cursor Pro, GitHub Copilot, Perplexity Pro, Gemini Advanced, Midjourney, Notion, Figma, Adobe Creative Cloud, Netflix and Spotify, plus any custom subscription. Weekly, monthly, quarterly and yearly billing are supported."
+      },
+      {
+        "q": "Does it work offline?",
+        "a": "Yes. Renewal reminders are scheduled on your device, so they fire offline without special alarm access."
+      },
+      {
+        "q": "Can I track subscriptions in rupees and dollars?",
+        "a": "Yes. Switch between INR and USD at any time. Amounts are stored as charged and totals convert at the live exchange rate."
+      },
+      {
+        "q": "How do I cancel a subscription?",
+        "a": "Every subscription row links straight to that vendor's own cancellation page. SubBurn never touches your credentials and never asks for your password."
+      },
+      {
+        "q": "Is my data uploaded anywhere?",
+        "a": "No. There is no cloud sync. Data is stored on your device only, so uninstalling the app removes it completely."
+      }
+    ],
+    "emoji": "",
+    "icon": "https://play-lh.googleusercontent.com/DGgEVOKccR5uqS7TiNOUTPkrcxPyTa0UQ1kyBgDWGQbWNTPuJDEIezMu-FBIBPWMfUdnXFX4KIDtf2oBVqSrqQ",
+    "screenshots": [
+      "https://play-lh.googleusercontent.com/L_qbYA1M7TGJx46vbx_uEAiL08Ih5b9dKGfrtZfF1ZzqgB9Ejct7kKtFKMU1c78yAslP4VoUyltFNO2TXB5teDY=w1052-h592",
+      "https://play-lh.googleusercontent.com/9xBNTh-LPiCLJ5EAfk7IVw6xwgXWNQVddWdmjmigqYzGE6HEkylY3KCTNB8ko20iDO86eECKyFOYzNJD2OEgeA=w1052-h592",
+      "https://play-lh.googleusercontent.com/5XsOvSJmHwTHrC2sOuufF9T-zoO_sPWMIuSK2tkDaXk4RYgOMDLIRr1iU5jPnlLBqKuGUYMPybiQPmC3cG4F1w=w1052-h592",
+      "https://play-lh.googleusercontent.com/9szhcDkIs71AEXwIUs6fWWzwB9neK82vKQ8uy-EfSTyombCNqastkhTUE1tTIJgtl1bfsxYDnjhP7C3btUJW1A=w1052-h592",
+      "https://play-lh.googleusercontent.com/WZdwYkN9tSYN5v4pfdZZcmEIWYVVu9QfPQIup6_HF1gpUW3k5VlAhuIxCtYEupLV1RJ-vPccoF9wocPrqn7xEw=w1052-h592"
+    ],
+    "marketplaces": [
+      {
+        "name": "Google Play",
+        "url": "https://play.google.com/store/apps/details?id=com.dhanuk.subburn",
+        "type": "play"
+      }
+    ],
+    "lastUpdated": "2026-11-15",
+    "totalDownloads": "",
+    "appSize": "25 MB",
+    "contentRating": "Rated for 3+"
   }
 ]
