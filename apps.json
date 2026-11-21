@@ -734,5 +734,85 @@
     "totalDownloads": "",
     "appSize": "25 MB",
     "contentRating": "Rated for 3+"
+  },
+  {
+    "name": "QuickScan Pro: QR & Barcode",
+    "slug": "quickscan-pro-qr-barcode",
+    "category": "Tools",
+    "tag": "Tools",
+    "tagline": "Scan, create and secure QR codes",
+    "shortDesc": "Scan QR codes and barcodes, generate your own, share Wi-Fi in one tap, extract text with OCR, and lock private scans in a vault.",
+    "longDescription": "<p>QuickScan Pro is a complete QR code and barcode toolkit with five main features: a camera scanner, a QR code generator, a Wi-Fi QR maker, an OCR text scanner and a secure private vault. It reads QR codes, product barcodes, Wi-Fi codes, contact cards, calendar events, links, text, locations, emails, phone numbers and SMS codes using your camera or images from your gallery.</p>\n<h2>QR and barcode scanner</h2>\n<p>Point your camera at any QR code or barcode and QuickScan Pro detects and reads it instantly. Supported scan types include website links, plain text, product barcodes, contact cards (vCard), Wi-Fi credentials, calendar invitations, GPS locations, email addresses, phone numbers and SMS messages. After every scan you can copy, open, share or save the result. Automatic detection with vibration and sound feedback, a flashlight for dark environments, zoom for distant codes, and image scanning straight from your gallery are all built in.</p>\n<h2>QR code generator and maker</h2>\n<p>Create and share your own QR codes for links, plain text, phone numbers, email addresses, SMS messages, GPS locations, Wi-Fi networks and calendar events. Save any generated code as an image to your gallery, share it with any app, or reuse it later. Handy for links, contact info, restaurant menus, business cards, event invites and payment details.</p>\n<h2>Wi-Fi QR maker and sharing</h2>\n<p>Turn your connected Wi-Fi network into a QR code so guests can scan and join without typing a password. QuickScan Pro detects your current network name, generates a Wi-Fi QR code, and lets anyone scan it to connect instantly. Ideal for homes, offices, cafes, hotels, shops, classrooms and events. Wi-Fi detection is used only when you open this feature.</p>\n<h2>OCR text scanner (image to text)</h2>\n<p>Extract text from images with built-in OCR. Photograph printed notes, receipts, labels, signs, documents, book pages or screenshots and QuickScan Pro converts the image into editable text you can copy, share or translate. Useful for students, professionals, travellers, shoppers and anyone who needs to digitise printed text quickly.</p>\n<h2>Secure vault for private scans</h2>\n<p>Protect sensitive scans with a private vault locked by fingerprint, face unlock, PIN or device pattern. Move any scan into the Secure Vault to hide it from your normal history. Vault items can be opened only after authentication and restored to normal history at any time.</p>\n<h2>More tools for everyday scanning</h2>\n<ul><li>Bulk scanning: scan many codes in one session as a grouped batch</li><li>Scan history saved locally with type, time, note and category</li><li>Search and filters by type, keyword, date or favourites</li><li>Compare two scans side by side</li><li>CSV export for inventory, check-ins, product tracking or research</li><li>Dark theme, tablet support and a modern interface</li></ul>\n<h2>Privacy-first design</h2>\n<p>Your scans, notes, vault items and history are stored only on your device. The camera is used for scanning, the gallery only when you pick an image, and Wi-Fi permissions only for the Wi-Fi QR feature. The app contains ads served through Google AdMob and anonymous crash reporting through Firebase Crashlytics to keep the app free and improve stability.</p>\n<h2>Who uses QuickScan Pro</h2>\n<p>Students, shoppers, travellers, office workers, shop owners, event organisers and anyone who scans menus, tickets, payment links, product barcodes or Wi-Fi codes daily.</p>",
+    "keywords": [
+      "qr code scanner",
+      "barcode scanner",
+      "qr code generator",
+      "wifi qr code",
+      "ocr text scanner",
+      "image to text",
+      "secure vault",
+      "qr maker"
+    ],
+    "features": [
+      "QR & barcode scanner with flashlight and zoom",
+      "Scan images from gallery",
+      "QR code generator and maker",
+      "Wi-Fi QR code for one-tap guest joining",
+      "OCR text scanner (image to text)",
+      "Secure vault with fingerprint or PIN lock",
+      "Bulk scanning and scan history",
+      "Search, filters, favourites and compare",
+      "CSV export of scans",
+      "Dark theme and tablet support"
+    ],
+    "faq": [
+      {
+        "q": "Is QuickScan Pro free?",
+        "a": "Yes. QuickScan Pro is free, supported by ads served through Google AdMob. No scanning or generating feature is locked behind a purchase."
+      },
+      {
+        "q": "What can QuickScan Pro scan?",
+        "a": "QR codes, product barcodes, Wi-Fi codes, contact cards, calendar events, links, plain text, GPS locations, emails, phone numbers and SMS codes — from your camera or an image in your gallery."
+      },
+      {
+        "q": "Can I create my own QR codes?",
+        "a": "Yes. Generate QR codes for links, text, phone numbers, emails, SMS, locations, Wi-Fi networks and calendar events, then save them as images or share them directly."
+      },
+      {
+        "q": "How does the Wi-Fi QR code work?",
+        "a": "QuickScan Pro detects your current network name and generates a QR code. Guests scan it and join without typing the password. Wi-Fi detection runs only when you open that feature."
+      },
+      {
+        "q": "Does it extract text from images?",
+        "a": "Yes. The built-in OCR scanner turns photos of notes, receipts, labels, documents and screenshots into editable text you can copy, share or translate."
+      },
+      {
+        "q": "Where is my scan history stored?",
+        "a": "On your device only. Nothing is uploaded to a server. Private scans can be moved into a vault locked by fingerprint, face unlock, PIN or device pattern."
+      }
+    ],
+    "emoji": "",
+    "icon": "https://play-lh.googleusercontent.com/qQDMRpRHGV9RUGEC13T7_X4Jqiq3Kq7e1U5xCiBl8hBzXx9Bx0nbCCdFSZ4ZdGhE6lLmjG5UPAY8KWmXIuD3y-E",
+    "screenshots": [
+      "https://play-lh.googleusercontent.com/l9D-lmdqVeVJfXKG2PL5thUgQn56ReaQtjl3Tv9lTmWwwcfBQwA9StBJjmW0jQHJW6lHsNaF8S64fDS8thDyOg=w1052-h592",
+      "https://play-lh.googleusercontent.com/keBjGzT8aRk98tg0Yf7Rgx8VNM37D5XmBrsimc3OSrWr9UP6ZNKFj3TXnnnEfMXD9Xre2Sx_O4kiwfiVOmuN_yc=w1052-h592",
+      "https://play-lh.googleusercontent.com/kWmEUdqc9j2LX3jRcPAzn9K5YJNOVtw0vINHrPTHiolrznVsYBX7IPqrHMEfU3gWyjZVc_SLWA_9RcwcDbgHIA=w1052-h592",
+      "https://play-lh.googleusercontent.com/qj97gPn6uKJIQd_Mx5a9cEtN81BuibJNqpaezN2cYbj7DZxJA9I2pVtuL5JLtDrjIyDHc7sZ066L83iCRD_ZvkU=w1052-h592",
+      "https://play-lh.googleusercontent.com/Af-zQaN4jkCx9kqXVOgLoeDKT3XWklhp9_I3vqZSNRB9bmPqnv1wi6s_K5fENeMdGBSyqJoreugA0cnY6SmwOg=w1052-h592",
+      "https://play-lh.googleusercontent.com/FLRVAcbBAYO0f6iVYtWHX9Lofd2TEzui9wdfHQYmPVgRrhxc7hPQhWcJlDkIpzKkcvWT1cJmqsHGiBqfOukHuno=w1052-h592",
+      "https://play-lh.googleusercontent.com/916VROTB-JbNPjUJNQGODZuBeYidhpn8sKAV42URO2N361l3aaQrpAP9oA8A-oWUEfXu1T4yR8TJ9aXtyZrI=w1052-h592",
+      "https://play-lh.googleusercontent.com/pfOZr8Tx1qisG1osTBJs9UuZK2T6SU9xWARHFRK85mxdPnFjw56axhWlGTk7SCDI__6F8lZ1c2nUdYWQeor_9-w=w1052-h592"
+    ],
+    "marketplaces": [
+      {
+        "name": "Google Play",
+        "url": "https://play.google.com/store/apps/details?id=com.dhanuk.quickscanpro",
+        "type": "play"
+      }
+    ],
+    "lastUpdated": "2026-08-27",
+    "totalDownloads": "10+",
+    "appSize": "",
+    "contentRating": "Rated for 3+"
   }
 ]
